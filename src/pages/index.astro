@@ -65,16 +65,16 @@ const tickerItems = [
   canonicalUrl="/"
 >
   <div class="relative overflow-x-hidden bg-white">
-    <Providers client:only="react">
+    <Providers client:load>
       <!-- Header (React Island for interactivity) -->
       <HeaderWrapper client:load currentPath={currentPath} />
 
-      <!-- Sticky Hero Video Section with content sliding over -->
+      <!-- Sticky Hero Video Section with content sliding over - loads immediately -->
       <StickyHeroVideoSectionWrapper client:load>
-        <!-- Product Image Ticker -->
+        <!-- Product Image Ticker - loads after initial page load (idle) -->
         <section class="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68">
           <ProductImageTicker 
-            client:load
+            client:idle
             items={tickerItems}
             speed={95}
             direction="left"
@@ -82,29 +82,29 @@ const tickerItems = [
           />
         </section>
 
-        <!-- Industries Section -->
-        <IndustryCardsSection client:load />
+        <!-- Industries Section - loads after initial page load (idle) -->
+        <IndustryCardsSection client:idle />
 
-        <!-- Products Section -->
-        <ProductCategoriesSection client:load />
+        <!-- Products Section - loads when visible -->
+        <ProductCategoriesSection client:visible />
 
-        <!-- Product Chemistries Overview -->
+        <!-- Product Chemistries Overview - loads when visible -->
         <section class="relative">
-          <ChemistryOverviewSectionV7 client:load />
+          <ChemistryOverviewSectionV7 client:visible />
         </section>
 
-        <!-- Approach Section (Customer Success & Slogan Slam Video) -->
-        <ApproachSectionUnified client:load />
+        <!-- Approach Section (Customer Success & Slogan Slam Video) - loads when visible -->
+        <ApproachSectionUnified client:visible />
 
-        <!-- Made in America Sections -->
+        <!-- Made in America Sections - loads when visible -->
         <section class="relative">
-          <MadeInAmericaSectionV2 client:load />
-          <MadeInAmericaSection client:load />
+          <MadeInAmericaSectionV2 client:visible />
+          <MadeInAmericaSection client:visible />
         </section>
 
-        <!-- Sticky Newsletter Section (Includes Resource Library, Recent News, Newsletter, and Footer) -->
+        <!-- Sticky Newsletter Section - loads when visible -->
         <section class="relative">
-          <StickyNewsletterSection client:load />
+          <StickyNewsletterSection client:visible />
         </section>
       </StickyHeroVideoSectionWrapper>
     </Providers>

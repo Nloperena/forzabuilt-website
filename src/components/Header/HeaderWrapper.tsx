@@ -83,6 +83,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [pinnedDropdown, setPinnedDropdown] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   
   const isHome = currentPath === '/';
   const isIndustry = currentPath.startsWith('/industries');
@@ -96,12 +97,27 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   const isCanisterReturns = currentPath === '/canister-returns';
   const isChemistries = currentPath === '/chemistries';
 
+  // Proper mobile detection with resize listener
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Listen for resize
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 8);
       
-      if (window.innerWidth >= 1024) {
+      // Only do hide-on-scroll behavior on desktop
+      if (!isMobile) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsScrollingUp(true);
         } else if (currentScrollY < lastScrollY) {
@@ -114,7 +130,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobile]);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -148,31 +164,33 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
     };
   }, [mobileMenuOpen]);
 
-  // Pages that should have transparent header at top (when not scrolled)
-  const pagesWithTransparentHeader = isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || (isProduct && !isProductDetail) || isContact;
+  // Pages with video hero backgrounds that support transparent header
+  // These pages have dark backgrounds so white text is readable
+  const pagesWithVideoHero = isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || (isProduct && !isProductDetail) || isContact;
   
-  // Pages that should always have white header (blog details, product details, tools, etc.)
+  // Pages that should ALWAYS have white/solid header (no video hero or light background)
   const pagesWithAlwaysWhiteHeader = isBlogDetail || isProductDetail || isTools || isCanisterReturns || isChemistries;
   
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-  const shouldForceWhiteOnMobile = isMobile && (isProduct || isIndustry);
+  // Transparent header behavior: same on mobile and desktop for consistency
+  // If page has video hero AND not scrolled -> transparent
+  // Otherwise -> white/solid
+  const shouldBeTransparent = pagesWithVideoHero && !pagesWithAlwaysWhiteHeader && !isScrolled;
   
   // Determine header background
-  const headerBg = shouldForceWhiteOnMobile
-    ? 'bg-white'
-    : pagesWithAlwaysWhiteHeader
+  const headerBg = pagesWithAlwaysWhiteHeader
     ? 'bg-white/90 backdrop-blur-md shadow-lg'
-    : pagesWithTransparentHeader && !isScrolled
+    : shouldBeTransparent
     ? 'bg-transparent'
     : 'bg-white/90 backdrop-blur-md shadow-lg';
   
-  // Determine if header should be transparent (affects logo and text color)
-  const isTransparent = !shouldForceWhiteOnMobile && !pagesWithAlwaysWhiteHeader && pagesWithTransparentHeader && !isScrolled;
+  // Text color: white on transparent, dark on solid background
+  const isTransparent = shouldBeTransparent;
   const baseNavText = isTransparent ? 'text-white' : 'text-[#1B3764]';
-  const headerShadow = isScrolled || shouldForceWhiteOnMobile || pagesWithAlwaysWhiteHeader ? 'shadow-sm' : '';
+  const headerShadow = isScrolled || pagesWithAlwaysWhiteHeader ? 'shadow-sm' : '';
   const positionClass = 'fixed';
   
-  const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
+  // Only hide header on scroll for desktop (mobile always shows header)
+  const shouldHideOnDesktop = !isMobile && isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
 
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}> 

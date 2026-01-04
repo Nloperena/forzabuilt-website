@@ -3,57 +3,76 @@ import VideoSkeleton from './common/VideoSkeleton';
 
 const ScalableHeroVideoSection: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const [videoAspectRatio, setVideoAspectRatio] = useState<number | null>(null);
   
+  // Use IntersectionObserver to only load video when visible
   useEffect(() => {
-    // Fallback timeout to prevent infinite loading on slow connections
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    // Short fallback timeout
     const timeout = setTimeout(() => {
       if (!isVideoLoaded) {
         setIsVideoLoaded(true);
       }
-    }, 3000);
+    }, 2000);
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [isVideoLoaded]);
+    return () => clearTimeout(timeout);
+  }, [isVideoLoaded, isVisible]);
 
   useEffect(() => {
-    // Get video dimensions and set aspect ratio
-    if (videoRef.current) {
-      const video = videoRef.current;
-      
-      const handleLoadedMetadata = () => {
-        if (video.videoWidth && video.videoHeight) {
-          const aspectRatio = video.videoWidth / video.videoHeight;
-          setVideoAspectRatio(aspectRatio);
-        }
-      };
-      
-      const handleCanPlay = () => {
-        setIsVideoLoaded(true);
-        if (video.videoWidth && video.videoHeight && !videoAspectRatio) {
-          const aspectRatio = video.videoWidth / video.videoHeight;
-          setVideoAspectRatio(aspectRatio);
-        }
-        video.play().catch((err) => {
-          console.warn('Video autoplay failed:', err);
-        });
-      };
-      
-      video.addEventListener('canplay', handleCanPlay);
-      video.addEventListener('loadedmetadata', handleLoadedMetadata);
-      
-      // Force load
-      video.load();
-      
-      return () => {
-        video.removeEventListener('canplay', handleCanPlay);
-        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      };
-    }
-  }, [videoAspectRatio]);
+    if (!isVisible || !videoRef.current) return;
+    
+    const video = videoRef.current;
+    
+    const handleLoadedMetadata = () => {
+      if (video.videoWidth && video.videoHeight) {
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        setVideoAspectRatio(aspectRatio);
+      }
+    };
+    
+    const handleCanPlay = () => {
+      setIsVideoLoaded(true);
+      if (video.videoWidth && video.videoHeight && !videoAspectRatio) {
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        setVideoAspectRatio(aspectRatio);
+      }
+      video.play().catch(() => {});
+    };
+    
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    
+    video.load();
+    
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, [videoAspectRatio, isVisible]);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -70,7 +89,7 @@ const ScalableHeroVideoSection: React.FC = () => {
     : { aspectRatio: '16 / 9' };
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
+    <section ref={containerRef} className="relative w-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
       {/* Container that maintains video aspect ratio */}
       <div 
         className="relative w-full"
@@ -81,29 +100,31 @@ const ScalableHeroVideoSection: React.FC = () => {
           <VideoSkeleton className="absolute inset-0 w-full h-full" />
         )}
         
-        {/* Background Video */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onLoadedData={handleVideoLoad}
-          onCanPlay={handleVideoLoad}
-          onError={handleVideoError}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ 
-            zIndex: 1,
-            objectFit: 'contain',
-            objectPosition: 'center'
-          }}
-        >
-          <source src="/videos/backgrounds/Forza Slogan Slam Final.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Background Video - only render when visible */}
+        {isVisible && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onLoadedData={handleVideoLoad}
+            onCanPlay={handleVideoLoad}
+            onError={handleVideoError}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
+              isVideoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              zIndex: 1,
+              objectFit: 'contain',
+              objectPosition: 'center'
+            }}
+          >
+            <source src="/videos/backgrounds/WebOptimized/Forza Slogan Slam Final_Optimized.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
 
         {/* Fallback background gradient */}
         <div 

@@ -1,5 +1,93 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import { industries } from '../data/industries';
+
+// Individual industry card with hover-to-play video
+const IndustryCard: React.FC<{
+  industry: typeof industries[0];
+  isMobile?: boolean;
+}> = ({ industry, isMobile = false }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      // Reset to beginning for consistent thumbnail
+      videoRef.current.currentTime = 0;
+    }
+  }, []);
+
+  return (
+    <a 
+      className="block w-full h-full" 
+      href={`/industries/${industry.title.toLowerCase()}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className={`aspect-[6/4] ${isMobile ? 'rounded-xl' : 'rounded-xl lg:rounded-xl'} overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white`}>
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Video - shows first frame as thumbnail, plays on hover */}
+          <video 
+            ref={videoRef}
+            loop 
+            muted 
+            playsInline 
+            preload="metadata"
+            className="w-full h-full object-cover"
+          >
+            <source src={industry.videoUrl} type="video/mp4" />
+          </video>
+          
+          {/* Gradient overlay - fades on hover */}
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0" 
+            style={{ 
+              zIndex: 9, 
+              background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)' 
+            }}
+          />
+          
+          {/* Industry title and logo */}
+          <div 
+            className={isMobile 
+              ? "absolute bottom-0 left-0 pt-2 pr-2 pb-2 pl-2" 
+              : "absolute bottom-0 left-0 pt-1.5 sm:pt-2 md:pt-2.5 lg:pt-3 pr-1.5 sm:pr-2 md:pr-2.5 lg:pr-3 pb-0 pl-0"
+            } 
+            style={{ zIndex: 10 }}
+          >
+            <div className={isMobile ? "flex items-center gap-1.5 sm:gap-2" : "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5"}>
+              {industry.logo && (
+                <img 
+                  src={industry.logo} 
+                  alt={`${industry.title} logo`} 
+                  className={isMobile 
+                    ? "w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150" 
+                    : "w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 transition-transform duration-150"
+                  } 
+                  style={{ filter: 'drop-shadow(rgba(0, 0, 0, 0.8) 0px 2px 4px)' }} 
+                />
+              )}
+              <h3 
+                className={isMobile 
+                  ? "font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base sm:text-lg" 
+                  : "font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base md:text-lg lg:text-xl"
+                } 
+                style={{ color: 'rgb(255, 255, 255)', textShadow: 'rgba(0, 0, 0, 0.8) 1px 1px 2px' }}
+              >
+                {industry.title}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+};
 
 const IndustryCardsSection = () => {
   return (
@@ -17,26 +105,7 @@ const IndustryCardsSection = () => {
         <div className="block md:hidden">
           <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg mx-auto">
             {industries.map((industry) => (
-              <a key={industry.title} className="block w-full h-full" href={`/industries/${industry.title.toLowerCase()}`}>
-                <div className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white">
-                  <div className="relative w-full h-full overflow-hidden">
-                    <video loop muted playsInline preload="metadata" className="w-full h-full object-cover transition-opacity duration-500 opacity-100">
-                      <source src={industry.videoUrl} type="video/mp4" />
-                    </video>
-                    <div className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0" style={{ zIndex: 9, background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)' }}></div>
-                    <div className="absolute bottom-0 left-0 pt-2 pr-2 pb-2 pl-2" style={{ zIndex: 10 }}>
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        {industry.logo && (
-                          <img src={industry.logo} alt={`${industry.title} logo`} className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150" style={{ filter: 'drop-shadow(rgba(0, 0, 0, 0.8) 0px 2px 4px)' }} />
-                        )}
-                        <h3 className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base sm:text-lg" style={{ color: 'rgb(255, 255, 255)', textShadow: 'rgba(0, 0, 0, 0.8) 1px 1px 2px' }}>
-                          {industry.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
+              <IndustryCard key={`mobile-${industry.title}`} industry={industry} isMobile={true} />
             ))}
           </div>
           <div className="text-center mt-6 mb-4">
@@ -50,27 +119,8 @@ const IndustryCardsSection = () => {
         <div className="sr-only md:not-sr-only md:flex w-full flex-col items-center">
           <div className="grid grid-cols-3 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 w-full max-w-[1000px] lg:max-w-[1100px] xl:max-w-[1200px] 2xl:max-w-[1400px] mb-3 md:mb-4 mx-auto py-2 sm:py-3 md:py-3 lg:py-4">
             {industries.map((industry) => (
-              <div key={industry.title} className="block">
-                <a className="block w-full h-full" href={`/industries/${industry.title.toLowerCase()}`}>
-                  <div className="aspect-[6/4] rounded-xl lg:rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white">
-                    <div className="relative w-full h-full overflow-hidden">
-                      <video loop muted playsInline preload="auto" className="w-full h-full object-cover transition-opacity duration-500 opacity-100">
-                        <source src={industry.videoUrl} type="video/mp4" />
-                      </video>
-                      <div className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0" style={{ zIndex: 9, background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)' }}></div>
-                      <div className="absolute bottom-0 left-0 pt-1.5 sm:pt-2 md:pt-2.5 lg:pt-3 pr-1.5 sm:pr-2 md:pr-2.5 lg:pr-3 pb-0 pl-0" style={{ zIndex: 10 }}>
-                        <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5">
-                          {industry.logo && (
-                            <img src={industry.logo} alt={`${industry.title} logo`} className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 transition-transform duration-150" style={{ filter: 'drop-shadow(rgba(0, 0, 0, 0.8) 0px 2px 4px)' }} />
-                          )}
-                          <h3 className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base md:text-lg lg:text-xl" style={{ color: 'rgb(255, 255, 255)', textShadow: 'rgba(0, 0, 0, 0.8) 1px 1px 2px' }}>
-                            {industry.title}
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
+              <div key={`desktop-${industry.title}`} className="block">
+                <IndustryCard industry={industry} isMobile={false} />
               </div>
             ))}
           </div>
@@ -86,4 +136,3 @@ const IndustryCardsSection = () => {
 };
 
 export default IndustryCardsSection;
-

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const categories = [
@@ -38,6 +38,18 @@ const categories = [
 
 const ProductCategoriesSection = () => {
   const [activeCategory, setActiveCategory] = useState(categories[1]); // Default to Sealants
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
+
+  // Preload all category images
+  useEffect(() => {
+    categories.forEach((cat) => {
+      const img = new Image();
+      img.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
+      };
+      img.src = cat.image;
+    });
+  }, []);
 
   return (
     <section className="relative isolate overflow-visible">
@@ -98,6 +110,10 @@ const ProductCategoriesSection = () => {
 
           {/* Image Side */}
           <div className="relative w-full aspect-square md:aspect-[5/4] flex items-center justify-center overflow-hidden bg-[#f3f5f7] order-2 md:order-1">
+            {/* Skeleton while image loads */}
+            {!imagesLoaded[activeCategory.id] && (
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse z-5" />
+            )}
             <div className="absolute inset-0 w-full h-full z-10">
               <AnimatePresence mode="wait">
                 <motion.img 
@@ -105,11 +121,12 @@ const ProductCategoriesSection = () => {
                   src={activeCategory.image} 
                   alt={activeCategory.title.toUpperCase()} 
                   initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1.05 }}
+                  animate={{ opacity: imagesLoaded[activeCategory.id] ? 1 : 0, scale: 1.05 }}
                   exit={{ opacity: 0, scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 w-full h-full object-cover" 
                   style={{ objectPosition: 'center 70%' }}
+                  onLoad={() => setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }))}
                 />
               </AnimatePresence>
             </div>

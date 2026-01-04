@@ -25,7 +25,7 @@ const approachItems: ApproachItem[] = [
       "If you have a unique situation, we've most likely seen it and have already come up with a specific solution for it."
     ],
     image: "/images/approach/Construction Visit.jpg",
-    video: "/approach-videos/Real Know How-2.mp4"
+    video: "/videos/backgrounds/WebOptimized/Real Know How_Optimized.mp4"
   },
   {
     title: "PURPOSE BUILT PRODUCTS",
@@ -36,7 +36,7 @@ const approachItems: ApproachItem[] = [
       "Our products deliver guaranteed performance"
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Product Performance-2.mp4"
+    video: "/videos/backgrounds/WebOptimized/Purpose Built Products_Optimized.mp4"
   },
   {
     title: "INDUSTRY FOCUSED",
@@ -48,7 +48,7 @@ const approachItems: ApproachItem[] = [
       "If it's important to you, it's important to us."
     ],
     image: "/images/approach/Legacy Image.jpg",
-    video: "/approach-videos/Industry Focused-2.mp4"
+    video: "/videos/backgrounds/WebOptimized/Industry Summary Page Video_Optimized.mp4"
   },
   {
     title: "EXPANSIVE PRODUCT PORTFOLIO",
@@ -60,7 +60,7 @@ const approachItems: ApproachItem[] = [
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Complete Portfolio-2.mp4"
+    video: "/videos/backgrounds/WebOptimized/Product Summary Page Video_Optimized.mp4"
   },
   {
     title: "COMMON SENSE INNOVATION",
@@ -72,7 +72,7 @@ const approachItems: ApproachItem[] = [
       "Less waste, better chemistries, faster applications, and safer ingredients. Always for the customer."
     ],
     image: "/images/approach/Sustainability Image for Web.jpg",
-    video: "/approach-videos/Real Innovation.mp4"
+    video: "/videos/backgrounds/WebOptimized/Real Innovation_Optimized.mp4"
   },
   {
     title: "MADE IN THE USA",
@@ -84,7 +84,7 @@ const approachItems: ApproachItem[] = [
       "From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability."
     ],
     image: "/images/approach/R&D image.jpg",
-    video: "/approach-videos/Made in USA-2_1.mp4"
+    video: "/videos/backgrounds/WebOptimized/Made in USA_Optimized.mp4"
   },
   {
     title: "CONSULTATIVE R&D",
@@ -95,7 +95,7 @@ const approachItems: ApproachItem[] = [
       "When a product doesn't exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast."
     ],
     image: "/images/approach/R&D image.jpg",
-    video: "/approach-videos/R&D Leadership.mp4"
+    video: "/videos/backgrounds/WebOptimized/R&D Leadership_Optimized.mp4"
   },
   {
     title: "SUSTAINABILITY THAT WORKS",
@@ -105,7 +105,7 @@ const approachItems: ApproachItem[] = [
       "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
     image: "/images/approach/Sustainability Image for Web.jpg",
-    video: "/approach-videos/Sustainable Solutions.mp4"
+    video: "/videos/backgrounds/WebOptimized/Sustainable Solutions_Optimized.mp4"
   },
   {
     title: "CUSTOMER OBSESSED",
@@ -117,7 +117,7 @@ const approachItems: ApproachItem[] = [
       "We provide the quality & performance of a Fortune 500 company with the service, know-how, & personalized care of a family-owned, corner grocery store."
     ],
     image: "/images/approach/Receptionist at desk.jpg",
-    video: "/approach-videos/Customer Obsessed-1.mp4"
+    video: "/videos/backgrounds/WebOptimized/Customer Obsessed_Optimized.mp4"
   }
 ];
 

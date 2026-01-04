@@ -1,32 +1,63 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { getFontSize } from '@/styles/typography';
 
 const MadeInAmericaSection: React.FC = () => {
   const { mode } = useGradientMode();
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <section className="bg-[rgb(243_245_247)]">
+      <section ref={sectionRef} className="bg-[rgb(243_245_247)]">
         <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 pt-8 sm:pt-10 md:pt-12 lg:pt-16 xl:pt-20 pb-8 sm:pb-10 md:pb-12 lg:pb-16 xl:pb-20">
           {/* Top Content Area - Text and Flag */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 items-start">
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
-              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg">
-                <video
-                  src="/videos/backgrounds/Manufactured in America.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
-                  style={{
-                    objectPosition: 'center',
-                    transform: 'scale(1.15)',
-                  }}
-                />
+              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative">
+                {/* Skeleton while loading */}
+                {!isVideoLoaded && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
+                )}
+                {isVisible && (
+                  <video
+                    src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onCanPlay={() => setIsVideoLoaded(true)}
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    style={{
+                      objectPosition: 'center',
+                      transform: 'scale(1.15)',
+                    }}
+                  />
+                )}
               </div>
             </div>
 

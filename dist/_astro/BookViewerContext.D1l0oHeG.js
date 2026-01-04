@@ -1,1 +1,0 @@
-import{j as n}from"./jsx-runtime.ClP7wGfN.js";import{r as e}from"./index.DK-fsZOb.js";const t=e.createContext(void 0),p=({children:o})=>{const[s,r]=e.useState(!1);return n.jsx(t.Provider,{value:{isBookOpen:s,setIsBookOpen:r},children:o})},u=()=>{const o=e.useContext(t);return o===void 0?{isBookOpen:!1,setIsBookOpen:()=>{}}:o};export{p as B,u};

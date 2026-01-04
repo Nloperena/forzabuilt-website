@@ -20,21 +20,21 @@ export interface Industry {
 export const industries: Industry[] = [
   {
     title: "Industrial",
-    videoUrl: "/videos/backgrounds/Final-Industrial-Page-Banner-Video.mp4",
+    videoUrl: "/videos/backgrounds/WebOptimized/Final-Industrial-Page-Banner-Video_Optimized.mp4",
     description: "Industrial-grade adhesive solutions for manufacturing",
     logo: "/logos/Industrial-Icon.png",
     color: "#f16a26", // Industrial orange color from brand standards
   },
   {
     title: "Transportation",
-    videoUrl: "/videos/misc/forzaTRuck2-Compressed.mp4",
+    videoUrl: "/videos/backgrounds/WebOptimized/ForzaTruckLoop-Optimized.mp4",
     description: "Innovative adhesive solutions for the transportation industry",
     logo: "/logos/Transportation-Icon-2.png",
     color: "#b83d35", // Transportation red color from brand standards
   },
   {
     title: "Marine",
-    videoUrl: "/videos/misc/ForzaBoatLoop-Compressed.mp4",
+    videoUrl: "/videos/backgrounds/WebOptimized/ForzaBoatLoop-Optimized.mp4",
     description: "Specialized bonding solutions for marine applications",
     logo: "/logos/Marine-Icon.png",
     color: "#147974", // Marine orange color
@@ -165,21 +165,21 @@ export const industries: Industry[] = [
   },
   {
     title: "Composites",
-    videoUrl: "/videos/misc/ForzaTurbineLoop-Compressed.mp4#t=0,100",
+    videoUrl: "/videos/backgrounds/WebOptimized/ForzaTurbineLoop-Optimized.mp4",
     description: "Specialized adhesives for composite materials",
     logo: "/logos/Composite-Icon.png",
     color: "#9a9b9c", // Composites grey color from brand standards
   },
   {
     title: "Construction", 
-    videoUrl: "/videos/backgrounds/Final-Construction-Page-Banner-Video-1.mp4",
+    videoUrl: "/videos/backgrounds/WebOptimized/Final-Construction-Page-Banner-Video_Optimized.mp4",
     description: "High-performance adhesives for construction needs",
     logo: "/logos/Construction-Icon.png",
     color: "#fec770", // Construction yellow color from brand standards
   },
   {
     title: "Insulation",
-    videoUrl: "/videos/backgrounds/Final-Forza-Insulation-Header-Video_1.mp4",
+    videoUrl: "/videos/backgrounds/WebOptimized/Final-Forza-Insulation-Header-Video_Optimized.mp4",
     description: "High-performance bonding solutions for insulation materials",
     logo: "/logos/Insulation-Icon.png",
     color: "#d0157d", // Insulation pink color from brand standards

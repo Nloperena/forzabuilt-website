@@ -13,6 +13,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  structuredData?: object;
 }
 
 const { 
@@ -20,11 +21,52 @@ const {
   description = "ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications.",
   ogImage = "/images/og-default.jpg",
   ogType = "website",
-  canonicalUrl
+  canonicalUrl,
+  structuredData
 } = Astro.props;
 
 const siteUrl = "https://forzabuilt.com";
 const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl + Astro.url.pathname;
+
+// Default organization structured data
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ForzaBuilt",
+  "url": siteUrl,
+  "logo": `${siteUrl}/images/forza-logo.png`,
+  "description": "ForzaBuilt delivers premium industrial adhesives, sealants, tapes, and cleaning solutions for transportation, marine, construction, and manufacturing industries.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3211 Nebraska Ave, Suite 300",
+    "addressLocality": "Council Bluffs",
+    "addressRegion": "IA",
+    "postalCode": "51501",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-402-731-9300",
+    "contactType": "customer service",
+    "email": "support@forzabuilt.com"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/forzabuilt"
+  ]
+};
+
+// WebSite schema for sitelinks search box
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ForzaBuilt",
+  "url": siteUrl,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${siteUrl}/products?search={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
 ---
 
 <!doctype html>
@@ -34,6 +76,15 @@ const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl + 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LT5K6RG34"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8LT5K6RG34');
+    </script>
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -50,6 +101,7 @@ const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl + 
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
     <meta property="og:site_name" content="ForzaBuilt" />
+    <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -59,14 +111,32 @@ const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl + 
     <meta property="twitter:image" content={`${siteUrl}${ogImage}`} />
     
     <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="author" content="ForzaBuilt" />
+    <meta name="publisher" content="ForzaBuilt" />
+    
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content="US-IA" />
+    <meta name="geo.placename" content="Council Bluffs" />
+    <meta name="geo.position" content="41.2619;-95.8608" />
+    <meta name="ICBM" content="41.2619, -95.8608" />
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
   </head>
   <body>
     <slot />

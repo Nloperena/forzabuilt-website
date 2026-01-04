@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import VideoSkeleton from './common/VideoSkeleton';
 
 const EagleHeroVideo: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   useEffect(() => {
-    // Fallback timeout to prevent infinite loading on slow connections
+    // Start loading video immediately
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+    
+    // Short fallback timeout - video should load fast since it's optimized
     const timeout = setTimeout(() => {
       if (!isVideoLoaded) {
-        console.warn('Eagle video took too long to load, showing fallback');
         setIsVideoLoaded(true);
       }
-    }, 5000);
+    }, 2000);
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    return () => clearTimeout(timeout);
   }, [isVideoLoaded]);
 
   const handleVideoLoad = () => {
-    console.log('Eagle video loaded successfully');
     setIsVideoLoaded(true);
   };
 
   const handleVideoError = () => {
-    console.warn('Eagle video failed to load, showing fallback');
     setIsVideoLoaded(true);
   };
 
@@ -35,18 +36,20 @@ const EagleHeroVideo: React.FC = () => {
         <VideoSkeleton />
       )}
       
-      {/* Background Video */}
+      {/* Background Video - loads immediately with high priority */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
+        // @ts-ignore - fetchpriority is valid but not in React types yet
+        fetchpriority="high"
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
-        onLoadStart={() => console.log('Eagle video loading started')}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
           isVideoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ 
@@ -58,7 +61,7 @@ const EagleHeroVideo: React.FC = () => {
           minHeight: '100%'
         }}
       >
-        <source src="/videos/backgrounds/Eagle Header Video.mp4" type="video/mp4" />
+        <source src="/videos/backgrounds/WebOptimized/Eagle Header Video_Optimized.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

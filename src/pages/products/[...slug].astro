@@ -3,11 +3,20 @@ import Layout from '@/layouts/Layout.astro';
 import { Providers } from '@/components/common/Providers';
 import HeaderWrapper from '@/components/Header/HeaderWrapper';
 import FooterV2 from '@/components/FooterV2';
-import productsData from '@/data/productsSimplified.json';
+import ProductDetail from '@/components/products/ProductDetail';
+import { getProducts, getRelatedProducts } from '@/utils/products';
 import { getBlobImageUrl } from '@/utils/blobStorage';
+import productsData from '@/data/productsSimplified.json';
 
 // Generate static paths for all products
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  // Helper to normalize product names for URL matching
+  function normalizeForUrl(str: string): string {
+    return str.toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
   const paths: any[] = [];
   
   if (!productsData || !productsData.products) {
@@ -16,159 +25,173 @@ export function getStaticPaths() {
   }
 
   // Handle both /product/:id and /products/:category/:id patterns
-  productsData.products.forEach((product: any) => {
-    // Product by ID only
+  for (const product of productsData.products) {
     if (product.id) {
+      // Try to get fresh product data from API
+      let productData = product;
+      try {
+        const freshProduct = await getProducts().then(products => 
+          products.find(p => p.id.toLowerCase() === product.id.toLowerCase())
+        );
+        if (freshProduct) {
+          productData = freshProduct;
+        }
+      } catch (error) {
+        console.warn(`Could not fetch fresh data for ${product.id}, using static data`);
+      }
+
+      // Product by ID only (e.g., /products/tac-734g)
       paths.push({
         params: { slug: product.id },
-        props: { product },
+        props: { product: productData },
       });
+      
+      // Product with category/id (e.g., /products/bond/oa23)
+      if (product.category) {
+        const categorySlug = product.category.toLowerCase();
+        paths.push({
+          params: { slug: `${categorySlug}/${product.id}` },
+          props: { product: productData, productCategory: categorySlug },
+        });
+      }
+      
+      // Also create redirect paths for product name variations
+      if (product.name) {
+        const normalizedName = normalizeForUrl(product.name);
+        // Only add if different from the ID
+        if (normalizedName !== product.id.toLowerCase()) {
+          paths.push({
+            params: { slug: normalizedName },
+            props: { 
+              product: productData, 
+              redirectTo: `/products/${product.category.toLowerCase()}/${product.id.toLowerCase()}`,
+              isRedirect: true
+            },
+          });
+        }
+      }
     }
-    
-    // Product with category/id
-    if (product.productLine && product.id) {
-      const categorySlug = product.productLine.toLowerCase().replace(/\s+/g, '-');
-      paths.push({
-        params: { slug: `${categorySlug}/${product.id}` },
-        props: { product },
-      });
-    }
-  });
+  }
   
   return paths;
 }
 
 const { slug } = Astro.params;
-const { product } = Astro.props;
+const { product, productCategory, redirectTo, isRedirect } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Handle redirect case - return early with redirect response
+if (isRedirect && redirectTo) {
+  return Astro.redirect(redirectTo, 301);
+}
 
 // Format the product name for display
 const productName = product?.name || product?.id || 'Product';
 const productDescription = product?.description || `${productName} - High-performance industrial product from ForzaBuilt.`;
 
-// Get product image URL using the utility function
-const productImageUrl = product?.image 
-  ? getBlobImageUrl(product.image, product?.industry)
-  : product?.imageUrl 
-  ? getBlobImageUrl(product.imageUrl, product?.industry)
-  : product?.id 
-  ? getBlobImageUrl(`${product.id}.png`, product?.industry)
-  : '/placeholder.svg';
+// Get related products
+let relatedProducts: any[] = [];
+try {
+  if (product?.id) {
+    // Get all products and filter for ones with images
+    const allProducts = await getProducts();
+    
+    // Filter for products with actual images (exclude current product)
+    const productsWithImages = allProducts.filter(p => 
+      p.id !== product.id && 
+      p.imageUrl && 
+      p.imageUrl.trim() !== '' &&
+      !p.imageUrl.includes('placeholder') &&
+      !p.imageUrl.includes('logo')
+    );
+    
+    // Try to get products from different categories first, then fall back to same industry
+    let related: any[] = [];
+    
+    // Get products from different categories
+    const differentCategory = productsWithImages.filter(p => 
+      p.category?.toLowerCase() !== product.category?.toLowerCase()
+    );
+    
+    // Get products from same industry but different category
+    const sameIndustryDifferentCategory = productsWithImages.filter(p => 
+      p.category?.toLowerCase() !== product.category?.toLowerCase() &&
+      p.industry && 
+      Array.isArray(p.industry) &&
+      product.industry &&
+      Array.isArray(product.industry) &&
+      p.industry.some(ind => product.industry.includes(ind))
+    );
+    
+    // Combine: prefer different category, then same industry different category, then any with images
+    if (differentCategory.length > 0) {
+      related = differentCategory.slice(0, 4);
+    } else if (sameIndustryDifferentCategory.length > 0) {
+      related = sameIndustryDifferentCategory.slice(0, 4);
+    } else {
+      // Fall back to same industry with images
+      const sameIndustry = productsWithImages.filter(p => 
+        p.industry && 
+        Array.isArray(p.industry) &&
+        product.industry &&
+        Array.isArray(product.industry) &&
+        p.industry.some(ind => product.industry.includes(ind))
+      );
+      related = sameIndustry.slice(0, 4);
+    }
+    
+    // If still not enough, fill with any products with images
+    if (related.length < 4) {
+      const remaining = productsWithImages
+        .filter(p => !related.some(r => r.id === p.id))
+        .slice(0, 4 - related.length);
+      related = [...related, ...remaining];
+    }
+    
+    relatedProducts = related;
+  }
+} catch (error) {
+  console.error('Failed to fetch related products:', error);
+  relatedProducts = [];
+}
+
+// Build product structured data for SEO
+const productStructuredData = product ? {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": productName,
+  "description": productDescription,
+  "brand": {
+    "@type": "Brand",
+    "name": "ForzaBuilt"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "ForzaBuilt"
+  },
+  "category": product.category || "Industrial Products",
+  ...(product.imageUrl && { "image": product.imageUrl }),
+  "url": `https://forzabuilt.com${currentPath}`
+} : null;
 ---
 
 <Layout 
   title={`${productName} - ForzaBuilt`}
   description={productDescription}
   canonicalUrl={currentPath}
+  ogType="product"
+  structuredData={productStructuredData}
 >
   <Providers client:load>
     <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
       <HeaderWrapper currentPath={currentPath} />
       
-      <main class="flex-1 pt-24 md:pt-32">
-        <div class="max-w-[1400px] mx-auto px-4 py-8 md:py-12">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-            <!-- Product Image -->
-            <div class="relative">
-              <div class="sticky top-24 bg-gray-50 rounded-2xl p-8 aspect-square flex items-center justify-center">
-                <img 
-                  src={productImageUrl} 
-                  alt={productName}
-                  class="max-w-full max-h-full object-contain"
-                  onerror="this.onerror=null; this.src='/placeholder.svg';"
-                />
-              </div>
-            </div>
-
-            <!-- Product Info -->
-            <div class="space-y-6">
-              {product?.productLine && (
-                <span class="inline-block px-4 py-1 bg-[#1B3764]/10 text-[#1B3764] text-sm font-medium rounded-full font-poppins">
-                  {product.productLine}
-                </span>
-              )}
-
-              <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-[#1B3764]">
-                {productName}
-              </h1>
-
-              {product?.chemistry && (
-                <p class="text-lg text-[#1B3764]/70 font-poppins">
-                  Chemistry: <span class="font-semibold text-[#1B3764]">{product.chemistry}</span>
-                </p>
-              )}
-
-              {product?.description && (
-                <p class="text-base md:text-lg text-[#1B3764]/80 font-poppins leading-relaxed">
-                  {product.description}
-                </p>
-              )}
-
-              {/* Benefits */}
-              {product?.benefits && Array.isArray(product.benefits) && product.benefits.length > 0 && (
-                <div class="space-y-3">
-                  <h3 class="text-lg font-bold text-[#1B3764] font-poppins">Key Benefits</h3>
-                  <ul class="space-y-2">
-                    {product.benefits.map((benefit: string) => (
-                      <li class="flex items-start gap-2">
-                        <svg class="w-5 h-5 text-[#F2611D] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-[#1B3764]/80 font-poppins">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Applications */}
-              {product?.specifications?.applications && Array.isArray(product.specifications.applications) && product.specifications.applications.length > 0 && (
-                <div class="space-y-3">
-                  <h3 class="text-lg font-bold text-[#1B3764] font-poppins">Applications</h3>
-                  <div class="flex flex-wrap gap-2">
-                    {product.specifications.applications.map((app: string) => (
-                      <span class="px-3 py-1 bg-gray-100 text-[#1B3764] text-sm font-poppins rounded-full">
-                        {app}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {/* Applications (fallback to direct applications field) */}
-              {!product?.specifications?.applications && product?.applications && (
-                <div class="space-y-3">
-                  <h3 class="text-lg font-bold text-[#1B3764] font-poppins">Applications</h3>
-                  <p class="text-[#1B3764]/80 font-poppins">{product.applications}</p>
-                </div>
-              )}
-
-              {/* CTA Buttons */}
-              <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                {(product?.standardTdsLink || product?.tdsLink) && (
-                  <a 
-                    href={product.standardTdsLink || product.tdsLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center px-6 py-3 bg-[#1B3764] text-white font-medium rounded-full hover:bg-[#1B3764]/90 transition-colors font-poppins"
-                  >
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    Technical Data Sheet
-                  </a>
-                )}
-                <a 
-                  href="/contact"
-                  class="inline-flex items-center justify-center px-6 py-3 bg-[#F2611D] text-white font-medium rounded-full hover:bg-[#F2611D]/90 transition-colors font-poppins"
-                >
-                  Request Sample
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      <ProductDetail 
+        product={product} 
+        relatedProducts={relatedProducts}
+        productCategory={productCategory}
+        client:load 
+      />
       
       <FooterV2 />
     </div>

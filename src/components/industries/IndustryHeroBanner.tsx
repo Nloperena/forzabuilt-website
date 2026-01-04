@@ -27,37 +27,37 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [iconLoaded, setIconLoaded] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
   
   // Use mobile video URL if provided and on mobile, otherwise use desktop video URL
   const currentVideoUrl = isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl;
   
-  // Reset video loaded state when video URL changes
+  // Reset video loaded state and force reload when video URL changes
   useEffect(() => {
     setVideoLoaded(false);
+    // Force video to reload by calling load() on the video element
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
   }, [currentVideoUrl]);
 
   useEffect(() => {
-    // Fallback timeout to prevent infinite loading on slow connections
+    // Short fallback timeout - video should load fast since it's optimized
     const timeout = setTimeout(() => {
       if (!videoLoaded) {
-        console.warn('Industry video took too long to load, showing fallback');
         setVideoLoaded(true);
       }
-    }, 5000);
+    }, 2000);
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    return () => clearTimeout(timeout);
   }, [videoLoaded]);
 
   const handleVideoLoad = () => {
-    console.log('Industry video loaded successfully');
     setVideoLoaded(true);
   };
 
   const handleVideoError = () => {
-    console.warn('Industry video failed to load, showing fallback');
     setVideoLoaded(true);
   };
 
@@ -80,7 +80,8 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         
         {/* Background Video */}
         <video
-          key={currentVideoUrl}
+          ref={videoRef}
+          key={`${industryTitle}-${currentVideoUrl}`}
           autoPlay
           loop
           muted
@@ -89,8 +90,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
-          onLoadStart={() => console.log('Industry video loading started')}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ 
@@ -176,7 +176,8 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
       
       {/* Background Video */}
       <video
-        key={currentVideoUrl}
+        ref={videoRef}
+        key={`${industryTitle}-${currentVideoUrl}`}
         autoPlay
         loop
         muted
@@ -185,7 +186,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
           videoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ 
