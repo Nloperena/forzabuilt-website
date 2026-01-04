@@ -1,6 +1,7 @@
 ---
 import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
+import PageLoader from '@/components/common/PageLoader';
 
 // Polyfill for libraries that expect browser globals during SSR (like react-pdf)
 if (typeof globalThis.DOMMatrix === 'undefined') {
@@ -137,6 +138,12 @@ const websiteSchema = {
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/logos/Forza-Eagle-Logo-Blue.svg" as="image" type="image/svg+xml" />
+    {Astro.url.pathname === '/' && (
+      <link rel="preload" href="/videos/backgrounds/WebOptimized/Eagle Header Video_Optimized.mp4" as="video" type="video/mp4" />
+    )}
+    
     <meta name="generator" content={Astro.generator} />
     
     <!-- Structured Data -->
@@ -147,6 +154,7 @@ const websiteSchema = {
     )}
   </head>
   <body>
+    <PageLoader client:load />
     <slot />
   </body>
 </html>
