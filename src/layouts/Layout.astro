@@ -3,11 +3,6 @@ import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
 import PageLoader from '@/components/common/PageLoader';
 
-// Polyfill for libraries that expect browser globals during SSR (like react-pdf)
-if (typeof globalThis.DOMMatrix === 'undefined') {
-  (globalThis as any).DOMMatrix = class {};
-}
-
 interface Props {
   title: string;
   description?: string;

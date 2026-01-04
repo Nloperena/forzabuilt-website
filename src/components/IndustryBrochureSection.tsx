@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { getIndustryBrochureGradient } from '../styles/brandStandards';
-import PDFViewerV2 from './PDFViewerV2/PDFViewerV2';
 
 interface IndustryBrochureSectionProps {
   industry: string;
@@ -67,8 +66,6 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   className = '',
   compact = false
 }) => {
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-  
   // Get content first
   const content = defaultContent[industry.toLowerCase() as keyof typeof defaultContent] || defaultContent.industrial;
   
@@ -84,23 +81,6 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   
   const pdfUrl = brochurePdfMap[industry.toLowerCase()] || `/documents/${industry.toLowerCase()}.pdf`;
   const brochureTitle = title || content.title;
-  
-  const handleView = () => {
-    setIsViewerOpen(true);
-  };
-  
-  const handleClose = () => {
-    setIsViewerOpen(false);
-  };
-  
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = `${industry.toLowerCase()}-brochure.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
   
   const handleOpenNewTab = () => {
     window.open(pdfUrl, '_blank', 'noopener,noreferrer');
@@ -191,7 +171,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                 Download
               </a>
               <button
-                onClick={handleView}
+                onClick={handleOpenNewTab}
                 className="inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <svg 
@@ -219,35 +199,6 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
           </div>
         </div>
       </div>
-      
-      {/* PDF Viewer Backdrop */}
-      <AnimatePresence>
-        {isViewerOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={handleClose}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998]"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* PDF Viewer */}
-      <AnimatePresence>
-        {isViewerOpen && (
-          <PDFViewerV2
-            pdfUrl={pdfUrl}
-            bookTitle={brochureTitle}
-            bookSubtitle={content.description}
-            bookColor="#2c476e"
-            onClose={handleClose}
-            onDownload={handleDownload}
-            onOpenNewTab={handleOpenNewTab}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 };

@@ -1,10 +1,6 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useBookViewer } from '@/contexts/BookViewerContext';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { getFontSize } from '@/styles/typography';
-
-// Dynamically import PDFViewerV2 to avoid SSR issues with react-pdf
-const PDFViewerV2 = lazy(() => import('./PDFViewerV2/PDFViewerV2'));
 
 interface Brochure {
   id: string;
@@ -17,65 +13,20 @@ interface Brochure {
   linkUrl?: string;
 }
 
-type AnimationState = 'idle' | 'reading';
-
-// Function to convert ALL CAPS to Title Case
-const toTitleCase = (str: string): string => {
-  return str.toLowerCase().split(' ').map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ');
-};
-
 const LibrarySectionV3: React.FC = () => {
   const [hoveredBrochure, setHoveredBrochure] = useState<string | null>(null);
-  const [selectedBrochure, setSelectedBrochure] = useState<Brochure | null>(null);
-  const [animationState, setAnimationState] = useState<AnimationState>('idle');
-  const { setIsBookOpen } = useBookViewer();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && animationState === 'reading') {
-        closeModal();
-      }
-    };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [animationState]);
+  }, []);
 
-  const openModal = (brochure: Brochure, event: React.MouseEvent) => {
+  const openBrochure = (brochure: Brochure) => {
     if (brochure.type === 'blog' && brochure.linkUrl) {
       window.location.href = brochure.linkUrl;
       return;
     }
-    setSelectedBrochure(brochure);
-    setAnimationState('reading');
-    setIsBookOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setAnimationState('idle');
-    setSelectedBrochure(null);
-    setIsBookOpen(false);
-    document.body.style.overflow = 'unset';
-  };
-
-  const handleDownload = () => {
-    if (selectedBrochure) {
-      const link = document.createElement('a');
-      link.href = selectedBrochure.pdfUrl;
-      link.download = selectedBrochure.pdfUrl.split('/').pop() || 'document.pdf';
-      link.click();
-    }
-  };
-
-  const handleOpenNewTab = () => {
-    if (selectedBrochure) {
-      window.open(selectedBrochure.pdfUrl, '_blank');
-    }
+    window.open(brochure.pdfUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Brochures organized by shelf
@@ -206,7 +157,7 @@ const LibrarySectionV3: React.FC = () => {
         onMouseLeave={() => setHoveredBrochure(null)}
         onTouchStart={() => setHoveredBrochure(brochure.id)}
       >
-        <div onClick={(e) => openModal(brochure, e)} className="flex flex-col items-center w-full">
+        <div onClick={() => openBrochure(brochure)} className="flex flex-col items-center w-full">
           {content}
         </div>
       </motion.div>
@@ -245,37 +196,6 @@ const LibrarySectionV3: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Backdrop - Shows during reading state */}
-      <AnimatePresence>
-        {animationState === 'reading' && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={closeModal}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998]"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* PDF Viewer - Shows only during reading state */}
-      <AnimatePresence>
-        {animationState === 'reading' && selectedBrochure && (
-          <Suspense fallback={<div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center text-white">Loading...</div>}>
-            <PDFViewerV2
-              pdfUrl={selectedBrochure.pdfUrl}
-              bookTitle={toTitleCase(selectedBrochure.title)}
-              bookSubtitle={selectedBrochure.label}
-              bookColor="#2c476e"
-              onClose={closeModal}
-              onDownload={handleDownload}
-              onOpenNewTab={handleOpenNewTab}
-            />
-          </Suspense>
-        )}
-      </AnimatePresence>
     </>
   );
 };
