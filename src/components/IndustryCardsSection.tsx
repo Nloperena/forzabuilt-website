@@ -1,5 +1,6 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { industries } from '../data/industries';
+import VideoSkeleton from './common/VideoSkeleton';
 
 // Individual industry card with hover-to-play video
 const IndustryCard: React.FC<{
@@ -7,6 +8,14 @@ const IndustryCard: React.FC<{
   isMobile?: boolean;
 }> = ({ industry, isMobile = false }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  // Check if video is already ready (cached)
+  useEffect(() => {
+    if (videoRef.current && videoRef.current.readyState >= 3) {
+      setVideoReady(true);
+    }
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
     if (videoRef.current) {
@@ -22,6 +31,10 @@ const IndustryCard: React.FC<{
     }
   }, []);
 
+  const handleCanPlay = () => {
+    setVideoReady(true);
+  };
+
   return (
     <a 
       className="block w-full h-full" 
@@ -29,7 +42,20 @@ const IndustryCard: React.FC<{
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`aspect-[6/4] ${isMobile ? 'rounded-xl' : 'rounded-xl lg:rounded-xl'} overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white`}>
+      <div 
+        className={`aspect-[6/4] ${isMobile ? 'rounded-xl' : 'rounded-xl lg:rounded-xl'} overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full border-0 shadow-lg text-white relative`}
+        style={{ backgroundColor: industry.color || '#1b3764' }}
+      >
+        {/* Loading State / Background Placeholder */}
+        {!videoReady && (
+          <div className="absolute inset-0 z-0">
+            <div 
+              className="w-full h-full animate-pulse opacity-50" 
+              style={{ backgroundColor: industry.color || '#1b3764' }}
+            />
+          </div>
+        )}
+
         <div className="relative w-full h-full overflow-hidden">
           {/* Video - shows first frame as thumbnail, plays on hover */}
           <video 
@@ -37,10 +63,13 @@ const IndustryCard: React.FC<{
             loop 
             muted 
             playsInline 
-            preload="metadata"
-            className="w-full h-full object-cover"
+            preload="auto"
+            onLoadedData={handleCanPlay}
+            onCanPlay={handleCanPlay}
+            onError={handleCanPlay} // Remove skeleton on error to show background color
+            className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           >
-            <source src={industry.videoUrl} type="video/mp4" />
+            <source src={`${industry.videoUrl}#t=0.001`} type="video/mp4" />
           </video>
           
           {/* Gradient overlay - fades on hover */}

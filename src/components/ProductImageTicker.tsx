@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
+import ImageSkeleton from "./common/ImageSkeleton";
 
 type Item = { src: string; alt: string; width?: number; height?: number };
 type Props = {
@@ -14,6 +15,34 @@ type Props = {
   className?: string;
   /** Gap between items (Tailwind gap-x-?) */
   gapClass?: string;
+};
+
+// Component for individual ticker item with loading state
+const TickerItem = ({ item, index, priority }: { item: Item, index: number, priority: boolean }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <figure className="shrink-0">
+      <div className="relative w-[clamp(8rem,20vw,12rem)] h-[clamp(8rem,20vw,12rem)] md:w-[clamp(10rem,22vw,14rem)] md:h-[clamp(10rem,22vw,14rem)] lg:w-[clamp(6.5rem,16vw,22rem)] lg:h-[clamp(6.5rem,20vw,22rem)] xl:w-[clamp(4.5rem,14vw,18rem)] xl:h-[clamp(4.5rem,18vw,18rem)]" style={{ 
+        aspectRatio: '1 / 1'
+      }}>
+        {!isLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ImageSkeleton className="w-3/4 h-3/4 opacity-50" />
+          </div>
+        )}
+        <img
+          src={item.src}
+          alt={item.alt}
+          className={`w-full h-full object-contain transition-all duration-500 hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          loading={priority ? "eager" : "lazy"}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)} // Still show something if error
+          style={{ transform: item.src.includes("/t") ? "translateY(10%)" : "none" }}
+        />
+      </div>
+    </figure>
+  );
 };
 
 export default function ProductImageTicker({
@@ -192,19 +221,12 @@ export default function ProductImageTicker({
           }}
         >
           {loopItems.map((it, i) => (
-            <figure key={`${it.src}-${i}`} className="shrink-0">
-              <div className="relative w-[clamp(8rem,20vw,12rem)] h-[clamp(8rem,20vw,12rem)] md:w-[clamp(10rem,22vw,14rem)] md:h-[clamp(10rem,22vw,14rem)] lg:w-[clamp(6.5rem,16vw,22rem)] lg:h-[clamp(6.5rem,20vw,22rem)] xl:w-[clamp(4.5rem,14vw,18rem)] xl:h-[clamp(4.5rem,18vw,18rem)]" style={{ 
-                aspectRatio: '1 / 1'
-              }}>
-                <img
-                  src={it.src}
-                  alt={it.alt}
-                  className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-                  loading={i < 6 ? "eager" : "lazy"}
-                  style={{ transform: it.src.includes("/t") ? "translateY(10%)" : "none" }}
-                />
-              </div>
-            </figure>
+            <TickerItem 
+              key={`${it.src}-${i}`} 
+              item={it} 
+              index={i} 
+              priority={i < 6} 
+            />
           ))}
         </div>
       </div>

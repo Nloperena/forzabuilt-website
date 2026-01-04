@@ -82,8 +82,8 @@ const tickerItems = [
           />
         </section>
 
-        <!-- Industries Section - loads after initial page load (idle) -->
-        <IndustryCardsSection client:idle />
+        <!-- Industries Section - loads immediately after hero (load) -->
+        <IndustryCardsSection client:load />
 
         <!-- Products Section - loads when visible -->
         <ProductCategoriesSection client:visible />
