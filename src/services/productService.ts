@@ -107,18 +107,11 @@ export async function getAllProducts(): Promise<Product[]> {
         version: 1
       };
       
-      // Debug first few products with images
-      if (index < 3) {
-        console.log(`🖼️ Product ${product.id}: imageUrl = ${product.imageUrl}, industry = ${product.industry.join(', ')}`);
-        console.log(`   API image field: ${apiProduct.image}`);
-      }
-      
       return product;
     });
     
     // Filter to only show published products
     const publishedProducts = products.filter(product => product.isActive === true);
-    console.log(`✅ Returning ${publishedProducts.length} published products`);
     return publishedProducts;
   } catch (error) {
     console.error('Failed to fetch products from Heroku API:', error);

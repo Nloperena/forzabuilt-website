@@ -24,34 +24,83 @@ export async function getStaticPaths() {
     return [];
   }
 
+  // Fetch all products once to use as a lookup
+  let allApiProducts: any[] = [];
+  try {
+    allApiProducts = await getProducts();
+  } catch (error) {
+    console.warn('Could not fetch products from API, falling back to static data');
+  }
+
   // Handle both /product/:id and /products/:category/:id patterns
   for (const product of productsData.products) {
     if (product.id) {
-      // Try to get fresh product data from API
+      // Try to get fresh product data from the pre-fetched list
       let productData = product;
-      try {
-        const freshProduct = await getProducts().then(products => 
-          products.find(p => p.id.toLowerCase() === product.id.toLowerCase())
-        );
-        if (freshProduct) {
-          productData = freshProduct;
-        }
-      } catch (error) {
-        console.warn(`Could not fetch fresh data for ${product.id}, using static data`);
+      const freshProduct = allApiProducts.find(p => p.id.toLowerCase() === product.id.toLowerCase());
+      
+      if (freshProduct) {
+        productData = freshProduct;
       }
 
       // Product by ID only (e.g., /products/tac-734g)
       paths.push({
         params: { slug: product.id },
-        props: { product: productData },
+        props: { 
+          product: productData,
+          relatedProducts: [] // Default for ID-only paths to keep it light
+        },
       });
       
       // Product with category/id (e.g., /products/bond/oa23)
       if (product.category) {
         const categorySlug = product.category.toLowerCase();
+        
+        // Find related products for this specific product during build
+        let related: any[] = [];
+        try {
+          const productsWithImages = allApiProducts.filter(p => 
+            p.id !== product.id && 
+            p.imageUrl && 
+            p.imageUrl.trim() !== '' &&
+            !p.imageUrl.includes('placeholder') &&
+            !p.imageUrl.includes('logo')
+          );
+          
+          const differentCategory = productsWithImages.filter(p => 
+            p.category?.toLowerCase() !== product.category?.toLowerCase()
+          );
+          
+          if (differentCategory.length > 0) {
+            related = differentCategory.slice(0, 4);
+          } else {
+            const sameIndustry = productsWithImages.filter(p => 
+              p.industry && 
+              Array.isArray(p.industry) &&
+              product.industry &&
+              Array.isArray(product.industry) &&
+              p.industry.some(ind => product.industry.includes(ind))
+            );
+            related = sameIndustry.slice(0, 4);
+          }
+          
+          if (related.length < 4) {
+            const remaining = productsWithImages
+              .filter(p => !related.some(r => r.id === p.id))
+              .slice(0, 4 - related.length);
+            related = [...related, ...remaining];
+          }
+        } catch (e) {
+          console.error('Error finding related products in getStaticPaths:', e);
+        }
+
         paths.push({
           params: { slug: `${categorySlug}/${product.id}` },
-          props: { product: productData, productCategory: categorySlug },
+          props: { 
+            product: productData, 
+            productCategory: categorySlug,
+            relatedProducts: related 
+          },
         });
       }
       
@@ -89,71 +138,8 @@ if (isRedirect && redirectTo) {
 const productName = product?.name || product?.id || 'Product';
 const productDescription = product?.description || `${productName} - High-performance industrial product from ForzaBuilt.`;
 
-// Get related products
-let relatedProducts: any[] = [];
-try {
-  if (product?.id) {
-    // Get all products and filter for ones with images
-    const allProducts = await getProducts();
-    
-    // Filter for products with actual images (exclude current product)
-    const productsWithImages = allProducts.filter(p => 
-      p.id !== product.id && 
-      p.imageUrl && 
-      p.imageUrl.trim() !== '' &&
-      !p.imageUrl.includes('placeholder') &&
-      !p.imageUrl.includes('logo')
-    );
-    
-    // Try to get products from different categories first, then fall back to same industry
-    let related: any[] = [];
-    
-    // Get products from different categories
-    const differentCategory = productsWithImages.filter(p => 
-      p.category?.toLowerCase() !== product.category?.toLowerCase()
-    );
-    
-    // Get products from same industry but different category
-    const sameIndustryDifferentCategory = productsWithImages.filter(p => 
-      p.category?.toLowerCase() !== product.category?.toLowerCase() &&
-      p.industry && 
-      Array.isArray(p.industry) &&
-      product.industry &&
-      Array.isArray(product.industry) &&
-      p.industry.some(ind => product.industry.includes(ind))
-    );
-    
-    // Combine: prefer different category, then same industry different category, then any with images
-    if (differentCategory.length > 0) {
-      related = differentCategory.slice(0, 4);
-    } else if (sameIndustryDifferentCategory.length > 0) {
-      related = sameIndustryDifferentCategory.slice(0, 4);
-    } else {
-      // Fall back to same industry with images
-      const sameIndustry = productsWithImages.filter(p => 
-        p.industry && 
-        Array.isArray(p.industry) &&
-        product.industry &&
-        Array.isArray(product.industry) &&
-        p.industry.some(ind => product.industry.includes(ind))
-      );
-      related = sameIndustry.slice(0, 4);
-    }
-    
-    // If still not enough, fill with any products with images
-    if (related.length < 4) {
-      const remaining = productsWithImages
-        .filter(p => !related.some(r => r.id === p.id))
-        .slice(0, 4 - related.length);
-      related = [...related, ...remaining];
-    }
-    
-    relatedProducts = related;
-  }
-} catch (error) {
-  console.error('Failed to fetch related products:', error);
-  relatedProducts = [];
-}
+// Get related products from props
+const relatedProducts = Astro.props.relatedProducts || [];
 
 // Build product structured data for SEO
 const productStructuredData = product ? {

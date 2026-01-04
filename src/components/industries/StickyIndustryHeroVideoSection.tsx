@@ -17,7 +17,6 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!videoLoaded) {
-        console.warn('Industry video took too long to load, showing fallback');
         setVideoLoaded(true);
       }
     }, 5000);
@@ -28,12 +27,10 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
   }, [videoLoaded]);
 
   const handleVideoLoad = () => {
-    console.log('Industry video loaded successfully');
     setVideoLoaded(true);
   };
 
   const handleVideoError = () => {
-    console.warn('Industry video failed to load, showing fallback');
     setVideoLoaded(true);
   };
 
@@ -57,7 +54,6 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
-          onLoadStart={() => console.log('Industry video loading started')}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}

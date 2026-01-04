@@ -49,7 +49,7 @@ export interface ProductDatasheet {
 export const industrialDatasheet: ProductDatasheet[] = [
   {
     "id": "tac-734g",
-    "name": "TAC-734G – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE",
+    "name": "TAC-734G - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "High tack infusion molding adhesive specifically designed for marine applications requiring superior bonding strength.",
@@ -102,7 +102,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-735r",
-    "name": "TAC-735R – MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
+    "name": "TAC-735R - MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "No HAPS infusion molding adhesive for environmentally conscious marine applications.",
@@ -153,7 +153,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-738r",
-    "name": "TAC-738R – WEB SPRAY ZERO VOC INFUSION MOLDING ADHESIVE",
+    "name": "TAC-738R - WEB SPRAY ZERO VOC INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Zero VOC infusion molding adhesive for clean manufacturing in marine applications.",
@@ -204,7 +204,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-739r",
-    "name": "TAC-739R – MIST SPRAY INFUSION MOLDING ADHESIVE",
+    "name": "TAC-739R - MIST SPRAY INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Mist spray infusion molding adhesive for marine and composite applications.",
@@ -255,7 +255,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc722",
-    "name": "MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
+    "name": "MC722 - WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Non-flammable, non-methylene chloride contact adhesive for marine and industrial applications.",
@@ -308,7 +308,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc723",
-    "name": "MC723 – WEB SPRAY CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
+    "name": "MC723 - WEB SPRAY CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "CA compliant multi-purpose contact adhesive for marine and industrial applications.",
@@ -361,7 +361,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc724",
-    "name": "MC724 – WEB SPRAY PRESSURE SENSITIVE ADHESIVE",
+    "name": "MC724 - WEB SPRAY PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Web spray pressure sensitive adhesive for marine and industrial applications.",
@@ -415,7 +415,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc737",
-    "name": "MC737 – WEB SPRAY STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
+    "name": "MC737 - WEB SPRAY STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Styrene safe pressure sensitive adhesive for marine and composite applications.",
@@ -468,7 +468,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc741",
-    "name": "MC741 – CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
+    "name": "MC741 - CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "CA compliant multi-purpose contact adhesive for marine and industrial applications.",
@@ -521,7 +521,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-os764",
-    "name": "M-OS764 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
+    "name": "M-OS764 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Ultra high-strength hybrid polymer structural adhesive for marine and industrial applications.",
@@ -575,7 +575,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-oa755",
-    "name": "M-OA755 – HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT",
+    "name": "M-OA755 - HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT",
     "category": "BOND",
     "industry": "marine",
     "description": "High-strength single-part hybrid polymer adhesive and sealant for marine applications.",
@@ -629,7 +629,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-r420",
-    "name": "M-R420 – EPOXY QUICK-SET TWO-PART ADHESIVE",
+    "name": "M-R420 - EPOXY QUICK-SET TWO-PART ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Epoxy quick-set two-part adhesive for rapid marine and industrial assembly.",
@@ -683,7 +683,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-r445",
-    "name": "M-R445 – TWO-PART EPOXY ADHESIVE",
+    "name": "M-R445 - TWO-PART EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Two-part epoxy adhesive for marine and industrial structural bonding.",
@@ -737,7 +737,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-osa783",
-    "name": "M-OSA783 – ADHESIVE PRIMER & PROMOTER",
+    "name": "M-OSA783 - ADHESIVE PRIMER & PROMOTER",
     "category": "BOND",
     "industry": "marine",
     "description": "Adhesive primer and promoter for enhanced bonding performance in marine applications.",
@@ -791,7 +791,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-s750",
-    "name": "M-S750 – TAPE PRIMER AND ADHESION PROMOTER",
+    "name": "M-S750 - TAPE PRIMER AND ADHESION PROMOTER",
     "category": "BOND",
     "industry": "marine",
     "description": "Tape primer and adhesion promoter for enhanced bonding performance in marine applications.",
@@ -845,7 +845,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-c280",
-    "name": "M-C280 – NEOPRENE CONTACT ADHESIVE",
+    "name": "M-C280 - NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Neoprene contact adhesive for marine and industrial applications.",
@@ -899,7 +899,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-c285",
-    "name": "M-C285 – PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE",
+    "name": "M-C285 - PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "marine",
     "description": "Premium high temperature neoprene contact adhesive for demanding marine applications.",
@@ -953,7 +953,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic933",
-    "name": "IC933 – CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
+    "name": "IC933 - CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High-strength contact adhesive compliant with California regulations for industrial bonding applications.",
@@ -1007,7 +1007,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic934",
-    "name": "IC934 – SEMI-PRESSURE SENSITIVE WEB SPRAY",
+    "name": "IC934 - SEMI-PRESSURE SENSITIVE WEB SPRAY",
     "category": "BOND",
     "industry": "construction",
     "description": "Semi-pressure sensitive adhesive designed for web spray applications in industrial manufacturing.",
@@ -1061,7 +1061,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic946",
-    "name": "IC946 – CA COMPLIANT PRESSURE-SENSITIVE CONTACT ADHESIVE",
+    "name": "IC946 - CA COMPLIANT PRESSURE-SENSITIVE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High-solids pressure-sensitive contact adhesive meeting California compliance standards.",
@@ -1115,7 +1115,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "mc739",
-    "name": "MC739 – MIST SPRAY ADHESIVE FOR FIBERGLASS INFUSION MOLDING",
+    "name": "MC739 - MIST SPRAY ADHESIVE FOR FIBERGLASS INFUSION MOLDING",
     "category": "BOND",
     "industry": "marine",
     "description": "Specialized mist spray adhesive designed for fiberglass infusion molding processes.",
@@ -1168,7 +1168,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c130",
-    "name": "C130 – HIGH HEAT NEOPRENE ADHESIVE",
+    "name": "C130 - HIGH HEAT NEOPRENE ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "High-temperature neoprene adhesive for demanding industrial applications requiring heat resistance.",
@@ -1222,7 +1222,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c150",
-    "name": "C150 – CA COMPLIANT HIGH SOLIDS CONTACT ADHESIVE",
+    "name": "C150 - CA COMPLIANT HIGH SOLIDS CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "High-solids contact adhesive meeting California compliance standards for industrial applications.",
@@ -1276,7 +1276,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c331",
-    "name": "C331 – NON-FLAMMABLE CONTACT ADHESIVE",
+    "name": "C331 - NON-FLAMMABLE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Non-flammable contact adhesive for safe industrial use in sensitive environments.",
@@ -1330,7 +1330,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "frp",
-    "name": "FRP – ROLLABLE ADHESIVE",
+    "name": "FRP - ROLLABLE ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Hybrid polymer rollable adhesive specifically designed for FRP (Fiber Reinforced Plastic) applications.",
@@ -1384,7 +1384,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "i1000",
-    "name": "I1000 – LOW-MEDIUM VISCOSITY LAMINATING ADHESIVE",
+    "name": "I1000 - LOW-MEDIUM VISCOSITY LAMINATING ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Low to medium viscosity laminating adhesive for industrial lamination processes.",
@@ -1438,7 +1438,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa4",
-    "name": "OA4 – HIGH-STRENGTH MOISTURE CURE ECO-FRIENDLY ADHESIVE / SEALANT",
+    "name": "OA4 - HIGH-STRENGTH MOISTURE CURE ECO-FRIENDLY ADHESIVE / SEALANT",
     "category": "BOND",
     "industry": "industrial",
     "description": "High-strength moisture-cure adhesive and sealant with eco-friendly formulation.",
@@ -1492,7 +1492,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa75",
-    "name": "OA75 – TROWELLABLE FLOORING ADHESIVE",
+    "name": "OA75 - TROWELLABLE FLOORING ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Trowellable adhesive specifically formulated for flooring installation applications.",
@@ -1544,7 +1544,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa99",
-    "name": "OA99 – BONDING PUTTY",
+    "name": "OA99 - BONDING PUTTY",
     "category": "BOND",
     "industry": "industrial",
     "description": "Versatile bonding putty for industrial assembly and repair applications.",
@@ -1598,7 +1598,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "osa",
-    "name": "OSA – ADHESIVE PRIMER AND PROMOTER",
+    "name": "OSA - ADHESIVE PRIMER AND PROMOTER",
     "category": "BOND",
     "industry": "industrial",
     "description": "Adhesive primer and promoter for enhanced bonding performance on difficult substrates.",
@@ -1652,7 +1652,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os24",
-    "name": "OS24 – HIGH-STRENGTH MOISTURE-CURE SINGLE-PART THIXOTROPIC STRUCTURAL ADHESIVE / SEALANT",
+    "name": "OS24 - HIGH-STRENGTH MOISTURE-CURE SINGLE-PART THIXOTROPIC STRUCTURAL ADHESIVE / SEALANT",
     "category": "BOND",
     "industry": "industrial",
     "description": "High-strength structural adhesive and sealant with thixotropic properties for demanding applications.",
@@ -1706,7 +1706,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r160",
-    "name": "R160 – EPOXY QUICK-SET HIGH STRENGTH TACK STRENGTH ADHESIVE",
+    "name": "R160 - EPOXY QUICK-SET HIGH STRENGTH TACK STRENGTH ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Quick-setting epoxy adhesive with high tack strength for rapid industrial assembly.",
@@ -1760,7 +1760,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r221",
-    "name": "R221 – TWO-PART 1:1 MODIFIED EPOXY ADHESIVE",
+    "name": "R221 - TWO-PART 1:1 MODIFIED EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Two-part modified epoxy adhesive with 1:1 mix ratio for structural bonding applications.",
@@ -1814,7 +1814,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r519",
-    "name": "R519 – FAST ACTING TWO-PART METHACRYLATE ADHESIVE",
+    "name": "R519 - FAST ACTING TWO-PART METHACRYLATE ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Fast-acting two-part methacrylate adhesive for rapid industrial assembly and bonding.",
@@ -1868,7 +1868,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r529",
-    "name": "R529 – STRUCTURAL ANCHORING EPOXY",
+    "name": "R529 - STRUCTURAL ANCHORING EPOXY",
     "category": "BOND",
     "industry": "industrial",
     "description": "Structural anchoring epoxy for heavy-duty industrial anchoring and bonding applications.",
@@ -1922,7 +1922,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "s228",
-    "name": "S228 – ADHESIVE PRIMER AND PROMOTER",
+    "name": "S228 - ADHESIVE PRIMER AND PROMOTER",
     "category": "BOND",
     "industry": "industrial",
     "description": "Adhesive primer and promoter for enhanced bonding performance on various substrates.",
@@ -1976,7 +1976,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "fc-car",
-    "name": "FC-CAR – CITRUS-BASED ADHESIVE REMOVER / CLEANER",
+    "name": "FC-CAR - CITRUS-BASED ADHESIVE REMOVER / CLEANER",
     "category": "BOND",
     "industry": "industrial",
     "description": "Citrus-based adhesive remover and cleaner for safe removal of adhesives and surface preparation.",
@@ -2030,7 +2030,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-os789",
-    "name": "M-OS789 – MULTI-PURPOSE HYBRID POLYMER SEALANT",
+    "name": "M-OS789 - MULTI-PURPOSE HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "marine",
     "description": "Multi-purpose hybrid polymer sealant designed for marine applications requiring superior sealing performance.",
@@ -2087,7 +2087,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-os796",
-    "name": "M-OS796 – FAST-SKIN MULTI-PURPOSE HYBRID POLYMER SEALANT",
+    "name": "M-OS796 - FAST-SKIN MULTI-PURPOSE HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "marine",
     "description": "Fast-skin multi-purpose hybrid polymer sealant for rapid marine sealing applications.",
@@ -2144,7 +2144,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-t815",
-    "name": "M-T815 – DOUBLE-COATED ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
+    "name": "M-T815 - DOUBLE-COATED ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "marine",
     "description": "Double-coated ultra high-bond acrylic foam tape for marine and industrial bonding applications.",
@@ -2200,7 +2200,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "m-t820",
-    "name": "M-T820 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+    "name": "M-T820 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "marine",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding marine and industrial applications.",
@@ -2256,7 +2256,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc501",
-    "name": "CC501 – LOW VOC, CA COMPLIANT, AGGRESSIVE, FAST DRYING PRESSURE SENSITIVE ADHESIVE",
+    "name": "CC501 - LOW VOC, CA COMPLIANT, AGGRESSIVE, FAST DRYING PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Low VOC, CA compliant pressure sensitive adhesive for construction applications requiring fast drying and aggressive bonding.",
@@ -2310,7 +2310,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc507",
-    "name": "CC507 – HIGH-TEMP STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
+    "name": "CC507 - HIGH-TEMP STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High-temperature styrene safe pressure sensitive adhesive for demanding construction applications.",
@@ -2364,7 +2364,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc513",
-    "name": "CC513 – NON FLAM/NON-METHYLENE CHLORIDE CONTRACT ADHESIVE",
+    "name": "CC513 - NON FLAM/NON-METHYLENE CHLORIDE CONTRACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Non-flammable, non-methylene chloride contact adhesive for safe construction applications.",
@@ -2418,7 +2418,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc515",
-    "name": "CC515 – PRESSURE SENSITIVE ADHESIVE",
+    "name": "CC515 - PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "General purpose pressure sensitive adhesive for construction and industrial applications.",
@@ -2471,7 +2471,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc519",
-    "name": "CC519 – CA COMPLIANT CONTACT ADHESIVE",
+    "name": "CC519 - CA COMPLIANT CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "CA compliant contact adhesive for construction applications requiring regulatory compliance.",
@@ -2525,7 +2525,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "cc503-aa",
-    "name": "CC503 AA – LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
+    "name": "CC503 AA - LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Low VOC, CA compliant multi-purpose adhesive for various construction applications.",
@@ -2578,7 +2578,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-c360",
-    "name": "C-C360 – HIGH-TEMP NEOPRENE CONTACT ADHESIVE",
+    "name": "C-C360 - HIGH-TEMP NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High-temperature neoprene contact adhesive for demanding construction applications.",
@@ -2740,7 +2740,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-os55",
-    "name": "C-OS55 – HYBRID POLYMER, SINGLE COMPONENT CURE, WITH OUTSTANDING ADHESIVE/SEALING PROPERTIES",
+    "name": "C-OS55 - HYBRID POLYMER, SINGLE COMPONENT CURE, WITH OUTSTANDING ADHESIVE/SEALING PROPERTIES",
     "category": "BOND",
     "industry": "construction",
     "description": "Hybrid polymer single component cure adhesive with outstanding adhesive and sealing properties.",
@@ -2794,7 +2794,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-r329",
-    "name": "C-R329 – TWO-PART METHACRYLATE ADHESIVE",
+    "name": "C-R329 - TWO-PART METHACRYLATE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Two-part methacrylate adhesive for high-performance construction applications.",
@@ -2847,7 +2847,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-r552",
-    "name": "C-R552 – TWO-PART MODIFIED EPOXY",
+    "name": "C-R552 - TWO-PART MODIFIED EPOXY",
     "category": "BOND",
     "industry": "construction",
     "description": "Two-part modified epoxy for demanding construction applications requiring superior bonding strength.",
@@ -2900,7 +2900,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-r560",
-    "name": "C-R560 – TWO-PART 5 MINUTE EPOXY ADHESIVE",
+    "name": "C-R560 - TWO-PART 5 MINUTE EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Two-part 5 minute epoxy adhesive for fast-curing construction applications.",
@@ -2953,7 +2953,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-oa5",
-    "name": "C-OA5 – HYBRID POLYMER, MOISTURE CURE ADHESIVE",
+    "name": "C-OA5 - HYBRID POLYMER, MOISTURE CURE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Hybrid polymer moisture cure adhesive for construction applications.",
@@ -3007,7 +3007,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-oa52",
-    "name": "C-OA52 – QUICK GRAB ADHESIVE",
+    "name": "C-OA52 - QUICK GRAB ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Quick grab adhesive for fast-setting construction applications.",
@@ -3061,7 +3061,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-osa",
-    "name": "C-OSA – ISOPROPYL ALCOHOL BASED CLEANER/ADHESION PROMOTER",
+    "name": "C-OSA - ISOPROPYL ALCOHOL BASED CLEANER/ADHESION PROMOTER",
     "category": "BOND",
     "industry": "construction",
     "description": "Isopropyl alcohol based cleaner and adhesion promoter for construction applications.",
@@ -3115,7 +3115,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-oa77",
-    "name": "C-OA77 – HYBRID POLYMER, HIGH PERFORMANCE, TROWEL GRADE, FLOORING ADHESIVE",
+    "name": "C-OA77 - HYBRID POLYMER, HIGH PERFORMANCE, TROWEL GRADE, FLOORING ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Hybrid polymer high performance trowel grade flooring adhesive for construction applications.",
@@ -3169,7 +3169,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-s538",
-    "name": "C-S538 – TAPE PRIMER AND ADHESION PROMOTER",
+    "name": "C-S538 - TAPE PRIMER AND ADHESION PROMOTER",
     "category": "BOND",
     "industry": "construction",
     "description": "Tape primer and adhesion promoter for construction applications.",
@@ -3223,7 +3223,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-w6106",
-    "name": "C-W6106 – HPL LAMINATING ADHESIVE",
+    "name": "C-W6106 - HPL LAMINATING ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "HPL laminating adhesive for high-pressure laminate applications in construction.",
@@ -3277,7 +3277,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc452",
-    "name": "TC452 – NON FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
+    "name": "TC452 - NON FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Non-flammable, non-methylene chloride contact adhesive for transportation and industrial applications.",
@@ -3331,7 +3331,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc453",
-    "name": "TC453 – CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
+    "name": "TC453 - CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "CA compliant multi-purpose contact adhesive for transportation and industrial applications.",
@@ -3385,7 +3385,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc454",
-    "name": "TC454 – PRESSURE-SENSITIVE CONTACT ADHESIVE",
+    "name": "TC454 - PRESSURE-SENSITIVE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Pressure-sensitive contact adhesive for transportation and industrial applications.",
@@ -3439,7 +3439,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc456",
-    "name": "TC456 – CA COMPLIANT SEMI-PRESSURE SENSITIVE CONTACT ADHESIVE",
+    "name": "TC456 - CA COMPLIANT SEMI-PRESSURE SENSITIVE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "CA compliant semi-pressure sensitive contact adhesive for transportation applications.",
@@ -3493,7 +3493,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc466",
-    "name": "TC466 – LOW VOC CA COMPLIANT, AGGRESSIVE AND FAST DRYING PRESSURE SENSITIVE ADHESIVE",
+    "name": "TC466 - LOW VOC CA COMPLIANT, AGGRESSIVE AND FAST DRYING PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Low VOC CA compliant, aggressive and fast drying pressure sensitive adhesive for transportation applications.",
@@ -3547,7 +3547,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tc467",
-    "name": "TC467 – HIGH-TEMP STYRENE-SAFE PRESSURE SENSITIVE ADHESIVE",
+    "name": "TC467 - HIGH-TEMP STYRENE-SAFE PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "High-temperature styrene-safe pressure sensitive adhesive for transportation applications.",
@@ -3600,7 +3600,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-osa155",
-    "name": "T-OSA155 – ADHESIVE PRIMER AND PROMOTER",
+    "name": "T-OSA155 - ADHESIVE PRIMER AND PROMOTER",
     "category": "BOND",
     "industry": "transportation",
     "description": "Adhesive primer and promoter for enhanced bonding performance in transportation applications.",
@@ -3654,7 +3654,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-oa152",
-    "name": "T-OA152 – HYBRID POLYMER STRUCTURAL ADHESIVE",
+    "name": "T-OA152 - HYBRID POLYMER STRUCTURAL ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Hybrid polymer structural adhesive for transportation and industrial applications.",
@@ -3708,7 +3708,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-s596",
-    "name": "T-S596 – ADHESIVE PRIMER",
+    "name": "T-S596 - ADHESIVE PRIMER",
     "category": "BOND",
     "industry": "transportation",
     "description": "Adhesive primer for enhanced bonding performance in transportation applications.",
@@ -3762,7 +3762,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-r679",
-    "name": "T-R679 – TWO-PART MODIFIED EPOXY ADHESIVE",
+    "name": "T-R679 - TWO-PART MODIFIED EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Two-part modified epoxy adhesive for transportation and industrial applications.",
@@ -3816,7 +3816,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-r785",
-    "name": "T-R785 – TWO-PART METHACRYLATE ADHESIVE",
+    "name": "T-R785 - TWO-PART METHACRYLATE ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Two-part methacrylate adhesive for transportation and industrial applications.",
@@ -3870,7 +3870,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-oa156",
-    "name": "T-OA156 – HYBRID POLYMER STRUCTURAL, SINGLE-PART MOISTURE CURE ADHESIVE",
+    "name": "T-OA156 - HYBRID POLYMER STRUCTURAL, SINGLE-PART MOISTURE CURE ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Hybrid polymer structural, single-part moisture cure adhesive for transportation applications.",
@@ -3924,7 +3924,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-oa177",
-    "name": "T-OA177 – HIGH-GREEN STRENGTH QUICK GRAB ADHESIVE",
+    "name": "T-OA177 - HIGH-GREEN STRENGTH QUICK GRAB ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "High-green strength quick grab adhesive for transportation and industrial applications.",
@@ -3978,7 +3978,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-c222",
-    "name": "T-C222 – NEOPRENE CONTACT ADHESIVE",
+    "name": "T-C222 - NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Neoprene contact adhesive for transportation and industrial applications.",
@@ -4032,7 +4032,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-c225",
-    "name": "T-C225 – NON-FLAM SPRAYABLE CONTACT ADHESIVE",
+    "name": "T-C225 - NON-FLAM SPRAYABLE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Non-flammable sprayable contact adhesive for transportation and industrial applications.",
@@ -4086,7 +4086,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-c485",
-    "name": "T-C485 – PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE",
+    "name": "T-C485 - PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "transportation",
     "description": "Premium high temperature neoprene contact adhesive for demanding transportation applications.",
@@ -4140,7 +4140,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-os9",
-    "name": "C-OS9 – HYBRID POLYMER, STRUCTURAL, SINGLE-PART, MOISTURE CURE ADHESIVE",
+    "name": "C-OS9 - HYBRID POLYMER, STRUCTURAL, SINGLE-PART, MOISTURE CURE ADHESIVE",
     "category": "SEAL",
     "industry": "construction",
     "description": "ForzaBOND™ C-OS9 is a hybrid polymer, structural, single-part, moisture cure adhesive.",
@@ -4235,7 +4235,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-os150",
-    "name": "T-OS150 – HIGH-PERFORMANCE SEMI-SELF LEVELING HYBRID POLYMER SEALANT",
+    "name": "T-OS150 - HIGH-PERFORMANCE SEMI-SELF LEVELING HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "transportation",
     "description": "High-performance semi-self leveling hybrid polymer sealant for transportation applications.",
@@ -4290,7 +4290,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-os151",
-    "name": "T-OS151 – NON-HAZARDOUS HIGH STRENGTH SINGLE PART HYBRID POLYMER SEALANT",
+    "name": "T-OS151 - NON-HAZARDOUS HIGH STRENGTH SINGLE PART HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "transportation",
     "description": "Non-hazardous high strength single part hybrid polymer sealant for transportation applications.",
@@ -4345,7 +4345,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-os164",
-    "name": "T-OS164 – SILICONE SEALANT",
+    "name": "T-OS164 - SILICONE SEALANT",
     "category": "SEAL",
     "industry": "transportation",
     "description": "Silicone sealant for transportation and industrial applications.",
@@ -4400,7 +4400,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-734g",
-    "name": "TAC-734G – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE",
+    "name": "TAC-734G - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Web spray high tack infusion molding adhesive for composite applications requiring superior bonding strength.",
@@ -4453,7 +4453,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-735r",
-    "name": "TAC-735R – MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
+    "name": "TAC-735R - MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Mist spray no HAPS infusion molding adhesive for environmentally conscious composite applications.",
@@ -4505,7 +4505,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-738r",
-    "name": "TAC-738R – WEB SPRAY ZERO VOC INFUSION MOLDING ADHESIVE",
+    "name": "TAC-738R - WEB SPRAY ZERO VOC INFUSION MOLDING ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Web spray zero VOC infusion molding adhesive for clean manufacturing in composite applications.",
@@ -4557,7 +4557,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac850",
-    "name": "TAC850 – MIST SPRAY POLYMER CONCRETE MOLDING PROCESS TACKIFIER",
+    "name": "TAC850 - MIST SPRAY POLYMER CONCRETE MOLDING PROCESS TACKIFIER",
     "category": "BOND",
     "industry": "composites",
     "description": "Mist spray polymer concrete molding process tackifier for composite and concrete applications.",
@@ -4610,7 +4610,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-r750",
-    "name": "TAC-R750 – TWO PART, METHACRYLATE ADHESIVE",
+    "name": "TAC-R750 - TWO PART, METHACRYLATE ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Two-part methacrylate adhesive for high-performance composite applications.",
@@ -4663,7 +4663,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-r777",
-    "name": "TAC-R777 – TWO-PART MODIFIED EPOXY ADHESIVE",
+    "name": "TAC-R777 - TWO-PART MODIFIED EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Two-part modified epoxy adhesive for demanding composite applications requiring superior bonding strength.",
@@ -4716,7 +4716,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-os74",
-    "name": "TAC-OS74 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
+    "name": "TAC-OS74 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Ultra high-strength hybrid polymer structural adhesive for composite applications requiring superior bonding performance.",
@@ -4772,7 +4772,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "tac-os75",
-    "name": "TAC-OS75 – NEUTRAL CURE OXIME SILICONE SEALANT",
+    "name": "TAC-OS75 - NEUTRAL CURE OXIME SILICONE SEALANT",
     "category": "SEAL",
     "industry": "composites",
     "description": "Neutral cure oxime silicone sealant for composite applications requiring superior sealing performance.",
@@ -4828,7 +4828,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc826",
-    "name": "RC826 – LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
+    "name": "RC826 - LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Low VOC, CA compliant multi-purpose adhesive for insulation applications requiring environmentally conscious bonding solutions.",
@@ -4883,7 +4883,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc862",
-    "name": "RC862 – NON-FLAMMABLE, NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
+    "name": "RC862 - NON-FLAMMABLE, NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Non-flammable, non-methylene chloride contact adhesive for safe insulation applications.",
@@ -4938,7 +4938,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc863",
-    "name": "RC863 – LOW VOC, CA COMPLIANT, MULTI-PURPOSE, CONTACT ADHESIVE",
+    "name": "RC863 - LOW VOC, CA COMPLIANT, MULTI-PURPOSE, CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Low VOC, CA compliant multi-purpose contact adhesive for environmentally conscious insulation applications.",
@@ -4993,7 +4993,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc864",
-    "name": "RC864 – AGGRESSIVE, FAST DRYING, PRESSURE SENSITIVE ADHESIVE",
+    "name": "RC864 - AGGRESSIVE, FAST DRYING, PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Aggressive, fast drying pressure sensitive adhesive for demanding insulation applications.",
@@ -5048,7 +5048,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc886",
-    "name": "RC886 – LOW VOC, CA COMPLIANT, AGGRESSIVE, FAST DRYING, PRESSURE SENSITIVE ADHESIVE",
+    "name": "RC886 - LOW VOC, CA COMPLIANT, AGGRESSIVE, FAST DRYING, PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Low VOC, CA compliant aggressive fast drying pressure sensitive adhesive for environmentally conscious insulation applications.",
@@ -5105,7 +5105,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "rc887",
-    "name": "RC887 – HIGH TEMP, PRESSURE-SENSITIVE CONTACT ADHESIVE",
+    "name": "RC887 - HIGH TEMP, PRESSURE-SENSITIVE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "High temperature pressure-sensitive contact adhesive for demanding insulation applications requiring thermal resistance.",
@@ -5160,7 +5160,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-c661",
-    "name": "R-C661 – NON FLAMMABLE HIGH PERFORMANCE SPRAY CONTACT ADHESIVE",
+    "name": "R-C661 - NON FLAMMABLE HIGH PERFORMANCE SPRAY CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Non-flammable high performance spray contact adhesive for safe and efficient insulation applications.",
@@ -5215,7 +5215,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-r820",
-    "name": "R-R820 – TWO-PART, EPOXY ADHESIVE",
+    "name": "R-R820 - TWO-PART, EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Two-part epoxy adhesive for high-strength insulation applications requiring superior bonding performance.",
@@ -5269,7 +5269,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-a2000",
-    "name": "R-A2000 – LOW/MEDIUM VISCOSITY LAMINATING ADHESIVE",
+    "name": "R-A2000 - LOW/MEDIUM VISCOSITY LAMINATING ADHESIVE",
     "category": "BOND",
     "industry": "insulation",
     "description": "Low/medium viscosity laminating adhesive for insulation applications requiring precise bonding control.",
@@ -5324,7 +5324,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-osa",
-    "name": "R-OSA – ISOPROPYL ALCOHOL BASED CLEANER/ADHESION PROMOTER",
+    "name": "R-OSA - ISOPROPYL ALCOHOL BASED CLEANER/ADHESION PROMOTER",
     "category": "BOND",
     "industry": "insulation",
     "description": "Isopropyl alcohol based cleaner and adhesion promoter for preparing surfaces before insulation bonding applications.",
@@ -5379,7 +5379,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-os8",
-    "name": "R-OS8 – NON-HAZARDOUS, HIGH STRENGTH, SINGLE PART MOISTURE CURE HYBRID POLYMER",
+    "name": "R-OS8 - NON-HAZARDOUS, HIGH STRENGTH, SINGLE PART MOISTURE CURE HYBRID POLYMER",
     "category": "SEAL",
     "industry": "insulation",
     "description": "Non-hazardous, high strength single part moisture cure hybrid polymer for insulation sealing applications.",
@@ -5435,7 +5435,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-os84",
-    "name": "R-OS84 – SINGLE-COMPONENT SILICONE SEALANT",
+    "name": "R-OS84 - SINGLE-COMPONENT SILICONE SEALANT",
     "category": "SEAL",
     "industry": "insulation",
     "description": "Single-component silicone sealant for insulation applications requiring superior sealing performance.",
@@ -5491,7 +5491,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-t600",
-    "name": "R-T600 – THERMAL-BREAK FOAM TAPE",
+    "name": "R-T600 - THERMAL-BREAK FOAM TAPE",
     "category": "TAPE",
     "industry": "insulation",
     "description": "Thermal-break foam tape for insulation applications requiring thermal management and bonding.",
@@ -5546,7 +5546,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-t620",
-    "name": "R-T620 – LOW DENSITY, REVERSE WOUND, PVS, SINGLE SIDED THERMAL TAPE",
+    "name": "R-T620 - LOW DENSITY, REVERSE WOUND, PVS, SINGLE SIDED THERMAL TAPE",
     "category": "TAPE",
     "industry": "insulation",
     "description": "Low density, reverse wound, PVS, single sided thermal tape for insulation applications requiring thermal management.",
@@ -5601,7 +5601,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r-t860",
-    "name": "R-T860 – COLD TEMPERATURE DOUBLE COATED TAPE",
+    "name": "R-T860 - COLD TEMPERATURE DOUBLE COATED TAPE",
     "category": "TAPE",
     "industry": "insulation",
     "description": "Cold temperature double coated tape for insulation applications requiring low temperature performance.",
@@ -5656,7 +5656,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic932",
-    "name": "IC932 – NON FLAMMABLE NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
+    "name": "IC932 - NON FLAMMABLE NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Non-flammable non-methylene chloride contact adhesive for safe industrial applications.",
@@ -5711,7 +5711,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic933",
-    "name": "IC933 – CA COMPLIANT HIGH-STRENGTH CONTACT ADHESIVE",
+    "name": "IC933 - CA COMPLIANT HIGH-STRENGTH CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "CA compliant high-strength contact adhesive for environmentally conscious industrial applications.",
@@ -5766,7 +5766,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic934",
-    "name": "IC934 – STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
+    "name": "IC934 - STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Styrene safe pressure sensitive adhesive for industrial applications requiring safe handling.",
@@ -5821,7 +5821,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic946",
-    "name": "IC946 – CA COMPLIANT PRESSURE SENSITIVE ADHESIVE",
+    "name": "IC946 - CA COMPLIANT PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "CA compliant pressure sensitive adhesive for environmentally conscious industrial applications.",
@@ -5876,7 +5876,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ic947",
-    "name": "IC947 – HIGH-TEMP STYRENE-SAFE PRESSURE SENSITIVE ADHESIVE",
+    "name": "IC947 - HIGH-TEMP STYRENE-SAFE PRESSURE SENSITIVE ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High-temperature styrene-safe pressure sensitive adhesive for demanding industrial applications.",
@@ -5932,7 +5932,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "81-0389",
-    "name": "81-0389 – HIGH PERFORMANCE NEOPRENE CONTACT ADHESIVE",
+    "name": "81-0389 - HIGH PERFORMANCE NEOPRENE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High performance neoprene contact adhesive for demanding industrial applications.",
@@ -5987,7 +5987,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c130",
-    "name": "C130 – HIGH HEAT NEOPRENE ADHESIVE",
+    "name": "C130 - HIGH HEAT NEOPRENE ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "High heat neoprene adhesive for industrial applications requiring thermal resistance.",
@@ -6042,7 +6042,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c150",
-    "name": "C150 – CA COMPLIANT CONTACT ADHESIVE",
+    "name": "C150 - CA COMPLIANT CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "CA compliant contact adhesive for environmentally conscious industrial applications.",
@@ -6097,7 +6097,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c331",
-    "name": "C331 – NON-FLAMMABLE SPRAYABLE CONTACT ADHESIVE",
+    "name": "C331 - NON-FLAMMABLE SPRAYABLE CONTACT ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Non-flammable sprayable contact adhesive for safe and efficient industrial applications.",
@@ -6154,7 +6154,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "frp",
-    "name": "FRP – HYBRID POLYMER ROLLABLE FRP ADHESIVE",
+    "name": "FRP - HYBRID POLYMER ROLLABLE FRP ADHESIVE",
     "category": "BOND",
     "industry": "composites",
     "description": "Hybrid polymer rollable FRP adhesive for industrial FRP applications.",
@@ -6208,7 +6208,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa4",
-    "name": "OA4 – HYBRID POLYMER ADHESIVE / SEALANT",
+    "name": "OA4 - HYBRID POLYMER ADHESIVE / SEALANT",
     "category": "BOND",
     "industry": "industrial",
     "description": "Hybrid polymer adhesive and sealant for industrial applications requiring both bonding and sealing.",
@@ -6263,7 +6263,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa12",
-    "name": "OA12 – HIGH GREEN STRENGTH MOUNTING ADHESIVE",
+    "name": "OA12 - HIGH GREEN STRENGTH MOUNTING ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High green strength mounting adhesive for industrial applications requiring immediate bonding strength.",
@@ -6318,7 +6318,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa13",
-    "name": "OA13 – HIGH GREEN STRENGTH MOUNTING ADHESIVE",
+    "name": "OA13 - HIGH GREEN STRENGTH MOUNTING ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "High green strength mounting adhesive for industrial applications requiring immediate bonding strength.",
@@ -6373,7 +6373,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "oa23",
-    "name": "OA23 – HYBRID POLYMER FAST GRAB ADHESIVE",
+    "name": "OA23 - HYBRID POLYMER FAST GRAB ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Hybrid polymer fast grab adhesive for industrial applications requiring immediate bonding.",
@@ -6428,7 +6428,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os24",
-    "name": "OS24 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
+    "name": "OS24 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Ultra high-strength hybrid polymer structural adhesive for demanding industrial applications.",
@@ -6483,7 +6483,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "osa",
-    "name": "OSA – ADHESIVE PRIMER AND PROMOTER",
+    "name": "OSA - ADHESIVE PRIMER AND PROMOTER",
     "category": "BOND",
     "industry": "industrial",
     "description": "Adhesive primer and promoter for preparing surfaces before industrial bonding applications.",
@@ -6537,7 +6537,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r160",
-    "name": "R160 – TWO-PART 5-MINUTE EPOXY",
+    "name": "R160 - TWO-PART 5-MINUTE EPOXY",
     "category": "BOND",
     "industry": "industrial",
     "description": "Two-part 5-minute epoxy for fast industrial bonding applications.",
@@ -6591,7 +6591,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r221",
-    "name": "R221 – TWO-PART MODIFIED EPOXY ADHESIVE",
+    "name": "R221 - TWO-PART MODIFIED EPOXY ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Two-part modified epoxy adhesive for high-strength industrial applications.",
@@ -6646,7 +6646,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "r519",
-    "name": "R519 – TWO-PART METHACRYLATE ADHESIVE",
+    "name": "R519 - TWO-PART METHACRYLATE ADHESIVE",
     "category": "BOND",
     "industry": "industrial",
     "description": "Two-part methacrylate adhesive for high-performance industrial applications.",
@@ -6701,7 +6701,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "s228",
-    "name": "S228 – TAPE PRIMER AND ADHESION PROMOTER",
+    "name": "S228 - TAPE PRIMER AND ADHESION PROMOTER",
     "category": "BOND",
     "industry": "industrial",
     "description": "Tape primer and adhesion promoter for preparing surfaces before tape applications.",
@@ -6755,7 +6755,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ca1000",
-    "name": "CA1000 – INSTANT ADHESIVE",
+    "name": "CA1000 - INSTANT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
@@ -6808,7 +6808,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ca1500",
-    "name": "CA1500 – INSTANT ADHESIVE",
+    "name": "CA1500 - INSTANT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
@@ -6861,7 +6861,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "ca2400",
-    "name": "CA2400 – INSTANT ADHESIVE",
+    "name": "CA2400 - INSTANT ADHESIVE",
     "category": "BOND",
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
@@ -6914,7 +6914,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os2",
-    "name": "OS2 – MULTI-PURPOSE HYBRID POLYMER SEALANT",
+    "name": "OS2 - MULTI-PURPOSE HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "construction",
     "description": "Multi-purpose hybrid polymer sealant for industrial sealing applications.",
@@ -6969,7 +6969,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os10",
-    "name": "OS10 – PERFORMANCE POLYMER",
+    "name": "OS10 - PERFORMANCE POLYMER",
     "category": "SEAL",
     "industry": "construction",
     "description": "Performance polymer sealant for high-performance industrial sealing applications.",
@@ -7024,7 +7024,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os20",
-    "name": "OS20 – HIGH-STRENGTH HYBRID POLYMER ADHESIVE/SEALANT",
+    "name": "OS20 - HIGH-STRENGTH HYBRID POLYMER ADHESIVE/SEALANT",
     "category": "SEAL",
     "industry": "construction",
     "description": "High-strength hybrid polymer adhesive and sealant for industrial applications requiring both bonding and sealing.",
@@ -7079,7 +7079,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os25",
-    "name": "OS25 – LOW MODULUS PERFORMANCE POLYMER",
+    "name": "OS25 - LOW MODULUS PERFORMANCE POLYMER",
     "category": "SEAL",
     "industry": "construction",
     "description": "Low modulus performance polymer sealant for industrial applications requiring flexibility.",
@@ -7134,7 +7134,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os31",
-    "name": "OS31 – SELF-LEVELING HYBRID POLYMER SEALANT",
+    "name": "OS31 - SELF-LEVELING HYBRID POLYMER SEALANT",
     "category": "SEAL",
     "industry": "construction",
     "description": "Self-leveling hybrid polymer sealant for industrial applications requiring smooth surfaces.",
@@ -7189,7 +7189,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os35",
-    "name": "OS35 – SINGLE COMPONENT SILICONE SEALANT",
+    "name": "OS35 - SINGLE COMPONENT SILICONE SEALANT",
     "category": "SEAL",
     "industry": "construction",
     "description": "Single component silicone sealant for industrial sealing applications.",
@@ -7244,7 +7244,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os37",
-    "name": "OS37 – ACETOXY SILICONE",
+    "name": "OS37 - ACETOXY SILICONE",
     "category": "SEAL",
     "industry": "construction",
     "description": "Acetoxy silicone sealant for industrial sealing applications.",
@@ -7355,7 +7355,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os61-adhesive",
-    "name": "OS61 – HIGH PERFORMANCE SEMI SELF-LEVELING ADHESIVE / SEALANT",
+    "name": "OS61 - HIGH PERFORMANCE SEMI SELF-LEVELING ADHESIVE / SEALANT",
     "category": "SEAL",
     "industry": "construction",
     "description": "High performance semi self-leveling adhesive and sealant for industrial applications requiring both bonding and sealing.",
@@ -7410,7 +7410,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t500",
-    "name": "C-T500 – FOAM TAPE",
+    "name": "C-T500 - FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Foam tape for construction and industrial applications requiring cushioning and bonding.",
@@ -7465,7 +7465,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t550",
-    "name": "C-T550 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+    "name": "C-T550 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding construction applications.",
@@ -7520,7 +7520,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t553",
-    "name": "C-T553 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+    "name": "C-T553 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-coated ultra high bond acrylic foam tape for construction applications requiring superior bonding strength.",
@@ -7575,7 +7575,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t557",
-    "name": "C-T557 – DOUBLE-COATED ACRYLIC FOAM TAPE",
+    "name": "C-T557 - DOUBLE-COATED ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-coated acrylic foam tape for construction and industrial applications.",
@@ -7630,7 +7630,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t564",
-    "name": "C-T564 – DOUBLE-COATED PE FOAM TAPE",
+    "name": "C-T564 - DOUBLE-COATED PE FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-coated PE foam tape for construction applications requiring cushioning and bonding.",
@@ -7685,7 +7685,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t731",
-    "name": "C-T731 – DOUBLE-SIDED TAPE",
+    "name": "C-T731 - DOUBLE-SIDED TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-sided tape for construction and industrial applications.",
@@ -7740,7 +7740,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "c-t5100",
-    "name": "C-T5100 – DOUBLE-COATED PET",
+    "name": "C-T5100 - DOUBLE-COATED PET",
     "category": "TAPE",
     "industry": "construction",
     "description": "Double-coated PET tape for construction and industrial applications.",
@@ -7795,7 +7795,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-t415",
-    "name": "T-T415 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+    "name": "T-T415 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "transportation",
     "description": "Double-coated ultra high bond acrylic foam tape for transportation and industrial applications.",
@@ -7850,7 +7850,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-t420",
-    "name": "T-T420 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+    "name": "T-T420 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "transportation",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding transportation applications.",
@@ -7905,7 +7905,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-t1200",
-    "name": "T-T1200 – FOAM GASKETING TAPE",
+    "name": "T-T1200 - FOAM GASKETING TAPE",
     "category": "TAPE",
     "industry": "transportation",
     "description": "Foam gasketing tape for transportation and industrial applications.",
@@ -7960,7 +7960,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-t1420",
-    "name": "T-T1420 – EXTREME SEALING TAPE",
+    "name": "T-T1420 - EXTREME SEALING TAPE",
     "category": "TAPE",
     "industry": "transportation",
     "description": "Extreme sealing tape for transportation and industrial applications.",
@@ -8015,7 +8015,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t-t430",
-    "name": "T-T430 – PE SEALING TAPE",
+    "name": "T-T430 - PE SEALING TAPE",
     "category": "TAPE",
     "industry": "transportation",
     "description": "PE sealing tape for transportation and industrial applications.",
@@ -8070,7 +8070,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t215",
-    "name": "T215 – ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
+    "name": "T215 - ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Ultra high-bond acrylic foam tape for demanding industrial applications requiring superior adhesion.",
@@ -8119,7 +8119,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t220",
-    "name": "T220 – ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
+    "name": "T220 - ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Ultra high-bond acrylic foam tape for heavy-duty industrial applications.",
@@ -8168,7 +8168,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t305",
-    "name": "T305 – FOAM TAPE",
+    "name": "T305 - FOAM TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "High-performance foam tape for industrial bonding and mounting applications.",
@@ -8217,7 +8217,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t350",
-    "name": "T350 – THERMAL BREAK TAPE",
+    "name": "T350 - THERMAL BREAK TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Thermal break tape for insulating applications and thermal barrier requirements.",
@@ -8266,7 +8266,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t464",
-    "name": "T464 – TRANSFER TAPE",
+    "name": "T464 - TRANSFER TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "High-performance transfer tape for industrial bonding applications.",
@@ -8315,7 +8315,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t600",
-    "name": "T600 – FOAM GASKETING TAPE",
+    "name": "T600 - FOAM GASKETING TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Foam gasketing tape for sealing and gasketing applications in industrial environments.",
@@ -8364,7 +8364,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t715",
-    "name": "T715 – COLD TEMP DOUBLE-COATED TAPE",
+    "name": "T715 - COLD TEMP DOUBLE-COATED TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Cold temperature double-coated tape for low-temperature applications.",
@@ -8413,7 +8413,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t900",
-    "name": "T900 – BUTYL TAPE",
+    "name": "T900 - BUTYL TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Butyl adhesive tape for sealing and bonding applications in industrial environments.",
@@ -8462,7 +8462,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t950",
-    "name": "T950 – FSK BONDING TAPE",
+    "name": "T950 - FSK BONDING TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "FSK (Foil-Scrim-Kraft) bonding tape for specialized industrial applications.",
@@ -8511,7 +8511,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t970",
-    "name": "T970 – FOIL BONDING TAPE",
+    "name": "T970 - FOIL BONDING TAPE",
     "category": "TAPE",
     "industry": "construction",
     "description": "Foil bonding tape for specialized industrial applications requiring foil backing.",
@@ -8617,14 +8617,14 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os45",
-    "name": "OS45 – ACRYLIC ADHESIVE CAULK",
+    "name": "OS45 - ACRYLIC ADHESIVE CAULK",
     "category": "SEAL",
     "industry": "industrial",
     "description": "ForzaBOND™ OA45 is a single-component, acrylic latex selant formulated to provide fast-setting seal.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS45.png",
     "url": "https://forzabuilt.com/product/acrylic-adhesive-caulk/",
     "specifications": {
-      "type": "OS45 – ACRYLIC ADHESIVE CAULK",
+      "type": "OS45 - ACRYLIC ADHESIVE CAULK",
       "substrates": [
         "Acoustical seal in the construction of interior walls, ceilings, and floors.",
         "It is suitable for use on vinyl, aluminum, and wood siding as well as on bathroom and kitchen fixtures.",
@@ -8662,20 +8662,20 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "os55",
-    "name": "OS55 – BUTYL ADHESIVE CAULK",
+    "name": "OS55 - BUTYL ADHESIVE CAULK",
     "category": "SEAL",
     "industry": "industrial",
     "description": "ForzaBOND™ OS55 is a butyl sealant designed to provide excellent weathering properties.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS55-1229x1536-1.png",
     "url": "https://forzabuilt.com/product/butyl-adhesive-caulk/",
     "specifications": {
-      "type": "OS55 – BUTYL ADHESIVE CAULK",
+      "type": "OS55 - BUTYL ADHESIVE CAULK",
       "substrates": [
         "It will adhere to a variety of substrates such as masonry, glass, metal, concrete, wood and some plastics.",
         "It also adheres well to many various roofing membranes.",
         "Easy to apply and non-stringing",
         "Remains permanently flexible and will not crack",
-        "Non-staining – with no discoloration",
+        "Non-staining - with no discoloration",
         "Adheres to a variety of surfaces without prime",
         "All surfaces must be clean, dry and free of all loose materials. Apply with a standard caulking gun.",
         "Cut the nozzle to desired bead size and puncture the inner seal.",
@@ -8691,7 +8691,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
         "It also adheres well to many various roofing membranes.",
         "Easy to apply and non-stringing",
         "Remains permanently flexible and will not crack",
-        "Non-staining – with no discoloration",
+        "Non-staining - with no discoloration",
         "Adheres to a variety of surfaces without prime",
         "All surfaces must be clean, dry and free of all loose materials. Apply with a standard caulking gun.",
         "Cut the nozzle to desired bead size and puncture the inner seal.",
@@ -8715,14 +8715,14 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t461",
-    "name": "T461 – HOT MELT TRANSFER TAPE",
+    "name": "T461 - HOT MELT TRANSFER TAPE",
     "category": "SEAL",
     "industry": "industrial",
     "description": "ForzaTAPE™ T461 is an extremely aggressive synthetic rubber transfer tape.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T461-Hot-Melt-Transfer-Tape-1024x1024.png",
     "url": "https://forzabuilt.com/product/t461-hot-melt-transfer-tape/",
     "specifications": {
-      "type": "T461 – HOT MELT TRANSFER TAPE",
+      "type": "T461 - HOT MELT TRANSFER TAPE",
       "substrates": [
         "Used for mounting trim and insulation panels",
         "Used for fixing edging, signs, decorative edging and panels",
@@ -8764,14 +8764,14 @@ export const industrialDatasheet: ProductDatasheet[] = [
   },
   {
     "id": "t500",
-    "name": "T500 – BUTYL ADHESIVE TAPE",
+    "name": "T500 - BUTYL ADHESIVE TAPE",
     "category": "SEAL",
     "industry": "industrial",
     "description": "ForzaTAPE™ T500 is compounded to meet pre-engineered metal building specifications. The material is soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/butyl-tape-mockup-1024x1024.png",
     "url": "https://forzabuilt.com/product/t500-butyl-adhesive-tape/",
     "specifications": {
-      "type": "T500 – BUTYL ADHESIVE TAPE",
+      "type": "T500 - BUTYL ADHESIVE TAPE",
       "substrates": [
         "Preformed butyl tapes allow the erector precise control of volume and sealant placement on roof laps, end laps and side laps of metal buildings.",
         "Excellent weathering characteristics while retaining adhesion and elasticity in both hot and cold environments.",
@@ -8781,8 +8781,8 @@ export const industrialDatasheet: ProductDatasheet[] = [
         "Apply with recommended application pressure of 15 pounds per inch of tape width.",
         "At the point of final assembly or lamination, remove the release liner and apply with care to avoid wrinkles or trapped air.",
         "Recommended application temperature to achieve best results is 65°F or above.",
-        "1/4” x 1” x 35’",
-        "1/8” x 3/4” x 60’"
+        "1/4\" x 1\" x 35'",
+        "1/8\" x 3/4\" x 60'"
       ],
       "applications": [
         "Preformed butyl tapes allow the erector precise control of volume and sealant placement on roof laps, end laps and side laps of metal buildings.",
@@ -8793,8 +8793,8 @@ export const industrialDatasheet: ProductDatasheet[] = [
         "Apply with recommended application pressure of 15 pounds per inch of tape width.",
         "At the point of final assembly or lamination, remove the release liner and apply with care to avoid wrinkles or trapped air.",
         "Recommended application temperature to achieve best results is 65°F or above.",
-        "1/4” x 1” x 35’",
-        "1/8” x 3/4” x 60’"
+        "1/4\" x 1\" x 35'",
+        "1/8\" x 3/4\" x 60'"
       ],
       "features": [
         "Preformed butyl tapes allow the erector precise control of volume and sealant placement on roof laps, end laps and side laps of metal buildings.",

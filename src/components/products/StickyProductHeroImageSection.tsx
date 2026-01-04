@@ -20,7 +20,6 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!imageLoaded) {
-        console.warn('Product hero image took too long to load, showing fallback');
         setImageLoaded(true);
       }
     }, 5000);
@@ -31,12 +30,10 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
   }, [imageLoaded]);
 
   const handleImageLoad = () => {
-    console.log('Product hero image loaded successfully');
     setImageLoaded(true);
   };
 
   const handleImageError = () => {
-    console.warn('Product hero image failed to load, showing fallback');
     setImageLoaded(true);
   };
 
