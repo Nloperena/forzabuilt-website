@@ -7,10 +7,10 @@ const PageLoader: React.FC = () => {
   useEffect(() => {
     // Hide loader after page is fully loaded
     const handleLoad = () => {
-      // Small delay to ensure smooth transition
+      // Larger delay to ensure components initialized
       setTimeout(() => {
         setIsVisible(false);
-      }, 800);
+      }, 1200);
     };
 
     if (document.readyState === 'complete') {
@@ -19,10 +19,10 @@ const PageLoader: React.FC = () => {
       window.addEventListener('load', handleLoad);
     }
 
-    // Safety timeout - hide anyway after 3 seconds
+    // Safety timeout - hide anyway after 5 seconds
     const safetyTimeout = setTimeout(() => {
       setIsVisible(false);
-    }, 3000);
+    }, 5000);
 
     return () => {
       window.removeEventListener('load', handleLoad);

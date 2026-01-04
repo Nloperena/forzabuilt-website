@@ -177,6 +177,34 @@ const ApproachSectionUnified = () => {
   const currentVideoRef = useRef<HTMLVideoElement>(null);
   const [videoLoadedMap, setVideoLoadedMap] = useState<{ [key: number]: boolean }>({});
   const [videoErrorMap, setVideoErrorMap] = useState<{ [key: number]: boolean }>({});
+  const [isInView, setIsInView] = useState(false);
+
+  // Intersection Observer to play/pause video when section enters/leaves viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Control video playback based on visibility
+  useEffect(() => {
+    if (currentVideoRef.current) {
+      if (isInView) {
+        currentVideoRef.current.play().catch(() => {});
+      } else {
+        currentVideoRef.current.pause();
+      }
+    }
+  }, [isInView, selectedItem]);
 
   const handleItemChange = useCallback((index: number) => {
     if (index !== selectedItem) {

@@ -13,13 +13,10 @@ const ScalableHeroVideoSection: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
+          setIsVisible(entry.isIntersecting);
         });
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
@@ -28,6 +25,17 @@ const ScalableHeroVideoSection: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Control playback based on visibility
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isVisible) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isVisible]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -60,7 +68,9 @@ const ScalableHeroVideoSection: React.FC = () => {
         const aspectRatio = video.videoWidth / video.videoHeight;
         setVideoAspectRatio(aspectRatio);
       }
-      video.play().catch(() => {});
+      if (isVisible) {
+        video.play().catch(() => {});
+      }
     };
     
     video.addEventListener('canplay', handleCanPlay);

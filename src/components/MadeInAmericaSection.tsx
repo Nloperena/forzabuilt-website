@@ -7,19 +7,17 @@ const MadeInAmericaSection: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Intersection observer for lazy loading
+  // Intersection observer for visibility and playback control
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
+          setIsVisible(entry.isIntersecting);
         });
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -28,6 +26,17 @@ const MadeInAmericaSection: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Control video playback based on visibility
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isVisible) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isVisible]);
 
   return (
     <>
@@ -42,22 +51,22 @@ const MadeInAmericaSection: React.FC = () => {
                 {!isVideoLoaded && (
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
                 )}
-                {isVisible && (
-                  <video
-                    src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                    onCanPlay={() => setIsVideoLoaded(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    style={{
-                      objectPosition: 'center',
-                      transform: 'scale(1.15)',
-                    }}
-                  />
-                )}
+                {/* Render video element always to allow preloading, but controlled by isVisible */}
+                <video
+                  ref={videoRef}
+                  src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  onCanPlay={() => setIsVideoLoaded(true)}
+                  className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  style={{
+                    objectPosition: 'center',
+                    transform: 'scale(1.15)',
+                  }}
+                />
               </div>
             </div>
 

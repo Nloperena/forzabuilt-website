@@ -71,10 +71,10 @@ const tickerItems = [
 
       <!-- Sticky Hero Video Section with content sliding over - loads immediately -->
       <StickyHeroVideoSectionWrapper client:load>
-        <!-- Product Image Ticker - loads after initial page load (idle) -->
+        <!-- Product Image Ticker - loads immediately (load) -->
         <section class="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68">
           <ProductImageTicker 
-            client:idle
+            client:load
             items={tickerItems}
             speed={95}
             direction="left"
@@ -82,24 +82,23 @@ const tickerItems = [
           />
         </section>
 
-        <!-- Industries Section - loads immediately after hero (load) -->
+        <!-- Industries Section - loads immediately (load) -->
         <IndustryCardsSection client:load />
 
-        <!-- Products Section - loads when visible -->
-        <ProductCategoriesSection client:visible />
+        <!-- Products Section - loads immediately (load) -->
+        <ProductCategoriesSection client:load />
 
-        <!-- Product Chemistries Overview - loads when visible -->
+        <!-- Product Chemistries Overview - loads immediately (load) -->
         <section class="relative">
-          <ChemistryOverviewSectionV7 client:visible />
+          <ChemistryOverviewSectionV7 client:load />
         </section>
 
-        <!-- Approach Section (Customer Success & Slogan Slam Video) - loads when visible -->
-        <ApproachSectionUnified client:visible />
+        <!-- Approach Section (Customer Success & Slogan Slam Video) - loads immediately (load) -->
+        <ApproachSectionUnified client:load />
 
-        <!-- Made in America Sections - loads when visible -->
+        <!-- Made in America Sections - loads immediately (load) -->
         <section class="relative">
-          <MadeInAmericaSectionV2 client:visible />
-          <MadeInAmericaSection client:visible />
+          <MadeInAmericaSection client:load />
         </section>
 
         <!-- Sticky Newsletter Section - loads when visible -->
