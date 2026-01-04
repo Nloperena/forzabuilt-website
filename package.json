@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "npx astro build",
+    "postinstall": "chmod +x node_modules/.bin/* 2>/dev/null || true",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
