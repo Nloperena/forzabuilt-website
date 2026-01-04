@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "node ./node_modules/astro/astro.js build",
     "preview": "astro preview",
-    "astro": "node ./node_modules/astro/astro.js"
+    "astro": "node ./node_modules/astro/astro.js",
+    "compress-images": "node scripts/compress-images.js"
   },
   "dependencies": {
     "astro": "^5.16.6",
