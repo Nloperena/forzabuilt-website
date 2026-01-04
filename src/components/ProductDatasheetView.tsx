@@ -86,56 +86,25 @@ const ProductDatasheetView: React.FC = () => {
 
   /* -------------------- FILTER -------------------- */
   const filtered = useMemo(() => {
-    console.log('=== FILTER DEBUG START ===');
-    console.log('Current state:', { industry, category, search });
+    // Check for duplicate IDs in the data (dev only check, keep for now but don't log during production build)
+    const isProd = typeof process !== 'undefined' && process.env.NODE_ENV === 'production';
     
-    // Check for duplicate IDs in the data
-    const duplicateIds = industrialDatasheet
-      .map(p => p.id)
-      .filter((id, index, arr) => arr.indexOf(id) !== index);
-    
-    if (duplicateIds.length > 0) {
-      console.warn('Duplicate product IDs found:', duplicateIds);
+    if (!isProd) {
+      const duplicateIds = industrialDatasheet
+        .map(p => p.id)
+        .filter((id, index, arr) => arr.indexOf(id) !== index);
+      
+      if (duplicateIds.length > 0) {
+        console.warn('Duplicate product IDs found:', duplicateIds);
+      }
     }
-    
-    // Debug: Count products by category
-    const categoryCounts = industrialDatasheet.reduce((acc, p) => {
-      acc[p.category] = (acc[p.category] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-    console.log('Products by category:', categoryCounts);
     
     const result = industrialDatasheet.filter(p => {
       const matchIndustry = industry === 'ALL' || p.industry.toLowerCase() === industry.toLowerCase();
       const matchCategory = category === 'ALL' || p.category.toUpperCase() === category.toUpperCase();
       const matchSearch = !search || p.name.toLowerCase().includes(search.toLowerCase()) || p.description.toLowerCase().includes(search.toLowerCase());
       
-      const shouldInclude = matchIndustry && matchCategory && matchSearch;
-      
-      // Debug individual product filtering
-      if (p.category === 'TAPE') {
-        console.log('Tape product filtering:', {
-          name: p.name,
-          category: p.category,
-          industry: p.industry,
-          matchIndustry,
-          matchCategory,
-          matchSearch,
-          shouldInclude
-        });
-      }
-      
-      return shouldInclude;
-    });
-    
-    console.log('=== FILTER DEBUG END ===');
-    console.log('Filter Debug:', {
-      industry,
-      category,
-      search,
-      totalProducts: industrialDatasheet.length,
-      filteredCount: result.length,
-      sampleProducts: result.slice(0, 3).map(p => ({ name: p.name, category: p.category, industry: p.industry }))
+      return matchIndustry && matchCategory && matchSearch;
     });
     
     return result;
