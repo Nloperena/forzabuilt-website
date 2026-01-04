@@ -156,6 +156,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
   const [chemistryIconLoaded, setChemistryIconLoaded] = useState(false);
   const [relatedProductImagesLoaded, setRelatedProductImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
+  // Refs for image elements to check if already loaded (cached)
+  const mainImageRef = useRef<HTMLImageElement>(null);
+  const mobileImageRef = useRef<HTMLImageElement>(null);
+  const industryLogoRef = useRef<HTMLImageElement>(null);
+
   // Reset image loading states when product changes
   useEffect(() => {
     setMainImageLoaded(false);
@@ -164,6 +169,29 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
     setChemistryIconLoaded(false);
     setRelatedProductImagesLoaded({});
   }, [product?.id]);
+
+  // Check if images are already loaded (cached) after component mounts and when imageUrl changes
+  useEffect(() => {
+    const checkImageLoad = () => {
+      if (mainImageRef.current?.complete && mainImageRef.current.naturalWidth > 0) {
+        setMainImageLoaded(true);
+      }
+      if (mobileImageRef.current?.complete && mobileImageRef.current.naturalWidth > 0) {
+        setMobileHeroImageLoaded(true);
+      }
+      if (industryLogoRef.current?.complete && industryLogoRef.current.naturalWidth > 0) {
+        setIndustryLogoLoaded(true);
+      }
+    };
+
+    // Check immediately
+    checkImageLoad();
+
+    // Also check after a brief delay to catch images that load very quickly
+    const timeout = setTimeout(checkImageLoad, 100);
+
+    return () => clearTimeout(timeout);
+  }, [product?.id, product?.imageUrl, product?.industry]);
 
   // Normalize sizing/packaging into a single list for Sizing tab
   const normalizeToList = useCallback((value: unknown): string[] => {
@@ -216,6 +244,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                   <ImageSkeleton className="w-full h-full rounded-lg" />
                 )}
                 <img 
+                  ref={(el) => {
+                    mobileImageRef.current = el;
+                    // Check if image is already loaded (cached)
+                    if (el?.complete && el.naturalWidth > 0) {
+                      setMobileHeroImageLoaded(true);
+                    }
+                  }}
                   src={productImageUrl}
                   alt={product.name}
                   className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
@@ -241,6 +276,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                   <ImageSkeleton className="w-full h-full" />
                 )}
                 <img 
+                  ref={(el) => {
+                    mainImageRef.current = el;
+                    // Check if image is already loaded (cached)
+                    if (el?.complete && el.naturalWidth > 0) {
+                      setMainImageLoaded(true);
+                    }
+                  }}
                   src={productImageUrl} 
                   alt={product.name}
                   className={`w-full h-full object-contain transition-opacity duration-500 ${
@@ -379,6 +421,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                                       <ImageSkeleton className="w-full h-full rounded-full" />
                                     )}
                                     <img 
+                                      ref={(el) => {
+                                        industryLogoRef.current = el;
+                                        // Check if image is already loaded (cached)
+                                        if (el?.complete && el.naturalWidth > 0) {
+                                          setIndustryLogoLoaded(true);
+                                        }
+                                      }}
                                       src={getIndustryLogo(product.industry)} 
                                       alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
                                       className={`h-24 w-24 md:h-32 md:w-32 object-contain transition-opacity duration-500 ${
