@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import RecentNewsArticlesSection from '@/components/RecentNewsArticlesSection';
+import NewsletterSection from '@/components/NewsletterSection';
+import BlogDetail from '@/components/BlogDetail';
+import blogPostsData from '@/data/blogPosts.json';
+import { generateSlugFromTitle } from '@/lib/utils';
+
+export function getStaticPaths() {
+  return blogPostsData.map((post: any) => ({
+    params: { slug: generateSlugFromTitle(post.title) },
+    props: { post, allPosts: blogPostsData },
+  }));
+}
+
+const { slug } = Astro.params;
+const { post, allPosts } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title={`${post.title} - ForzaBuilt Blog`}
+  description={post.excerpt}
+  canonicalUrl={`/blog/${slug}`}
+  ogType="article"
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
+      <HeaderWrapper currentPath={currentPath} client:load />
+      
+      <BlogDetail post={post} allPosts={allPosts} client:load />
+
+      <!-- Recent Articles -->
+      <RecentNewsArticlesSection client:load />
+
+      <!-- Newsletter -->
+      <NewsletterSection showHeading={true} client:load />
+      
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>

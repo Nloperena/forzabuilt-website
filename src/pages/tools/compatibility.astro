@@ -1,0 +1,27 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import Compatibility from '@/components/tools/Compatibility';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title="Product Compatibility Check | ForzaBuilt"
+  description="Check compatibility between different substrates and our adhesive products."
+  canonicalUrl="/tools/compatibility"
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
+      <HeaderWrapper currentPath={currentPath} />
+      
+      <main class="flex-1 pt-20 md:pt-24">
+        <Compatibility />
+      </main>
+      
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>

@@ -1,0 +1,316 @@
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { generateSlugFromTitle } from '@/lib/utils';
+import { getFontSize } from '@/styles/typography';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+  url?: string;
+  keyTakeaways?: string[];
+  fullContent?: string;
+}
+
+interface BlogDetailProps {
+  post: BlogPost;
+  allPosts: BlogPost[];
+}
+
+const BlogDetail: React.FC<BlogDetailProps> = ({ post, allPosts }) => {
+  const sanitizedFullContent = useMemo(() => {
+    const html = post.fullContent || '';
+    if (!html || !post) return '';
+    try {
+      if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const headings = temp.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach((h) => {
+          const text = (h.textContent || '').trim().toLowerCase();
+          const titleLower = post.title.trim().toLowerCase();
+          // Remove "Share this post" headings
+          if (text === 'share this post') {
+            h.remove();
+          }
+          // Remove H1 tags that match the blog post title
+          if (h.tagName === 'H1' && text === titleLower) {
+            h.remove();
+          }
+        });
+        return temp.innerHTML;
+      }
+    } catch (e) {
+      // no-op
+    }
+    // Also remove via regex as fallback
+    let cleaned = html.replace(/<h[1-6][^>]*>\s*share\s+this\s+post\s*<\/h[1-6]>/gi, '');
+    // Remove H1 tags matching the title (case insensitive)
+    const titleEscaped = post.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleaned = cleaned.replace(new RegExp(`<h1[^>]*>\\s*${titleEscaped}\\s*</h1>`, 'gi'), '');
+    return cleaned;
+  }, [post.fullContent, post.title]);
+
+  const recentPosts = allPosts
+    .filter(p => p.id !== post.id)
+    .slice(0, 3);
+
+  const relatedPosts = allPosts
+    .filter(p => p.id !== post.id && p.category === post.category)
+    .slice(0, 3);
+
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric'
+      });
+    } catch {
+      return dateString;
+    }
+  };
+
+  return (
+    <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden text-[#1B3764]">
+      {/* Header Section - White Background with Back Link */}
+      <section className="bg-white relative z-30 pt-32 md:pt-36 lg:pt-32 xl:pt-36 2xl:pt-40 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          {/* Back to All Blogs Link - Left Aligned */}
+          <div className="mb-6">
+            <a 
+              href="/blog" 
+              className="inline-flex items-center text-[#1B3764] hover:text-[#F2611D] transition-colors font-poppins text-sm font-medium group"
+            >
+              <svg className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to All Blogs
+            </a>
+          </div>
+
+          {/* Title and Date */}
+          <div className="mb-8">
+            <h1 className="text-[#1B3764] font-poppins font-normal leading-tight break-words mb-4 tracking-tight" style={getFontSize('sectionHeading')}>
+              {post.title}
+            </h1>
+            <div className="flex items-center gap-4 text-gray-600 text-sm font-poppins">
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {formatDate(post.date)}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content with Sidebar - White Background */}
+      <section className="pb-16 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div className="lg:col-span-3">
+              {/* Hero Image */}
+              <div className="mb-10">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  style={{ maxHeight: '500px' }}
+                  onError={(e) => {
+                    console.warn(`Failed to load image: ${post.image}`);
+                    e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                  }}
+                />
+              </div>
+
+              {/* Full Blog Content */}
+              <motion.div 
+                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-poppins prose-headings:font-normal prose-h1:font-normal prose-h2:font-normal prose-h3:font-normal prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                {post.fullContent ? (
+                  <div dangerouslySetInnerHTML={{ __html: sanitizedFullContent }} />
+                ) : (
+                  <div>
+                    <motion.div 
+                      className="mb-10 p-8 bg-[#f5f7fa] rounded-2xl border border-gray-100"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h2 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal mb-4 mt-0">Article Summary</h2>
+                      <p className="text-gray-700 leading-relaxed font-poppins mb-0">
+                        {post.excerpt}
+                      </p>
+                    </motion.div>
+
+                    {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+                      <motion.div 
+                        className="mb-10"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      >
+                        <h2 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal mb-6">Key Takeaways</h2>
+                        <ul className="space-y-4 list-none pl-0">
+                          {post.keyTakeaways.map((takeaway, index) => (
+                            <motion.li 
+                              key={index} 
+                              className="flex items-start p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: index * 0.1 }}
+                            >
+                              <span className="text-[#F2611D] mr-4 mt-1 flex-shrink-0">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              </span>
+                              <span className="text-gray-700 font-poppins">{takeaway}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </div>
+                )}
+              </motion.div>
+
+              {/* Related Articles */}
+              {relatedPosts.length > 0 && (
+                <motion.div 
+                  className="mt-16 pt-16 border-t border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal">Related Articles</h3>
+                    <a href="/blog" className="text-[#F2611D] font-bold font-poppins hover:underline">View All</a>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {relatedPosts.map((relatedPost, index) => (
+                      <motion.div
+                        key={relatedPost.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        whileHover={{ 
+                          y: -5,
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        <a
+                          href={`/blog/${generateSlugFromTitle(relatedPost.title)}`}
+                          className="group bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
+                        >
+                          <div className="aspect-[16/9] bg-gray-100 overflow-hidden relative">
+                            <img
+                              src={relatedPost.image}
+                              alt={relatedPost.title}
+                              className="w-full h-full object-contain p-4 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                              onError={(e) => {
+                                e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                              }}
+                            />
+                          </div>
+                          <div className="p-5 flex flex-col flex-1">
+                            <span className="inline-block px-2.5 py-1 text-[#1B3764] text-xs font-bold rounded-full mb-3 font-poppins bg-[#1B3764]/5 self-start">
+                              {relatedPost.category}
+                            </span>
+                            <h4 className="text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-poppins text-lg mb-2">
+                              {relatedPost.title}
+                            </h4>
+                            <p className="text-gray-500 text-sm line-clamp-2 font-poppins">
+                              {relatedPost.excerpt}
+                            </p>
+                          </div>
+                        </a>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1 space-y-8 lg:sticky lg:top-32 lg:self-start">
+              {/* Recent Posts */}
+              <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                <h3 className="text-lg text-[#1B3764] font-poppins mb-6 border-b border-gray-100 pb-4">
+                  Recent Posts
+                </h3>
+                <div className="space-y-6">
+                  {recentPosts.map((recentPost) => (
+                    <div key={recentPost.id} className="group">
+                      <a href={`/blog/${generateSlugFromTitle(recentPost.title)}`} className="flex gap-4 items-start">
+                        <div className="w-20 h-20 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                          <img
+                            src={recentPost.image}
+                            alt={recentPost.title}
+                            className="w-full h-full object-contain p-2 mix-blend-multiply group-hover:scale-110 transition-transform duration-300"
+                            onError={(e) => {
+                              e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                            }}
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-poppins mb-1 leading-snug">
+                            {recentPost.title}
+                          </h4>
+                          <p className="text-xs text-gray-400 font-poppins">
+                            {new Date(recentPost.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="bg-gradient-to-br from-[#1B3764] to-[#2c476e] rounded-2xl shadow-lg p-8 text-white text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-poppins mb-3">
+                    Need Expert Advice
+                  </h3>
+                  <p className="text-sm text-white/80 mb-6 font-poppins leading-relaxed">
+                    Our engineering team is ready to help you find the perfect adhesive solution for your application.
+                  </p>
+                  <a
+                    href="/contact"
+                    className="block w-full bg-[#F2611D] text-white font-normal py-3 px-4 rounded-full hover:bg-[#F2611D]/90 transition-all font-poppins shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    Contact an Engineer
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default BlogDetail;
+

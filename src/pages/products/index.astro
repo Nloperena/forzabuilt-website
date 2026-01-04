@@ -1,0 +1,51 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import ProductsSectionAlt from '@/components/ProductsSectionAlt';
+import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title="Products - ForzaBuilt Industrial Adhesives, Sealants & Tapes"
+  description="Explore ForzaBuilt's complete product line of industrial adhesives, sealants, tapes, and cleaning solutions. Best performing and widest range of industrial products."
+  canonicalUrl="/products"
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
+      <HeaderWrapper currentPath={currentPath} client:load />
+      
+      <div class="w-full relative">
+        <!-- Hero Video Section -->
+        <div class="relative">
+          <IndustryHeroBanner 
+            videoUrl="/videos/backgrounds/Product Summary Page Video.mp4" 
+            industryTitle="Our Products"
+            variant="simple"
+            useTitleCase={true}
+            subtitle="Best Performing and Widest Range of Industrial Products"
+            client:load
+          />
+        </div>
+
+        <!-- Products Grid Section -->
+        <div class="relative z-[30]">
+          <ProductsSectionAlt client:load />
+        </div>
+      </div>
+
+      <!-- Performance Elevated Banner -->
+      <ExperienceBetterBanner client:load />
+      
+      <!-- Footer -->
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>
+
+
+

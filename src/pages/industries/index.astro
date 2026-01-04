@@ -1,0 +1,52 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import IndustryCardsSection from '@/components/IndustryCardsSection';
+import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title="Industries We Serve - ForzaBuilt Industrial Solutions"
+  description="ForzaBuilt serves transportation, marine, construction, industrial, insulation, and composites industries with premium adhesives, sealants, and tapes since 1979."
+  canonicalUrl="/industries"
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative">
+      <HeaderWrapper currentPath={currentPath} client:load />
+      
+      <div class="w-full relative" style="opacity: 1; transform: none;">
+        <!-- Hero Video Section -->
+        <div class="relative">
+          <IndustryHeroBanner 
+            videoUrl="/videos/backgrounds/Industry Summary Page Video.mp4"
+            mobileVideoUrl="/videos/backgrounds/Industry Summary Video for Mobile.mp4"
+            industryTitle="Industries We Serve"
+            variant="simple"
+            useTitleCase={true}
+            subtitle="Serving Industrial Sectors\nSince 1979"
+            client:load
+          />
+        </div>
+
+        <!-- Industries Grid Section -->
+        <div class="relative z-[30]">
+          <IndustryCardsSection client:load />
+        </div>
+      </div>
+
+      <!-- Performance Elevated Banner -->
+      <ExperienceBetterBanner client:load />
+      
+      <!-- Footer -->
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>
+
+
+

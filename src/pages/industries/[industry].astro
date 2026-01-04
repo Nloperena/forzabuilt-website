@@ -1,0 +1,107 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import HybridStackableCards from '@/components/HybridStackableCards';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import IndustryXRaySections from '@/components/xray/IndustryXRaySections';
+import NewsletterSection from '@/components/NewsletterSection';
+import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
+import IndustryProductsSection from '@/components/industries/IndustryProductsSection';
+import IndustryBrochureArticlesSection from '@/components/industries/IndustryBrochureArticlesSection';
+import { industries } from '@/data/industries';
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({
+    params: { industry: industry.title.toLowerCase().replace(/\s+/g, '-') },
+    props: { industryData: industry },
+  }));
+}
+
+const { industry } = Astro.params;
+const { industryData } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Map industry titles to valid industry keys for HybridStackableCards
+const getIndustryKey = (title: string) => {
+  const titleLower = title.toLowerCase();
+  if (titleLower.includes('marine')) return 'marine';
+  if (titleLower.includes('transportation')) return 'transportation';
+  if (titleLower.includes('construction')) return 'construction';
+  if (titleLower.includes('industrial')) return 'industrial';
+  if (titleLower.includes('composite')) return 'composites';
+  if (titleLower.includes('insulation')) return 'insulation';
+  return 'industrial';
+};
+
+const validIndustryKey = getIndustryKey(industryData.title);
+const industryColor = industryData.color || '#1B3764';
+---
+
+<Layout 
+  title={`${industryData.title} Industry Solutions - ForzaBuilt`}
+  description={`High-performing adhesive, tape & sealant solutions for the ${industryData.title.toLowerCase()} industry. Custom formulations and expert engineering support.`}
+  canonicalUrl={`/industries/${industry}`}
+>
+  <Providers client:load>
+    <div class="bg-[#115B87] min-h-screen flex flex-col relative">
+      <HeaderWrapper currentPath={currentPath} client:load />
+      
+      <div class="w-full relative">
+        <!-- Hero Video Section -->
+        <div class="relative">
+          <IndustryHeroBanner 
+            videoUrl={industryData.videoUrl} 
+            industryTitle={industryData.title}
+            logo={industryData.logo}
+            variant="simple"
+            subtitle={`Building High-Performing\n${industryData.title} Adhesive, Tape\n& Sealant Solutions`}
+            client:load
+          />
+        </div>
+
+        <!-- Hybrid Stackable Cards Section -->
+        <div class="relative z-[30]">
+          <HybridStackableCards 
+            industry={validIndustryKey}
+            maxCards={3}
+            industryTitle={industryData.title}
+            industryLogo={industryData.logo}
+            industryColor={industryColor}
+            client:load
+          />
+        </div>
+
+        <!-- Performance Elevated Banner -->
+        <div class="relative z-[45] bg-gradient-to-r from-[#2c476e] to-[#477197]">
+          <ExperienceBetterBanner textColor="#FFFFFF" highlightColor="#F2611D" client:load />
+        </div>
+
+        <!-- X-Ray Explorer Sections -->
+        <IndustryXRaySections industry={industryData.title} client:load />
+
+        <!-- Product Cards Section -->
+        <IndustryProductsSection 
+          industryData={industryData}
+          onProductSelect={() => {}}
+          client:load
+        />
+
+        <!-- Combined Brochure & Articles Section -->
+        <div class="relative z-[30]">
+          <IndustryBrochureArticlesSection 
+            industry={industryData.title}
+            industryName={industryData.title}
+            client:load
+          />
+        </div>
+      </div>
+            
+      <NewsletterSection showHeading={true} client:load />
+      
+      <!-- Footer -->
+      <FooterV2 client:load />
+    </div>
+  </Providers>
+</Layout>

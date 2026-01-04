@@ -1,0 +1,225 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+import ApproachSectionUnified from '@/components/ApproachSectionUnified';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import WhyChooseForza from '@/components/WhyChooseForza';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title="About ForzaBuilt - 30 Years of Engineering Superior Adhesives"
+  description="Learn about Forza's 30-year commitment to manufacturing high-performance adhesives, sealants, and tapes. USA-based vertically integrated manufacturing with custom formulations."
+  canonicalUrl="/about"
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
+      <HeaderWrapper client:load currentPath={currentPath} />
+      
+      <div class="flex-1 relative">
+        <!-- Hero Video Section -->
+        <section class="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+          <video
+            autoplay
+            loop
+            playsinline
+            preload="auto"
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100"
+            style="z-index: 1; object-fit: cover; width: 100%; height: 100%; min-width: 100%; min-height: 100%;"
+          >
+            <source src="/videos/backgrounds/Forza Building Video for Desktop.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style="z-index: 0;"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style="z-index: 2;"></div>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style="z-index: 20;">
+            <h3
+              class="font-regular text-center leading-tight font-poppins text-white"
+              style="font-size: clamp(1.5rem, 0.5rem + 3vw, 4.5rem); max-width: 1100px; opacity: 1; transform: none;"
+            >
+              30 Years of Engineering Superior Adhesives Sealants and Tapes
+            </h3>
+          </div>
+        </section>
+
+        <!-- Meet Forza Section -->
+        <section class="relative z-20 pt-4 pb-8 md:pt-6 md:pb-24 px-4 bg-white">
+          <div class="max-w-[1400px] mx-auto space-y-6 md:space-y-12">
+            <!-- Story Text Section -->
+            <div class="max-w-4xl mx-auto space-y-4 md:space-y-6">
+              <h2 class="font-normal font-poppins leading-tight text-[#1b3764] mb-3 md:mb-4 text-center break-words normal-case text-[22px] md:text-[44px]">
+                Why Forza
+              </h2>
+              
+              <div class="space-y-4 md:space-y-6 text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+                <p>
+                  Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at&nbsp;all&nbsp;times.
+                </p>
+                <p>
+                  At Forza, we do what other manufacturers won't. That means finding a better solution is just the&nbsp;beginning.
+                </p>
+                <p>
+                  If you're looking to take your projects, your results, and your business to the next level, we're ready to over-deliver&nbsp;for&nbsp;you.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bullet Points Section -->
+            <div class="max-w-4xl mx-auto pb-6 md:pb-10">
+              <ul class="space-y-3 md:space-y-4">
+                <li class="flex items-center gap-2 md:gap-3">
+                  <span class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
+                    <svg class="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </span>
+                  <span class="text-[#1B3764] font-bold font-poppins text-sm md:text-lg">Vertically Integrated USA Manufacturing</span>
+                </li>
+                <li class="flex items-center gap-2 md:gap-3">
+                  <span class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
+                    <svg class="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </span>
+                  <span class="text-[#1B3764] font-bold font-poppins text-sm md:text-lg">Custom Formulations & Quick Turnaround</span>
+                </li>
+                <li class="flex items-center gap-2 md:gap-3">
+                  <span class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
+                    <svg class="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </span>
+                  <span class="text-[#1B3764] font-bold font-poppins text-sm md:text-lg">Dedicated Engineering Support</span>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Video Section -->
+            <div>
+              <div class="relative w-full aspect-video bg-gray-100 rounded-lg md:rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                <iframe
+                  src="https://www.youtube.com/embed/DjI8bEcu6FI?autoplay=1&mute=1&loop=1&playlist=DjI8bEcu6FI&cc_load_policy=1&rel=0&controls=1"
+                  title="Meet Forza in 60 seconds"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  class="absolute inset-0 w-full h-full object-cover"
+                ></iframe>
+              </div>
+              <div class="mt-3 md:mt-4 text-xs md:text-sm text-[#1B3764]/60 font-poppins">
+                <details>
+                  <summary class="cursor-pointer hover:text-[#F2611D] transition-colors font-medium">
+                    + video Transcript | Summary
+                  </summary>
+                  <p class="mt-2 pl-4 border-l-2 border-[#F2611D]/20">
+                    Forza is a US-based manufacturer of high-performance adhesives, sealants, and tapes. We combine vertically integrated manufacturing with in-house R&D to deliver custom solutions for industrial applications. From transportation to marine, our products are engineered for durability and&nbsp;performance.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mission & Manufacturing Section -->
+        <section class="relative w-full py-12 md:py-20 z-20 bg-[#f5f7fa]">
+          <div class="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
+              <!-- Our Mission -->
+              <div class="space-y-4 md:space-y-6 p-6 md:p-8 lg:p-12 rounded-xl md:rounded-2xl">
+                <div>
+                  <h2 class="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4" style="font-size: clamp(20px, 2vw + 0.5rem, 40px);">
+                    Our Mission
+                  </h2>
+                  <div class="w-32 md:w-40 h-0.5 md:h-1 bg-[#F2611D] mb-4 md:mb-6"></div>
+                </div>
+                <p class="text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+                  To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding&nbsp;challenges.
+                </p>
+                <p class="text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+                  With complete in-house R&D and manufacturing capabilities, we can develop, test, and produce custom formulations faster than anyone in the&nbsp;industry.
+                </p>
+              </div>
+              
+              <!-- What We Manufacture -->
+              <div class="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] rounded-xl md:rounded-2xl p-6 md:p-8 lg:p-12 text-white">
+                <div class="mb-6 md:mb-8">
+                  <h3 class="font-poppins leading-none mb-3 md:mb-4" style="font-size: clamp(20px, 2vw + 0.5rem, 40px);">
+                    What We Manufacture
+                  </h3>
+                  <div class="w-48 md:w-80 h-0.5 md:h-1 bg-[#F2611D] mb-4 md:mb-6"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
+                  <a href="/products/structural-adhesives" class="space-y-1 md:space-y-2 group cursor-pointer">
+                    <h4 class="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                      Structural Adhesives
+                      <svg class="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">High-strength bonding for metals, composites & plastics.</p>
+                  </a>
+                  <a href="/products/sealants" class="space-y-1 md:space-y-2 group cursor-pointer">
+                    <h4 class="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                      Sealants
+                      <svg class="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">Advanced MS Polymers, Silicones & Urethanes.</p>
+                  </a>
+                  <a href="/products/tapes" class="space-y-1 md:space-y-2 group cursor-pointer">
+                    <h4 class="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                      Industrial Tapes
+                      <svg class="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">VHB replacements, masking, & surface protection.</p>
+                  </a>
+                  <a href="/products/cleaning-solutions" class="space-y-1 md:space-y-2 group cursor-pointer">
+                    <h4 class="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                      Cleaning Solutions
+                      <svg class="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">Industrial-grade surface prep & removers.</p>
+                  </a>
+                </div>
+                
+                <div class="mt-6 md:mt-8">
+                  <a
+                    href="/products"
+                    class="inline-flex items-center px-6 md:px-8 py-2 md:py-3 bg-[#F2611D] text-white text-sm md:text-base font-normal rounded-full hover:bg-[#F2611D]/90 transition-colors font-poppins shadow-lg"
+                  >
+                    See Products
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Why Choose Forza -->
+        <WhyChooseForza client:load />
+
+        <!-- Approach Section (Customer Success & Slogan Slam Video) -->
+        <div class="relative z-20">
+          <ApproachSectionUnified client:load />
+        </div>
+
+        <!-- Performance Elevated Banner -->
+        <section class="relative py-8 md:py-24 px-4 bg-[#f5f7fa] z-20">
+          <ExperienceBetterBanner client:load textColor="#1B3764" highlightColor="#F2611D" />
+        </section>
+      </div>
+      
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>

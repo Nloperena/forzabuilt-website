@@ -1,0 +1,1 @@
+import{j as a}from"./jsx-runtime.ClP7wGfN.js";import{r}from"./index.DK-fsZOb.js";const t=r.createContext(void 0),p=({children:e})=>{const[s,o]=r.useState(!1);return a.jsx(t.Provider,{value:{isDrawerOpen:s,setIsDrawerOpen:o},children:e})},u=()=>{const e=r.useContext(t);return e===void 0?{isDrawerOpen:!1,setIsDrawerOpen:()=>{}}:e};export{p as D,u};

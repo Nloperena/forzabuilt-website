@@ -1,0 +1,112 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import StickyHeroVideoSectionWrapper from '@/components/StickyHeroVideoSectionWrapper';
+import ProductImageTicker from '@/components/ProductImageTicker';
+import IndustryCardsSection from '@/components/IndustryCardsSection';
+import ProductCategoriesSection from '@/components/ProductCategoriesSection';
+import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
+import ApproachSectionUnified from '@/components/ApproachSectionUnified';
+import MadeInAmericaSection from '@/components/MadeInAmericaSection';
+import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
+import StickyNewsletterSection from '@/components/StickyNewsletterSection';
+import LibrarySectionV3 from '@/components/LibrarySectionV3';
+import OptimizedGradient from '@/components/common/OptimizedGradient';
+
+const currentPath = Astro.url.pathname;
+
+// Full set of ticker items from the original Index.tsx
+const tickerItems = [
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC932 Canister.png', alt: 'ForzaBOND® IC932' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS9 Sausage.png', alt: 'ForzaSEAL® C-OS9' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-735R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-735R' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 Cartridge.png', alt: 'ForzaSEAL® OS2' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS10 Cartridge.png', alt: 'ForzaSEAL® OS10' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-738R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-738R' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS20 Sausage.png', alt: 'ForzaSEAL® OS20' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-739R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-739R' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS31 Cartridge.png', alt: 'ForzaSEAL® OS31' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS25 Cartridge.png', alt: 'ForzaSEAL® OS25' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC722 Canister.png', alt: 'ForzaBOND® MC722' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS35 Cartridge.png', alt: 'ForzaSEAL® OS35' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC723 Canister and Aerosol.png', alt: 'ForzaBOND® MC723' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS37 Cartridge.png', alt: 'ForzaSEAL® OS37' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T305- Foam Tape.png', alt: 'T305' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC724 Canister and Aerosol.png', alt: 'ForzaBOND® MC724' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS61 Cartridge.png', alt: 'ForzaSEAL® OS61' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC737 Canister.png', alt: 'ForzaBOND® MC737' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS55 Sausage.png', alt: 'ForzaSEAL® C-OS55' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T350- Thermal Break Tape.png', alt: 'T350' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS24 Cartridge.png', alt: 'ForzaSEAL® OS24' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC741 Canister.png', alt: 'ForzaBOND® MC741' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-T500 Tape.png', alt: 'ForzaTAPE® C-T500' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC933 Canister and Aerosol.png', alt: 'ForzaBOND® IC933' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC946 Canister and Aerosol.png', alt: 'ForzaBOND® IC946' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/R-T600 Tape.png', alt: 'ForzaTAPE® R-T600' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C130 Drum.png', alt: 'ForzaBOND® C130' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C150 1 gal pail.png', alt: 'ForzaBOND® C150' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA12 Cartridge.png', alt: 'ForzaBOND® OA12' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C331 5 gal Pail.png', alt: 'ForzaBOND® C331' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R160 2 part.png', alt: 'R160' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T900 Butyl Tape.png', alt: 'T900' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R221 2 part.png', alt: 'R221' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R519 2 part.png', alt: 'R519' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T950 FSK Bonding Tape.png', alt: 'T950' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r529.png', alt: 'R529' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA13 Cartridge.png', alt: 'ForzaBOND® OA13' },
+  { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T970 Foil Bonding Tape.png', alt: 'T970' }
+];
+---
+
+<Layout 
+  title="ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions"
+  description="ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications."
+  canonicalUrl="/"
+>
+  <div class="relative overflow-x-hidden bg-white">
+    <Providers client:only="react">
+      <!-- Header (React Island for interactivity) -->
+      <HeaderWrapper client:load currentPath={currentPath} />
+
+      <!-- Sticky Hero Video Section with content sliding over -->
+      <StickyHeroVideoSectionWrapper client:load>
+        <!-- Product Image Ticker -->
+        <section class="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68">
+          <ProductImageTicker 
+            client:load
+            items={tickerItems}
+            speed={95}
+            direction="left"
+            className="pt-0 pb-10 md:pt-0 md:pb-16"
+          />
+        </section>
+
+        <!-- Industries Section -->
+        <IndustryCardsSection client:load />
+
+        <!-- Products Section -->
+        <ProductCategoriesSection client:load />
+
+        <!-- Product Chemistries Overview -->
+        <section class="relative">
+          <ChemistryOverviewSectionV7 client:load />
+        </section>
+
+        <!-- Approach Section (Customer Success & Slogan Slam Video) -->
+        <ApproachSectionUnified client:load />
+
+        <!-- Made in America Sections -->
+        <section class="relative">
+          <MadeInAmericaSectionV2 client:load />
+          <MadeInAmericaSection client:load />
+        </section>
+
+        <!-- Sticky Newsletter Section (Includes Resource Library, Recent News, Newsletter, and Footer) -->
+        <section class="relative">
+          <StickyNewsletterSection client:load />
+        </section>
+      </StickyHeroVideoSectionWrapper>
+    </Providers>
+  </div>
+</Layout>

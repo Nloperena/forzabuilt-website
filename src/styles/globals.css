@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== FONT FACES ===== */
+
+/*
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto.woff2') format('woff2'),
+       url('/fonts/kallisto.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto-bold.woff2') format('woff2'),
+       url('/fonts/kallisto-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto-heavy.woff2') format('woff2'),
+       url('/fonts/kallisto-heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+*/
+
+/* Use fallbacks for Kallisto until font files are available */
+@layer base {
+  :root {
+    --forza-font-heading: 'Poppins', sans-serif;
+    --forza-font-product: 'Poppins', sans-serif;
+  }
+}
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+
+@layer base {
+  :root {
+    --background: #e6f2fa;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Forza Brand Colors */
+    --forza-regal-blue: #2c476e;
+    --forza-blaze-orange: #F16022;
+    --forza-blue-velvet: #2c476e;
+    --forza-rusty-nail: #D35127;
+    --forza-slate-grey: #BFBFBF;
+    --forza-iron-grey: #F16022;
+    --forza-jet-black: #000000;
+    
+    /* Industry Colors */
+    --forza-industrial-primary: #f16a26;
+    --forza-marine-primary: #137875;
+    --forza-transportation-primary: #b83d35;
+    --forza-insulation-primary: #d0157d;
+    --forza-construction-primary: #fec770;
+    --forza-composites-primary: #9a9b9c;
+    
+    /* Product Colors */
+    --forza-bond-primary: #F16022;
+    --forza-bond-secondary: #115B87;
+    --forza-seal-primary: #ffd600;
+    --forza-seal-secondary: #115B87;
+    --forza-tape-primary: #e53935;
+    --forza-tape-secondary: #115B87;
+    
+    /* Typography */
+    --forza-font-heading: 'Kallisto', sans-serif;
+    --forza-font-body: 'Poppins', sans-serif;
+    --forza-font-subhead: 'Poppins', sans-serif;
+    --forza-font-product: 'Kallisto', sans-serif;
+    
+    /* Font Sizes - Centralized Typography */
+    --forza-font-size-hero: clamp(1.5rem, 2.5vw + 0.5rem, 3.5rem);
+    --forza-font-size-section-heading: clamp(22px, 2vw + 0.5rem, 44px);
+    --forza-font-size-industries-heading: clamp(36px, 2.5vw + 0.5rem, 44px);
+    --forza-font-size-page-heading: clamp(20px, 2vw + 0.5rem, 40px);
+    --forza-font-size-subsection-heading: clamp(1.5rem, 4vw, 2rem);
+    --forza-font-size-industry-page-heading: clamp(22px, 2.5vw, 44px);
+    --forza-font-size-banner-text: clamp(18px, 2vw + 0.5rem, 64px);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-poppins;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-normal;
+  }
+  
+  p, span, div, a, button, input, textarea, select, label {
+    @apply font-poppins;
+    font-weight: 400;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 60s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite ease-in-out;
+}
+
+/* ===== SLIDER STYLES ===== */
+
+input[type="range"].slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"].slider-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #60a5fa;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+input[type="range"].slider-thumb::-webkit-slider-thumb:hover {
+  background: #3b82f6;
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+input[type="range"].slider-thumb::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #60a5fa;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+/* ===== FLIPBOOK STYLES ===== */
+
+.flipbook-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flipbook-container .page {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: white;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.flipbook-container .pdf-page-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.flipbook-container canvas {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  display: block;
+}
+
+/* ===== X-RAY HOTSPOT STYLES ===== */
+
+.hotspot-active {
+  fill: rgba(59, 130, 246, 0.6);
+  stroke: rgba(59, 130, 246, 0.8);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.hotspot-default {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 0;
+  transition: all 0.3s ease;
+}
+
+.hotspot-active.construction {
+  fill: rgba(245, 101, 101, 0.6);
+  stroke: rgba(245, 101, 101, 0.8);
+}
+
+.hotspot-active.marine {
+  fill: rgba(20, 121, 116, 0.6);
+  stroke: rgba(20, 121, 116, 0.8);
+}
+
+.hotspot-active.transportation {
+  fill: rgba(34, 197, 94, 0.6);
+  stroke: rgba(34, 197, 94, 0.8);
+}
+
+.hotspot-active.industrial {
+  fill: rgba(147, 51, 234, 0.6);
+  stroke: rgba(147, 51, 234, 0.8);
+}
+
+.hotspot-active.composites {
+  fill: rgba(59, 130, 246, 0.6);
+  stroke: rgba(59, 130, 246, 0.8);
+}
+
+.hotspot-active.insulation {
+  fill: rgba(245, 158, 11, 0.6);
+  stroke: rgba(245, 158, 11, 0.8);
+}
+
+/* ===== LINE CLAMP ===== */
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ===== TYPOGRAPHY CLASSES ===== */
+
+.font-kallisto {
+  font-family: 'kallisto', 'Poppins', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-heavy {
+  font-weight: 900;
+}
+
+/* ===== FORZA BRAND CLASSES ===== */
+
+.text-forza-primary { color: var(--forza-regal-blue); }
+.text-forza-accent { color: var(--forza-blaze-orange); }
+.text-forza-secondary { color: var(--forza-blue-velvet); }
+
+.bg-forza-primary { background-color: var(--forza-regal-blue); }
+.bg-forza-accent { background-color: var(--forza-blaze-orange); }
+.bg-forza-secondary { background-color: var(--forza-blue-velvet); }
+
+.border-forza-primary { border-color: var(--forza-regal-blue); }
+.border-forza-accent { border-color: var(--forza-blaze-orange); }
+
+.bg-forza-gradient-primary {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
+}
+
+.bg-forza-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+}
+
+/* ===== FORZA COMPONENT CLASSES ===== */
+
+.forza-hero-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.forza-section-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  text-align: center;
+  word-break: break-words;
+}
+
+.forza-page-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+}
+
+.forza-primary-button {
+  background-color: var(--forza-blaze-orange);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(241, 96, 34, 0.3);
+}
+
+.forza-primary-button:hover {
+  background-color: var(--forza-rusty-nail);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(241, 96, 34, 0.4);
+}
+
+.forza-secondary-button {
+  background-color: var(--forza-regal-blue);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(9, 102, 141, 0.3);
+}
+
+.forza-secondary-button:hover {
+  background-color: var(--forza-blue-velvet);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(9, 102, 141, 0.4);
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+@layer utilities {
+  .py-20-custom {
+    padding-top: 25rem;
+    padding-bottom: 5rem;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hotspot-default { 
+    @apply fill-[hsl(var(--primary)/.4)] stroke-transparent transition-all duration-300; 
+  }
+  
+  .hotspot-active { 
+    @apply fill-[hsl(var(--primary)/.7)] stroke-[hsl(var(--primary))] stroke-2 cursor-pointer; 
+  }
+  
+  .hotspot-active:hover {
+    @apply fill-[hsl(var(--primary)/.8)] brightness-110;
+  }
+}
+
+/* ===== INDUSTRY-SPECIFIC BACKGROUNDS ===== */
+
+.forza-industrial-bg { background-color: var(--forza-industrial-primary); }
+.forza-marine-bg { background-color: var(--forza-marine-primary); }
+.forza-transportation-bg { background-color: var(--forza-transportation-primary); }
+.forza-insulation-bg { background-color: var(--forza-insulation-primary); }
+.forza-construction-bg { background-color: var(--forza-construction-primary); }
+.forza-composites-bg { background-color: var(--forza-composites-primary); }
+
+/* ===== BLEND MODE ANIMATIONS ===== */
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.61; }
+  50% { opacity: 0.75; }
+}
+
+.science-triangles-float-gentle { animation: float-gentle 8s ease-in-out infinite; }
+.science-triangles-float-subtle { animation: float-subtle 12s ease-in-out infinite; }
+.science-triangles-pulse-soft { animation: pulse-soft 6s ease-in-out infinite; }
+
+/* ===== BLEND MODES ===== */
+
+.science-triangles-overlay { mix-blend-mode: overlay; filter: contrast(1.1) brightness(1.05); }
+.science-triangles-soft-light { mix-blend-mode: soft-light; filter: contrast(0.95) brightness(1.02); }
+.science-triangles-multiply { mix-blend-mode: multiply; filter: contrast(1.2) brightness(0.95); }
+.science-triangles-screen { mix-blend-mode: screen; filter: contrast(0.9) brightness(1.1); }
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 640px) {
+  .forza-container { padding: 0 0.5rem; }
+  .forza-section { padding: 2rem 0; }
+}
+
+@media (min-width: 1024px) {
+  .forza-container { padding: 0 2rem; }
+}
+
+
+

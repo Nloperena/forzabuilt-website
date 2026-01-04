@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Providers } from '@/components/common/Providers';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
+import FooterV2 from '@/components/FooterV2';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+  title="Page Not Found - ForzaBuilt"
+  description="The page you're looking for doesn't exist."
+>
+  <Providers client:load>
+    <div class="min-h-screen flex flex-col">
+      <HeaderWrapper currentPath={currentPath} />
+      
+      <main class="flex-1 flex flex-col items-center justify-center bg-gradient-to-b from-[#2c476e] to-[#477197] text-white px-4 pt-24">
+        <div class="text-center max-w-2xl">
+          <h1 class="text-6xl md:text-8xl font-bold font-poppins mb-4">404</h1>
+          <h2 class="text-2xl md:text-3xl font-poppins mb-6">Page Not Found</h2>
+          <p class="text-lg md:text-xl text-white/80 mb-8 font-poppins">
+            Sorry, we couldn't find the page you're looking for.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/"
+              class="inline-flex items-center justify-center px-6 py-3 bg-[#F2611D] text-white font-medium rounded-full hover:bg-[#F2611D]/90 transition-colors"
+            >
+              Go Home
+            </a>
+            <a 
+              href="/products"
+              class="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white font-medium rounded-full hover:bg-white/20 transition-colors border border-white/20"
+            >
+              View Products
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <FooterV2 />
+    </div>
+  </Providers>
+</Layout>

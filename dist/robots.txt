@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://forzabuilt.com/sitemap.xml
+Sitemap: https://forzabuilt.com/sitemap-index.xml
+Sitemap: https://forzabuilt.com/blog-sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
