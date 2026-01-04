@@ -19,7 +19,7 @@ interface Props {
 const { 
   title, 
   description = "ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications.",
-  ogImage = "/images/og-default.jpg",
+  ogImage = "/logos/forza-logo-full.png",
   ogType = "website",
   canonicalUrl,
   structuredData
@@ -34,7 +34,7 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "ForzaBuilt",
   "url": siteUrl,
-  "logo": `${siteUrl}/images/forza-logo.png`,
+  "logo": `${siteUrl}/logos/forza-logo-full.png`,
   "description": "ForzaBuilt delivers premium industrial adhesives, sealants, tapes, and cleaning solutions for transportation, marine, construction, and manufacturing industries.",
   "address": {
     "@type": "PostalAddress",
@@ -48,7 +48,14 @@ const organizationSchema = {
     "@type": "ContactPoint",
     "telephone": "+1-402-731-9300",
     "contactType": "customer service",
-    "email": "support@forzabuilt.com"
+    "email": "support@forzabuilt.com",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "16:30",
+      "timeZone": "America/Chicago"
+    }
   },
   "sameAs": [
     "https://www.linkedin.com/company/forzabuilt"
@@ -74,8 +81,9 @@ const websiteSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/logos/forza-logo-blue.svg" />
+    <link rel="icon" type="image/png" href="/logos/forza-logo-full.png" />
+    <link rel="apple-touch-icon" href="/logos/forza-logo-full.png" />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LT5K6RG34"></script>
