@@ -1,43 +1,108 @@
-# Astro Starter Kit: Minimal
+# ForzaBuilt Website
 
-```sh
-npm create astro@latest -- --template minimal
+Official website for ForzaBuilt - Industrial adhesives, sealants, and tapes solutions.
+
+## Overview
+
+This is the corporate website for ForzaBuilt, showcasing industrial adhesive, sealant, and tape solutions across multiple industries including transportation, marine, construction, and manufacturing.
+
+## Tech Stack
+
+- **Framework**: Astro
+- **UI Library**: React
+- **Styling**: Tailwind CSS
+- **TypeScript**: Full type safety
+- **Build Tool**: Vite
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── public/          # Static assets (images, videos, documents)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # React and Astro components
+│   ├── pages/      # Route pages
+│   ├── layouts/     # Page layouts
+│   ├── data/       # Static data files
+│   ├── services/   # API and service integrations
+│   ├── styles/     # Global styles and CSS
+│   ├── types/      # TypeScript type definitions
+│   └── utils/      # Utility functions
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Node.js 18+ 
+- npm or yarn
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+1. Clone the repository:
+```bash
+git clone https://github.com/Nloperena/forzabuilt-website.git
+cd forzabuilt-website
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+2. Install dependencies:
+```bash
+npm install
+```
 
-## 👀 Want to learn more?
+3. Start the development server:
+```bash
+npm run dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site will be available at `http://localhost:4321`
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run astro ...` | Run Astro CLI commands |
+
+## Features
+
+- Industry-specific product showcases
+- Interactive X-Ray product exploration
+- Product catalog with filtering and search
+- Blog system with SEO optimization
+- Responsive design for all devices
+- Performance optimized with Astro's static generation
+
+## Key Pages
+
+- **Home**: Main landing page with hero video and product overview
+- **Industries**: Industry-specific pages (Industrial, Transportation, Marine, Construction, etc.)
+- **Products**: Product catalog organized by category (Bond, Seal, Tape)
+- **Blog**: Company news and product information
+- **Contact**: Contact information and forms
+- **Tools**: Interactive product selection and compatibility tools
+
+## API Integration
+
+The site integrates with the ForzaBuilt product management system API hosted on Heroku for dynamic product data.
+
+## Deployment
+
+The site is built as static HTML and can be deployed to any static hosting service such as:
+- Vercel
+- Netlify
+- GitHub Pages
+- AWS S3 + CloudFront
+
+## License
+
+Proprietary - ForzaBuilt
+
+## Contact
+
+For questions or support, please contact the development team.
