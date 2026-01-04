@@ -358,76 +358,43 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                aspect-square md:aspect-auto md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
+                aspect-video md:aspect-auto md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
               ">
                 {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
-                  {/* Show skeleton when switching videos and new video hasn't loaded yet */}
-                  {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && !videoLoadedMap[selectedItem] && (
-                    <VideoSkeleton className="absolute inset-0 z-30" backgroundColor="blue" />
-                  )}
+                  {/* Immediate Thumbnail Background (always present behind video) */}
+                  <img
+                    src={approachItems[selectedItem].image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover opacity-100"
+                    loading="eager"
+                  />
                   
-                  {/* Previous content (beneath) - image or video - hidden when switching */}
-                  {selectedItem === previousItem && approachItems[previousItem].video && !videoErrorMap[previousItem] && (
-                    <video
-                      ref={previousVideoRef}
-                      key="previous-video"
-                      className="absolute inset-0 w-full h-full object-cover opacity-100"
-                      muted
-                      loop
-                      playsInline
-                      autoPlay
-                      preload="auto"
-                    >
-                      <source src={approachItems[previousItem].video} type="video/mp4" />
-                    </video>
-                  )}
-                  {/* Only show image if video failed or doesn't exist, and we're still on previous item */}
-                  {selectedItem === previousItem && (!approachItems[previousItem].video || videoErrorMap[previousItem]) && (
-                    <img
-                      src={approachItems[previousItem].image}
-                      alt={approachItems[previousItem].title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-100"
-                    />
-                  )}
-                  
-                  {/* Current content (on top) - image or video */}
+                  {/* Current content (on top) - video */}
                   {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
                     <motion.video
                       ref={currentVideoRef}
                       key={`current-video-${selectedItem}`}
-                      initial={{ opacity: 0, x: -32 }}
+                      initial={{ opacity: 0 }}
                       animate={{ 
-                        opacity: videoLoadedMap[selectedItem] ? 1 : 0,
-                        x: videoLoadedMap[selectedItem] ? 0 : -32
+                        opacity: videoLoadedMap[selectedItem] ? 1 : 0
                       }}
-                      transition={{ duration: 0.7, ease: "easeOut" }}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="absolute inset-0 w-full h-full object-cover z-10"
                       muted
                       loop
                       playsInline
                       autoPlay
                       preload="auto"
+                      poster={approachItems[selectedItem].image}
                       onCanPlay={() => handleVideoLoadedMetadata(selectedItem)}
                       onError={() => handleVideoError(selectedItem)}
                     >
-                      <source src={approachItems[selectedItem].video} type="video/mp4" />
+                      <source src={`${approachItems[selectedItem].video}#t=0.001`} type="video/mp4" />
                     </motion.video>
-                  )}
-                  {/* Only show image if no video or video failed */}
-                  {(!approachItems[selectedItem].video || videoErrorMap[selectedItem]) && (
-                    <motion.img
-                      key={`current-image-${selectedItem}`}
-                      src={approachItems[selectedItem].image}
-                      alt={approachItems[selectedItem].title}
-                      initial={{ opacity: 0, x: -32 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.7, ease: "easeOut" }}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
                   )}
                   
                   {/* Uniform dark blue overlay to darken image/video */}

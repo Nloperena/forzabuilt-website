@@ -46,22 +46,27 @@ const MadeInAmericaSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 items-start">
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
-              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative">
-                {/* Skeleton while loading */}
-                {!isVideoLoaded && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
-                )}
-                {/* Render video element always to allow preloading, but controlled by isVisible */}
+              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
+                {/* Immediate Thumbnail Background */}
+                <img
+                  src="/images/approach/R&D image.jpg"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover opacity-100"
+                  style={{ transform: 'scale(1.15)' }}
+                />
+                
+                {/* Background Video */}
                 <video
                   ref={videoRef}
-                  src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4"
+                  src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4#t=0.001"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="auto"
+                  poster="/images/approach/R&D image.jpg"
                   onCanPlay={() => setIsVideoLoaded(true)}
-                  className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
                   style={{
                     objectPosition: 'center',
                     transform: 'scale(1.15)',
