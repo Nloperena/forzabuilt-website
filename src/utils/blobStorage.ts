@@ -97,7 +97,19 @@ export function getBlobImageUrl(imagePath: string, industry?: string | string[])
   // When blob storage is configured, use the production structure
   // Production uses: product-images-web-optimized/{CapitalizedIndustry}/filename.webp (optimized WebP images)
   // Example: product-images-web-optimized/Industrial/FRP 3.5 gal pail.webp
-  // Local uses: /product-images/filename.png (plural "product-images" flat)
+  
+  // If the filename already contains a slash, it might already have the industry prefix
+  if (filename.includes('/') && (
+      filename.toLowerCase().startsWith('industrial/') || 
+      filename.toLowerCase().startsWith('construction/') || 
+      filename.toLowerCase().startsWith('marine/') || 
+      filename.toLowerCase().startsWith('transportation/') || 
+      filename.toLowerCase().startsWith('composites/') || 
+      filename.toLowerCase().startsWith('insulation/')
+  )) {
+    return `${baseUrl}/product-images-web-optimized/${filename}`;
+  }
+
   const normalizedIndustry = normalizeIndustryName(industry);
   
   let blobPath: string;
@@ -111,6 +123,7 @@ export function getBlobImageUrl(imagePath: string, industry?: string | string[])
   
   return `${baseUrl}/${blobPath}`;
 }
+
 
 /**
  * Check if a URL is a blob storage URL

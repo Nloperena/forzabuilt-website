@@ -25,16 +25,105 @@ export type ProductsData = {
   products: Product[];
 };
 
-// Constants
-// Use proxy in development to avoid CORS issues, direct URL in production
-const PRODUCTS_DATA_URL = import.meta.env.DEV 
-  ? '/api/products'  // Uses Vite proxy in development
-  : 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';  // Direct URL in production
+// Use our local API proxy to avoid CORS issues in production
+const PRODUCTS_DATA_URL = '/api/products';
 
 // Simple in-memory cache
 let productsCache: Product[] | null = null;
 let cacheTimestamp: number = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+/**
+ * Transforms raw product data from either API or fallback JSON into the Product type
+ */
+function transformProductData(apiProduct: any): Product {
+  // Handle technical data - can be array or object
+  let technicalData = {};
+  if (apiProduct.technical) {
+    if (Array.isArray(apiProduct.technical)) {
+      // Technical is an array - convert to object
+      technicalData = apiProduct.technical.reduce((acc: any, item: any) => {
+        acc[item.property] = item.value;
+        return acc;
+      }, {});
+    } else if (typeof apiProduct.technical === 'object') {
+      // Technical is already an object - use as is
+      technicalData = apiProduct.technical;
+    }
+  }
+
+  // Handle sizing - can be array of strings or array of objects
+  let sizes: string[] = [];
+  if (apiProduct.sizing && Array.isArray(apiProduct.sizing)) {
+    sizes = apiProduct.sizing.map((size: any) => 
+      typeof size === 'string' ? size : size.size || ''
+    );
+  }
+
+  // Get industry for image path organization
+  const industries = apiProduct.industry ? 
+    (Array.isArray(apiProduct.industry) ? apiProduct.industry : [apiProduct.industry]) : 
+    ['industrial'];
+  
+  const normalizedIndustries = industries.map((ind: string) => 
+    ind.replace('_industry', '').replace('_', ' ')
+  );
+
+  // Map image URL to blob storage
+  let imageUrl = undefined;
+  const productId = (apiProduct.product_id || apiProduct.id || '').toLowerCase();
+  
+  // Try mapping service first as it has the most up-to-date filenames for blob storage
+  const mappedImage = ImageMappingService.getImageForProduct(productId);
+  
+  if (mappedImage && !mappedImage.includes('placeholder.png') && (mappedImage.includes('/') || mappedImage !== `${productId}.webp`)) {
+    // We have a specific mapping (contains a category or a custom filename), use it
+    imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
+  } else if (apiProduct.image || apiProduct.imageUrl) {
+    const imgSource = apiProduct.image || apiProduct.imageUrl;
+    
+    if (imgSource.startsWith('http://') || imgSource.startsWith('https://')) {
+      // If it's already a full URL, use it (fixing common typos)
+      imageUrl = imgSource.replace('product-images-web-optmized', 'product-images-web-optimized');
+    } else {
+      // Use blob storage utility to construct the path
+      imageUrl = getBlobImageUrl(imgSource, normalizedIndustries);
+    }
+  } else if (mappedImage && !mappedImage.includes('placeholder.png')) {
+    // Use the default mapping (id.webp)
+    imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
+  }
+
+
+  return {
+    id: apiProduct.product_id || apiProduct.id,
+    name: apiProduct.full_name || apiProduct.name,
+    shortName: apiProduct.name,
+    description: apiProduct.description,
+    category: apiProduct.brand === 'forza_bond' ? 'BOND' : 
+              apiProduct.brand === 'forza_seal' ? 'SEAL' : 
+              apiProduct.brand === 'forza_tape' ? 'TAPE' : 
+              (apiProduct.category || 'BOND'),
+    industry: normalizedIndustries,
+    productType: apiProduct.brand || apiProduct.productType,
+    chemistry: apiProduct.chemistry,
+    technicalData: technicalData,
+    applications: Array.isArray(apiProduct.applications) 
+      ? apiProduct.applications 
+      : apiProduct.applications ? [apiProduct.applications] : [],
+    benefits: apiProduct.benefits || [],
+    sizes: sizes,
+    imageUrl: imageUrl,
+    pdfLinks: apiProduct.pdfLinks || [],
+    standardTdsLink: apiProduct.standardTdsLink || '',
+    hasTdsLink: !!apiProduct.standardTdsLink,
+    searchKeywords: apiProduct.searchKeywords || [],
+    isActive: apiProduct.published !== undefined ? apiProduct.published : (apiProduct.isActive ?? true),
+    createdAt: apiProduct.created_at || apiProduct.createdAt,
+    updatedAt: apiProduct.updated_at || apiProduct.updatedAt,
+    version: apiProduct.version || 1
+  };
+}
 
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
@@ -45,7 +134,7 @@ export async function getAllProducts(): Promise<Product[]> {
   }
 
   try {
-    console.log('🔵 Fetching products from Heroku API...');
+    console.log('🔵 Fetching products from API proxy...');
     const response = await fetch(PRODUCTS_DATA_URL, {
       headers: {
         'Accept': 'application/json; charset=utf-8',
@@ -58,76 +147,7 @@ export async function getAllProducts(): Promise<Product[]> {
     console.log(`✅ Fetched ${apiData.length} products from API`);
     
     // Transform the API data to match your expected format
-    const products = apiData.map((apiProduct: any, index: number) => {
-      // Handle technical data - can be array or object
-      let technicalData = {};
-      if (apiProduct.technical) {
-        if (Array.isArray(apiProduct.technical)) {
-          // Technical is an array - convert to object
-          technicalData = apiProduct.technical.reduce((acc: any, item: any) => {
-            acc[item.property] = item.value;
-            return acc;
-          }, {});
-        } else if (typeof apiProduct.technical === 'object') {
-          // Technical is already an object - use as is
-          technicalData = apiProduct.technical;
-        }
-      }
-
-      // Handle sizing - can be array of strings or array of objects
-      let sizes: string[] = [];
-      if (apiProduct.sizing && Array.isArray(apiProduct.sizing)) {
-        sizes = apiProduct.sizing.map((size: any) => 
-          typeof size === 'string' ? size : size.size || ''
-        );
-      }
-
-      const product = {
-        id: apiProduct.product_id,
-        name: apiProduct.full_name || apiProduct.name,
-        shortName: apiProduct.name,
-        description: apiProduct.description,
-        category: apiProduct.brand === 'forza_bond' ? 'BOND' : 
-                  apiProduct.brand === 'forza_seal' ? 'SEAL' : 
-                  apiProduct.brand === 'forza_tape' ? 'TAPE' : 'BOND',
-        industry: [apiProduct.industry?.replace('_industry', '').replace('_', ' ') || 'industrial'],
-        productType: apiProduct.brand,
-        chemistry: apiProduct.chemistry,
-        technicalData: technicalData,
-        applications: Array.isArray(apiProduct.applications) 
-          ? apiProduct.applications 
-          : apiProduct.applications ? [apiProduct.applications] : [],
-        benefits: apiProduct.benefits || [],
-        sizes: sizes,
-        imageUrl: apiProduct.image ? (
-          // If API returns a full URL, fix the typo in the path and use it
-          apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-            ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized')
-            : getBlobImageUrl(
-                apiProduct.image,
-                apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
-              )
-        ) : undefined,
-        pdfLinks: [], // Not in API response
-        standardTdsLink: '', // Not in API response
-        hasTdsLink: false, // Not in API response
-        searchKeywords: [], // Not in API response
-        isActive: apiProduct.published,
-        createdAt: apiProduct.created_at,
-        updatedAt: apiProduct.updated_at,
-        version: 1
-      };
-      
-      // Debug first few products with images
-      if (index < 5) {
-        console.log(`🖼️ Product ${product.id}:`);
-        console.log(`   API image field: ${apiProduct.image}`);
-        console.log(`   Final imageUrl: ${product.imageUrl}`);
-        console.log(`   Industry: ${product.industry.join(', ')}`);
-      }
-      
-      return product;
-    });
+    const products = apiData.map((apiProduct: any) => transformProductData(apiProduct));
     
     // Filter to only show published products
     const publishedProducts = products.filter(product => product.isActive === true);
@@ -138,7 +158,7 @@ export async function getAllProducts(): Promise<Product[]> {
     
     return publishedProducts;
   } catch (error) {
-    console.error('Failed to fetch products from Heroku API:', error);
+    console.error('Failed to fetch products from API proxy:', error);
     
     // Try fallback to local JSON file only as last resort
     try {
@@ -146,7 +166,11 @@ export async function getAllProducts(): Promise<Product[]> {
       if (fallbackResponse.ok) {
         const fallbackData = await fallbackResponse.json();
         console.warn('⚠️ API failed, using fallback local JSON data');
-        return fallbackData.products || [];
+        
+        const rawProducts = fallbackData.products || [];
+        const products = rawProducts.map((p: any) => transformProductData(p));
+        
+        return products.filter((p: Product) => p.isActive !== false);
       }
     } catch (fallbackError) {
       console.error('Fallback also failed:', fallbackError);
@@ -158,6 +182,12 @@ export async function getAllProducts(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product | null> {
   try {
+    // Check cache first
+    if (productsCache) {
+      const cached = productsCache.find(p => p.id === id);
+      if (cached) return cached;
+    }
+
     const response = await fetch(PRODUCTS_DATA_URL, {
       headers: {
         'Accept': 'application/json; charset=utf-8',
@@ -167,78 +197,23 @@ export async function getProductById(id: string): Promise<Product | null> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const apiData = await response.json();
-    const apiProduct = apiData.find((p: any) => p.product_id === id);
+    const apiProduct = apiData.find((p: any) => (p.product_id || p.id) === id);
     
     if (!apiProduct) {
-      return null;
+      // Try fallback if not found in API
+      const allProducts = await getAllProducts();
+      return allProducts.find(p => p.id === id) || null;
     }
     
-    // Handle technical data - can be array or object
-    let technicalData = {};
-    if (apiProduct.technical) {
-      if (Array.isArray(apiProduct.technical)) {
-        // Technical is an array - convert to object
-        technicalData = apiProduct.technical.reduce((acc: any, item: any) => {
-          acc[item.property] = item.value;
-          return acc;
-        }, {});
-      } else if (typeof apiProduct.technical === 'object') {
-        // Technical is already an object - use as is
-        technicalData = apiProduct.technical;
-      }
-    }
-
-    // Handle sizing - can be array of strings or array of objects
-    let sizes: string[] = [];
-    if (apiProduct.sizing && Array.isArray(apiProduct.sizing)) {
-      sizes = apiProduct.sizing.map((size: any) => 
-        typeof size === 'string' ? size : size.size || ''
-      );
-    }
-
-    // Transform the API data to match your expected format
-    const product = {
-      id: apiProduct.product_id,
-      name: apiProduct.full_name || apiProduct.name,
-      shortName: apiProduct.name,
-      description: apiProduct.description,
-      category: apiProduct.brand === 'forza_bond' ? 'BOND' : 
-                apiProduct.brand === 'forza_seal' ? 'SEAL' : 
-                apiProduct.brand === 'forza_tape' ? 'TAPE' : 'BOND',
-      industry: [apiProduct.industry?.replace('_industry', '').replace('_', ' ') || 'industrial'],
-      productType: apiProduct.brand,
-      chemistry: apiProduct.chemistry,
-      technicalData: technicalData,
-      applications: Array.isArray(apiProduct.applications) 
-        ? apiProduct.applications 
-        : apiProduct.applications ? [apiProduct.applications] : [],
-      benefits: apiProduct.benefits || [],
-      sizes: sizes,
-      imageUrl: apiProduct.image ? (
-        // If API returns a full URL, use it directly (but fix common typos)
-        apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-          ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized') // Fix typo: optmized -> optimized
-          : getBlobImageUrl(
-              apiProduct.image,
-              apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
-            )
-      ) : undefined,
-      pdfLinks: [], // Not in API response
-      standardTdsLink: '', // Not in API response
-      hasTdsLink: false, // Not in API response
-      searchKeywords: [], // Not in API response
-      isActive: apiProduct.published,
-      createdAt: apiProduct.created_at,
-      updatedAt: apiProduct.updated_at,
-      version: 1
-    };
-    
-    return product;
+    return transformProductData(apiProduct);
   } catch (error) {
-    console.error('Failed to fetch product by ID from Heroku API:', error);
-    return null;
+    console.error('Failed to fetch product by ID:', error);
+    // Try fallback as last resort
+    const allProducts = await getAllProducts();
+    return allProducts.find(p => p.id === id) || null;
   }
 }
+
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
   try {

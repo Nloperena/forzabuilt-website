@@ -9,6 +9,7 @@ import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from
 import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
+import { ImageMappingService } from '@/services/imageMappingService';
 
 interface Product {
   id: string;
@@ -239,7 +240,23 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     setImageErrorStates(prev => ({ ...prev, [productId]: false }));
   };
 
-  const handleImageError = (productId: string) => {
+  const handleImageError = (productId: string, e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.target as HTMLImageElement;
+    
+    // If blob URL fails, try to use the mapping service to get a better blob URL
+    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+      const mappedImage = ImageMappingService.getImageForProduct(productId);
+      if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
+        const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
+        const blobPath = mappedImage.includes('/') 
+          ? `product-images-web-optimized/${mappedImage}`
+          : `product-images-web-optimized/Industrial/${mappedImage}`;
+        
+        target.src = `${baseUrl}/${blobPath}`;
+        return; // Don't set error state yet, we're trying a fallback
+      }
+    }
+
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
@@ -521,7 +538,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}
                               onLoad={() => handleImageLoad(product.id)}
-                              onError={() => handleImageError(product.id)}
+                              onError={(e) => handleImageError(product.id, e)}
                             />
                           )}
                         </div>

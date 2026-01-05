@@ -10,6 +10,7 @@ import { typography } from '@/styles/brandStandards';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '@/utils/industryHelpers';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 import type { Product } from '@/types/products';
+import { ImageMappingService } from '@/services/imageMappingService';
 
 interface ProductDetailProps {
   product: Product;
@@ -246,14 +247,30 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   console.error('Hero image error:', target.src);
+                  
+                  // If blob URL fails, try to use the mapping service to get a better blob URL
                   if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                    const filename = product.id.toLowerCase() + '.png';
-                    target.src = `/product-images/${filename}`;
+                    const mappedImage = ImageMappingService.getImageForProduct(product.id);
+                    if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
+                      // Try the mapped image via blob storage utility
+                      // Note: We can't easily call getBlobImageUrl here as it's a server-side utility
+                      // but we know the structure
+                      const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
+                      const blobPath = mappedImage.includes('/') 
+                        ? `product-images-web-optimized/${mappedImage}`
+                        : `product-images-web-optimized/Industrial/${mappedImage}`;
+                      
+                      target.src = `${baseUrl}/${blobPath}`;
+                    } else {
+                      // Fallback to placeholder if mapping also failed
+                      target.src = '/placeholder.svg';
+                    }
                   } else if (!target.src.includes('placeholder')) {
                     target.src = '/placeholder.svg';
                   }
                   setMainImageLoaded(true);
                 }}
+
               />
             </div>
             
@@ -709,13 +726,22 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                                const filename = relatedProduct.id.toLowerCase() + '.png';
-                                target.src = `/product-images/${filename}`;
+                                const mappedImage = ImageMappingService.getImageForProduct(relatedProduct.id);
+                                if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
+                                  const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
+                                  const blobPath = mappedImage.includes('/') 
+                                    ? `product-images-web-optimized/${mappedImage}`
+                                    : `product-images-web-optimized/Industrial/${mappedImage}`;
+                                  target.src = `${baseUrl}/${blobPath}`;
+                                } else {
+                                  target.src = '/placeholder.svg';
+                                }
                               } else if (!target.src.includes('placeholder')) {
                                 target.src = '/placeholder.svg';
                               }
                               setRelatedProductImagesLoaded(prev => ({ ...prev, [relatedProduct.id]: true }));
                             }}
+
                           />
                         </div>
 
