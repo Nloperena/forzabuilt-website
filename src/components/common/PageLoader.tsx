@@ -54,7 +54,7 @@ const PageLoader: React.FC = () => {
                   duration: 0.5,
                   ease: "easeOut"
                 }}
-                className="relative w-40 h-40 md:w-64 md:h-64 z-10"
+                className="relative w-96 h-96 md:w-[36rem] md:h-[36rem] z-10"
               >
                 <img 
                   src="/logos/Forza-Eagle-Logo-Blue.svg" 
