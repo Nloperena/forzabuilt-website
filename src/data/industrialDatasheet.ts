@@ -54,7 +54,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "High tack infusion molding adhesive specifically designed for marine applications requiring superior bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png",
-    "url": "https://forzabuilt.com/product/tac-734g-web-spray-high-tack-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-734g",
     "specifications": {
       "type": "Web Spray Infusion Molding Adhesive",
       "viscosity": "600-900 cps",
@@ -107,7 +107,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "No HAPS infusion molding adhesive for environmentally conscious marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tac-735r-mist-spray-no-haps-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-735r",
     "specifications": {
       "type": "Mist Spray No HAPS Adhesive",
       "viscosity": "400-700 cps",
@@ -158,7 +158,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Zero VOC infusion molding adhesive for clean manufacturing in marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-738R-NEW.png",
-    "url": "https://forzabuilt.com/product/tac-738r-web-spray-zero-voc-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-738r",
     "specifications": {
       "type": "Web Spray Zero VOC Adhesive",
       "viscosity": "500-800 cps",
@@ -209,7 +209,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Mist spray infusion molding adhesive for marine and composite applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-739R-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tac-739r-mist-spray-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-739r",
     "specifications": {
       "type": "Mist Spray Infusion Molding Adhesive",
       "viscosity": "300-600 cps",
@@ -260,7 +260,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Non-flammable, non-methylene chloride contact adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/MC722-single-5-1024x1024.png",
-    "url": "https://forzabuilt.com/product/mc722-web-spray-contact-adhesive-for-infusion-molding/",
+    "url": "/products/bond/mc722",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -313,7 +313,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "CA compliant multi-purpose contact adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New-1024x1024.png",
-    "url": "https://forzabuilt.com/product/mc723-web-spray-ca-compliant-multi-purpose-contact-adhesive/",
+    "url": "/products/bond/mc723",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -366,7 +366,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Web spray pressure sensitive adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/MC724-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/web-spray-pressure-sensitive-adhesive/",
+    "url": "/products/bond/mc724",
     "specifications": {
       "type": "Pressure Sensitive Adhesive",
       "viscosity": "600-900 cps",
@@ -420,7 +420,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Styrene safe pressure sensitive adhesive for marine and composite applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/A_FORZA_MC737_Canister22L-NEW1-1024x1024.png",
-    "url": "https://forzabuilt.com/product/mc737-web-spray-styrene-safe-pressure-sensitive-adhesive/",
+    "url": "/products/bond/mc737",
     "specifications": {
       "type": "Styrene Safe Pressure Sensitive Adhesive",
       "viscosity": "600-900 cps",
@@ -473,7 +473,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "CA compliant multi-purpose contact adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/01/canister-mockup-MC741-1024x1024.png",
-    "url": "https://forzabuilt.com/product/mc741-ca-compliant-multi-purpose-contact-adhesive/",
+    "url": "/products/bond/mc741",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -526,7 +526,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Ultra high-strength hybrid polymer structural adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/AP749_M-OS764_Sausage_NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/m-os764-non-hazardous-moisture-cure-structural-adhesive/",
+    "url": "/products/bond/m-os764",
     "specifications": {
       "type": "Hybrid Polymer Structural Adhesive",
       "viscosity": "Thixotropic Paste",
@@ -580,7 +580,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "High-strength single-part hybrid polymer adhesive and sealant for marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-OA755-New.png",
-    "url": "https://forzabuilt.com/product/m-oa755-high-strength-single-part-hybrid-performance-polymer/",
+    "url": "/products/bond/m-oa755",
     "specifications": {
       "type": "Hybrid Polymer Adhesive/Sealant",
       "viscosity": "Thixotropic Paste",
@@ -634,7 +634,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Epoxy quick-set two-part adhesive for rapid marine and industrial assembly.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-R420-NEW.png",
-    "url": "https://forzabuilt.com/product/m-r420-epoxy-quick-set-two-part-adhesive/",
+    "url": "/products/bond/m-r420",
     "specifications": {
       "type": "Two-Part Epoxy Adhesive",
       "viscosity": "Paste",
@@ -688,7 +688,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Two-part epoxy adhesive for marine and industrial structural bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/M-R445-.png",
-    "url": "https://forzabuilt.com/product/m-r445-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/m-r445",
     "specifications": {
       "type": "Two-Part Epoxy Adhesive",
       "viscosity": "Paste",
@@ -742,7 +742,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Adhesive primer and promoter for enhanced bonding performance in marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-OSA783-NEW.png",
-    "url": "https://forzabuilt.com/product/m-osa783-adhesive-primer-and-promoter/",
+    "url": "/products/bond/m-osa783",
     "specifications": {
       "type": "Adhesive Primer and Promoter",
       "viscosity": "Low Viscosity Liquid",
@@ -796,7 +796,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Tape primer and adhesion promoter for enhanced bonding performance in marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/M-S750.png",
-    "url": "https://forzabuilt.com/product/m-s750-tape-primer-and-adhesion-promoter/",
+    "url": "/products/bond/m-s750",
     "specifications": {
       "type": "Tape Primer and Adhesion Promoter",
       "viscosity": "Low Viscosity Liquid",
@@ -850,7 +850,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Neoprene contact adhesive for marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-C280-NEW.png",
-    "url": "https://forzabuilt.com/product/m-c280-neoprene-contact-adhesive/",
+    "url": "/products/bond/m-c280",
     "specifications": {
       "type": "Neoprene Contact Adhesive",
       "viscosity": "1200-1800 cps",
@@ -904,7 +904,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Premium high temperature neoprene contact adhesive for demanding marine applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-C285-NEW.png",
-    "url": "https://forzabuilt.com/product/m-c285-premium-high-temp-neoprene-contact-adhesive/",
+    "url": "/products/bond/m-c285",
     "specifications": {
       "type": "Premium High Temp Neoprene Contact Adhesive",
       "viscosity": "1500-2200 cps",
@@ -958,7 +958,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-strength contact adhesive compliant with California regulations for industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC933-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/p307-ca-compliant-multi-purpose-contact-adhesive/",
+    "url": "/products/bond/ic933",
     "specifications": {
       "type": "Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -1012,7 +1012,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Semi-pressure sensitive adhesive designed for web spray applications in industrial manufacturing.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC934-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/p322-pressure-sensitive-polystyrene-safe-spray-adhesive/",
+    "url": "/products/bond/ic934",
     "specifications": {
       "type": "Semi-Pressure Sensitive",
       "viscosity": "600-900 cps",
@@ -1066,7 +1066,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-solids pressure-sensitive contact adhesive meeting California compliance standards.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC946-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/p329-ca-compliant-high-solids-pressure-sensative-contact-adhesive/",
+    "url": "/products/bond/ic946",
     "specifications": {
       "type": "Pressure-Sensitive Contact Adhesive",
       "viscosity": "1000-1500 cps",
@@ -1120,7 +1120,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Specialized mist spray adhesive designed for fiberglass infusion molding processes.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/04/ForzaBond-MC739.png",
-    "url": "https://forzabuilt.com/product/m30-mist-spray-adhesive-for-fibreglass-infusion-molding/",
+    "url": "/products/bond/mc739",
     "specifications": {
       "type": "Mist Spray Adhesive",
       "viscosity": "200-400 cps",
@@ -1173,7 +1173,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "High-temperature neoprene adhesive for demanding industrial applications requiring heat resistance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C130-Clear-55-Gallon-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c130-high-heat-neoprene-adhesive/",
+    "url": "/products/bond/c130",
     "specifications": {
       "type": "Neoprene Contact Adhesive",
       "viscosity": "1200-1800 cps",
@@ -1227,7 +1227,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "High-solids contact adhesive meeting California compliance standards for industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C150-CA-COMPLIANT-HIGH-SOLIDS-CONTACT-ADHESIVE-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c150-ca-compliant-high-solids-contact-adhesive/",
+    "url": "/products/bond/c150",
     "specifications": {
       "type": "High Solids Contact Adhesive",
       "viscosity": "1500-2200 cps",
@@ -1281,7 +1281,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Non-flammable contact adhesive for safe industrial use in sensitive environments.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C331-Blue-55-Gallon.png",
-    "url": "https://forzabuilt.com/product/c331-non-flammable-contact-adhesive/",
+    "url": "/products/bond/c331",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -1335,7 +1335,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Hybrid polymer rollable adhesive specifically designed for FRP (Fiber Reinforced Plastic) applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/FRP-Rollable-Adhesive-v2-1024x1024.png",
-    "url": "https://forzabuilt.com/product/frp-rollable-adhesive/",
+    "url": "/products/bond/frp",
     "specifications": {
       "type": "Hybrid Polymer Rollable Adhesive",
       "viscosity": "2000-3000 cps",
@@ -1389,7 +1389,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Low to medium viscosity laminating adhesive for industrial lamination processes.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/I1000_Tote-1024x1024.png",
-    "url": "https://forzabuilt.com/product/i1000-low-medium-viscosity-laminating-adhesive/",
+    "url": "/products/bond/i1000",
     "specifications": {
       "type": "Laminating Adhesive",
       "viscosity": "500-1000 cps",
@@ -1443,7 +1443,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "High-strength moisture-cure adhesive and sealant with eco-friendly formulation.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OA4-Cartridge-.png",
-    "url": "https://forzabuilt.com/product/oa4-high-strength-eco-friendly-adhesive-sealant/",
+    "url": "/products/bond/oa4",
     "specifications": {
       "type": "Moisture Cure Adhesive/Sealant",
       "viscosity": "Thixotropic Paste",
@@ -1497,7 +1497,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Trowellable adhesive specifically formulated for flooring installation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OA75-Flooring-Adhesive-v2-1024x1024.png",
-    "url": "https://forzabuilt.com/product/trowellable-flooring-adhesive/",
+    "url": "/products/bond/oa75",
     "specifications": {
       "type": "Trowellable Flooring Adhesive",
       "viscosity": "Thick Paste",
@@ -1549,7 +1549,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Versatile bonding putty for industrial assembly and repair applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OA99-55-gal-drum-1024x1024.png",
-    "url": "https://forzabuilt.com/product/bonding-putty/",
+    "url": "/products/bond/oa99",
     "specifications": {
       "type": "Bonding Putty",
       "viscosity": "Putty Consistency",
@@ -1603,7 +1603,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Adhesive primer and promoter for enhanced bonding performance on difficult substrates.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OSA-Mockup-Dual-Cartridge-1.png",
-    "url": "https://forzabuilt.com/product/osa-adhesive-primer-and-promoter/",
+    "url": "/products/bond/osa",
     "specifications": {
       "type": "Adhesive Primer and Promoter",
       "viscosity": "Low Viscosity Liquid",
@@ -1657,7 +1657,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "High-strength structural adhesive and sealant with thixotropic properties for demanding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/OS24-sausage-1024x1024.png",
-    "url": "https://forzabuilt.com/product/os24-moisture-cure-single-part-thixotropic-structural-adhesive-sealant/",
+    "url": "/products/bond/os24",
     "specifications": {
       "type": "Structural Adhesive/Sealant",
       "viscosity": "Thixotropic Paste",
@@ -1711,7 +1711,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Quick-setting epoxy adhesive with high tack strength for rapid industrial assembly.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R160-Dual-Cartridge-.png",
-    "url": "https://forzabuilt.com/product/r160-epoxy-quick-set-high-strength-tack-strip-adhesive/",
+    "url": "/products/bond/r160",
     "specifications": {
       "type": "Two-Part Epoxy Adhesive",
       "viscosity": "Paste",
@@ -1765,7 +1765,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Two-part modified epoxy adhesive with 1:1 mix ratio for structural bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R221-Dual-Cartridge-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r221-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/r221",
     "specifications": {
       "type": "Two-Part Modified Epoxy",
       "viscosity": "Paste",
@@ -1819,7 +1819,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Fast-acting two-part methacrylate adhesive for rapid industrial assembly and bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R519-Dual-Cartridge-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r519-two-part-methacrylate-adhesive/",
+    "url": "/products/bond/r519",
     "specifications": {
       "type": "Two-Part Methacrylate",
       "viscosity": "Liquid",
@@ -1873,7 +1873,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Structural anchoring epoxy for heavy-duty industrial anchoring and bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R529-Structural-Adhesive--240x300.png",
-    "url": "https://forzabuilt.com/product/r529-structural-anchoring-epoxy/",
+    "url": "/products/bond/r529",
     "specifications": {
       "type": "Structural Anchoring Epoxy",
       "viscosity": "Thick Paste",
@@ -1927,7 +1927,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Adhesive primer and promoter for enhanced bonding performance on various substrates.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/S228-paintcan-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/s228-adhesive-primer-and-promoter/",
+    "url": "/products/bond/s228",
     "specifications": {
       "type": "Adhesive Primer and Promoter",
       "viscosity": "Low Viscosity Liquid",
@@ -1981,7 +1981,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Citrus-based adhesive remover and cleaner for safe removal of adhesives and surface preparation.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/FC-CAR-bundle.png",
-    "url": "https://forzabuilt.com/product/FC-CAR-citrus-based-adhesive-remover-cleaner/",
+    "url": "/products/bond/fc-car",
     "specifications": {
       "type": "Adhesive Remover and Cleaner",
       "viscosity": "Liquid",
@@ -2035,7 +2035,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Multi-purpose hybrid polymer sealant designed for marine applications requiring superior sealing performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/sausagem-os789-NEW-USE-1024x1024.png",
-    "url": "https://forzabuilt.com/product/m-os789-multi-purpose-hybrid-polymer-sealant/",
+    "url": "/products/seal/m-os789",
     "specifications": {
       "type": "Hybrid Polymer Sealant",
       "viscosity": "Thixotropic Paste",
@@ -2092,7 +2092,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Fast-skin multi-purpose hybrid polymer sealant for rapid marine sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-OS796-NEW-819x1024.png",
-    "url": "https://forzabuilt.com/product/m-os796-fast-kin-multi-purpose-hybrid-polymer-sealant/",
+    "url": "/products/seal/m-os796",
     "specifications": {
       "type": "Fast-Skin Hybrid Polymer Sealant",
       "viscosity": "Thixotropic Paste",
@@ -2149,7 +2149,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Double-coated ultra high-bond acrylic foam tape for marine and industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-T820-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/m-t815-double-coated-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/m-t815",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -2205,7 +2205,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "marine",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding marine and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/M-T820-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/m-t820-double-coated-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/m-t820",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -2261,7 +2261,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Low VOC, CA compliant pressure sensitive adhesive for construction applications requiring fast drying and aggressive bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/CC501bundle.png",
-    "url": "https://forzabuilt.com/product/cc501-low-voc-ca-compliant-aggressive-and-fast-drying-pressure-sensitive-adhesive/",
+    "url": "/products/bond/cc501",
     "specifications": {
       "type": "Pressure Sensitive Adhesive",
       "viscosity": "500-800 cps",
@@ -2315,7 +2315,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-temperature styrene safe pressure sensitive adhesive for demanding construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/CC507-22L-1024x1024.png",
-    "url": "https://forzabuilt.com/product/cc507-high-temp-styrene-safe-pressure-sensitive-adhesive/",
+    "url": "/products/bond/cc507",
     "specifications": {
       "type": "High-Temp Pressure Sensitive Adhesive",
       "viscosity": "600-900 cps",
@@ -2369,7 +2369,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Non-flammable, non-methylene chloride contact adhesive for safe construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC934-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/cc513-non-flammable-non-methylene-chloride-contact-adhesive/",
+    "url": "/products/bond/cc513",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -2423,7 +2423,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "General purpose pressure sensitive adhesive for construction and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/CC515-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/cc515-pressure-sensitive-adhesive/",
+    "url": "/products/bond/cc515",
     "specifications": {
       "type": "Pressure Sensitive Adhesive",
       "viscosity": "400-700 cps",
@@ -2476,7 +2476,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "CA compliant contact adhesive for construction applications requiring regulatory compliance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/CC519-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/cc519-ca-compliant-contact-adhesive/",
+    "url": "/products/bond/cc519",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "600-900 cps",
@@ -2530,7 +2530,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Low VOC, CA compliant multi-purpose adhesive for various construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/CC503-Aerosol-768x1024.png",
-    "url": "https://forzabuilt.com/product/cc503-aa-low-voc-ca-compliant-multi-purpose-adhesive/",
+    "url": "/products/bond/cc503-aa",
     "specifications": {
       "type": "Multi-Purpose Aerosol Adhesive",
       "viscosity": "Aerosol Spray",
@@ -2583,7 +2583,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-temperature neoprene contact adhesive for demanding construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-C360-C130.png",
-    "url": "https://forzabuilt.com/product/c-c360-high-temp-neoprene-contact-adhesive/",
+    "url": "/products/bond/c-c360",
     "specifications": {
       "type": "High-Temp Neoprene Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -2637,7 +2637,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Non-flammable sprayable contact adhesive for safe construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-C551-Pail-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-c551-non-flammable-sprayable-contact-adhesive/",
+    "url": "/products/bond/c-c551",
     "specifications": {
       "type": "Non-Flammable Sprayable Contact Adhesive",
       "viscosity": "600-900 cps",
@@ -2691,7 +2691,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Hybrid polymer moisture cure adhesive for construction applications requiring superior bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-OA98-Sausage-n.png",
-    "url": "https://forzabuilt.com/product/c-oa98-hybrid-polymer-moisture-cure-adhesive/",
+    "url": "/products/bond/c-oa98",
     "specifications": {
       "type": "Hybrid Polymer Moisture Cure Adhesive",
       "viscosity": "200,000-300,000 cps",
@@ -2745,7 +2745,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Hybrid polymer single component cure adhesive with outstanding adhesive and sealing properties.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-OS55-Sausage-n-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-os55-hybrid-polymer-single-component-cure-with-oustanding-adhesive-sealing-properties/",
+    "url": "/products/bond/c-os55",
     "specifications": {
       "type": "Hybrid Polymer Single Component Adhesive",
       "viscosity": "250,000-350,000 cps",
@@ -2799,7 +2799,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Two-part methacrylate adhesive for high-performance construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-R552-DualCart-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-r329-two-part-methacrylate-adhesive/",
+    "url": "/products/bond/c-r329",
     "specifications": {
       "type": "Two-Part Methacrylate Adhesive",
       "viscosity": "50,000-100,000 cps",
@@ -2852,7 +2852,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Two-part modified epoxy for demanding construction applications requiring superior bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-R552-DualCart-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-r552-two-part-modified-epoxy/",
+    "url": "/products/bond/c-r552",
     "specifications": {
       "type": "Two-Part Modified Epoxy",
       "viscosity": "100,000-200,000 cps",
@@ -2905,7 +2905,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Two-part 5 minute epoxy adhesive for fast-curing construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-R560-DualCart-300x300.png",
-    "url": "https://forzabuilt.com/product/c-r560-two-part-5-minute-epoxy-adhesive/",
+    "url": "/products/bond/c-r560",
     "specifications": {
       "type": "Two-Part 5 Minute Epoxy",
       "viscosity": "50,000-100,000 cps",
@@ -2958,7 +2958,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Hybrid polymer moisture cure adhesive for construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/01/C-OA5-Catridge-300x300.png",
-    "url": "https://forzabuilt.com/product/c-oa5-hybrid-polymer-moisture-cure-adhesive/",
+    "url": "/products/bond/c-oa5",
     "specifications": {
       "type": "Hybrid Polymer Moisture Cure Adhesive",
       "viscosity": "150,000-250,000 cps",
@@ -3012,7 +3012,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Quick grab adhesive for fast-setting construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/01/C-OA52-Cartridge-300x300.png",
-    "url": "https://forzabuilt.com/product/c-oa52-quick-grab-adhesive/",
+    "url": "/products/bond/c-oa52",
     "specifications": {
       "type": "Quick Grab Adhesive",
       "viscosity": "100,000-200,000 cps",
@@ -3066,7 +3066,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Isopropyl alcohol based cleaner and adhesion promoter for construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-OSA-OSA-300x282.png",
-    "url": "https://forzabuilt.com/product/c-osa-isopropyl-alcohol-based-cleaner-adhesion-promoter/",
+    "url": "/products/bond/c-osa",
     "specifications": {
       "type": "Isopropyl Alcohol Based Cleaner/Adhesion Promoter",
       "viscosity": "1-5 cps",
@@ -3120,7 +3120,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Hybrid polymer high performance trowel grade flooring adhesive for construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/C-OA77-3.5-Pail-300x300.png",
-    "url": "https://forzabuilt.com/product/c-oa77-hybrid-polymer-high-performance-trowel-grade-flooring-adhesive/",
+    "url": "/products/bond/c-oa77",
     "specifications": {
       "type": "Trowel Grade Flooring Adhesive",
       "viscosity": "300,000-500,000 cps",
@@ -3174,7 +3174,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Tape primer and adhesion promoter for construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-S538-Pail-300x300.png",
-    "url": "https://forzabuilt.com/product/c-s538-tape-primer-and-adhesion-promoter/",
+    "url": "/products/bond/c-s538",
     "specifications": {
       "type": "Tape Primer and Adhesion Promoter",
       "viscosity": "50-100 cps",
@@ -3228,7 +3228,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "HPL laminating adhesive for high-pressure laminate applications in construction.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-W6106-Tote-300x300.png",
-    "url": "https://forzabuilt.com/product/c-w6106-hpl-laminating-adhesive/",
+    "url": "/products/bond/c-w6106",
     "specifications": {
       "type": "HPL Laminating Adhesive",
       "viscosity": "200,000-400,000 cps",
@@ -3282,7 +3282,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Non-flammable, non-methylene chloride contact adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/A_FORZA_Canister_TC452-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc452-non-flam-non-methylene-chloride-contact-adhesive/",
+    "url": "/products/bond/tc452",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -3336,7 +3336,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "CA compliant multi-purpose contact adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/Bundle-TC453_Forza-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc453-ca-compliant-multi-purpose-contact-adhesive/",
+    "url": "/products/bond/tc453",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -3390,7 +3390,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Pressure-sensitive contact adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/09/Master-bundle-TC454-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc454-pressure-sensitive-contact-adhesive/",
+    "url": "/products/bond/tc454",
     "specifications": {
       "type": "Pressure-Sensitive Contact Adhesive",
       "viscosity": "600-900 cps",
@@ -3444,7 +3444,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "CA compliant semi-pressure sensitive contact adhesive for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/A_FORZA_BUNDLE_TC456-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc456-ca-compliant-semi-pressure-sensitive-contact-adhesive/",
+    "url": "/products/bond/tc456",
     "specifications": {
       "type": "Semi-Pressure Sensitive Contact Adhesive",
       "viscosity": "600-900 cps",
@@ -3498,7 +3498,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Low VOC CA compliant, aggressive and fast drying pressure sensitive adhesive for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/Master-bundle-TC466-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc466-low-voc-ca-compliant-aggressive-and-fast-drying-pressure-sensitive-adhesive/",
+    "url": "/products/bond/tc466",
     "specifications": {
       "type": "Low VOC Pressure Sensitive Adhesive",
       "viscosity": "600-900 cps",
@@ -3552,7 +3552,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "High-temperature styrene-safe pressure sensitive adhesive for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/A_FORZA_Canister_TC467-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tc467-high-temp-styrene-safe-pressure-sensitive-adhesive/",
+    "url": "/products/bond/tc467",
     "specifications": {
       "type": "High-Temp Styrene-Safe Pressure Sensitive Adhesive",
       "viscosity": "600-900 cps",
@@ -3605,7 +3605,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Adhesive primer and promoter for enhanced bonding performance in transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-OSA155.png",
-    "url": "https://forzabuilt.com/product/t-osa155-adhesive-primer-and-promoter/",
+    "url": "/products/bond/t-osa155",
     "specifications": {
       "type": "Adhesive Primer and Promoter",
       "viscosity": "Low Viscosity Liquid",
@@ -3659,7 +3659,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Hybrid polymer structural adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/09/A_FORZA_Cartridge_T-OA152-819x1024.png",
-    "url": "https://forzabuilt.com/product/t-oa152-hybrid-polymer-structural-adhesive/",
+    "url": "/products/bond/t-oa152",
     "specifications": {
       "type": "Hybrid Polymer Structural Adhesive",
       "viscosity": "Thixotropic Paste",
@@ -3713,7 +3713,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Adhesive primer for enhanced bonding performance in transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-S596-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-s596-adhesive-primer/",
+    "url": "/products/bond/t-s596",
     "specifications": {
       "type": "Adhesive Primer",
       "viscosity": "Low Viscosity Liquid",
@@ -3767,7 +3767,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Two-part modified epoxy adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-R679-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-r679-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/t-r679",
     "specifications": {
       "type": "Two-Part Modified Epoxy",
       "viscosity": "Paste",
@@ -3821,7 +3821,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Two-part methacrylate adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-R785-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-r785-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/t-r785",
     "specifications": {
       "type": "Two-Part Methacrylate",
       "viscosity": "Liquid",
@@ -3875,7 +3875,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Hybrid polymer structural, single-part moisture cure adhesive for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-OA156_Cartridge-819x1024.png",
-    "url": "https://forzabuilt.com/product/t-oa156-hybrid-polymer-structural-single-part-moisture-cure-adhesive/",
+    "url": "/products/bond/t-oa156",
     "specifications": {
       "type": "Hybrid Polymer Structural Adhesive",
       "viscosity": "Thixotropic Paste",
@@ -3929,7 +3929,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "High-green strength quick grab adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-OA177Cartridge-819x1024.png",
-    "url": "https://forzabuilt.com/product/t-oa177-high-green-strength-quick-grab-hybrid-polymer-adhesive/",
+    "url": "/products/bond/t-oa177",
     "specifications": {
       "type": "High-Green Strength Quick Grab Adhesive",
       "viscosity": "Thixotropic Paste",
@@ -3983,7 +3983,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Neoprene contact adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-C222_Pail-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-c222-neoprene-contact-adhesive/",
+    "url": "/products/bond/t-c222",
     "specifications": {
       "type": "Neoprene Contact Adhesive",
       "viscosity": "1200-1800 cps",
@@ -4037,7 +4037,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Non-flammable sprayable contact adhesive for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/09/T-C225_MetalPail-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-c225-non-flam-sprayable-contact-adhesive/",
+    "url": "/products/bond/t-c225",
     "specifications": {
       "type": "Non-Flammable Sprayable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -4091,7 +4091,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Premium high temperature neoprene contact adhesive for demanding transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/09/T-C485_Pail-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-c485-premium-high-temp-neoprene-contact-adhesive/",
+    "url": "/products/bond/t-c485",
     "specifications": {
       "type": "Premium High Temp Neoprene Contact Adhesive",
       "viscosity": "1500-2200 cps",
@@ -4145,7 +4145,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "ForzaBOND™ C-OS9 is a hybrid polymer, structural, single-part, moisture cure adhesive.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-OS9-OS2-n-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-os9-hybrid-polymer-structural-single-part-moisture-cure-adhesive/",
+    "url": "/products/seal/c-os9",
     "specifications": {
       "type": "Hybrid Polymer Structural Single-Part Moisture Cure Adhesive",
       "viscosity": "250,000-350,000 cps",
@@ -4240,7 +4240,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "High-performance semi-self leveling hybrid polymer sealant for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-OS150-Cartridge-819x1024.png",
-    "url": "https://forzabuilt.com/product/t-os150-high-performance-semi-self-leveling-hybrid-polymer-sealant/",
+    "url": "/products/seal/t-os150",
     "specifications": {
       "type": "Semi-Self Leveling Hybrid Polymer Sealant",
       "viscosity": "Semi-Self Leveling",
@@ -4295,7 +4295,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Non-hazardous high strength single part hybrid polymer sealant for transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/07/T-OS151_Cartridge-1-819x1024.png",
-    "url": "https://forzabuilt.com/product/t-os151-non-hazardous-high-strength-single-part-hybrid-polymer-sealant/",
+    "url": "/products/seal/t-os151",
     "specifications": {
       "type": "Non-Hazardous High Strength Hybrid Polymer Sealant",
       "viscosity": "Thixotropic Paste",
@@ -4350,7 +4350,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Silicone sealant for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/09/T-OS164-Sausage-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-os164-silicone-sealant/",
+    "url": "/products/seal/t-os164",
     "specifications": {
       "type": "Silicone Sealant",
       "viscosity": "Thixotropic Paste",
@@ -4405,7 +4405,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Web spray high tack infusion molding adhesive for composite applications requiring superior bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png",
-    "url": "https://forzabuilt.com/product/tac-734g-web-spray-high-tack-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-734g",
     "specifications": {
       "type": "Web Spray High Tack Infusion Molding Adhesive",
       "viscosity": "600-900 cps",
@@ -4458,7 +4458,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Mist spray no HAPS infusion molding adhesive for environmentally conscious composite applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tac-735r-mist-spray-no-haps-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-735r",
     "specifications": {
       "type": "Mist Spray No HAPS Infusion Molding Adhesive",
       "viscosity": "400-700 cps",
@@ -4510,7 +4510,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Web spray zero VOC infusion molding adhesive for clean manufacturing in composite applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-738R-NEW.png",
-    "url": "https://forzabuilt.com/product/tac-738r-web-spray-zero-voc-infusion-molding-adhesive/",
+    "url": "/products/bond/tac-738r",
     "specifications": {
       "type": "Web Spray Zero VOC Infusion Molding Adhesive",
       "viscosity": "500-800 cps",
@@ -4562,7 +4562,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Mist spray polymer concrete molding process tackifier for composite and concrete applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/05/TAC850GR-CANISTER-1024x1024.png",
-    "url": "https://forzabuilt.com/product/tac850-web-spray-polymer-concrete-molding-process-tackifier/",
+    "url": "/products/bond/tac850",
     "specifications": {
       "type": "Mist Spray Polymer Concrete Molding Process Tackifier",
       "viscosity": "300-600 cps",
@@ -4615,7 +4615,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Two-part methacrylate adhesive for high-performance composite applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/Dual-Cartridge-TAC-R750-1.png",
-    "url": "https://forzabuilt.com/product/tac-r750-two-part-methacrylate-adhesive/",
+    "url": "/products/bond/tac-r750",
     "specifications": {
       "type": "Two-Part Methacrylate Adhesive",
       "viscosity": "50,000-100,000 cps",
@@ -4668,7 +4668,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Two-part modified epoxy adhesive for demanding composite applications requiring superior bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/52-GAL-DRUM-TAC-R777.png",
-    "url": "https://forzabuilt.com/product/tac-r777-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/tac-r777",
     "specifications": {
       "type": "Two-Part Modified Epoxy Adhesive",
       "viscosity": "100,000-200,000 cps",
@@ -4721,7 +4721,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Ultra high-strength hybrid polymer structural adhesive for composite applications requiring superior bonding performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png",
-    "url": "https://forzabuilt.com/product/tac-os74-ultra-high-strength-hybrid-polymer-structural-adhesive/",
+    "url": "/products/bond/tac-os74",
     "specifications": {
       "type": "Ultra High-Strength Hybrid Polymer Structural Adhesive",
       "viscosity": "300,000-400,000 cps",
@@ -4777,7 +4777,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Neutral cure oxime silicone sealant for composite applications requiring superior sealing performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/05/TAC-OS75-Cartridge.png",
-    "url": "https://forzabuilt.com/product/tac-os75-neutral-cure-oxime-silicone-sealant/",
+    "url": "/products/seal/tac-os75",
     "specifications": {
       "type": "Neutral Cure Oxime Silicone Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -4833,7 +4833,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Low VOC, CA compliant multi-purpose adhesive for insulation applications requiring environmentally conscious bonding solutions.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC826-Aerosol_Forza_Mockup-768x1024.png",
-    "url": "https://forzabuilt.com/product/rc826-low-voc-ca-compliant-multi-purpose-adhesive/",
+    "url": "/products/bond/rc826",
     "specifications": {
       "type": "Low VOC Multi-Purpose Adhesive",
       "viscosity": "200-400 cps",
@@ -4888,7 +4888,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Non-flammable, non-methylene chloride contact adhesive for safe insulation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC862-canister-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/rc862-non-flammable-non-methylene-chloride-contact-adhesive/",
+    "url": "/products/bond/rc862",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -4943,7 +4943,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Low VOC, CA compliant multi-purpose contact adhesive for environmentally conscious insulation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC836-1024x1024.png",
-    "url": "https://forzabuilt.com/product/rc863-low-voc-ca-compliant-multi-purpose-contact-adhesive/",
+    "url": "/products/bond/rc863",
     "specifications": {
       "type": "Low VOC Contact Adhesive",
       "viscosity": "600-1000 cps",
@@ -4998,7 +4998,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Aggressive, fast drying pressure sensitive adhesive for demanding insulation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC886-Bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/rc864-aggressive-fast-drying-pressure-sensitive-adhesive/",
+    "url": "/products/bond/rc864",
     "specifications": {
       "type": "Pressure Sensitive Adhesive",
       "viscosity": "1000-2000 cps",
@@ -5053,7 +5053,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Low VOC, CA compliant aggressive fast drying pressure sensitive adhesive for environmentally conscious insulation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC886-Bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/rc886-low-voc-ca-compliant-aggressive-fast-drying-pressure-sensitive-adhesive/",
+    "url": "/products/bond/rc886",
     "specifications": {
       "type": "Low VOC Pressure Sensitive Adhesive",
       "viscosity": "1000-2000 cps",
@@ -5110,7 +5110,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "High temperature pressure-sensitive contact adhesive for demanding insulation applications requiring thermal resistance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/RC887-canister-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/rc887-high-temp-pressure-sensitive-contact-adhesive/",
+    "url": "/products/bond/rc887",
     "specifications": {
       "type": "High Temperature Pressure Sensitive Adhesive",
       "viscosity": "1500-2500 cps",
@@ -5165,7 +5165,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Non-flammable high performance spray contact adhesive for safe and efficient insulation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/5gal-pail-metal-C661-1-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-c661-non-flam-high-performance-spray-contact-adhesive/",
+    "url": "/products/bond/r-c661",
     "specifications": {
       "type": "Non-Flammable Spray Contact Adhesive",
       "viscosity": "300-600 cps",
@@ -5220,7 +5220,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Two-part epoxy adhesive for high-strength insulation applications requiring superior bonding performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-R820-Dual-Cartridge-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-r820-two-part-epoxy-adhesive/",
+    "url": "/products/bond/r-r820",
     "specifications": {
       "type": "Two-Part Epoxy Adhesive",
       "viscosity": "100,000-200,000 cps",
@@ -5274,7 +5274,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Low/medium viscosity laminating adhesive for insulation applications requiring precise bonding control.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/Tote-R-A1000.png",
-    "url": "https://forzabuilt.com/product/r-a2000-low-medium-viscosity-laminating-adhesive/",
+    "url": "/products/bond/r-a2000",
     "specifications": {
       "type": "Low/Medium Viscosity Laminating Adhesive",
       "viscosity": "500-1500 cps",
@@ -5329,7 +5329,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Isopropyl alcohol based cleaner and adhesion promoter for preparing surfaces before insulation bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/01/R-OSA-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-osa-isopropyl-alcohol-based-cleaner-adhesion-promoter/",
+    "url": "/products/bond/r-osa",
     "specifications": {
       "type": "Isopropyl Alcohol Based Cleaner/Adhesion Promoter",
       "viscosity": "1-5 cps",
@@ -5384,7 +5384,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Non-hazardous, high strength single part moisture cure hybrid polymer for insulation sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-OS84-Cartridge-819x1024.png",
-    "url": "https://forzabuilt.com/product/r-os8-non-hazardous-high-strength-single-part-moisture-cure-hybrid-polymer/",
+    "url": "/products/seal/r-os8",
     "specifications": {
       "type": "Single Part Moisture Cure Hybrid Polymer",
       "viscosity": "200,000-400,000 cps",
@@ -5440,7 +5440,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Single-component silicone sealant for insulation applications requiring superior sealing performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-OS84-Cartridge-819x1024.png",
-    "url": "https://forzabuilt.com/product/r-os84-single-component-silicone-sealant/",
+    "url": "/products/seal/r-os84",
     "specifications": {
       "type": "Single-Component Silicone Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -5496,7 +5496,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Thermal-break foam tape for insulation applications requiring thermal management and bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-T600-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-t600-thermal-break-foam-tape/",
+    "url": "/products/tape/r-t600",
     "specifications": {
       "type": "Thermal-Break Foam Tape",
       "thickness": "0.125\" - 0.250\"",
@@ -5551,7 +5551,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Low density, reverse wound, PVS, single sided thermal tape for insulation applications requiring thermal management.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-T620-Tape-1-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-t620-low-density-reverse-wound-pvs-single-sided-thermal-tape/",
+    "url": "/products/tape/r-t620",
     "specifications": {
       "type": "Single Sided Thermal Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -5606,7 +5606,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "insulation",
     "description": "Cold temperature double coated tape for insulation applications requiring low temperature performance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/10/R-T860-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r-t860-cold-temperature-double-coated-tape/",
+    "url": "/products/tape/r-t860",
     "specifications": {
       "type": "Cold Temperature Double Coated Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -5661,7 +5661,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Non-flammable non-methylene chloride contact adhesive for safe industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC933-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/ic932-non-flammable-non-methylene-chloride-contact-adhesive/",
+    "url": "/products/bond/ic932",
     "specifications": {
       "type": "Non-Flammable Contact Adhesive",
       "viscosity": "800-1200 cps",
@@ -5716,7 +5716,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "CA compliant high-strength contact adhesive for environmentally conscious industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC933-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/ic933-ca-compliant-high-strength-contact-adhesive/",
+    "url": "/products/bond/ic933",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "1000-1500 cps",
@@ -5771,7 +5771,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Styrene safe pressure sensitive adhesive for industrial applications requiring safe handling.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC934-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/ic934-styrene-safe-pressure-sensitive-adhesive/",
+    "url": "/products/bond/ic934",
     "specifications": {
       "type": "Styrene Safe Pressure Sensitive Adhesive",
       "viscosity": "1500-2000 cps",
@@ -5826,7 +5826,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "CA compliant pressure sensitive adhesive for environmentally conscious industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC946-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/ic946-ca-compliant-pressure-sensitive-adhesive/",
+    "url": "/products/bond/ic946",
     "specifications": {
       "type": "CA Compliant Pressure Sensitive Adhesive",
       "viscosity": "1200-1800 cps",
@@ -5881,7 +5881,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-temperature styrene-safe pressure sensitive adhesive for demanding industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/BOND-IC947-Mockup-NEW-705x1024.png",
-    "url": "https://forzabuilt.com/product/ic947-high-temp-styrene-safe-pressure-sensitive-adhesive/",
+    "url": "/products/bond/ic947",
     "specifications": {
       "type": "High-Temperature Styrene-Safe Pressure Sensitive Adhesive",
       "viscosity": "1800-2500 cps",
@@ -5937,7 +5937,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High performance neoprene contact adhesive for demanding industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/BOND-81-0389-NEW-1024x1024.png",
-    "url": "https://forzabuilt.com/product/81-0389-high-performance-neoprene-contact-adhesive/",
+    "url": "/products/bond/81-0389",
     "specifications": {
       "type": "High Performance Neoprene Contact Adhesive",
       "viscosity": "2000-3000 cps",
@@ -5992,7 +5992,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "High heat neoprene adhesive for industrial applications requiring thermal resistance.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C130-Clear-55-Gallon-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c130-high-heat-neoprene-adhesive/",
+    "url": "/products/bond/c130",
     "specifications": {
       "type": "High Heat Neoprene Adhesive",
       "viscosity": "2500-3500 cps",
@@ -6047,7 +6047,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "CA compliant contact adhesive for environmentally conscious industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C150-CA-COMPLIANT-HIGH-SOLIDS-CONTACT-ADHESIVE-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c150-ca-compliant-contact-adhesive/",
+    "url": "/products/bond/c150",
     "specifications": {
       "type": "CA Compliant Contact Adhesive",
       "viscosity": "1500-2500 cps",
@@ -6102,7 +6102,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Non-flammable sprayable contact adhesive for safe and efficient industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C331-Blue-55-Gallon.png",
-    "url": "https://forzabuilt.com/product/c331-non-flammable-sprayable-contact-adhesive/",
+    "url": "/products/bond/c331",
     "specifications": {
       "type": "Non-Flammable Sprayable Contact Adhesive",
       "viscosity": "300-600 cps",
@@ -6159,7 +6159,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "composites",
     "description": "Hybrid polymer rollable FRP adhesive for industrial FRP applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/FRP-Rollable-Adhesive-v2-1024x1024.png",
-    "url": "https://forzabuilt.com/product/frp-hybrid-polymer-rollable-frp-adhesive/",
+    "url": "/products/bond/frp",
     "specifications": {
       "type": "Hybrid Polymer Rollable FRP Adhesive",
       "viscosity": "50,000-100,000 cps",
@@ -6213,7 +6213,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Hybrid polymer adhesive and sealant for industrial applications requiring both bonding and sealing.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OA4-Cartridge-.png",
-    "url": "https://forzabuilt.com/product/oa4-hybrid-polymer-adhesive-sealant/",
+    "url": "/products/bond/oa4",
     "specifications": {
       "type": "Hybrid Polymer Adhesive/Sealant",
       "viscosity": "200,000-400,000 cps",
@@ -6268,7 +6268,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High green strength mounting adhesive for industrial applications requiring immediate bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/OA12_Cartridge.png",
-    "url": "https://forzabuilt.com/product/oa12-high-green-strength-mounting-adhesive/",
+    "url": "/products/bond/oa12",
     "specifications": {
       "type": "High Green Strength Mounting Adhesive",
       "viscosity": "300,000-500,000 cps",
@@ -6323,7 +6323,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High green strength mounting adhesive for industrial applications requiring immediate bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/08/OA13_Cartridge.png",
-    "url": "https://forzabuilt.com/product/oa13-high-green-strength-mounting-adhesive/",
+    "url": "/products/bond/oa13",
     "specifications": {
       "type": "High Green Strength Mounting Adhesive",
       "viscosity": "300,000-500,000 cps",
@@ -6378,7 +6378,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Hybrid polymer fast grab adhesive for industrial applications requiring immediate bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/Cartridge-OA23-819x1024.png",
-    "url": "https://forzabuilt.com/product/oa23-hybrid-polymer-fast-grab-adhesive/",
+    "url": "/products/bond/oa23",
     "specifications": {
       "type": "Hybrid Polymer Fast Grab Adhesive",
       "viscosity": "400,000-600,000 cps",
@@ -6433,7 +6433,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Ultra high-strength hybrid polymer structural adhesive for demanding industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/OS24-sausage-1024x1024.png",
-    "url": "https://forzabuilt.com/product/os24-ultra-high-strength-hybrid-polymer-structural-adhesive/",
+    "url": "/products/bond/os24",
     "specifications": {
       "type": "Ultra High-Strength Hybrid Polymer Structural Adhesive",
       "viscosity": "500,000-800,000 cps",
@@ -6488,7 +6488,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Adhesive primer and promoter for preparing surfaces before industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/OSA-.png",
-    "url": "https://forzabuilt.com/product/osa-adhesive-primer-and-promoter/",
+    "url": "/products/bond/osa",
     "specifications": {
       "type": "Adhesive Primer and Promoter",
       "viscosity": "1-5 cps",
@@ -6542,7 +6542,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Two-part 5-minute epoxy for fast industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R160-Dual-Cartridge-.png",
-    "url": "https://forzabuilt.com/product/r160-two-part-5-min-epoxy/",
+    "url": "/products/bond/r160",
     "specifications": {
       "type": "Two-Part 5-Minute Epoxy",
       "viscosity": "50,000-100,000 cps",
@@ -6596,7 +6596,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Two-part modified epoxy adhesive for high-strength industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R221-Dual-Cartridge-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r221-two-part-modified-epoxy-adhesive/",
+    "url": "/products/bond/r221",
     "specifications": {
       "type": "Two-Part Modified Epoxy Adhesive",
       "viscosity": "100,000-200,000 cps",
@@ -6651,7 +6651,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Two-part methacrylate adhesive for high-performance industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R519-Dual-Cartridge-1024x1024.png",
-    "url": "https://forzabuilt.com/product/r519-two-part-methacrylate-adhesive/",
+    "url": "/products/bond/r519",
     "specifications": {
       "type": "Two-Part Methacrylate Adhesive",
       "viscosity": "150,000-300,000 cps",
@@ -6706,7 +6706,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "Tape primer and adhesion promoter for preparing surfaces before tape applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/S228-paintcan-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/s228-tape-primer-and-adhesion-promoter/",
+    "url": "/products/bond/s228",
     "specifications": {
       "type": "Tape Primer and Adhesion Promoter",
       "viscosity": "1-5 cps",
@@ -6760,7 +6760,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/05/CA1000-TR.png",
-    "url": "https://forzabuilt.com/product/ca1000-instant-adhesive/",
+    "url": "/products/bond/ca1000",
     "specifications": {
       "type": "Instant Adhesive",
       "viscosity": "1-10 cps",
@@ -6813,7 +6813,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/05/CA1000-TR.png",
-    "url": "https://forzabuilt.com/product/ca1500-instant-adhesive/",
+    "url": "/products/bond/ca1500",
     "specifications": {
       "type": "Instant Adhesive",
       "viscosity": "1-10 cps",
@@ -6866,7 +6866,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Instant adhesive for quick industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/05/CA1000-TR.png",
-    "url": "https://forzabuilt.com/product/ca2400-instant-adhesive/",
+    "url": "/products/bond/ca2400",
     "specifications": {
       "type": "Instant Adhesive",
       "viscosity": "1-10 cps",
@@ -6919,7 +6919,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Multi-purpose hybrid polymer sealant for industrial sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS2-Cartridge-1-1-819x1024.png",
-    "url": "https://forzabuilt.com/product/os2-multi-purpose-polymer-sealant/",
+    "url": "/products/seal/os2",
     "specifications": {
       "type": "Multi-Purpose Hybrid Polymer Sealant",
       "viscosity": "100,000-200,000 cps",
@@ -6974,7 +6974,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Performance polymer sealant for high-performance industrial sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/06/OS10-Cartridge-1-819x1024.png",
-    "url": "https://forzabuilt.com/product/os10-performance-polymer/",
+    "url": "/products/seal/os10",
     "specifications": {
       "type": "Performance Polymer Sealant",
       "viscosity": "150,000-300,000 cps",
@@ -7029,7 +7029,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-strength hybrid polymer adhesive and sealant for industrial applications requiring both bonding and sealing.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/06/OS20-NEW1.png",
-    "url": "https://forzabuilt.com/product/os20-high-strength-hybrid-polymer-adhesive-sealant/",
+    "url": "/products/seal/os20",
     "specifications": {
       "type": "High-Strength Hybrid Polymer Adhesive/Sealant",
       "viscosity": "300,000-500,000 cps",
@@ -7084,7 +7084,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Low modulus performance polymer sealant for industrial applications requiring flexibility.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/06/OS25-Cartridge-1-819x1024.png",
-    "url": "https://forzabuilt.com/product/os25-low-modulus-performance-polymer/",
+    "url": "/products/seal/os25",
     "specifications": {
       "type": "Low Modulus Performance Polymer Sealant",
       "viscosity": "100,000-200,000 cps",
@@ -7139,7 +7139,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Self-leveling hybrid polymer sealant for industrial applications requiring smooth surfaces.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS31-Self-Leveling-Sealant-819x1024.png",
-    "url": "https://forzabuilt.com/product/self-leveling-hybrid-polymer-sealant/",
+    "url": "/products/seal/os31",
     "specifications": {
       "type": "Self-Leveling Hybrid Polymer Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -7194,7 +7194,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Single component silicone sealant for industrial sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS35-Low-Modulus-Seal-819x1024.png",
-    "url": "https://forzabuilt.com/product/os35-neutral-cure-oxime-silicone-sealant/",
+    "url": "/products/seal/os35",
     "specifications": {
       "type": "Single Component Silicone Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -7249,7 +7249,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Acetoxy silicone sealant for industrial sealing applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/06/OS37-Cartridge-2-819x1024.png",
-    "url": "https://forzabuilt.com/product/os37-acetoxy-silicone/",
+    "url": "/products/seal/os37",
     "specifications": {
       "type": "Acetoxy Silicone Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -7304,7 +7304,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Self-leveling performance polymer sealant for industrial applications requiring smooth surfaces.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/06/OS61-Cartridge-1-819x1024.png",
-    "url": "https://forzabuilt.com/product/os61-self-leveling-performance-polymer/",
+    "url": "/products/seal/os61",
     "specifications": {
       "type": "Self-Leveling Performance Polymer Sealant",
       "viscosity": "50,000-100,000 cps",
@@ -7360,7 +7360,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High performance semi self-leveling adhesive and sealant for industrial applications requiring both bonding and sealing.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/Forza-Seal-0S61-Adhesive-Sealant-1024x1024.png",
-    "url": "https://forzabuilt.com/product/os61-high-performance-semi-self-leveling-adhesive-sealant/",
+    "url": "/products/seal/os61-adhesive",
     "specifications": {
       "type": "High Performance Semi Self-Leveling Adhesive/Sealant",
       "viscosity": "100,000-200,000 cps",
@@ -7415,7 +7415,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Foam tape for construction and industrial applications requiring cushioning and bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C_T500-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-t500-foam-tape/",
+    "url": "/products/tape/c-t500",
     "specifications": {
       "type": "Foam Tape",
       "thickness": "0.125\" - 0.250\"",
@@ -7470,7 +7470,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding construction applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T550-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-t550-double-coated-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/c-t550",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7525,7 +7525,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-coated ultra high bond acrylic foam tape for construction applications requiring superior bonding strength.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T550.png",
-    "url": "https://forzabuilt.com/product/c-t553-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/c-t553",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7580,7 +7580,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-coated acrylic foam tape for construction and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T564-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-t557-double-coated-acrylic-foam-tape/",
+    "url": "/products/tape/c-t557",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7635,7 +7635,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-coated PE foam tape for construction applications requiring cushioning and bonding.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T564-Tape-Mockup.png",
-    "url": "https://forzabuilt.com/product/c-t564-double-coated-pe-foam-tape/",
+    "url": "/products/tape/c-t564",
     "specifications": {
       "type": "Double-Coated PE Foam Tape",
       "thickness": "0.125\" - 0.250\"",
@@ -7690,7 +7690,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-sided tape for construction and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T5100-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-t731-double-sided-tape/",
+    "url": "/products/tape/c-t731",
     "specifications": {
       "type": "Double-Sided Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7745,7 +7745,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Double-coated PET tape for construction and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/12/C-T5100-1024x1024.png",
-    "url": "https://forzabuilt.com/product/c-t5100-double-coated-pet/",
+    "url": "/products/tape/c-t5100",
     "specifications": {
       "type": "Double-Coated PET Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7800,7 +7800,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Double-coated ultra high bond acrylic foam tape for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/vhb-tape-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-t415-double-coated-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/t-t415",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7855,7 +7855,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Double-coated ultra high bond acrylic foam tape for demanding transportation applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/vhb-tape-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-t420-double-coated-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/t-t420",
     "specifications": {
       "type": "Double-Coated Acrylic Foam Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -7910,7 +7910,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Foam gasketing tape for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T600-Foam-Bonding-Tape.png",
-    "url": "https://forzabuilt.com/product/t-t1200-foam-gasketing-tape/",
+    "url": "/products/tape/t-t1200",
     "specifications": {
       "type": "Foam Gasketing Tape",
       "thickness": "0.125\" - 0.250\"",
@@ -7965,7 +7965,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "Extreme sealing tape for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/08/Extreme-Sealing-Tape-No-Background.png",
-    "url": "https://forzabuilt.com/product/t-t420-extreme-sealing-tape/",
+    "url": "/products/tape/t-t1420",
     "specifications": {
       "type": "Extreme Sealing Tape",
       "thickness": "0.125\" - 0.250\"",
@@ -8020,7 +8020,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "transportation",
     "description": "PE sealing tape for transportation and industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2025/03/tape-T-T430-png-2-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t-t430-pe-sealing-tape/",
+    "url": "/products/tape/t-t430",
     "specifications": {
       "type": "PE Sealing Tape",
       "thickness": "0.062\" - 0.125\"",
@@ -8075,7 +8075,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Ultra high-bond acrylic foam tape for demanding industrial applications requiring superior adhesion.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/vhb-tape-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t215-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/t215",
     "specifications": {
       "type": "Ultra High-Bond Acrylic Foam Tape",
       "thickness": "0.060\"",
@@ -8124,7 +8124,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Ultra high-bond acrylic foam tape for heavy-duty industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/vhb-tape-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t220-ultra-high-bond-acrylic-foam-tape/",
+    "url": "/products/tape/t220",
     "specifications": {
       "type": "Ultra High-Bond Acrylic Foam Tape",
       "thickness": "0.080\"",
@@ -8173,7 +8173,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-performance foam tape for industrial bonding and mounting applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T350-Thermal-Break-Tape.png",
-    "url": "https://forzabuilt.com/product/t305-foam-tape/",
+    "url": "/products/tape/t305",
     "specifications": {
       "type": "Foam Tape",
       "thickness": "0.040\"",
@@ -8222,7 +8222,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Thermal break tape for insulating applications and thermal barrier requirements.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T350-Thermal-Break-Tape.png",
-    "url": "https://forzabuilt.com/product/t350-thermal-break-tape/",
+    "url": "/products/tape/t350",
     "specifications": {
       "type": "Thermal Break Tape",
       "thickness": "0.060\"",
@@ -8271,7 +8271,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "High-performance transfer tape for industrial bonding applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T464-Transfer-Tape-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t464-transfer-tape/",
+    "url": "/products/tape/t464",
     "specifications": {
       "type": "Transfer Tape",
       "thickness": "0.020\"",
@@ -8320,7 +8320,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Foam gasketing tape for sealing and gasketing applications in industrial environments.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T600-Foam-Bonding-Tape.png",
-    "url": "https://forzabuilt.com/product/t600-foam-gasketing-tape/",
+    "url": "/products/tape/t600",
     "specifications": {
       "type": "Foam Gasketing Tape",
       "thickness": "0.080\"",
@@ -8369,7 +8369,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Cold temperature double-coated tape for low-temperature applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T464-Transfer-Tape-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t715-cold-temp-double-coated-tape/",
+    "url": "/products/tape/t715",
     "specifications": {
       "type": "Cold Temp Double-Coated Tape",
       "thickness": "0.040\"",
@@ -8418,7 +8418,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Butyl adhesive tape for sealing and bonding applications in industrial environments.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T900-Butyl-Adhesive-Tape-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t900-butyl-tape/",
+    "url": "/products/tape/t900",
     "specifications": {
       "type": "Butyl Tape",
       "thickness": "0.060\"",
@@ -8467,7 +8467,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "FSK (Foil-Scrim-Kraft) bonding tape for specialized industrial applications.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/07/T950.png",
-    "url": "https://forzabuilt.com/product/t950-fsk-bonding-tape/",
+    "url": "/products/tape/t950",
     "specifications": {
       "type": "FSK Bonding Tape",
       "thickness": "0.080\"",
@@ -8516,7 +8516,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "construction",
     "description": "Foil bonding tape for specialized industrial applications requiring foil backing.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/07/T970-FOIL-BONDING-TAPE-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t970-foil-bonding-tape/",
+    "url": "/products/tape/t970",
     "specifications": {
       "type": "Foil Bonding Tape",
       "thickness": "0.060\"",
@@ -8565,7 +8565,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "ForzaBOND™ IC946 is a web spray adhesive designed for use in applications using the substrates listed.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/03/IC946-bundle-1024x1024.png",
-    "url": "https://forzabuilt.com/product/p329-ca-compliant-high-solids-pressure-sensative-contact-adhesive/",
+    "url": "/products/seal/ic946--ca-compliant-pressure-sensitive-contact-adhesive",
     "specifications": {
       "type": "IC946- CA COMPLIANT PRESSURE-SENSITIVE CONTACT ADHESIVE",
       "substrates": [
@@ -8622,7 +8622,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "ForzaBOND™ OA45 is a single-component, acrylic latex selant formulated to provide fast-setting seal.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS45.png",
-    "url": "https://forzabuilt.com/product/acrylic-adhesive-caulk/",
+    "url": "/products/seal/os45",
     "specifications": {
       "type": "OS45 - ACRYLIC ADHESIVE CAULK",
       "substrates": [
@@ -8667,7 +8667,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "ForzaBOND™ OS55 is a butyl sealant designed to provide excellent weathering properties.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/12/OS55-1229x1536-1.png",
-    "url": "https://forzabuilt.com/product/butyl-adhesive-caulk/",
+    "url": "/products/seal/os55",
     "specifications": {
       "type": "OS55 - BUTYL ADHESIVE CAULK",
       "substrates": [
@@ -8720,7 +8720,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "ForzaTAPE™ T461 is an extremely aggressive synthetic rubber transfer tape.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T461-Hot-Melt-Transfer-Tape-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t461-hot-melt-transfer-tape/",
+    "url": "/products/seal/t461",
     "specifications": {
       "type": "T461 - HOT MELT TRANSFER TAPE",
       "substrates": [
@@ -8769,7 +8769,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "industry": "industrial",
     "description": "ForzaTAPE™ T500 is compounded to meet pre-engineered metal building specifications. The material is soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
     "image": "https://forzabuilt.com/wp-content/uploads/2023/05/butyl-tape-mockup-1024x1024.png",
-    "url": "https://forzabuilt.com/product/t500-butyl-adhesive-tape/",
+    "url": "/products/seal/t500",
     "specifications": {
       "type": "T500 - BUTYL ADHESIVE TAPE",
       "substrates": [

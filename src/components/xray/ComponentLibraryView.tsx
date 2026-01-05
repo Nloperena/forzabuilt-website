@@ -156,7 +156,7 @@ const ComponentLibraryView: React.FC<ComponentLibraryViewProps> = ({ industry = 
                   {/* Actions */}
                   <div className="mt-auto pt-4 border-t border-gray-100">
                     <a
-                      href={`/product/${product.id}`}
+                      href={`/products/${product.category.toLowerCase()}/${product.id}`}
                       className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-[#1B3764] hover:bg-[#2A4A7A] text-white rounded-lg text-sm font-medium transition-colors group/link"
                     >
                       View Details
