@@ -4,7 +4,7 @@ const ProductsSectionAlt = () => {
   const categories = [
     {
       slug: 'bond',
-      image: '/images/homepage-heroes/Forza Bond Hero Shot.jpg',
+      image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
       alt: 'Industrial Adhesives'
     },
     {
@@ -14,12 +14,12 @@ const ProductsSectionAlt = () => {
     },
     {
       slug: 'tape',
-      image: '/images/homepage-heroes/Forza Tape Hero Shot.jpg',
+      image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
       alt: 'Industrial Tapes'
     },
     {
       slug: 'ruggedred',
-      image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.jpg',
+      image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
       alt: 'Industrial Cleaners'
     }
   ];
@@ -67,11 +67,8 @@ const ProductsSectionAlt = () => {
         </div>
 
         {/* Contact Text */}
-        <div className="w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
-          <p className="text-base sm:text-lg lg:text-xl font-poppins text-gray-600 font-normal md:hidden">
-            Don't see your product? <a href="/contact" className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4">Contact us</a>
-          </p>
-          <p className="hidden md:block font-poppins text-gray-600 font-normal" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+        <div className="w-full text-center mt-8 pb-12">
+          <p className="text-sm md:text-base lg:text-lg font-poppins text-gray-600 font-normal">
             Don't see your product? <a href="/contact" className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4">Contact us</a>
           </p>
         </div>

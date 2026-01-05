@@ -170,7 +170,7 @@ const productStructuredData = product ? {
 >
   <Providers client:load>
     <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
-      <HeaderWrapper currentPath={currentPath} />
+      <HeaderWrapper currentPath={currentPath} client:load />
       
       <ProductDetail 
         product={product} 
@@ -179,7 +179,7 @@ const productStructuredData = product ? {
         client:load 
       />
       
-      <FooterV2 />
+      <FooterV2 client:load />
     </div>
   </Providers>
 </Layout>

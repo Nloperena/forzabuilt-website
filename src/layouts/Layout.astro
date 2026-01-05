@@ -150,6 +150,14 @@ const websiteSchema = {
   <body>
     <PageLoader client:load />
     <slot />
+    
+    <script>
+      import { inject } from '@vercel/analytics';
+      import { injectSpeedInsights } from '@vercel/speed-insights';
+      
+      inject();
+      injectSpeedInsights();
+    </script>
   </body>
 </html>
 

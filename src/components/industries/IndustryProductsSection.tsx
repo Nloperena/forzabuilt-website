@@ -82,11 +82,14 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
       
       // Handle both array and string industry formats
       const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
-      return industries.some(ind => 
-        ind.toLowerCase() === industryKey || 
-        ind.toLowerCase().includes(industryKey) ||
-        industryKey.includes(ind.toLowerCase())
-      );
+      const normalizedIndustryKey = industryKey.trim().toLowerCase();
+      
+      return industries.some(ind => {
+        const normalizedInd = ind.trim().toLowerCase();
+        return normalizedInd === normalizedIndustryKey || 
+               normalizedInd.includes(normalizedIndustryKey) ||
+               normalizedIndustryKey.includes(normalizedInd);
+      });
     });
 
     // Apply category filter - if selectedCategories is empty, show all; otherwise filter by selected categories
