@@ -15,13 +15,13 @@ interface IndustryBrochureSectionProps {
 
 // Industry-specific brochure images
 const brochureImages = {
-  construction: '/documents/Construction Brochure 1.png',
-  transportation: '/documents/Transportation Brochure 1.png',
-  marine: '/documents/Marine Brochure 2.png',
-  industrial: '/documents/Industrial Brochure 2.png',
-  composites: '/documents/Composites Brochure 1.png',
-  insulation: '/documents/Insulation Brochure 1.png',
-  foam: '/documents/Marine Brochure 2.png' // Fallback for foam since no image was provided
+  construction: '/documents/Construction Brochure 1.webp',
+  transportation: '/documents/Transportation Brochure 1.webp',
+  marine: '/documents/Marine Brochure 2.webp',
+  industrial: '/documents/Industrial Brochure 2.webp',
+  composites: '/documents/Composites Brochure 1.webp',
+  insulation: '/documents/Insulation Brochure 1.webp',
+  foam: '/documents/Marine Brochure 2.webp' // Fallback for foam since no image was provided
 };
 
 // Default titles and descriptions for each industry

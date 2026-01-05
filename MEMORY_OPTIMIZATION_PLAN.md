@@ -176,3 +176,4 @@
 - `imagemin` or `squoosh` - Image optimization
 - Git LFS (optional) - For large files in repo
 
+

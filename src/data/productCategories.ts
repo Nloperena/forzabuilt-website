@@ -12,7 +12,7 @@ export const productCategories = [
         {
           name: "T300 - STRUCTURAL ACRYLIC HIGH-BOND ADHESIVE TAPE",
           description: "An exceptional high-bond acrylic foam tape for structural applications requiring extreme strength and durability.",
-          image: "/products/T600-Foam-Bonding-Tape.png", // Placeholder
+          image: "/products/T600-Foam-Bonding-Tape.webp", // Placeholder
           color: "#f16022",
         },
         {

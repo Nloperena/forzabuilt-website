@@ -378,7 +378,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                           onError={(e) => {
                             // Fallback for transportation which has different naming
                             if (industry.id === 'transportation') {
-                              e.currentTarget.src = '/logos/Transportation-Icon-2.png';
+                              e.currentTarget.src = '/logos/Transportation-Icon-2.webp';
                             }
                           }}
                         />

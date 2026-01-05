@@ -15,13 +15,13 @@ import type { Product } from '@/types/products';
 
 // Industry icon paths - same as used throughout the site
 const INDUSTRY_ICONS: { [key: string]: string } = {
-  'marine': '/logos/Marine-Icon.png',
-  'construction': '/logos/Construction-Icon.png',
-  'transportation': '/logos/Transportation-Icon-2.png',
-  'industrial': '/logos/Industrial-Icon.png',
+  'marine': '/logos/Marine-Icon.webp',
+  'construction': '/logos/Construction-Icon.webp',
+  'transportation': '/logos/Transportation-Icon-2.webp',
+  'industrial': '/logos/Industrial-Icon.webp',
   'composites': '/logos/Composite-Icon.png',
   'insulation': '/logos/Insulation-Icon.png',
-  'foam': '/logos/Foam-Icon.png',
+  'foam': '/logos/Foam-Icon.webp',
 };
 
 // Chemistry data - same as used in ChemistryOverviewSectionV7

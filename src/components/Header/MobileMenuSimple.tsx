@@ -22,7 +22,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
   // Use blue logo for light modes, regular logo for dark modes
   const logoSrc = mode === 'light' || mode === 'light2' 
     ? '/logos/forza-logo-blue.svg' 
-    : '/logos/forza-logo-full.png';
+    : '/logos/forza-logo-full.webp';
   
   // Main navigation matching desktop
   const navigation = [

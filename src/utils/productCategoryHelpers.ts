@@ -3,14 +3,14 @@ export const getProductCategoryImage = (category: string): string | null => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return '/images/product-heroes/Forza Bond Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Bond Hero Shot Header.webp';
     case 'seal':
-      return '/images/product-heroes/Forza Seal Hero Shot.jpg';
+      return '/images/product-heroes/Forza Seal Hero Shot.webp';
     case 'tape':
-      return '/images/product-heroes/Forza Tape Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Tape Hero Shot Header.webp';
     case 'ruggedred':
     case 'cleaners':
-      return '/images/product-heroes/Forza Cleaners Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Cleaners Hero Shot Header.webp';
     default:
       return null;
   }
@@ -21,16 +21,16 @@ export const getMobileHeroImage = (category: string): string => {
   const cat = (category || '').toLowerCase();
   switch (cat) {
     case 'bond':
-      return '/images/product-heroes/Forza Bond Mobile Header.jpg';
+      return '/images/product-heroes/Forza Bond Mobile Header.webp';
     case 'seal':
-      return '/images/product-heroes/Forza Seal Mobile Header.jpg';
+      return '/images/product-heroes/Forza Seal Mobile Header.webp';
     case 'tape':
-      return '/images/product-heroes/Forza Tape Mobile Header.jpg';
+      return '/images/product-heroes/Forza Tape Mobile Header.webp';
     case 'ruggedred':
     case 'cleaners':
-      return '/images/product-heroes/RuggedRed Mobile Header.jpg';
+      return '/images/product-heroes/RuggedRed Mobile Header.webp';
     default:
-      return '/images/product-heroes/Forza Bond Mobile Header.jpg'; // Default fallback
+      return '/images/product-heroes/Forza Bond Mobile Header.webp'; // Default fallback
   }
 };
 

@@ -19,42 +19,42 @@ const StaticXRayExplorerV3: React.FC<StaticXRayExplorerV3Props> = ({ svgPath }) 
       sku: 'TAC-OS74',
       name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
       blurb: 'TAC-OS74 Trailer Door Lamination Solution',
-      thumb: '/product-images/tac-os74.png',
+      thumb: '/product-images/tac-os74.webp',
       url: '/products/bond/tac-os74'
     },
     'Bonding_Side_Skins_to_Trailer': {
       sku: 'TAC-739R',
       name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
       blurb: 'TAC-739R Trailer Side Skin Assembly System',
-      thumb: '/product-images/tac-739r.png',
+      thumb: '/product-images/tac-739r.webp',
       url: '/products/bond/tac-739r'
     },
     'Replacing_Mechanical_Fasteners__x2F__Riveting__x2F__on_Side_Panels': {
       sku: 'TAC-735R',
       name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
       blurb: 'TAC-735R Trailer Panel Fastener Replacement',
-      thumb: '/product-images/tac-735r.png',
+      thumb: '/product-images/tac-735r.webp',
       url: '/products/bond/tac-735r'
     },
     'Roof_Sealing': {
       sku: 'TAC-738R',
       name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
       blurb: 'TAC-738R Trailer Roof Sealing',
-      thumb: '/product-images/tac-738r.png',
+      thumb: '/product-images/tac-738r.webp',
       url: '/products/bond/tac-738r'
     },
     'Plastic_Laminate__x26__Metal_Laminate': {
       sku: 'TAC-734G',
       name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
       blurb: 'TAC-734G Trailer Laminate Bonding',
-      thumb: '/product-images/tac-734g.png',
+      thumb: '/product-images/tac-734g.webp',
       url: '/products/bond/tac-734g'
     },
     'Carpeting_and_Vinyl_on_Walls': {
       sku: 'TAC-R777',
       name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
       blurb: 'TAC-R777 Trailer Wall Covering',
-      thumb: '/product-images/tac-r777.png',
+      thumb: '/product-images/tac-r777.webp',
       url: '/products/bond/tac-r777'
     }
   };
@@ -64,7 +64,7 @@ const StaticXRayExplorerV3: React.FC<StaticXRayExplorerV3Props> = ({ svgPath }) 
     sku: 'TAC-OS74',
     name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
     blurb: 'TAC-OS74 Transportation Structural Bonding Solution',
-    thumb: '/product-images/tac-os74.png',
+    thumb: '/product-images/tac-os74.webp',
     url: '/products/bond/tac-os74'
   };
 

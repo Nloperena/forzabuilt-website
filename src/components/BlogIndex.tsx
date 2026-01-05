@@ -28,7 +28,7 @@ const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
         alt={post.title}
         className="w-full h-full object-cover md:object-cover transition-transform duration-700 group-hover:scale-105"
         onError={(e) => {
-          e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+          e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
         }}
       />
     </div>
@@ -70,12 +70,12 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ blogPosts }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [visiblePosts, setVisiblePosts] = useState<number>(9);
   const [headerImageLoaded, setHeaderImageLoaded] = useState(false);
-  const [headerImageSrc, setHeaderImageSrc] = useState<string>('/images/Blog Header Image.jpg');
+  const [headerImageSrc, setHeaderImageSrc] = useState<string>('/images/Blog Header Image.webp');
 
   // Preload the header image
   useEffect(() => {
     const img = new Image();
-    const originalSrc = '/images/Blog Header Image.jpg';
+    const originalSrc = '/images/Blog Header Image.webp';
     const encodedSrc = '/images/Blog%20Header%20Image.jpg';
     
     img.onload = () => {

@@ -68,7 +68,7 @@ const ServiceCardStack: React.FC = () => {
     {
       title: 'Peformance',
       icon: '⏳',
-      image: '/img/transportation/Trailer PreX-Ray.png',
+      image: '/img/transportation/Trailer PreX-Ray.webp',
       columns: [
        
         {

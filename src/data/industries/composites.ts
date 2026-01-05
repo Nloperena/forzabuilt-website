@@ -5,8 +5,8 @@ export const COMPOSITES_DATA: IndustryData = {
   xrays: [
     {
       id: 'composites-xray-1',
-      preSrc: '/img/composites/pre-Composites_Wind_Turbine.png',
-      postSrc: '/img/composites/post-Wind_Turbine_Exploded_Graphic_Web.png',
+      preSrc: '/img/composites/pre-Composites_Wind_Turbine.webp',
+      postSrc: '/img/composites/post-Wind_Turbine_Exploded_Graphic_Web.webp',
       svgOverlay: '/img/composites/overlay-composite-overlay-turbine.svg',
       width: 4368,
       height: 2912,
@@ -19,7 +19,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Composites Bonding System',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -30,7 +30,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Composites Assembly System',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -41,7 +41,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Composite Manufacturing System',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -52,7 +52,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Composite Structural Assembly',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
         {
@@ -63,7 +63,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Composite Bonding System',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -74,7 +74,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Composite Structural Bonding',
             url: '/products/bond/tac-os74',
-            thumb: '/product-images/tac-os74.png',
+            thumb: '/product-images/tac-os74.webp',
           },
         },
         {
@@ -85,7 +85,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Composite Structural Bonding',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
         {
@@ -96,7 +96,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Composite Structural Assembly',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -107,7 +107,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Composite Reinforcement System',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -118,7 +118,7 @@ export const COMPOSITES_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Turbine Blade Assembly',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
       ],

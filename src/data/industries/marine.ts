@@ -5,8 +5,8 @@ export const MARINE_DATA: IndustryData = {
   xrays: [
     {
       id: 'marine-xray-1',
-      preSrc: '/img/marine/pre-Marine_Boat.png',
-      postSrc: '/img/marine/post-Marine_Exploded_Boat_Graphic.png',
+      preSrc: '/img/marine/pre-Marine_Boat.webp',
+      postSrc: '/img/marine/post-Marine_Exploded_Boat_Graphic.webp',
       svgOverlay: '/img/marine/overlay-marine-overlay.svg',
       width: 259.2,
       height: 259.2,
@@ -19,7 +19,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
             blurb: 'MC722 Marine Seating Installation System',
             url: '/products/bond/mc722',
-            thumb: '/product-images/mc722.png',
+            thumb: '/product-images/mc722.webp',
           },
         },
         {
@@ -30,7 +30,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OS764 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE',
             blurb: 'M-OS764 Marine Carpet Bonding System',
             url: '/products/bond/m-os764',
-            thumb: '/product-images/m-os764.png',
+            thumb: '/product-images/m-os764.webp',
           },
         },
         {
@@ -41,7 +41,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OA755 – HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT',
             blurb: 'M-OA755 Bow Assembly Structural Bonding',
             url: '/products/bond/m-oa755',
-            thumb: '/product-images/m-oa755.png',
+            thumb: '/product-images/m-oa755.webp',
           },
         },
         {
@@ -52,7 +52,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC723 – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
             blurb: 'MC723 Marine Counter Installation System',
             url: '/products/bond/mc723',
-            thumb: '/product-images/mc723.png',
+            thumb: '/product-images/mc723.webp',
           },
         },
         {
@@ -63,7 +63,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'TAC-734G – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
             blurb: 'TAC-734G Headliner Mounting System',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -74,7 +74,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Additional Ceiling Support System',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -85,7 +85,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-C285 Premium High-Temp Neoprene Contact Adhesive',
             blurb: 'M-C285 Hull-to-Deck Bonding System',
             url: '/products/bond/m-c285',
-            thumb: '/product-images/m-c285.png',
+            thumb: '/product-images/m-c285.webp',
           },
         },
         {
@@ -96,7 +96,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-T820 Double-Coated Ultra High Bond Acrylic Foam Tape',
             blurb: 'M-T820 Multi-Purpose Marine Mounting System',
             url: '/products/tape/m-t820',
-            thumb: '/product-images/m-t820.png',
+            thumb: '/product-images/m-t820.webp',
           },
         },
         {
@@ -107,7 +107,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Marine Interior Cabinet Adhesive System',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -118,7 +118,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OS789 Multi-Purpose Hybrid Polymer Sealant',
             blurb: 'M-OS789 Weather-Resistant External Seating Adhesive',
             url: '/products/seal/m-os789',
-            thumb: '/product-images/m-os789.png',
+            thumb: '/product-images/m-os789.webp',
           },
         },
         {
@@ -129,7 +129,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-R445 Two-Part Modified Epoxy Adhesive',
             blurb: 'M-R445 Heavy-Duty Marine Bonding Solution',
             url: '/products/bond/m-r445',
-            thumb: '/product-images/m-r445.png',
+            thumb: '/product-images/m-r445.webp',
           },
         },
         {
@@ -151,7 +151,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Electronics Mounting Adhesive System',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -176,8 +176,8 @@ export const MARINE_DATA: IndustryData = {
     },
     {
       id: 'marine-xray-2',
-      preSrc: '/img/marine/pre-Pontoon_Boat__1_.png',
-      postSrc: '/img/marine/post-Pontoon_Boat_Exploded_Graphic__1_.jpg',
+      preSrc: '/img/marine/pre-Pontoon_Boat__1_.webp',
+      postSrc: '/img/marine/post-Pontoon_Boat_Exploded_Graphic__1_.webp',
       svgOverlay: '/img/marine/overlay-Marine Pontoon2 SVG.svg',
       width: 233.403,
       height: 191.162,
@@ -190,7 +190,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
             blurb: 'MC722 Upholstery Adhesive',
             url: '/products/bond/mc722',
-            thumb: '/product-images/mc722.png',
+            thumb: '/product-images/mc722.webp',
           },
         },
         {
@@ -201,7 +201,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC723 – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
             blurb: 'MC723 Upholstery Adhesive',
             url: '/products/bond/mc723',
-            thumb: '/product-images/mc723.png',
+            thumb: '/product-images/mc723.webp',
           },
         },
         {
@@ -212,7 +212,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-C285 Premium High-Temp Neoprene Contact Adhesive',
             blurb: 'M-C285 Neoprene Contact Adhesive',
             url: '/products/bond/m-c285',
-            thumb: '/product-images/m-c285.png',
+            thumb: '/product-images/m-c285.webp',
           },
         },
         {
@@ -223,7 +223,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Deck Bonding System',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -234,7 +234,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OS789 Multi-Purpose Hybrid Polymer Sealant',
             blurb: 'M-OS789 Deck Bonding System',
             url: '/products/seal/m-os789',
-            thumb: '/product-images/m-os789.png',
+            thumb: '/product-images/m-os789.webp',
           },
         },
         {

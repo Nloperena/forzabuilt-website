@@ -124,7 +124,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, allPosts }) => {
                   style={{ maxHeight: '500px' }}
                   onError={(e) => {
                     console.warn(`Failed to load image: ${post.image}`);
-                    e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                    e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
                   }}
                 />
               </div>
@@ -224,7 +224,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, allPosts }) => {
                               alt={relatedPost.title}
                               className="w-full h-full object-contain p-4 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
                               onError={(e) => {
-                                e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                                e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
                               }}
                             />
                           </div>
@@ -264,7 +264,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, allPosts }) => {
                             alt={recentPost.title}
                             className="w-full h-full object-contain p-2 mix-blend-multiply group-hover:scale-110 transition-transform duration-300"
                             onError={(e) => {
-                              e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                              e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
                             }}
                           />
                         </div>
@@ -313,4 +313,5 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, allPosts }) => {
 };
 
 export default BlogDetail;
+
 

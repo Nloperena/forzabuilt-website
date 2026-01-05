@@ -19,11 +19,11 @@ const productsItems: MenuItem[] = [
 ];
 
 const industriesItems: MenuItem[] = [
-  { label: 'Industrial', href: '/industries/industrial', iconSrc: '/logos/Industrial-Icon.png' },
-  { label: 'Transportation', href: '/industries/transportation', iconSrc: '/logos/Transportation-Icon-2.png' },
-  { label: 'Marine', href: '/industries/marine', iconSrc: '/logos/Marine-Icon.png' },
+  { label: 'Industrial', href: '/industries/industrial', iconSrc: '/logos/Industrial-Icon.webp' },
+  { label: 'Transportation', href: '/industries/transportation', iconSrc: '/logos/Transportation-Icon-2.webp' },
+  { label: 'Marine', href: '/industries/marine', iconSrc: '/logos/Marine-Icon.webp' },
   { label: 'Composites', href: '/industries/composites', iconSrc: '/logos/Composite-Icon.png' },
-  { label: 'Construction', href: '/industries/construction', iconSrc: '/logos/Construction-Icon.png' },
+  { label: 'Construction', href: '/industries/construction', iconSrc: '/logos/Construction-Icon.webp' },
   { label: 'Insulation', href: '/industries/insulation', iconSrc: '/logos/Insulation-Icon.png' },
 ];
 

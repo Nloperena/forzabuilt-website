@@ -161,7 +161,7 @@ const ChemistryItem: React.FC<ChemistryItemProps & { index: number; getElementRe
               alt={title}
               className="w-full h-full object-contain"
               onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
               }}
             />
           </div>
@@ -245,7 +245,7 @@ const ChemistryItemTablet: React.FC<ChemistryItemProps & { index: number; getEle
               alt={title}
               className="w-full h-full object-contain"
               onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
               }}
             />
           </div>

@@ -204,19 +204,19 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
     
     switch (industryLower) {
       case 'marine':
-        return '/logos/Marine-Icon.png';
+        return '/logos/Marine-Icon.webp';
       case 'construction':
-        return '/logos/Construction-Icon.png';
+        return '/logos/Construction-Icon.webp';
       case 'transportation':
         return '/logos/Transportation-Icon.png';
       case 'industrial':
-        return '/logos/Industrial-Icon.png';
+        return '/logos/Industrial-Icon.webp';
       case 'composites':
         return '/logos/Composite-Icon.png';
       case 'insulation':
         return '/logos/Insulation-Icon.png';
       case 'foam':
-        return '/logos/Foam-Icon.png';
+        return '/logos/Foam-Icon.webp';
       default:
         return null;
     }

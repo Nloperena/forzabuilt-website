@@ -5,8 +5,8 @@ export const INSULATION_DATA: IndustryData = {
   xrays: [
     {
       id: 'insulation-xray-1',
-      preSrc: '/img/insulation/pre-House Exterior.png',
-      postSrc: '/img/insulation/post-Final House Exploded Graphic.png',
+      preSrc: '/img/insulation/pre-House Exterior.webp',
+      postSrc: '/img/insulation/post-Final House Exploded Graphic.webp',
       svgOverlay: '/img/insulation/overlay-Final House Exploded Graphic.svg',
       width: 1080,
       height: 1080,
@@ -19,7 +19,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Exterior Sealing System',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -30,7 +30,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Weather Proofing Solution',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -41,7 +41,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Insulation Weather Proofing',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -52,7 +52,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Insulation Structural Bonding',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
         {
@@ -63,7 +63,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Insulation Assembly System',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -85,7 +85,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Insulation Mounting System',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -125,8 +125,8 @@ export const INSULATION_DATA: IndustryData = {
     },
     {
       id: 'insulation-xray-2',
-      preSrc: '/img/insulation/pre-Pipe completely wrapped.png',
-      postSrc: '/img/insulation/post-Pipe Exploded Graphic.png',
+      preSrc: '/img/insulation/pre-Pipe completely wrapped.webp',
+      postSrc: '/img/insulation/post-Pipe Exploded Graphic.webp',
       svgOverlay: '/img/insulation/overlay-Pipe Exploded Graphic.svg',
       width: 1080,
       height: 1080,

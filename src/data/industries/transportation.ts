@@ -5,8 +5,8 @@ export const TRANSPORTATION_DATA: IndustryData = {
   xrays: [
     {
       id: 'transportation-rv-bus-xray',
-      preSrc: '/img/transportation/pre-RV Bus PreX-Ray.png',
-      postSrc: '/img/transportation/post-RV Bus PostX-Ray.jpg',
+      preSrc: '/img/transportation/pre-RV Bus PreX-Ray.webp',
+      postSrc: '/img/transportation/post-RV Bus PostX-Ray.webp',
       svgOverlay: '/img/transportation/overlay-RV Bus Exploded.svg',
       width: 259.2,
       height: 259.2,
@@ -19,7 +19,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 RV Structural Bonding Solution',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
         {
@@ -30,7 +30,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 RV Window Assembly System',
             url: '/products/bond/tac-os74',
-            thumb: '/product-images/tac-os74.png',
+            thumb: '/product-images/tac-os74.webp',
           },
         },
         {
@@ -41,7 +41,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R RV Windshield Installation',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -52,7 +52,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G RV Structural Assembly',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -63,7 +63,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R RV Sealing Solution',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -74,7 +74,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R RV Component Bonding',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -90,8 +90,8 @@ export const TRANSPORTATION_DATA: IndustryData = {
     },
     {
       id: 'transportation-trailer-xray',
-      preSrc: '/img/transportation/pre-Trailer PreX-Ray.png',
-      postSrc: '/img/transportation/post-Trailer PostX-Ray.jpg',
+      preSrc: '/img/transportation/pre-Trailer PreX-Ray.webp',
+      postSrc: '/img/transportation/post-Trailer PostX-Ray.webp',
       svgOverlay: '/img/transportation/overlay-Trailer Exploded Graphic.svg',
       width: 800,
       height: 600,
@@ -104,7 +104,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Trailer Door Lamination Solution',
             url: '/products/bond/tac-os74',
-            thumb: '/product-images/tac-os74.png',
+            thumb: '/product-images/tac-os74.webp',
           },
         },
         {
@@ -115,7 +115,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Trailer Side Skin Assembly System',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -126,7 +126,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Trailer Panel Fastener Replacement',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -137,7 +137,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Trailer Roof Sealing',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -148,7 +148,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Trailer Laminate Bonding',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -159,7 +159,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Trailer Wall Covering',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
       ],

@@ -58,8 +58,8 @@ const IndustriesSectionAlt = () => {
       {/* Hide triangles for light2 mode */}
       {mode !== 'light2' && (
         <EdgeTrianglesBackground
-          leftImage="/images/misc/Small Science Triangles 2.png"
-          rightImage="/images/misc/Small Science Triangles.png"
+          leftImage="/images/misc/Small Science Triangles 2.webp"
+          rightImage="/images/misc/Small Science Triangles.webp"
           opacity={0.6}
           scale={1.1}
           leftRotation={265}

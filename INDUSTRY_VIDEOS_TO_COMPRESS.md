@@ -131,3 +131,4 @@ For the 3 videos that need optimization, use these settings (based on `VIDEO_COM
 
 Last Updated: After identifying industry header videos that need compression
 
+

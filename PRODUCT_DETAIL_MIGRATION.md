@@ -23,3 +23,4 @@ Product detail pages like `/products/bond/OA23` are not working in the Astro mig
 1. `astro-migration/src/components/products/ProductDetail.tsx` (NEW)
 2. `astro-migration/src/pages/products/[...slug].astro` (MODIFY)
 
+

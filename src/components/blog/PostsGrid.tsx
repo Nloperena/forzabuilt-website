@@ -31,7 +31,7 @@ const PostsGrid: React.FC<PostsGridProps> = ({ posts, viewMode, calculateReading
                   alt={post.title}
                   className={`${viewMode === 'grid' ? 'w-full h-full' : 'max-w-full max-h-full'} object-contain object-center ${viewMode === 'grid' ? 'group-hover:scale-110 transition-transform duration-300' : ''}`}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                    (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
                   }}
                 />
               </div>

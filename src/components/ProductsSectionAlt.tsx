@@ -9,7 +9,7 @@ const ProductsSectionAlt = () => {
     },
     {
       slug: 'seal',
-      image: '/images/homepage-heroes/Forza Seal Hero Shot.jpg',
+      image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
       alt: 'Industrial Sealants'
     },
     {

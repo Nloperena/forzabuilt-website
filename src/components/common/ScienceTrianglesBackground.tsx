@@ -34,13 +34,13 @@ const ScienceTrianglesBackground: React.FC<ScienceTrianglesBackgroundProps> = ({
   const getImageSrc = () => {
     switch (variant) {
       case 'small':
-        return '/images/misc/Small Science Triangles.png';
+        return '/images/misc/Small Science Triangles.webp';
       case 'small2':
-        return '/images/misc/Small Science Triangles 2.png';
+        return '/images/misc/Small Science Triangles 2.webp';
       case 'large':
-        return '/images/misc/Large Science Triangles.png';
+        return '/images/misc/Large Science Triangles.webp';
       default:
-        return '/images/misc/Small Science Triangles.png';
+        return '/images/misc/Small Science Triangles.webp';
     }
   };
 

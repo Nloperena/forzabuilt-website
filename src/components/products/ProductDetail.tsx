@@ -151,20 +151,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
 
   // Image loading states
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
-  const [mobileHeroImageLoaded, setMobileHeroImageLoaded] = useState(false);
   const [industryLogoLoaded, setIndustryLogoLoaded] = useState(false);
   const [chemistryIconLoaded, setChemistryIconLoaded] = useState(false);
   const [relatedProductImagesLoaded, setRelatedProductImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
   // Refs for image elements to check if already loaded (cached)
   const mainImageRef = useRef<HTMLImageElement>(null);
-  const mobileImageRef = useRef<HTMLImageElement>(null);
   const industryLogoRef = useRef<HTMLImageElement>(null);
 
   // Reset image loading states when product changes
   useEffect(() => {
     setMainImageLoaded(false);
-    setMobileHeroImageLoaded(false);
     setIndustryLogoLoaded(false);
     setChemistryIconLoaded(false);
     setRelatedProductImagesLoaded({});
@@ -175,9 +172,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
     const checkImageLoad = () => {
       if (mainImageRef.current?.complete && mainImageRef.current.naturalWidth > 0) {
         setMainImageLoaded(true);
-      }
-      if (mobileImageRef.current?.complete && mobileImageRef.current.naturalWidth > 0) {
-        setMobileHeroImageLoaded(true);
       }
       if (industryLogoRef.current?.complete && industryLogoRef.current.naturalWidth > 0) {
         setIndustryLogoLoaded(true);
@@ -236,72 +230,31 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
       <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] h-[60vh] md:h-[88vh] flex items-center">
         <div className="max-w-[1200px] mx-auto px-4 w-full">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
-            {/* Product Image */}
-            <div className="flex justify-center lg:justify-start relative h-[200px] sm:h-[250px] md:h-[400px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
-              {/* Mobile/Tablet Product Image */}
-              <div className="lg:hidden w-full h-full relative">
-                {!mobileHeroImageLoaded && (
-                  <ImageSkeleton className="w-full h-full rounded-lg" />
-                )}
-                <img 
-                  ref={(el) => {
-                    mobileImageRef.current = el;
-                    // Check if image is already loaded (cached)
-                    if (el?.complete && el.naturalWidth > 0) {
-                      setMobileHeroImageLoaded(true);
-                    }
-                  }}
-                  src={productImageUrl}
-                  alt={product.name}
-                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
-                    mobileHeroImageLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  onLoad={() => setMobileHeroImageLoaded(true)}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    console.error('Hero image error:', target.src);
-                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                      const filename = product.id.toLowerCase() + '.png';
-                      target.src = `/product-images/${filename}`;
-                    } else if (!target.src.includes('placeholder')) {
-                      target.src = '/placeholder.svg';
-                    }
-                    setMobileHeroImageLoaded(true);
-                  }}
-                />
-              </div>
-              {/* Desktop Product Image */}
-              <div className="hidden lg:block relative w-[450px] h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px]">
-                {!mainImageLoaded && (
-                  <ImageSkeleton className="w-full h-full" />
-                )}
-                <img 
-                  ref={(el) => {
-                    mainImageRef.current = el;
-                    // Check if image is already loaded (cached)
-                    if (el?.complete && el.naturalWidth > 0) {
-                      setMainImageLoaded(true);
-                    }
-                  }}
-                  src={productImageUrl} 
-                  alt={product.name}
-                  className={`w-full h-full object-contain transition-opacity duration-500 ${
-                    mainImageLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  onLoad={() => setMainImageLoaded(true)}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    console.error('Hero image error:', target.src);
-                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                      const filename = product.id.toLowerCase() + '.png';
-                      target.src = `/product-images/${filename}`;
-                    } else if (!target.src.includes('placeholder')) {
-                      target.src = '/placeholder.svg';
-                    }
-                    setMainImageLoaded(true);
-                  }}
-                />
-              </div>
+            {/* Product Image - Unified responsive display to prevent double loading */}
+            <div className="flex justify-center lg:justify-start relative h-[200px] sm:h-[250px] md:h-[400px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px] w-full lg:w-[450px] xl:w-[500px] 2xl:w-[600px]">
+              {!mainImageLoaded && (
+                <ImageSkeleton className="w-full h-full rounded-lg" />
+              )}
+              <img 
+                ref={mainImageRef}
+                src={productImageUrl}
+                alt={product.name}
+                className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
+                  mainImageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => setMainImageLoaded(true)}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  console.error('Hero image error:', target.src);
+                  if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                    const filename = product.id.toLowerCase() + '.png';
+                    target.src = `/product-images/${filename}`;
+                  } else if (!target.src.includes('placeholder')) {
+                    target.src = '/placeholder.svg';
+                  }
+                  setMainImageLoaded(true);
+                }}
+              />
             </div>
             
             {/* Product Info */}

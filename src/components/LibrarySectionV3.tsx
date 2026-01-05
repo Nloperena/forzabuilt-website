@@ -36,7 +36,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'industrial',
       title: 'INDUSTRIAL',
       label: 'Industrial Brochure',
-      coverImage: '/documents/Industrial Brochure 2.png',
+      coverImage: '/documents/Industrial Brochure 2.webp',
       pdfUrl: '/documents/Forza_Industrial Brochure_V15.pdf',
       shelf: 'top'
     },
@@ -44,7 +44,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'transportation',
       title: 'TRANSPORTATION',
       label: 'Transportation Brochure',
-      coverImage: '/documents/Transportation Brochure 1.png',
+      coverImage: '/documents/Transportation Brochure 1.webp',
       pdfUrl: '/documents/CompanyBrochure_Transportation_V37.pdf',
       shelf: 'top'
     },
@@ -52,7 +52,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'marine',
       title: 'MARINE',
       label: 'Marine Brochure',
-      coverImage: '/documents/Marine Brochure 2.png',
+      coverImage: '/documents/Marine Brochure 2.webp',
       pdfUrl: '/documents/CompanyBrochure_Marine_V40.3.pdf',
       shelf: 'top'
     },
@@ -60,7 +60,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'composites',
       title: 'COMPOSITES',
       label: 'Composites Brochure',
-      coverImage: '/documents/Composites Brochure 1.png',
+      coverImage: '/documents/Composites Brochure 1.webp',
       pdfUrl: '/documents/Forza_Composites Brochure_V22.1.pdf',
       shelf: 'top'
     },
@@ -69,7 +69,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'construction',
       title: 'CONSTRUCTION',
       label: 'Construction Brochure',
-      coverImage: '/documents/Construction Brochure 1.png',
+      coverImage: '/documents/Construction Brochure 1.webp',
       pdfUrl: '/documents/Construction Brochure V31.2.pdf',
       shelf: 'bottom'
     },
@@ -77,7 +77,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'insulation',
       title: 'INSULATION',
       label: 'Insulation Brochure',
-      coverImage: '/documents/Insulation Brochure 1.png',
+      coverImage: '/documents/Insulation Brochure 1.webp',
       pdfUrl: '/documents/CompanyBrochure_Insulation_V27.1.pdf',
       shelf: 'bottom'
     },
@@ -85,7 +85,7 @@ const LibrarySectionV3: React.FC = () => {
       id: 'spray-guide',
       title: 'CANISTER ADHESIVE SPRAY GUIDE',
       label: 'Canister Spray Guide',
-      coverImage: '/documents/Spray Guide 1.png',
+      coverImage: '/documents/Spray Guide 1.webp',
       pdfUrl: '/documents/spray-guide.pdf',
       shelf: 'bottom'
     }

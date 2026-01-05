@@ -251,7 +251,7 @@ const ChemistryCardMobile: React.FC<{ item: ChemistryItem; index: number; getEle
               alt={item.title}
               className="w-full h-full object-contain"
               onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
               }}
             />
           </div>
@@ -335,7 +335,7 @@ const ChemistryCardDesktop: React.FC<{ item: ChemistryItem; index: number; getEl
               alt={item.title}
               className="w-full h-full object-contain"
               onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
               }}
             />
           </div>
@@ -410,7 +410,7 @@ const IdealChemistrySectionV2: React.FC = () => {
         <div className="absolute inset-0 pointer-events-none z-10">
           {/* Top triangle */}
           <img
-            src="/images/misc/Small Science Triangles.png"
+            src="/images/misc/Small Science Triangles.webp"
             alt="Top Science Triangles"
             className="absolute top-8 right-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
             style={{ 
@@ -421,7 +421,7 @@ const IdealChemistrySectionV2: React.FC = () => {
           
           {/* Bottom triangle */}
           <img
-            src="/images/misc/Small Science Triangles 2.png"
+            src="/images/misc/Small Science Triangles 2.webp"
             alt="Bottom Science Triangles"
             className="absolute bottom-8 left-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
             style={{ 
@@ -432,7 +432,7 @@ const IdealChemistrySectionV2: React.FC = () => {
           
           {/* Left middle triangle */}
           <img
-            src="/images/misc/Small Science Triangles.png"
+            src="/images/misc/Small Science Triangles.webp"
             alt="Left Middle Science Triangles"
             className="absolute top-1/2 left-16 md:left-20 lg:left-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
             style={{ 
@@ -443,7 +443,7 @@ const IdealChemistrySectionV2: React.FC = () => {
           
           {/* Right middle triangle */}
           <img
-            src="/images/misc/Small Science Triangles 2.png"
+            src="/images/misc/Small Science Triangles 2.webp"
             alt="Right Middle Science Triangles"
             className="absolute top-1/2 right-16 md:right-20 lg:right-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
             style={{ 

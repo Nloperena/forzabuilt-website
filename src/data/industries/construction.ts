@@ -5,8 +5,8 @@ export const CONSTRUCTION_DATA: IndustryData = {
   xrays: [
     {
       id: 'construction-commercial-xray',
-      preSrc: '/img/construction/pre-Construction Commercial Exterior Graphic (1).png',
-      postSrc: '/img/construction/post-Construction Commercial PostXray.png',
+      preSrc: '/img/construction/pre-Construction Commercial Exterior Graphic (1).webp',
+      postSrc: '/img/construction/post-Construction Commercial PostXray.webp',
       svgOverlay: '/img/construction/overlay-Construction Commercial Exploded Graphic Web.svg',
       width: 2592,
       height: 2592,
@@ -19,7 +19,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Foundation Bonding Solution',
             url: '/products/bond/tac-r777',
-            thumb: '/product-images/tac-r777.png',
+            thumb: '/product-images/tac-r777.webp',
           },
         },
         {
@@ -30,7 +30,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Structural Bonding System',
             url: '/products/bond/tac-os74',
-            thumb: '/product-images/tac-os74.png',
+            thumb: '/product-images/tac-os74.webp',
           },
         },
         {
@@ -41,7 +41,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Roofing Installation System',
             url: '/products/bond/tac-738r',
-            thumb: '/product-images/tac-738r.png',
+            thumb: '/product-images/tac-738r.webp',
           },
         },
         {
@@ -52,7 +52,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Insulation Mounting System',
             url: '/products/bond/tac-734g',
-            thumb: '/product-images/tac-734g.png',
+            thumb: '/product-images/tac-734g.webp',
           },
         },
         {
@@ -63,7 +63,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Window Sealing Solution',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
         {
@@ -74,7 +74,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Door Assembly Bonding',
             url: '/products/bond/tac-735r',
-            thumb: '/product-images/tac-735r.png',
+            thumb: '/product-images/tac-735r.webp',
           },
         },
         {
@@ -85,15 +85,15 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Commercial Construction Solutions',
             url: '/products/bond/tac-739r',
-            thumb: '/product-images/tac-739r.png',
+            thumb: '/product-images/tac-739r.webp',
           },
         },
       ],
     },
     {
       id: 'construction-house-xray',
-      preSrc: '/img/construction/pre-Construction House Exterior Graphic Web.png',
-      postSrc: '/img/construction/post-Construction House PostXray.png',
+      preSrc: '/img/construction/pre-Construction House Exterior Graphic Web.webp',
+      postSrc: '/img/construction/post-Construction House PostXray.webp',
       svgOverlay: '/img/construction/overlay-Construction House Exploded Graphic Web.svg',
       width: 259.2,
       height: 259.2,
@@ -106,7 +106,7 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Foundation Bonding Solution',
             url: '/products/bond/tac-os74',
-            thumb: '/product-images/tac-os74.png',
+            thumb: '/product-images/tac-os74.webp',
           },
         },
         {

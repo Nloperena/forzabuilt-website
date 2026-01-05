@@ -25,25 +25,25 @@ const products: Product[] = [
   {
     title: "ADHESIVES",
     description: "Engineered for strength and speed — our industrial adhesives create lasting bonds that keep your production moving.",
-    image: "/images/homepage-heroes/Forza Bond Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Bond Hero Shot.webp",
     slug: "bond"
   },
   {
     title: "SEALANTS", 
     description: "Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.",
-    image: "/images/homepage-heroes/Forza Seal Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Seal Hero Shot.webp",
     slug: "seal"
   },
   {
     title: "TAPES",
     description: "Precision tapes that deliver clean application, consistent performance, and unmatched versatility across industries.",
-    image: "/images/homepage-heroes/Forza Tape Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Tape Hero Shot.webp",
     slug: "tape"
   },
   {
     title: "CLEANERS",
     description: "Industrial-grade cleaners formulated to cut through residue fast — keeping your equipment and processes running at peak efficiency.",
-    image: "/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.jpg",
+    image: "/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp",
     slug: "ruggedred"
   }
 ];
@@ -160,6 +160,30 @@ const InteractiveProductsSectionV6 = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [showModal, scrollStartY, isClosingModal, closeModal]);
 
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: number]: boolean }>({});
+
+  // Preload all category images
+  useEffect(() => {
+    products.forEach((prod, index) => {
+      const img = new Image();
+      img.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [index]: true }));
+      };
+      img.onerror = () => {
+        // Fallback
+        const fallbackImg = new Image();
+        fallbackImg.onload = () => {
+          setImagesLoaded(prev => ({ ...prev, [index]: true }));
+        };
+        fallbackImg.src = prod.image.replace('.webp', '.jpg');
+      };
+      img.src = prod.image;
+      if (img.complete) {
+        setImagesLoaded(prev => ({ ...prev, [index]: true }));
+      }
+    });
+  }, []);
+
   return (
     <section ref={sectionRef} className="relative z-20">
       <section className="relative isolate overflow-visible">
@@ -268,13 +292,20 @@ const InteractiveProductsSectionV6 = () => {
                     src={products[activeIndex].image}
                     alt={products[activeIndex].title}
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={{ opacity: imagesLoaded[activeIndex] ? 1 : 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{
                       objectPosition: 'center 70%',
                       transform: 'translateZ(0px) scale(1.05)',
+                    }}
+                    onLoad={() => setImagesLoaded(prev => ({ ...prev, [activeIndex]: true }))}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (target.src.includes('.webp')) {
+                        target.src = target.src.replace('.webp', '.jpg');
+                      }
                     }}
                   />
                 </AnimatePresence>

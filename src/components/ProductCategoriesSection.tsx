@@ -7,7 +7,7 @@ const categories = [
     title: 'Adhesives',
     description: 'High-performance adhesive solutions for structural integrity and long-lasting durability.',
     link: '/products/bond',
-    image: '/images/homepage-heroes/Forza Bond Hero Shot.jpg',
+    image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
     buttonText: 'Browse Adhesives'
   },
   {
@@ -15,7 +15,7 @@ const categories = [
     title: 'Sealants',
     description: 'Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.',
     link: '/products/seal',
-    image: '/images/homepage-heroes/Forza Seal Hero Shot.jpg',
+    image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
     buttonText: 'Browse Sealants'
   },
   {
@@ -23,7 +23,7 @@ const categories = [
     title: 'Tapes',
     description: 'Versatile tape solutions for secure bonding and sealing in demanding applications.',
     link: '/products/tape',
-    image: '/images/homepage-heroes/Forza Tape Hero Shot.jpg',
+    image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
     buttonText: 'Browse Tapes'
   },
   {
@@ -31,7 +31,7 @@ const categories = [
     title: 'Cleaners',
     description: 'Industrial-grade cleaning solutions for preparing surfaces and maintaining equipment.',
     link: '/products/ruggedred',
-    image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.jpg',
+    image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
     buttonText: 'Browse Cleaners'
   }
 ];
@@ -45,9 +45,24 @@ const ProductCategoriesSection = () => {
     categories.forEach((cat) => {
       const img = new Image();
       img.onload = () => {
+        console.log(`🚀 Preloaded: ${cat.image}`);
         setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
       };
+      img.onerror = () => {
+        console.warn(`⚠️ Preload failed for: ${cat.image}`);
+        // Try fallback for preload too
+        const fallbackImg = new Image();
+        fallbackImg.onload = () => {
+          setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
+        };
+        fallbackImg.src = cat.image.replace('.webp', '.jpg');
+      };
       img.src = cat.image;
+      
+      // If image is already in cache
+      if (img.complete) {
+        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
+      }
     });
   }, []);
 
@@ -126,7 +141,21 @@ const ProductCategoriesSection = () => {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 w-full h-full object-cover" 
                   style={{ objectPosition: 'center 70%' }}
-                  onLoad={() => setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }))}
+                  onLoad={() => {
+                    console.log(`✅ Image loaded: ${activeCategory.image}`);
+                    setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
+                  }}
+                  onError={() => {
+                    console.error(`❌ Image failed to load: ${activeCategory.image}`);
+                    // Fallback to original jpg/png if webp fails
+                    const img = new Image();
+                    const fallback = activeCategory.image.replace('.webp', '.jpg');
+                    img.src = fallback;
+                    img.onload = () => {
+                      console.log(`🔄 Using fallback: ${fallback}`);
+                      setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
+                    };
+                  }}
                 />
               </AnimatePresence>
             </div>

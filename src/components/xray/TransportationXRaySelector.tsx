@@ -20,7 +20,7 @@ const OPTIONS: XRayOption[] = [
     subtitle: '',
     summary:
       'Explore RV & motor coach assemblies including structural bonding for slide-outs, roof sealing, and continuous panel builds.',
-    previewImage: '/img/transportation/RV Bus Exploded-NEW.png',
+    previewImage: '/img/transportation/RV Bus Exploded-NEW.webp',
   },
   {
     id: 'trailer',
@@ -28,7 +28,7 @@ const OPTIONS: XRayOption[] = [
     subtitle: '',
     summary:
       'Inspect high-strength trailer assemblies covering walls, floors, and chassis bonding for commercial and specialty builds.',
-    previewImage: '/img/transportation/Trailer PostX-Ray.png',
+    previewImage: '/img/transportation/Trailer PostX-Ray.webp',
   },
 ];
 

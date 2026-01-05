@@ -27,7 +27,7 @@ const FeaturedPosts: React.FC<FeaturedPostsProps> = ({ posts, calculateReadingTi
                   alt={post.title}
                   className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+                    (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.webp';
                   }}
                 />
               </div>
