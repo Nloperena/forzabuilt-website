@@ -47,14 +47,6 @@ const MadeInAmericaSection: React.FC = () => {
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
               <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
-                {/* Immediate Thumbnail Background */}
-                <img
-                  src="/images/approach/R&D image.jpg"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover opacity-100"
-                  style={{ transform: 'scale(1.15)' }}
-                />
-                
                 {/* Background Video */}
                 <video
                   ref={videoRef}
@@ -64,7 +56,6 @@ const MadeInAmericaSection: React.FC = () => {
                   muted
                   playsInline
                   preload="auto"
-                  poster="/images/approach/R&D image.jpg"
                   onCanPlay={() => setIsVideoLoaded(true)}
                   className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
                   style={{

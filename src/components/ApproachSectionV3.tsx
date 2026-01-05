@@ -10,7 +10,6 @@ interface ApproachItem {
   title: string;
   description: string;
   bulletPoints: string[];
-  image: string;
   video?: string;
 }
 
@@ -24,7 +23,6 @@ const approachItems: ApproachItem[] = [
       "We know a thing or two, because we've seen a thing or two.",
       "If you have a unique situation, we've most likely seen it and have already come up with a specific solution for it."
     ],
-    image: "/images/approach/Construction Visit.jpg",
     video: "/videos/backgrounds/WebOptimized/Real Know How_Optimized.mp4"
   },
   {
@@ -35,7 +33,6 @@ const approachItems: ApproachItem[] = [
       "We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.",
       "Our products deliver guaranteed performance"
     ],
-    image: "/images/approach/Products Portfolio.jpg",
     video: "/videos/backgrounds/WebOptimized/Purpose Built Products_Optimized.mp4"
   },
   {
@@ -47,7 +44,6 @@ const approachItems: ApproachItem[] = [
       "That's why our formulas, testing, and compliance know-how are second to none.",
       "If it's important to you, it's important to us."
     ],
-    image: "/images/approach/Legacy Image.jpg",
     video: "/videos/backgrounds/WebOptimized/Industry Summary Page Video_Optimized.mp4"
   },
   {
@@ -59,7 +55,6 @@ const approachItems: ApproachItem[] = [
       "We don't just cover one or two of your needs, we do them all!",
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
-    image: "/images/approach/Products Portfolio.jpg",
     video: "/videos/backgrounds/WebOptimized/Product Summary Page Video_Optimized.mp4"
   },
   {
@@ -71,7 +66,6 @@ const approachItems: ApproachItem[] = [
       "We blend great science with great practicality. To create products that aren't just great in theory but that are actually great in use.",
       "Less waste, better chemistries, faster applications, and safer ingredients. Always for the customer."
     ],
-    image: "/images/approach/Sustainability Image for Web.jpg",
     video: "/videos/backgrounds/WebOptimized/Real Innovation_Optimized.mp4"
   },
   {
@@ -83,7 +77,6 @@ const approachItems: ApproachItem[] = [
       "We proudly manufacture our products in the USA, in America's heartland.",
       "From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability."
     ],
-    image: "/images/approach/R&D image.jpg",
     video: "/videos/backgrounds/WebOptimized/Made in USA_Optimized.mp4"
   },
   {
@@ -94,7 +87,6 @@ const approachItems: ApproachItem[] = [
       "No wasted time. No off-the-shelf guesswork. Just the right product, right away – proven and validated.",
       "When a product doesn't exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast."
     ],
-    image: "/images/approach/R&D image.jpg",
     video: "/videos/backgrounds/WebOptimized/R&D Leadership_Optimized.mp4"
   },
   {
@@ -104,7 +96,6 @@ const approachItems: ApproachItem[] = [
       "We build stronger, safer products without sacrificing performance.",
       "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
-    image: "/images/approach/Sustainability Image for Web.jpg",
     video: "/videos/backgrounds/WebOptimized/Sustainable Solutions_Optimized.mp4"
   },
   {
@@ -116,7 +107,6 @@ const approachItems: ApproachItem[] = [
       "Real people. Real care. Real expertise.",
       "We provide the quality & performance of a Fortune 500 company with the service, know-how, & personalized care of a family-owned, corner grocery store."
     ],
-    image: "/images/approach/Receptionist at desk.jpg",
     video: "/videos/backgrounds/WebOptimized/Customer Obsessed_Optimized.mp4"
   }
 ];
@@ -541,7 +531,7 @@ const ApproachSectionV3 = () => {
           ">
               {/* Inline image (all breakpoints) with blue gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#2c476e] to-[#477197] overflow-hidden">
-                {/* Previous content (beneath) - image or video */}
+                {/* Previous content (beneath) - video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
                     ref={previousVideoRef}
@@ -557,18 +547,8 @@ const ApproachSectionV3 = () => {
                     <source key={approachItems[previousItem].video} src={approachItems[previousItem].video} type="video/mp4" />
                   </video>
                 )}
-                {/* Only show image if video failed or doesn't exist */}
-                {(!approachItems[previousItem].video || videoErrorMap[previousItem]) && (
-                  <img
-                    src={approachItems[previousItem].image}
-                    alt={approachItems[previousItem].title}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                      videoLoadedMap[selectedItem] && selectedItem !== previousItem ? 'opacity-0' : 'opacity-100'
-                    }`}
-                  />
-                )}
                 
-                {/* Current content (on top) - image or video */}
+                {/* Current content (on top) - video */}
                 {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
                   <motion.video
                     ref={currentVideoRef}
@@ -588,18 +568,6 @@ const ApproachSectionV3 = () => {
                   >
                     <source key={approachItems[selectedItem].video} src={approachItems[selectedItem].video} type="video/mp4" />
                   </motion.video>
-                )}
-                {/* Only show image if no video or video failed */}
-                {(!approachItems[selectedItem].video || videoErrorMap[selectedItem]) && (
-                  <motion.img
-                    key={`current-image-${selectedItem}`}
-                    src={approachItems[selectedItem].image}
-                    alt={approachItems[selectedItem].title}
-                    initial={{ opacity: 0, x: -32 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
                 )}
                 
                                   {/* Uniform greyish dark blue overlay */}

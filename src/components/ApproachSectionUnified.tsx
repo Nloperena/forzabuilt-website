@@ -9,7 +9,6 @@ interface ApproachItem {
   title: string;
   description: string;
   bulletPoints: string[];
-  image: string;
   video?: string;
 }
 
@@ -68,7 +67,6 @@ const approachItems: ApproachItem[] = [
       "We know a thing or two, because we've seen a thing or two.",
       "If you have a unique situation, we've most likely seen it and have already come up with a specific solution for it."
     ],
-    image: "/images/approach/Construction Visit.jpg",
     video: "/videos/backgrounds/WebOptimized/Real Know How_Optimized.mp4"
   },
   {
@@ -79,7 +77,6 @@ const approachItems: ApproachItem[] = [
       "We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.",
       "Our products deliver guaranteed performance"
     ],
-    image: "/images/approach/Products Portfolio.jpg",
     video: "/videos/backgrounds/WebOptimized/Purpose Built Products_Optimized.mp4"
   },
   {
@@ -91,7 +88,6 @@ const approachItems: ApproachItem[] = [
       "That's why our formulas, testing, and compliance know-how are second to none.",
       "If it's important to you, it's important to us."
     ],
-    image: "/images/approach/Legacy Image.jpg",
     video: "/videos/backgrounds/WebOptimized/Industry Summary Page Video_Optimized.mp4"
   },
   {
@@ -103,7 +99,6 @@ const approachItems: ApproachItem[] = [
       "We don't just cover one or two of your needs, we do them all!",
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
-    image: "/images/approach/Products Portfolio.jpg",
     video: "/videos/backgrounds/WebOptimized/Product Summary Page Video_Optimized.mp4"
   },
   {
@@ -115,7 +110,6 @@ const approachItems: ApproachItem[] = [
       "We blend great science with great practicality. To create products that aren't just great in theory but that are actually great in use.",
       "Less waste, better chemistries, faster applications, and safer ingredients. Always for the customer."
     ],
-    image: "/images/approach/Sustainability Image for Web.jpg",
     video: "/videos/backgrounds/WebOptimized/Real Innovation_Optimized.mp4"
   },
   {
@@ -127,7 +121,6 @@ const approachItems: ApproachItem[] = [
       "We proudly manufacture our products in the USA, in America's heartland.",
       "From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability."
     ],
-    image: "/images/approach/R&D image.jpg",
     video: "/videos/backgrounds/WebOptimized/Made in USA_Optimized.mp4"
   },
   {
@@ -138,7 +131,6 @@ const approachItems: ApproachItem[] = [
       "No wasted time. No off-the-shelf guesswork. Just the right product, right away – proven and validated.",
       "When a product doesn't exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast."
     ],
-    image: "/images/approach/R&D image.jpg",
     video: "/videos/backgrounds/WebOptimized/R&D Leadership_Optimized.mp4"
   },
   {
@@ -148,7 +140,6 @@ const approachItems: ApproachItem[] = [
       "We build stronger, safer products without sacrificing performance.",
       "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
-    image: "/images/approach/Sustainability Image for Web.jpg",
     video: "/videos/backgrounds/WebOptimized/Sustainability That Works_Optimized.mp4"
   },
   {
@@ -160,7 +151,6 @@ const approachItems: ApproachItem[] = [
       "Real people. Real care. Real expertise.",
       "We provide the quality & performance of a Fortune 500 company with the service, know-how, & personalized care of a family-owned, corner grocery store."
     ],
-    image: "/images/approach/Receptionist at desk.jpg",
     video: "/videos/backgrounds/WebOptimized/Customer Obsessed_Optimized.mp4"
   }
 ];
@@ -363,17 +353,14 @@ const ApproachSectionUnified = () => {
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
               ">
-                {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
+                {/* Inline content (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
-                  {/* Immediate Thumbnail Background (always present behind video) */}
-                  <img
-                    src={approachItems[selectedItem].image}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover opacity-100"
-                    loading="eager"
-                  />
+                  {/* Video Skeleton Loading State */}
+                  {!videoLoadedMap[selectedItem] && !videoErrorMap[selectedItem] && (
+                    <VideoSkeleton className="absolute inset-0 w-full h-full" />
+                  )}
                   
-                  {/* Current content (on top) - video */}
+                  {/* Current content - video */}
                   {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
                     <motion.video
                       ref={currentVideoRef}
@@ -389,7 +376,6 @@ const ApproachSectionUnified = () => {
                       playsInline
                       autoPlay
                       preload="auto"
-                      poster={approachItems[selectedItem].image}
                       onCanPlay={() => handleVideoLoadedMetadata(selectedItem)}
                       onError={() => handleVideoError(selectedItem)}
                     >
@@ -397,7 +383,7 @@ const ApproachSectionUnified = () => {
                     </motion.video>
                   )}
                   
-                  {/* Uniform dark blue overlay to darken image/video */}
+                  {/* Uniform dark blue overlay to darken video */}
                   <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(44, 71, 110, 0.6)' }}></div>
                   
                   {/* Overlay content - flexbox layout: top-aligned on mobile, bottom-aligned on desktop */}
