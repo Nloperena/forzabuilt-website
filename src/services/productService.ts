@@ -25,8 +25,13 @@ export type ProductsData = {
   products: Product[];
 };
 
-// Use our local API proxy to avoid CORS issues in production
-const PRODUCTS_DATA_URL = '/api/products';
+// Use our local API proxy to avoid CORS issues in production (browser only)
+// During SSR (build), we use the direct Heroku URL because relative URLs don't work in Node fetch
+const HEROKU_API_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';
+const PRODUCTS_DATA_URL = isSSR ? HEROKU_API_URL : '/api/products';
+
+// Fallback JSON URL also needs to be absolute during SSR
+const FALLBACK_JSON_URL = isSSR ? 'https://www.forzabuilt.com/productsSimplified.json' : '/productsSimplified.json';
 
 // Simple in-memory cache
 let productsCache: Product[] | null = null;
@@ -162,10 +167,9 @@ export async function getAllProducts(): Promise<Product[]> {
     
     // Try fallback to local JSON file only as last resort
     try {
-      const fallbackResponse = await fetch('/productsSimplified.json');
+      console.warn(`⚠️ API failed, using fallback local JSON data from ${FALLBACK_JSON_URL}`);
+      const fallbackResponse = await fetch(FALLBACK_JSON_URL);
       if (fallbackResponse.ok) {
-        const fallbackData = await fallbackResponse.json();
-        console.warn('⚠️ API failed, using fallback local JSON data');
         
         const rawProducts = fallbackData.products || [];
         const products = rawProducts.map((p: any) => transformProductData(p));

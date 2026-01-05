@@ -54,6 +54,7 @@ export const getIndustryColorHex = (industry: string | string[]) => {
 
 // Helper to convert text to title case
 export const toTitleCase = (str: string) => {
+  if (!str || typeof str !== 'string') return '';
   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 };
 

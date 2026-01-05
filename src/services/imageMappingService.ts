@@ -78,8 +78,6 @@ export class ImageMappingService {
       'ca1500': 'Industrial/ca1500.webp',
       'ca1000': 'Industrial/ca1000.webp',
       'oa23': 'Industrial/oa23.webp',
-      'oa13': 'Industrial/oa13.webp',
-      'oa12': 'Industrial/oa12.webp',
     };
     
     return mapping[id] || `${id}.webp`;
