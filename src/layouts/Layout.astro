@@ -2,6 +2,8 @@
 import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
 import PageLoader from '@/components/common/PageLoader';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -150,14 +152,8 @@ const websiteSchema = {
   <body>
     <PageLoader client:load />
     <slot />
-    
-    <script>
-      import { inject } from '@vercel/analytics';
-      import { injectSpeedInsights } from '@vercel/speed-insights';
-      
-      inject();
-      injectSpeedInsights();
-    </script>
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
 
