@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Anchor, Factory, Car, Building, Package, Layers, Snowflake, Search, Info, ExternalLink, X } from 'lucide-react';
+import { Package, Search, ExternalLink, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 
