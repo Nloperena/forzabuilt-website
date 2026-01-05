@@ -9,6 +9,7 @@ import { fetchData } from "../lib/utils";
 import { ImageMappingService } from './imageMappingService';
 import { getBlobImageUrl } from '../utils/blobStorage';
 import type { Product } from '@/types/products';
+import productsDataFallback from '@/data/productsSimplified.json';
 
 export type ProductsData = {
   metadata: {
@@ -33,8 +34,9 @@ const isSSR = typeof window === 'undefined';
 const HEROKU_API_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';
 const PRODUCTS_DATA_URL = isSSR ? HEROKU_API_URL : '/api/products';
 
-// Fallback JSON URL also needs to be absolute during SSR
-const FALLBACK_JSON_URL = isSSR ? 'https://www.forzabuilt.com/productsSimplified.json' : '/productsSimplified.json';
+/**
+ * Transforms raw product data from either API or fallback JSON into the Product type
+ */
 
 // Simple in-memory cache
 let productsCache: Product[] | null = null;
@@ -88,11 +90,19 @@ function transformProductData(apiProduct: any): Product {
     // We have a specific mapping (contains a category or a custom filename), use it
     imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
   } else if (apiProduct.image || apiProduct.imageUrl) {
-    const imgSource = apiProduct.image || apiProduct.imageUrl;
+    let imgSource = apiProduct.image || apiProduct.imageUrl;
     
-    if (imgSource.startsWith('http://') || imgSource.startsWith('https://')) {
-      // If it's already a full URL, use it (fixing common typos)
-      imageUrl = imgSource.replace('product-images-web-optmized', 'product-images-web-optimized');
+    // Fix common 404 issues with legacy WordPress URLs or typos
+    if (imgSource.includes('wp-content/uploads') || imgSource.includes('product-images-web-optmized')) {
+      // Extract filename from WordPress URL or fix typo
+      const filename = imgSource.split('/').pop()?.split('?')[0] || '';
+      if (filename) {
+        imageUrl = getBlobImageUrl(filename, normalizedIndustries);
+      } else {
+        imageUrl = imgSource.replace('product-images-web-optmized', 'product-images-web-optimized');
+      }
+    } else if (imgSource.startsWith('http://') || imgSource.startsWith('https://')) {
+      imageUrl = imgSource;
     } else {
       // Use blob storage utility to construct the path
       imageUrl = getBlobImageUrl(imgSource, normalizedIndustries);
@@ -101,6 +111,7 @@ function transformProductData(apiProduct: any): Product {
     // Use the default mapping (id.webp)
     imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
   }
+
 
 
   return {
@@ -168,23 +179,14 @@ export async function getAllProducts(): Promise<Product[]> {
   } catch (error) {
     console.error('Failed to fetch products from API proxy:', error);
     
-    // Try fallback to local JSON file only as last resort
-    try {
-      console.warn(`⚠️ API failed, using fallback local JSON data from ${FALLBACK_JSON_URL}`);
-      const fallbackResponse = await fetch(FALLBACK_JSON_URL);
-      if (fallbackResponse.ok) {
-        const fallbackData = await fallbackResponse.json();
-        const rawProducts = fallbackData.products || [];
-        const products = rawProducts.map((p: any) => transformProductData(p));
-        
-        return products.filter((p: Product) => p.isActive !== false);
-      }
-    } catch (fallbackError) {
-      console.error('Fallback also failed:', fallbackError);
-    }
+    // Try fallback to local JSON file
+    console.warn('⚠️ API failed, using local fallback data');
+    const rawProducts = (productsDataFallback as any).products || [];
+    const products = rawProducts.map((p: any) => transformProductData(p));
     
-    return [];
+    return products.filter((p: Product) => p.isActive !== false);
   }
+
 }
 
 export async function getProductById(id: string): Promise<Product | null> {

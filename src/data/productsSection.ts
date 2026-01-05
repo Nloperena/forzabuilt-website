@@ -20,7 +20,7 @@ export const products: Product[] = [
     title: "BOND",
     fullTitle: "FORZA BOND",
     image: canisterSystem,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg",
+    hoverImage: "https://www.forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg",
     color: "#f16022",
     slug: "bond"
   },
@@ -28,7 +28,7 @@ export const products: Product[] = [
     title: "SEAL",
     fullTitle: "FORZA SEAL",
     image: os2Cartridge,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg",
+    hoverImage: "https://www.forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg",
     color: "#faaf40",
     slug: "seal"
   },
@@ -36,7 +36,7 @@ export const products: Product[] = [
     title: "TAPE",
     fullTitle: "FORZA TAPE",
     image: tapeHeroic,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
+    hoverImage: "https://www.forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
     color: "#d1181f",
     slug: "tape"
   },
@@ -44,7 +44,7 @@ export const products: Product[] = [
     title: "RUGGED RED",
     fullTitle: "RUGGED RED",
     image: rrHandSpraying,
-    hoverImage: "https://ruggedred.com/images/RRMascot+Type-smaller.png",
+    hoverImage: "https://ruggedred.com/images/RRMascot+Type-smaller.webp",
     color: "#e53935",
     external: true,
     link: "https://ruggedred.com/"

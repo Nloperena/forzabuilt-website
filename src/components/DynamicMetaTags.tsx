@@ -23,8 +23,8 @@ export default function DynamicMetaTags({
 }: DynamicMetaTagsProps) {
   const fullTitle = title ? `${title} - ForzaBuilt` : 'ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions';
   const fullDescription = description || 'ForzaBuilt delivers premium industrial adhesives, sealants, and bonding solutions across transportation, marine, construction, and manufacturing. Expert industrial structural adhesives, equipment assembly solutions, and specialized bonding products for demanding industrial applications.';
-  const fullUrl = url ? `https://forzabuilt.com${url}` : 'https://forzabuilt.com';
-  const fullImage = image.startsWith('http') ? image : `https://forzabuilt.com${image}`;
+  const fullUrl = url ? `https://www.forzabuilt.com${url}` : 'https://www.forzabuilt.com';
+  const fullImage = image.startsWith('http') ? image : `https://www.forzabuilt.com${image}`;
 
   return (
     <Helmet>

@@ -245,7 +245,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OS764 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'M-OS764 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/m-os764',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/AP749_M-OS764_Sausage_NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/AP749_M-OS764_Sausage_NEW.png',
           },
         },
         {
@@ -256,7 +256,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-R478 Two-Part Methacrylate Adhesive',
             blurb: 'M-R478 Two-Part Methacrylate Adhesive',
             url: '/products/m-r478-two-part-methacrylate-adhesive',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-R478-NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/M-R478-NEW.png',
           },
         },
         {
@@ -267,7 +267,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-R445 Two-Part Modified Epoxy Adhesive',
             blurb: 'M-R445 Two-Part Modified Epoxy Adhesive',
             url: '/products/bond/m-r445',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-R445-NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/M-R445-NEW.png',
           },
         },
         {
@@ -278,7 +278,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC723 Web Spray CA Compliant Multi-Purpose Contact Adhesive',
             blurb: 'MC723 Web Spray CA Compliant Multi-Purpose Contact Adhesive',
             url: '/products/bond/mc723',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
           },
         },
         {
@@ -289,7 +289,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'MC722 Web Spray Non-Flammable / Non-Mrthylene Chloride Contact Adhesive',
             blurb: 'MC722 Web Spray Non-Flammable / Non-Mrthylene Chloride Contact Adhesive',
             url: '/products/bond/mc722',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
           },
         },
         {

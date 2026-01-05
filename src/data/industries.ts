@@ -47,119 +47,119 @@ export const industries: Industry[] = [
 - Provide cutting-edge chemistries and technologies that over-deliver for mission-critical manufacturing and design requirements
 - Deliver a wide array of applications
 - Achieve unparalleled levels of process efficiency and performance.`,
-    heroImage: "/Forza-Marine-Yacht.png",
+    heroImage: "/Forza-Marine-Yacht.webp",
     products: [
       {
         name: "Forza BOND",
         type: "BOND",
         color: "#ff5c1a",
         description: "High-performance marine bonding solutions for structural integrity and long-lasting durability.",
-        image: "/images/products/Forza-Bond-Product-Line.png"
+        image: "/images/products/Forza-Bond-Product-Line.webp"
       },
       {
         name: "Forza SEAL",
         type: "SEAL",
         color: "#ffd600",
         description: "Premium marine sealants for watertight protection and weather resistance.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Forza TAPE",
         type: "TAPE",
         color: "#e53935",
         description: "Specialized marine tapes for secure bonding and sealing applications.",
-        image: "/images/products/tape-lineup-final-1.png"
+        image: "/images/products/tape-lineup-final-1.webp"
       },
       {
         name: "RuggedRed",
         type: "RuggedRed",
         color: "#e53935",
         description: "A short description about our RuggedRed products.",
-        image: "https://ruggedred.com/images/RRMascot+Type-smaller.png"
+        image: "https://ruggedred.com/images/RRMascot+Type-smaller.webp"
       },
       {
         name: "Hull Sealant",
         type: "SEALANT",
         color: "#147974",
         description: "Advanced hull sealing technology for maximum water resistance and durability.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Deck Adhesive",
         type: "ADHESIVE",
         color: "#ffd600",
         description: "High-strength deck bonding solutions for marine applications.",
-        image: "/images/products/Forza-Bond-Product-Line.png"
+        image: "/images/products/Forza-Bond-Product-Line.webp"
       },
       {
         name: "Cabin Sealant",
         type: "SEALANT",
         color: "#ffd600",
         description: "Premium cabin sealing for weatherproof protection.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Fiberglass Tape",
         type: "TAPE",
         color: "#e53935",
         description: "Specialized fiberglass repair and reinforcement tape.",
-        image: "/images/products/tape-lineup-final-1.png"
+        image: "/images/products/tape-lineup-final-1.webp"
       },
       {
         name: "Bilge Sealant",
         type: "SEALANT",
         color: "#147974",
         description: "Heavy-duty bilge sealing for engine compartment protection.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Window Adhesive",
         type: "ADHESIVE",
         color: "#ff5c1a",
         description: "Crystal clear window bonding for marine applications.",
-        image: "/images/products/Forza-Bond-Product-Line.png"
+        image: "/images/products/Forza-Bond-Product-Line.webp"
       },
       {
         name: "Rub Rail Sealant",
         type: "SEALANT",
         color: "#ffd600",
         description: "Flexible rub rail sealing for impact protection.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Electrical Tape",
         type: "TAPE",
         color: "#e53935",
         description: "Marine-grade electrical insulation and protection tape.",
-        image: "/images/products/tape-lineup-final-1.png"
+        image: "/images/products/tape-lineup-final-1.webp"
       },
       {
         name: "Transom Sealant",
         type: "SEALANT",
         color: "#147974",
         description: "High-performance transom sealing for engine mounting.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Trim Adhesive",
         type: "ADHESIVE",
         color: "#ff5c1a",
         description: "Precision trim bonding for marine interior applications.",
-        image: "/images/products/Forza-Bond-Product-Line.png"
+        image: "/images/products/Forza-Bond-Product-Line.webp"
       },
       {
         name: "Hatch Sealant",
         type: "SEALANT",
         color: "#ffd600",
         description: "Weatherproof hatch sealing for access points.",
-        image: "/images/products/Forza-Seal-Product-Line.png"
+        image: "/images/products/Forza-Seal-Product-Line.webp"
       },
       {
         name: "Repair Tape",
         type: "TAPE",
         color: "#e53935",
         description: "Emergency repair tape for quick marine fixes.",
-        image: "/images/products/tape-lineup-final-1.png"
+        image: "/images/products/tape-lineup-final-1.webp"
       }
     ]
   },
@@ -167,7 +167,7 @@ export const industries: Industry[] = [
     title: "Composites",
     videoUrl: "/videos/backgrounds/WebOptimized/ForzaTurbineLoop-Optimized.mp4",
     description: "Specialized adhesives for composite materials",
-    logo: "/logos/Composite-Icon.png",
+    logo: "/logos/Composite-Icon.webp",
     color: "#9a9b9c", // Composites grey color from brand standards
   },
   {
@@ -181,7 +181,7 @@ export const industries: Industry[] = [
     title: "Insulation",
     videoUrl: "/videos/backgrounds/WebOptimized/Final-Forza-Insulation-Header-Video_Optimized.mp4",
     description: "High-performance bonding solutions for insulation materials",
-    logo: "/logos/Insulation-Icon.png",
+    logo: "/logos/Insulation-Icon.webp",
     color: "#d0157d", // Insulation pink color from brand standards
   }
 ]; 

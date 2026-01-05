@@ -74,7 +74,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -96,7 +96,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -107,7 +107,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -118,7 +118,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
       ],
@@ -139,7 +139,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -150,7 +150,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             blurb: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
             url: '/products/bond/tac-r777',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/52-GAL-DRUM-TAC-R777.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/52-GAL-DRUM-TAC-R777.png',
           },
         },
         {
@@ -161,7 +161,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             blurb: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
             url: '/products/bond/tac-738r',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-738R-NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-738R-NEW.png',
           },
         },
         {
@@ -172,7 +172,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             blurb: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
             url: '/products/bond/tac-734g',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png',
           },
         },
         {
@@ -183,7 +183,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             blurb: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
             url: '/products/bond/tac-735r',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW.png',
           },
         },
         {
@@ -194,7 +194,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -205,7 +205,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -216,7 +216,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -227,7 +227,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
         {
@@ -238,7 +238,7 @@ export const INSULATION_DATA: IndustryData = {
             name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             blurb: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
             url: '/products/bond/tac-os74',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            thumb: 'https://www.forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
           },
         },
       ],
