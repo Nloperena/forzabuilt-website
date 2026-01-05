@@ -8,80 +8,16 @@ export class ImageMappingService {
   static getImageForProduct(productId: string): string {
     const id = productId.toLowerCase();
     
+    // Minimal mapping for truly special cases where ID doesn't match filename
+    // and the API might be missing the data.
     const mapping: Record<string, string> = {
-      // Known production mappings from blob storage
-      'ic932': 'Industrial/IC932 Canister.webp',
-      'c-os9': 'Construction/C-OS9 Sausage.webp',
-      'tac-735r': 'Composites/TAC-735R 22L and Aerosol.webp',
-      'os2': 'Industrial/OS2 Cartridge.webp',
-      'os10': 'Industrial/OS10 Cartridge.webp',
-      'tac-738r': 'Composites/TAC-738R 22L and Aerosol.webp',
-      'os20': 'Industrial/OS20 Sausage.webp',
-      'tac-739r': 'Composites/TAC-739R 22L and Aerosol.webp',
-      'os31': 'Industrial/OS31 Cartridge.webp',
-      'os25': 'Industrial/OS25 Cartridge.webp',
-      'mc722': 'Marine/MC722 Canister.webp',
-      'os35': 'Industrial/OS35 Cartridge.webp',
-      'mc723': 'Marine/MC723 Canister and Aerosol.webp',
-      'os37': 'Industrial/OS37 Cartridge.webp',
-      't305': 'Industrial/T305- Foam Tape.webp',
-      'mc724': 'Marine/MC724 Canister and Aerosol.webp',
-      'os61': 'Industrial/OS61 Cartridge.webp',
-      'mc737': 'Marine/MC737 Canister.webp',
-      'c-os55': 'Construction/C-OS55 Sausage.webp',
-      't350': 'Industrial/T350- Thermal Break Tape.webp',
-      'mc741': 'Marine/MC741 Canister.webp',
-      'os24': 'Industrial/OS24 Cartridge.webp',
-      'ic933': 'Industrial/IC933 Canister and Aerosol.webp',
-      'c-t500': 'Construction/C-T500 Tape.webp',
-      'ic946': 'Industrial/IC946 Canister and Aerosol.webp',
-      'c130': 'Industrial/C130 Drum.webp',
-      't900': 'Industrial/T900 Butyl Tape.webp',
-      'c150': 'Industrial/C150 1 gal pail.webp',
-      'oa12': 'Industrial/OA12 Cartridge.webp',
-      'frp': 'Industrial/FRP 3.5 gal pail.webp',
-      'c331': 'Industrial/C331 5 gal Pail.webp',
-      '81-0389': 'Industrial/81-0389 5 gal pail.webp',
-      's228': 'Industrial/S228 1 gal pail.webp',
-      'osa': 'Industrial/OSA tin can.webp',
-      't950': 'Industrial/T950 FSK Bonding Tape.webp',
-      'oa13': 'Industrial/OA13 Cartridge.webp',
-      't970': 'Industrial/T970 Foil Bonding Tape.webp',
-
-      // OA (Adhesive) products
       'oa75': 'Industrial/oa23.webp', 
       'm-oa755': 'Marine/m-oa755.webp',
-      
-      // OS (Sealant) products
-      'os55': 'Industrial/os55.webp',
-      'os45': 'Industrial/os45.webp',
-      'os61-adhesive': 'Industrial/os61.webp',
-      'os25-adhesive': 'Industrial/os25.webp',
-      'os20-adhesive': 'Industrial/os20.webp',
-      
-      // C (Cleaner) products
-      'c-os9-cleaner': 'Construction/c-os9.webp',
-      'c-oa77': 'Industrial/c-oa77.webp',
-      'c-oa52': 'Industrial/c-oa52.webp',
-      'c-oa5': 'Industrial/c-oa5.webp',
-      'c-oa98': 'Industrial/c-oa98.webp',
-      'c-r560': 'Transportation/c-r560.webp',
-      'c-r552': 'Transportation/c-r552.webp',
-      'c-r329': 'Transportation/c-r329.webp',
-      'c-os55-cleaner': 'Construction/c-os55.webp',
-      'c-c551': 'Industrial/c-c551.webp',
-      'c-c360': 'Construction/c-c360.webp',
-      'c-w6106': 'Industrial/c-w6106.webp',
-      
-      // Other fallbacks
-      'ca2400': 'Industrial/ca2400.png',
-      'ca1500': 'Industrial/ca1500.webp',
-      'ca1000': 'Industrial/ca1000.webp',
-      'oa23': 'Industrial/oa23.webp',
     };
     
     return mapping[id] || `${id}.webp`;
   }
+
 
 
   /**

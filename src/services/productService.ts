@@ -83,34 +83,25 @@ function transformProductData(apiProduct: any): Product {
   let imageUrl = undefined;
   const productId = (apiProduct.product_id || apiProduct.id || '').toLowerCase();
   
-  // Try mapping service first as it has the most up-to-date filenames for blob storage
-  const mappedImage = ImageMappingService.getImageForProduct(productId);
+  // Use the image value directly from the JSON if it exists
+  const rawImage = apiProduct.image || apiProduct.imageUrl;
   
-  if (mappedImage && !mappedImage.includes('placeholder.png') && (mappedImage.includes('/') || mappedImage !== `${productId}.webp`)) {
-    // We have a specific mapping (contains a category or a custom filename), use it
-    imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
-  } else if (apiProduct.image || apiProduct.imageUrl) {
-    let imgSource = apiProduct.image || apiProduct.imageUrl;
-    
-    // Fix common 404 issues with legacy WordPress URLs or typos
-    if (imgSource.includes('wp-content/uploads') || imgSource.includes('product-images-web-optmized')) {
-      // Extract filename from WordPress URL or fix typo
-      const filename = imgSource.split('/').pop()?.split('?')[0] || '';
-      if (filename) {
-        imageUrl = getBlobImageUrl(filename, normalizedIndustries);
-      } else {
-        imageUrl = imgSource.replace('product-images-web-optmized', 'product-images-web-optimized');
-      }
-    } else if (imgSource.startsWith('http://') || imgSource.startsWith('https://')) {
-      imageUrl = imgSource;
+  if (rawImage) {
+    if (rawImage.startsWith('http://') || rawImage.startsWith('https://')) {
+      // If it's a full URL, fix the common typo and use it as-is
+      imageUrl = rawImage.replace('product-images-web-optmized', 'product-images-web-optimized');
     } else {
-      // Use blob storage utility to construct the path
-      imageUrl = getBlobImageUrl(imgSource, normalizedIndustries);
+      // If it's a filename or partial path, use the blob storage utility
+      imageUrl = getBlobImageUrl(rawImage, normalizedIndustries);
     }
-  } else if (mappedImage && !mappedImage.includes('placeholder.png')) {
-    // Use the default mapping (id.webp)
-    imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
+  } else {
+    // Only if the JSON provides no image value, fall back to the mapping service
+    const mappedImage = ImageMappingService.getImageForProduct(productId);
+    if (mappedImage && !mappedImage.includes('placeholder.png')) {
+      imageUrl = getBlobImageUrl(mappedImage, normalizedIndustries);
+    }
   }
+
 
 
 
