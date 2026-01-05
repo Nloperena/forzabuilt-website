@@ -195,11 +195,11 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}> 
       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-4 lg:p-[0.85rem]">
-        <div className="h-16 md:h-20 lg:h-16 xl:h-20 2xl:h-24 flex items-center justify-between">
+        <div className="h-32 md:h-40 lg:h-32 xl:h-56 2xl:h-64 flex items-center justify-between">
           <div className="flex items-center relative z-30">
             <Logo 
               key={`logo-${isTransparent}-${isScrolled}`}
-              className="h-12 md:h-14 lg:h-12 xl:h-16 2xl:h-24 w-auto" 
+              className="h-24 md:h-32 lg:h-24 xl:h-44 2xl:h-52 w-auto" 
               isWhiteBackground={!isTransparent} 
             />
           </div>
@@ -287,7 +287,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10 flex items-center justify-between">
-                <Logo className="h-8 w-auto" isWhiteBackground={true} />
+                <Logo className="h-12 w-auto" isWhiteBackground={true} />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"

@@ -14,7 +14,7 @@ const FooterV2 = () => {
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
-              className="h-8 md:h-12 w-auto"
+              className="h-16 md:h-20 w-auto"
             />
             {/* Social Media Icons */}
             <div className="flex items-center gap-1.5">
@@ -66,7 +66,7 @@ const FooterV2 = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex justify-between items-start gap-12 mb-5 max-w-4xl ml-auto mr-auto">
           <div className="flex-shrink-0">
-            <img src="/logos/Forza-Eagle-Logo-White.svg" alt="Forza Logo" className="h-12 lg:h-12 xl:h-16 2xl:h-24 w-auto" />
+            <img src="/logos/Forza-Eagle-Logo-White.svg" alt="Forza Logo" className="h-16 lg:h-16 xl:h-24 2xl:h-32 w-auto" />
           </div>
           <div className="space-y-1.5 flex-shrink-0">
             <h3 className="text-white font-bold text-base font-poppins">Company</h3>

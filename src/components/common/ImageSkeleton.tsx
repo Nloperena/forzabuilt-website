@@ -21,9 +21,9 @@ const ImageSkeleton: React.FC<ImageSkeletonProps> = ({
     <div className={`absolute inset-0 w-full h-full flex items-center justify-center ${className}`}>
       {showLoadingDots && (
         <div className="flex space-x-2">
-          <div className={`w-3 h-3 ${dotColor} rounded-full animate-bounce`}></div>
-          <div className={`w-3 h-3 ${dotColor} rounded-full animate-bounce`} style={{ animationDelay: '0.1s' }}></div>
-          <div className={`w-3 h-3 ${dotColor} rounded-full animate-bounce`} style={{ animationDelay: '0.2s' }}></div>
+          <div className={`w-2.5 h-2.5 ${dotColor} rounded-full animate-pulse opacity-40`}></div>
+          <div className={`w-2.5 h-2.5 ${dotColor} rounded-full animate-pulse opacity-40`} style={{ animationDelay: '0.2s' }}></div>
+          <div className={`w-2.5 h-2.5 ${dotColor} rounded-full animate-pulse opacity-40`} style={{ animationDelay: '0.4s' }}></div>
         </div>
       )}
     </div>

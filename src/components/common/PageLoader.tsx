@@ -7,10 +7,10 @@ const PageLoader: React.FC = () => {
   useEffect(() => {
     // Hide loader after page is fully loaded
     const handleLoad = () => {
-      // Larger delay to ensure components initialized
+      // Reduced delay for snappier transition
       setTimeout(() => {
         setIsVisible(false);
-      }, 1200);
+      }, 400);
     };
 
     if (document.readyState === 'complete') {
@@ -45,49 +45,52 @@ const PageLoader: React.FC = () => {
             {/* Logo Animation */}
             <div className="relative">
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ 
-                  scale: [0.8, 1.05, 1],
+                  scale: 1,
                   opacity: 1,
                 }}
                 transition={{ 
-                  duration: 0.8,
-                  ease: "easeOut",
-                  times: [0, 0.7, 1]
+                  duration: 0.5,
+                  ease: "easeOut"
                 }}
-                className="relative w-32 h-32 md:w-48 md:h-48 z-10"
+                className="relative w-40 h-40 md:w-64 md:h-64 z-10"
               >
                 <img 
                   src="/logos/Forza-Eagle-Logo-Blue.svg" 
                   alt="Forza Logo" 
                   className="w-full h-full object-contain"
+                  // @ts-ignore
+                  fetchpriority="high"
+                  loading="eager"
                 />
               </motion.div>
               
               {/* Subtle pulse ring around logo */}
               <motion.div 
                 animate={{ 
-                  scale: [1, 1.2, 1.1],
-                  opacity: [0.3, 0, 0]
+                  scale: [1, 1.1],
+                  opacity: [0.3, 0]
                 }}
                 transition={{ 
-                  duration: 2,
+                  duration: 1.2,
                   repeat: Infinity,
-                  ease: "easeOut"
+                  ease: "linear"
                 }}
-                className="absolute inset-0 rounded-full border-2 border-[#1B3764] z-0"
+                className="absolute inset-0 rounded-full border border-[#1B3764] z-0"
               />
             </div>
 
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-4">
               {/* Progress Bar / Indicator */}
-              <div className="w-48 h-1 bg-gray-100 rounded-full overflow-hidden relative">
+              <div className="w-64 h-0.5 bg-gray-100 rounded-full overflow-hidden relative">
                 <motion.div 
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "100%" }}
+                  animate={{ 
+                    left: ["-100%", "100%"]
+                  }}
                   transition={{ 
-                    duration: 1.5, 
-                    ease: "easeInOut",
+                    duration: 0.8, 
+                    ease: "linear",
                     repeat: Infinity
                   }}
                   className="absolute inset-0 bg-[#1B3764]"

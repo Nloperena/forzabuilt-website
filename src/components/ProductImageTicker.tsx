@@ -82,14 +82,14 @@ export default function ProductImageTicker({
     // Function to start the animation
     const startAnimation = () => {
       el.style.animationPlayState = "running";
-      el.classList.add("will-change-transform");
+      el.style.willChange = "transform";
     };
 
     // Function to check if we should start animation (after delay)
     const checkAndStartAnimation = () => {
       if (isInitialized && isVisible && viewportEntryTime !== null) {
         const timeSinceEntry = Date.now() - viewportEntryTime;
-        const delayMs = 200; // 0.2 second delay
+        const delayMs = 50; // Reduced delay for snappier start
         if (timeSinceEntry >= delayMs) {
           // Delay has passed, start immediately
           startAnimation();
