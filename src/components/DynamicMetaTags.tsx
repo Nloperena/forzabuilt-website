@@ -14,7 +14,7 @@ interface DynamicMetaTagsProps {
 export default function DynamicMetaTags({
   title,
   description,
-  image = '/forza-logo-full.png',
+  image = '/logos/Forza-Eagle-Logo-Blue.svg',
   url,
   type = 'website',
   productName,
