@@ -37,9 +37,9 @@ interface CompactDropdownProps {
  * Mobile size is maintained for all displays for consistency
  */
 const CompactDropdown: React.FC<CompactDropdownProps> = ({ items, variant = 'default', isOpen }) => {
-  const gridCols = variant === 'industries' ? 'grid-cols-3 lg:grid-cols-6' : 'grid-cols-2 lg:grid-cols-4';
+  const gridCols = variant === 'industries' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6' : 'grid-cols-2 lg:grid-cols-4';
   const dropdownWidth = variant === 'industries' 
-    ? 'w-screen sm:w-[320px] md:w-[420px] lg:w-[500px]'
+    ? 'w-screen sm:w-[420px] md:w-[520px] lg:w-[600px] xl:w-[650px]'
     : 'w-screen sm:w-[240px] md:w-[280px] lg:w-[340px]';
 
   const handleItemClick = (e: React.MouseEvent) => {
@@ -69,16 +69,16 @@ const CompactDropdown: React.FC<CompactDropdownProps> = ({ items, variant = 'def
               >
                 <div 
                   onClick={handleItemClick}
-                  className="group relative flex flex-col items-center justify-center gap-1 py-2 sm:py-2.5 md:py-2 lg:py-2.5 px-2 sm:px-2.5 min-h-[60px] sm:min-h-[70px] md:min-h-[60px] lg:min-h-[70px] transition-colors hover:bg-[#F2611D] cursor-pointer"
+                  className="group relative flex flex-col items-center justify-center gap-1 py-2 sm:py-2.5 md:py-2 lg:py-2.5 px-1.5 sm:px-2 md:px-2.5 min-h-[60px] sm:min-h-[70px] md:min-h-[75px] lg:min-h-[70px] transition-colors hover:bg-[#F2611D] cursor-pointer"
                 >
                   {it.iconSrc ? (
                     <img 
                       src={it.iconSrc} 
                       alt="" 
-                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6 object-contain" 
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6 object-contain flex-shrink-0" 
                     />
                   ) : null}
-                  <span className="font-poppins text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight">
+                  <span className="font-poppins text-[11px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight break-words px-0.5 hyphens-auto">
                     {toTitleCase(it.label)}
                   </span>
                 </div>

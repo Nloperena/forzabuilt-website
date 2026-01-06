@@ -43,14 +43,14 @@ const HoverDropdown: React.FC<HoverDropdownProps> = ({ items, variant = 'default
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
             <div key={it.label} style={{ opacity: 1, transform: 'none' }}>
-              <a href={it.href} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer ${it.label.toLowerCase() === 'transportation' ? 'px-[1rem] lg:px-[1rem] xl:px-[1rem] 2xl:px-[1rem]' : 'px-3 lg:px-3 xl:px-3 2xl:px-3'}`}>
+              <a href={it.href} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer px-2 lg:px-2.5 xl:px-3 2xl:px-3`}>
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain flex-shrink-0" />
                 ) : null}
-                <span className={`font-poppins font-normal group-hover:font-bold text-center ${
-                  it.label.toLowerCase() === 'transportation' 
-                    ? 'text-[10.8px] lg:text-[11.7px] xl:text-[12.6px] 2xl:text-[13.5px]'
-                    : 'text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]'
+                <span className={`font-poppins font-normal group-hover:font-bold text-center leading-tight break-words px-0.5 ${
+                  it.label.toLowerCase() === 'transportation' || it.label.toLowerCase() === 'construction' || it.label.toLowerCase() === 'composites'
+                    ? 'text-[11px] lg:text-[11.5px] xl:text-[12px] 2xl:text-[13px]'
+                    : 'text-[12px] lg:text-[12.5px] xl:text-[13px] 2xl:text-[14px]'
                 }`}>{it.label}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden="true" />}
               </a>

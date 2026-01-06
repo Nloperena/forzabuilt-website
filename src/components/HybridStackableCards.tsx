@@ -733,7 +733,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           className="sticky w-full bg-white shadow-sm z-[40]"
           style={{ 
             top: 'clamp(2rem, 3vw, 3rem)',
-            paddingTop: '0.5rem',
             paddingBottom: '0.5rem'
           }}
         >
