@@ -166,8 +166,92 @@ const websiteSchema = {
     {structuredData && (
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
+    
+    <!-- CRITICAL: Hide content immediately on homepage to prevent flash -->
+    {Astro.url.pathname === '/' && (
+      <style is:inline>
+        /* Hide all body content immediately on homepage */
+        body:not(.page-loader-ready) > *:not(#static-page-loader):not(script):not(style) {
+          opacity: 0 !important;
+          visibility: hidden !important;
+        }
+        body:not(.page-loader-ready) {
+          overflow: hidden !important;
+          background: #fff !important;
+        }
+        /* Static loader styles */
+        #static-page-loader {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+        }
+        #static-page-loader .loader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 18px;
+        }
+        #static-page-loader .loader-logo {
+          width: 147px;
+          height: 147px;
+        }
+        #static-page-loader .loader-bar {
+          width: 147px;
+          height: 4px;
+          background: #f3f4f6;
+          border-radius: 9999px;
+          overflow: hidden;
+          position: relative;
+        }
+        #static-page-loader .loader-bar-inner {
+          position: absolute;
+          inset: 0;
+          background: #1B3764;
+          animation: loaderSlide 1.2s ease-in-out infinite;
+        }
+        #static-page-loader .loader-text {
+          color: #1B3764;
+          font-family: 'Poppins', sans-serif;
+          font-size: 12.3px;
+          font-weight: 500;
+          letter-spacing: 0.4em;
+          text-transform: uppercase;
+          padding-left: 0.4em;
+        }
+        @keyframes loaderSlide {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        @media (max-width: 640px) {
+          #static-page-loader .loader-logo { width: 98px; height: 98px; }
+          #static-page-loader .loader-bar { width: 98px; }
+          #static-page-loader .loader-text { font-size: 9.2px; letter-spacing: 0.2em; padding-left: 0.2em; }
+        }
+      </style>
+    )}
   </head>
   <body>
+    {/* Static loader that shows instantly on homepage before React hydrates */}
+    {Astro.url.pathname === '/' && (
+      <div id="static-page-loader">
+        <div class="loader-content">
+          <img 
+            src="/logos/Forza-Eagle-Logo-Blue.svg" 
+            alt="Loading..." 
+            class="loader-logo"
+            fetchpriority="high"
+          />
+          <div class="loader-bar">
+            <div class="loader-bar-inner"></div>
+          </div>
+          <p class="loader-text">Performance. Elevated.</p>
+        </div>
+      </div>
+    )}
     <PageLoader client:load />
     <slot />
     <Analytics />

@@ -14,15 +14,31 @@ interface Brochure {
   linkUrl?: string;
 }
 
+// Blue dot skeleton for white background
+const BrochureSkeleton: React.FC = () => (
+  <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-100">
+    <div className="flex space-x-1.5">
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+    </div>
+  </div>
+);
+
 const LibrarySectionV3: React.FC = () => {
   const [hoveredBrochure, setHoveredBrochure] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBrochureTitle, setSelectedBrochureTitle] = useState<string>('');
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleImageLoad = (id: string) => {
+    setLoadedImages(prev => new Set(prev).add(id));
+  };
 
   const openBrochure = (brochure: Brochure) => {
     if (brochure.type === 'blog' && brochure.linkUrl) {
@@ -125,11 +141,17 @@ const LibrarySectionV3: React.FC = () => {
               boxShadow: 'none'
             }}
           >
+            {/* Skeleton Loading State */}
+            {!loadedImages.has(brochure.id) && <BrochureSkeleton />}
+            
             {/* Brochure Cover Image */}
             <img
               src={brochure.coverImage}
               alt={brochure.label}
-              className="w-full h-full object-contain block"
+              className={`w-full h-full object-contain block transition-opacity duration-300 ${
+                loadedImages.has(brochure.id) ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={() => handleImageLoad(brochure.id)}
             />
           </div>
           

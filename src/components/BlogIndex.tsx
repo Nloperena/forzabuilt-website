@@ -16,55 +16,86 @@ interface BlogIndexProps {
   blogPosts: BlogPost[];
 }
 
-const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
-  <a 
-    href={`/blog/${generateSlugFromTitle(post.title)}`}
-    className="group relative w-full aspect-[3/4] md:aspect-[3/4] lg:aspect-[3/4] rounded-lg md:rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
-  >
-    {/* Background Image */}
-    <div className="absolute inset-0 bg-gray-200">
-      <img 
-        src={post.image} 
-        alt={post.title}
-        className="w-full h-full object-cover md:object-cover transition-transform duration-700 group-hover:scale-105"
-        onError={(e) => {
-          e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
+// White dot skeleton for blue overlay background
+const BlogCardSkeleton: React.FC = () => (
+  <div className="w-full h-full flex items-center justify-center bg-[#1B3764]">
+    <div className="flex space-x-2">
+      <div className="w-2.5 h-2.5 bg-white rounded-full skeleton-dot"></div>
+      <div className="w-2.5 h-2.5 bg-white rounded-full skeleton-dot"></div>
+      <div className="w-2.5 h-2.5 bg-white rounded-full skeleton-dot"></div>
+    </div>
+  </div>
+);
+
+const BlogOverlayCard = ({ post }: { post: BlogPost }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  
+  // Check if image is already cached/loaded
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalHeight > 0) {
+      setImageLoaded(true);
+    }
+  }, []);
+  
+  return (
+    <a 
+      href={`/blog/${generateSlugFromTitle(post.title)}`}
+      className="group relative w-full aspect-[3/4] md:aspect-[3/4] lg:aspect-[3/4] rounded-lg md:rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
+    >
+      {/* Skeleton Loading State - shows behind until image loads */}
+      <div className={`absolute inset-0 z-0 transition-opacity duration-300 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}>
+        <BlogCardSkeleton />
+      </div>
+      
+      {/* Background Image - visible and can load, fades in */}
+      <div className="absolute inset-0 z-10">
+        <img 
+          ref={imgRef}
+          src={post.image} 
+          alt={post.title}
+          className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'} group-hover:scale-105`}
+          onLoad={() => setImageLoaded(true)}
+          onError={(e) => {
+            e.currentTarget.src = '/products/IC933-bundle-1024x1024.webp';
+            setImageLoaded(true);
+          }}
+        />
+      </div>
+
+      {/* Blue Gradient Overlay - always visible when image loads */}
+      <div 
+        className={`absolute inset-0 z-20 pointer-events-none transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{
+          background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 15%, rgba(27, 55, 100, 0.5) 30%, rgba(27, 55, 100, 0.3) 45%, rgba(27, 55, 100, 0.15) 60%, transparent 70%)'
         }}
       />
-    </div>
 
-    {/* Blue Gradient Overlay - spread more */}
-    <div 
-      className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-      style={{
-        background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 15%, rgba(27, 55, 100, 0.5) 30%, rgba(27, 55, 100, 0.3) 45%, rgba(27, 55, 100, 0.15) 60%, transparent 70%)'
-      }}
-    />
-
-    {/* Content Overlay */}
-    <div className="absolute inset-0 p-3 md:p-6 flex flex-col justify-end text-white">
-      <h3 className="text-xs md:text-lg lg:text-xl font-bold font-poppins mb-1 md:mb-2 leading-tight group-hover:text-[#F2611D] transition-colors line-clamp-2">
-        {post.title}
-      </h3>
-      
-      {/* Description and Arrow on same line */}
-      <div className="flex items-center justify-between gap-2 md:gap-3 mt-1 md:mt-2">
-        <p className="text-[9px] md:text-xs lg:text-sm text-white/80 font-poppins line-clamp-2 flex-1">
-          {post.excerpt}
-        </p>
-        <svg 
-          className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth={2.5}
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
+      {/* Content Overlay */}
+      <div className={`absolute inset-0 z-30 p-3 md:p-6 flex flex-col justify-end text-white transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <h3 className="text-xs md:text-lg lg:text-xl font-bold font-poppins mb-1 md:mb-2 leading-tight group-hover:text-[#F2611D] transition-colors line-clamp-2">
+          {post.title}
+        </h3>
+        
+        {/* Description and Arrow on same line */}
+        <div className="flex items-center justify-between gap-2 md:gap-3 mt-1 md:mt-2">
+          <p className="text-[9px] md:text-xs lg:text-sm text-white/80 font-poppins line-clamp-2 flex-1">
+            {post.excerpt}
+          </p>
+          <svg 
+            className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth={2.5}
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
-    </div>
-  </a>
-);
+    </a>
+  );
+};
 
 const BlogIndex: React.FC<BlogIndexProps> = ({ blogPosts }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');

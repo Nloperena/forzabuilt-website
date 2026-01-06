@@ -297,54 +297,66 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
                 </button>
               </div>
 
-              <div className="p-4 space-y-1">
-                <div className="space-y-0.5">
+              <div className="p-5 space-y-2">
+                {/* Products Section */}
+                <div className="space-y-1">
                   <a
                     href="/products"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Products</span>
-                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-semibold text-[#1B3764] text-lg">Products</span>
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
-                  <div className="ml-3 border-l-2 border-gray-100 pl-3">
+                  <div className="ml-4 border-l-2 border-gray-200 pl-4 space-y-1">
                     {productsItems.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="block py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{item.label}</span>
+                        <span className="font-poppins text-base text-gray-700">{item.label}</span>
                       </a>
                     ))}
                   </div>
                 </div>
 
-                <div className="space-y-0.5">
+                {/* Divider between Products and Industries */}
+                <div className="py-2">
+                  <div className="border-t border-gray-200"></div>
+                </div>
+
+                {/* Industries Section */}
+                <div className="space-y-1">
                   <a
                     href="/industries"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Industries</span>
-                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-semibold text-[#1B3764] text-lg">Industries</span>
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
-                  <div className="ml-3 border-l-2 border-gray-100 pl-3">
+                  <div className="ml-4 border-l-2 border-gray-200 pl-4 space-y-1">
                     {industriesItems.slice(0, 6).map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2.5 py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
-                          <img src={item.iconSrc} alt="" className="w-5 h-5 object-contain" />
+                          <img src={item.iconSrc} alt="" className="w-6 h-6 object-contain" />
                         )}
-                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{toTitleCase(item.label)}</span>
+                        <span className="font-poppins text-base text-gray-700">{toTitleCase(item.label)}</span>
                       </a>
                     ))}
                   </div>
+                </div>
+
+                {/* Divider before other links */}
+                <div className="py-2">
+                  <div className="border-t border-gray-200"></div>
                 </div>
 
                 <a
@@ -352,7 +364,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764] text-sm">About</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-lg">About</span>
                 </a>
 
                 <a
@@ -360,14 +372,14 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764] text-sm">Blog</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-lg">Blog</span>
                 </a>
 
-                <div className="pt-3 border-t border-gray-200">
+                <div className="pt-4 border-t border-gray-200">
                   <a
                     href="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-5 py-2.5 text-sm font-poppins font-medium hover:bg-[#F2611D]/90 transition-colors"
+                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-6 py-3 text-base font-poppins font-semibold hover:bg-[#F2611D]/90 transition-colors"
                   >
                     Contact Us
                   </a>

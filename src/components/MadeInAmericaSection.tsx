@@ -2,22 +2,41 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { getFontSize } from '@/styles/typography';
 
+// Video skeleton with blue dots
+const VideoSkeleton: React.FC = () => (
+  <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-200 z-0">
+    <div className="flex space-x-2">
+      <div className="w-3 h-3 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-3 h-3 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-3 h-3 bg-[#1B3764] rounded-full skeleton-dot"></div>
+    </div>
+  </div>
+);
+
 const MadeInAmericaSection: React.FC = () => {
   const { mode } = useGradientMode();
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Intersection observer for visibility and playback control
+  // Intersection observer for visibility - start loading video when close to viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           setIsVisible(entry.isIntersecting);
+          // Start loading video when section is near viewport (within 200px)
+          if (entry.isIntersecting) {
+            setShouldLoadVideo(true);
+          }
         });
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '200px' // Start loading before fully in view
+      }
     );
 
     if (sectionRef.current) {
@@ -29,14 +48,14 @@ const MadeInAmericaSection: React.FC = () => {
 
   // Control video playback based on visibility
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && shouldLoadVideo) {
       if (isVisible) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isVisible]);
+  }, [isVisible, shouldLoadVideo]);
 
   return (
     <>
@@ -47,22 +66,28 @@ const MadeInAmericaSection: React.FC = () => {
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
               <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
-                {/* Background Video */}
-                <video
-                  ref={videoRef}
-                  src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4#t=0.001"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  onCanPlay={() => setIsVideoLoaded(true)}
-                  className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  style={{
-                    objectPosition: 'center',
-                    transform: 'scale(1.15)',
-                  }}
-                />
+                {/* Skeleton Loading State */}
+                {!isVideoLoaded && <VideoSkeleton />}
+                
+                {/* Background Video - only load when near viewport */}
+                {shouldLoadVideo && (
+                  <video
+                    ref={videoRef}
+                    src="/videos/backgrounds/WebOptimized/Manufactured in America_Optimized.mp4#t=0.001"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onCanPlay={() => setIsVideoLoaded(true)}
+                    onLoadedData={() => setIsVideoLoaded(true)}
+                    className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    style={{
+                      objectPosition: 'center',
+                      transform: 'scale(1.15)',
+                    }}
+                  />
+                )}
               </div>
             </div>
 

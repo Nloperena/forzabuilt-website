@@ -1,10 +1,72 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 
 import { motion } from 'framer-motion';
 import blogPostsData from '@/data/blogPosts.json';
 import type { BlogPost } from '@/types/Blog';
 import { getFontSize } from '@/styles/typography';
 import { generateSlugFromTitle } from '@/lib/utils';
+
+// Blue dot skeleton for white card background
+const ArticleImageSkeleton: React.FC = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gray-100">
+    <div className="flex space-x-1.5">
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+      <div className="w-2 h-2 bg-[#1B3764] rounded-full skeleton-dot"></div>
+    </div>
+  </div>
+);
+
+// Article card with loading state
+const ArticleCard: React.FC<{ article: BlogPost }> = ({ article }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  
+  // Check if image is already cached/loaded on mount
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalHeight > 0) {
+      setImageLoaded(true);
+    }
+  }, []);
+  
+  return (
+    <a href={`/blog/${generateSlugFromTitle(article.title)}`}
+      className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full w-full flex flex-col"
+    >
+      {/* Image Section */}
+      <div className="relative bg-gray-200 aspect-square overflow-hidden flex-shrink-0">
+        {/* Skeleton - fades out when image loads */}
+        <div className={`absolute inset-0 z-0 transition-opacity duration-300 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}>
+          <ArticleImageSkeleton />
+        </div>
+        
+        {/* Image - fades in when loaded */}
+        {article.image ? (
+          <img
+            ref={imgRef}
+            src={article.image}
+            alt={article.title}
+            className={`absolute inset-0 z-10 w-full h-full object-cover transition-all duration-300 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(true)}
+          />
+        ) : (
+          <span className="text-gray-400 text-xs">image here</span>
+        )}
+      </div>
+
+      {/* Content Section - White background */}
+      <div className="p-2 sm:p-3 md:p-4 flex-grow flex flex-col">
+        <h3 className="font-poppins font-bold text-[#2c476e] text-[10px] sm:text-xs md:text-base mb-1 sm:mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2 flex-shrink-0">
+          {article.title}
+        </h3>
+        <p className="font-poppins text-gray-600 text-[9px] sm:text-[10px] md:text-sm leading-relaxed line-clamp-2 flex-grow">
+          {article.excerpt}
+        </p>
+      </div>
+    </a>
+  );
+};
 
 const RecentNewsArticlesSection = () => {
   // Get the 3 most recent blog posts, sorted by date (newest first)
@@ -62,34 +124,7 @@ const RecentNewsArticlesSection = () => {
           >
             {recentArticles.map((article: BlogPost) => (
               <motion.div key={article.id} variants={itemVariants} className="w-full flex-shrink-0">
-                <a href={`/blog/${generateSlugFromTitle(article.title)}`}
-                  className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full w-full flex flex-col"
-                >
-                  {/* Image Section */}
-                  <div className="bg-gray-200 aspect-square flex items-center justify-center overflow-hidden flex-shrink-0">
-                    {article.image ? (
-                      <motion.img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    ) : (
-                      <span className="text-gray-400 text-xs">image here</span>
-                    )}
-                  </div>
-
-                  {/* Content Section - White background */}
-                  <div className="p-2 sm:p-3 md:p-4 flex-grow flex flex-col">
-                    <h3 className="font-poppins font-bold text-[#2c476e] text-[10px] sm:text-xs md:text-base mb-1 sm:mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2 flex-shrink-0">
-                      {article.title}
-                    </h3>
-                    <p className="font-poppins text-gray-600 text-[9px] sm:text-[10px] md:text-sm leading-relaxed line-clamp-2 flex-grow">
-                      {article.excerpt}
-                    </p>
-                  </div>
-                </a>
+                <ArticleCard article={article} />
               </motion.div>
             ))}
           </motion.div>

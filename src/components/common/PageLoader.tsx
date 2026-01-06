@@ -2,31 +2,57 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PageLoader: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  // Show loader immediately on homepage to prevent flash of content
+  const isHomePage = typeof window !== 'undefined' && window.location.pathname === '/';
+  const [isVisible, setIsVisible] = useState(isHomePage);
 
   useEffect(() => {
+    // Remove the static HTML loader now that React has hydrated
+    const staticLoader = document.getElementById('static-page-loader');
+    if (staticLoader) {
+      staticLoader.remove();
+    }
+    
     // Check if site has been loaded before in this session
     const hasLoadedBefore = sessionStorage.getItem('forzabuilt_has_loaded');
-    const isHomePage = window.location.pathname === '/';
+    const currentIsHomePage = window.location.pathname === '/';
+    const isFirstLoad = !hasLoadedBefore;
     
     // Skip loader if already loaded in this session AND not on homepage
-    if (hasLoadedBefore && !isHomePage) {
+    if (hasLoadedBefore && !currentIsHomePage) {
       setIsVisible(false);
+      // Mark body as ready to show content
+      document.body.classList.add('page-loader-ready');
+      document.body.classList.remove('page-loader-active');
       return;
     }
 
     // Show loader for first load or every time visiting homepage
-    setIsVisible(true);
+    if (currentIsHomePage) {
+      setIsVisible(true);
+      // Add class to body to hide content
+      document.body.classList.add('page-loader-active');
+    }
+
+    // Track when component mounted for minimum display time
+    const mountTime = Date.now();
+    const minDisplayTime = isFirstLoad ? 800 : 400; // Longer minimum time on first load
 
     // Hide loader after page is fully loaded
     const handleLoad = () => {
       // Mark as loaded in sessionStorage
       sessionStorage.setItem('forzabuilt_has_loaded', 'true');
       
-      // Reduced delay for snappier transition
+      // Calculate remaining time to meet minimum display time
+      const elapsed = Date.now() - mountTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsed);
+      
       setTimeout(() => {
         setIsVisible(false);
-      }, 400);
+        // Mark body as ready to show content
+        document.body.classList.add('page-loader-ready');
+        document.body.classList.remove('page-loader-active');
+      }, remainingTime);
     };
 
     if (document.readyState === 'complete') {
@@ -39,6 +65,8 @@ const PageLoader: React.FC = () => {
     const safetyTimeout = setTimeout(() => {
       sessionStorage.setItem('forzabuilt_has_loaded', 'true');
       setIsVisible(false);
+      document.body.classList.add('page-loader-ready');
+      document.body.classList.remove('page-loader-active');
     }, 5000);
 
     return () => {
@@ -57,6 +85,7 @@ const PageLoader: React.FC = () => {
             transition: { duration: 0.6, ease: "easeInOut" }
           }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
+          data-page-loader
         >
           <div className="flex flex-col items-center gap-3 sm:gap-[18px] md:gap-6">
             {/* Logo Animation */}
