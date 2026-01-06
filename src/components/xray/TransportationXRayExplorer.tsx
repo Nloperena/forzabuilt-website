@@ -10,12 +10,13 @@ interface TransportationXRayExplorerProps {
 const TransportationXRayExplorer: React.FC<TransportationXRayExplorerProps> = ({ variant }) => {
   return (
     <section className="pb-16 bg-white overflow-visible">
-      <div className="w-full px-4">
+      <div className="w-full px-4 flex justify-center">
         {/* X-Ray Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
+          className="w-[83.33%]"
         >
           {variant === 'rv-bus' ? <RVBusOverlay /> : <TrailerOverlay />}
         </motion.div>

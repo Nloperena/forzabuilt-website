@@ -234,7 +234,7 @@ const TransportationXRaySelector: React.FC = () => {
             {/* Center X-ray - Grid column 2 */}
             <div className="flex justify-center items-center w-full min-w-0">
               <div 
-                className="relative rounded-[32px] isolate w-full"
+                className="relative rounded-[32px] isolate w-[83.33%] mx-auto"
                 style={{ minHeight: xrayMinHeight }}
               >
                 {/* Crossfade container - both X-rays rendered, visibility controlled by opacity */}

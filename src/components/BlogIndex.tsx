@@ -130,7 +130,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ blogPosts }) => {
   return (
     <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden text-[#1B3764]">
       {/* Hero Section - Header Image */}
-      <section className="relative h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0 z-20">
+      <section className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0 z-20">
         {!headerImageLoaded && (
           <ImageSkeleton className="w-full h-full" />
         )}

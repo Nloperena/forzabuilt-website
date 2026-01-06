@@ -180,7 +180,7 @@ const StaticXRayExplorerV3: React.FC<StaticXRayExplorerV3Props> = ({ svgPath }) 
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="relative w-full bg-transparent rounded-2xl overflow-visible">
+        <div className="relative w-[83.33%] mx-auto bg-transparent rounded-2xl overflow-visible">
           
           {/* Product Information Card - Fixed to Viewport with Animation */}
           <AnimatePresence>

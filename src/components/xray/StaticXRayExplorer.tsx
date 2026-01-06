@@ -188,7 +188,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible" onMouseLeave={() => handleHotspotHover(null)} style={{ position: 'relative' }}>
+            <div className="relative w-[83.33%] mx-auto aspect-square bg-transparent rounded-2xl overflow-visible" onMouseLeave={() => handleHotspotHover(null)} style={{ position: 'relative' }}>
               {/* Post X-Ray Image */}
               <img
                 src={xrayComponent.postSrc}

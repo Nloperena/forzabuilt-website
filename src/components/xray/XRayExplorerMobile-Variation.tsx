@@ -267,7 +267,7 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
 
           {/* Image Container - Below title */}
           <motion.div
-            className="relative w-full mx-auto will-change-transform mb-6"
+            className="relative w-[83.33%] mx-auto will-change-transform mb-6"
             style={{
               aspectRatio: `${xrayComponent.width}/${xrayComponent.height}`,
               y: 0,

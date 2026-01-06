@@ -299,7 +299,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
         <div className="flex flex-col lg:flex-row lg:items-start" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar - Desktop Only */}
-          <aside className="flex-shrink-0 lg:sticky lg:top-[100px] xl:top-[120px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
+          <aside className="flex-shrink-0 lg:sticky lg:top-[80px] xl:top-[100px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
             {/* Search Bar */}
             <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-1.5 mb-2">
               <div className="relative">

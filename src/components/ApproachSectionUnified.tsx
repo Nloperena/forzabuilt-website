@@ -159,6 +159,8 @@ const ApproachSectionUnified = () => {
   const { mode } = useGradientMode();
   const [selectedItem, setSelectedItem] = useState(1);
   const [previousItem, setPreviousItem] = useState(0);
+  const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+  const [isLocked, setIsLocked] = useState(false);
   const [progress, setProgress] = useState(11.11);
   const sectionRef = useRef<HTMLElement>(null);
   const titlesContainerRef = useRef<HTMLDivElement>(null);
@@ -196,7 +198,10 @@ const ApproachSectionUnified = () => {
     }
   }, [isInView, selectedItem]);
 
-  const handleItemChange = useCallback((index: number) => {
+  const handleItemChange = useCallback((index: number, isExplicitClick: boolean = false) => {
+    // If it's a hover and already locked, don't change selection (only visual hover which is handled elsewhere)
+    if (!isExplicitClick && isLocked) return;
+
     if (index !== selectedItem) {
       setPreviousItem(selectedItem);
       // Reset loading state for the new item to show skeleton
@@ -205,7 +210,12 @@ const ApproachSectionUnified = () => {
       }
       setSelectedItem(index);
     }
-  }, [selectedItem, videoLoadedMap]);
+
+    // If it was an explicit click, lock this selection
+    if (isExplicitClick) {
+      setIsLocked(true);
+    }
+  }, [selectedItem, videoLoadedMap, isLocked]);
 
   useEffect(() => {
     const updateTitleFontSizes = () => {
@@ -317,8 +327,12 @@ const ApproachSectionUnified = () => {
                     {approachItems.map((item, index) => (
                       <button
                         key={index}
-                        onClick={() => handleItemChange(index)}
-                        onMouseEnter={() => handleItemChange(index)}
+                        onClick={() => handleItemChange(index, true)}
+                        onMouseEnter={() => {
+                          setHoveredItem(index);
+                          handleItemChange(index, false);
+                        }}
+                        onMouseLeave={() => setHoveredItem(null)}
                         className="w-full text-left transition-all duration-500 cursor-pointer"
                         style={{ transform: 'none' }}
                       >
@@ -330,7 +344,7 @@ const ApproachSectionUnified = () => {
                               : 'text-white font-normal'
                           }`}
                           style={{
-                            fontSize: selectedItem === index
+                            fontSize: (selectedItem === index || hoveredItem === index)
                               ? 'clamp(18px, 2vw + 0.5rem, 56px)'
                               : 'clamp(14px, 1.5vw + 0.4rem, 48px)',
                             transform: 'none',

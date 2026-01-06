@@ -371,8 +371,8 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
         </div>
 
         {/* X-Ray Display Area */}
-        <div className="relative w-full aspect-[16/9] min-h-[400px] md:min-h-[500px]">
-          <div className="absolute inset-0 w-full h-full z-0">
+        <div className="relative w-full aspect-[16/9] min-h-[400px] md:min-h-[500px] flex items-center justify-center">
+          <div className="relative w-[83.33%] h-[83.33%] z-0">
             {options.map((option) => (
               <div
                 key={option.id}

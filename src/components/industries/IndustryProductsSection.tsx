@@ -222,7 +222,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
         <div className="flex flex-col lg:flex-row lg:items-start" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar */}
-          <aside className="hidden lg:block flex-shrink-0 lg:sticky lg:top-[100px] xl:top-[120px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
+          <aside className="hidden lg:block flex-shrink-0 lg:sticky lg:top-[80px] xl:top-[100px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
             {/* Search Bar */}
             <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-2 mb-3">
               <div className="relative">
@@ -247,7 +247,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
             </div>
 
             {/* Filter Panel */}
-            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 12rem)' }}">
+            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 160px)' }}>
               <div className="p-2.5 border-b border-white/20">
                 <h3 className="font-poppins font-regular text-sm text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   Filter & Sort
