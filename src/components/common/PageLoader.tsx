@@ -81,16 +81,16 @@ const PageLoader: React.FC = () => {
               />
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               {/* Progress Bar / Indicator */}
-              <div className="w-64 h-0.5 bg-gray-100 rounded-full overflow-hidden relative">
+              <div className="w-80 md:w-[28rem] h-1 bg-gray-100 rounded-full overflow-hidden relative">
                 <motion.div 
                   animate={{ 
-                    left: ["-100%", "100%"]
+                    x: ["-100%", "100%"]
                   }}
                   transition={{ 
-                    duration: 0.8, 
-                    ease: "linear",
+                    duration: 1.2, 
+                    ease: "easeInOut",
                     repeat: Infinity
                   }}
                   className="absolute inset-0 bg-[#1B3764]"
@@ -100,8 +100,8 @@ const PageLoader: React.FC = () => {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-[#1B3764] font-poppins text-xs md:text-sm font-medium tracking-[0.3em] uppercase pl-[0.3em]"
+                transition={{ delay: 0.3 }}
+                className="text-[#1B3764] font-poppins text-sm md:text-base font-medium tracking-[0.4em] uppercase pl-[0.4em]"
               >
                 Performance. Elevated.
               </motion.p>
