@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getFontSize } from '@/styles/typography';
+import ComingSoonModal from './common/ComingSoonModal';
 
 interface Brochure {
   id: string;
@@ -16,6 +17,8 @@ interface Brochure {
 const LibrarySectionV3: React.FC = () => {
   const [hoveredBrochure, setHoveredBrochure] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBrochureTitle, setSelectedBrochureTitle] = useState<string>('');
 
   useEffect(() => {
     setIsMounted(true);
@@ -26,7 +29,9 @@ const LibrarySectionV3: React.FC = () => {
       window.location.href = brochure.linkUrl;
       return;
     }
-    window.open(brochure.pdfUrl, '_blank', 'noopener,noreferrer');
+    // Show coming soon modal instead of opening PDF
+    setSelectedBrochureTitle(brochure.label);
+    setIsModalOpen(true);
   };
 
   // Brochures organized by shelf
@@ -196,6 +201,12 @@ const LibrarySectionV3: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      <ComingSoonModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={`${selectedBrochureTitle} Coming Soon`}
+      />
     </>
   );
 };

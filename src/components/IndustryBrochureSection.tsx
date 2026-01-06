@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { getIndustryBrochureGradient } from '../styles/brandStandards';
+import ComingSoonModal from './common/ComingSoonModal';
 
 interface IndustryBrochureSectionProps {
   industry: string;
@@ -66,24 +67,16 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   className = '',
   compact = false
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   // Get content first
   const content = defaultContent[industry.toLowerCase() as keyof typeof defaultContent] || defaultContent.industrial;
   
-  // Map industry to new brochure PDF filenames
-  const brochurePdfMap: { [key: string]: string } = {
-    industrial: '/documents/Forza_Industrial Brochure_V15.pdf',
-    transportation: '/documents/CompanyBrochure_Transportation_V37.pdf',
-    marine: '/documents/CompanyBrochure_Marine_V40.3.pdf',
-    composites: '/documents/Forza_Composites Brochure_V22.1.pdf',
-    construction: '/documents/Construction Brochure V31.2.pdf',
-    insulation: '/documents/CompanyBrochure_Insulation_V27.1.pdf'
-  };
-  
-  const pdfUrl = brochurePdfMap[industry.toLowerCase()] || `/documents/${industry.toLowerCase()}.pdf`;
   const brochureTitle = title || content.title;
   
-  const handleOpenNewTab = () => {
-    window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+  const handleOpenModal = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    setIsModalOpen(true);
   };
 
   const gradientColors = getIndustryBrochureGradient(industry);
@@ -144,34 +137,10 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               </p>
             </div>
             
-            {/* Download and View Buttons */}
+            {/* View Button */}
             <div className="flex justify-center lg:justify-start gap-4">
-              <a
-                href={pdfUrl}
-                download
-                className={`group inline-flex items-center justify-center gap-2 font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
-                  backgroundColor === 'white'
-                    ? 'border-2 border-[#477197] hover:bg-[#477197] text-[#477197] hover:text-white'
-                    : 'border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70'
-                }`}
-              >
-                <svg 
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-[-2px]" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-                  />
-                </svg>
-                Download
-              </a>
               <button
-                onClick={handleOpenNewTab}
+                onClick={handleOpenModal}
                 className="inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <svg 
@@ -193,12 +162,18 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" 
                   />
                 </svg>
-                View
+                View Brochure
               </button>
             </div>
           </div>
         </div>
       </div>
+      
+      <ComingSoonModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={`${brochureTitle} Coming Soon`}
+      />
     </section>
   );
 };
