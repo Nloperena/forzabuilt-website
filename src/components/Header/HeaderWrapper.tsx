@@ -22,9 +22,9 @@ const industriesItems: MenuItem[] = [
   { label: 'Industrial', href: '/industries/industrial', iconSrc: '/logos/Industrial-Icon.webp' },
   { label: 'Transportation', href: '/industries/transportation', iconSrc: '/logos/Transportation-Icon-2.webp' },
   { label: 'Marine', href: '/industries/marine', iconSrc: '/logos/Marine-Icon.webp' },
-  { label: 'Composites', href: '/industries/composites', iconSrc: '/logos/Composite-Icon.png' },
+  { label: 'Composites', href: '/industries/composites', iconSrc: '/logos/Composite-Icon.webp' },
   { label: 'Construction', href: '/industries/construction', iconSrc: '/logos/Construction-Icon.webp' },
-  { label: 'Insulation', href: '/industries/insulation', iconSrc: '/logos/Insulation-Icon.png' },
+  { label: 'Insulation', href: '/industries/insulation', iconSrc: '/logos/Insulation-Icon.webp' },
 ];
 
 interface HoverDropdownProps {
@@ -199,7 +199,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
           <div className="flex items-center relative z-30">
             <Logo 
               key={`logo-${isTransparent}-${isScrolled}`}
-              className="h-12 md:h-14 lg:h-12 xl:h-16 2xl:h-24 w-auto" 
+              className="h-10 md:h-12 lg:h-10 xl:h-14 2xl:h-16 w-auto" 
               isWhiteBackground={!isTransparent} 
             />
           </div>
