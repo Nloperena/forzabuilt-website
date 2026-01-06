@@ -297,9 +297,9 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </h2>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
+        <div className="flex flex-col lg:flex-row lg:items-start" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar - Desktop Only */}
-          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
+          <aside className="flex-shrink-0 lg:sticky lg:top-[100px] xl:top-[120px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
             {/* Search Bar */}
             <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-1.5 mb-2">
               <div className="relative">
@@ -324,7 +324,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
             </div>
 
             {/* Filter Panel - Desktop Only */}
-            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-hidden">
+            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 160px)' }}>
               <div className="p-2 border-b border-white/20">
                 <h3 className="font-poppins font-regular text-xs text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   Filter & Sort

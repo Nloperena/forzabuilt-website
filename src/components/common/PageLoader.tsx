@@ -2,11 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PageLoader: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Check if site has been loaded before in this session
+    const hasLoadedBefore = sessionStorage.getItem('forzabuilt_has_loaded');
+    
+    // Skip loader if already loaded in this session
+    if (hasLoadedBefore) {
+      setIsVisible(false);
+      return;
+    }
+
+    // Show loader for first load
+    setIsVisible(true);
+
     // Hide loader after page is fully loaded
     const handleLoad = () => {
+      // Mark as loaded in sessionStorage
+      sessionStorage.setItem('forzabuilt_has_loaded', 'true');
+      
       // Reduced delay for snappier transition
       setTimeout(() => {
         setIsVisible(false);
@@ -21,6 +36,7 @@ const PageLoader: React.FC = () => {
 
     // Safety timeout - hide anyway after 5 seconds
     const safetyTimeout = setTimeout(() => {
+      sessionStorage.setItem('forzabuilt_has_loaded', 'true');
       setIsVisible(false);
     }, 5000);
 
@@ -41,7 +57,7 @@ const PageLoader: React.FC = () => {
           }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
         >
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
             {/* Logo Animation */}
             <div className="relative">
               <motion.div
@@ -54,7 +70,7 @@ const PageLoader: React.FC = () => {
                   duration: 0.5,
                   ease: "easeOut"
                 }}
-                className="relative w-96 h-96 md:w-[36rem] md:h-[36rem] z-10"
+                className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-[36rem] xl:h-[36rem] z-10"
               >
                 <img 
                   src="/logos/Forza-Eagle-Logo-Blue.svg" 
@@ -81,9 +97,9 @@ const PageLoader: React.FC = () => {
               />
             </div>
 
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6">
               {/* Progress Bar / Indicator */}
-              <div className="w-80 md:w-[28rem] h-1 bg-gray-100 rounded-full overflow-hidden relative">
+              <div className="w-48 sm:w-64 md:w-80 lg:w-[28rem] h-1 bg-gray-100 rounded-full overflow-hidden relative">
                 <motion.div 
                   animate={{ 
                     x: ["-100%", "100%"]
@@ -101,7 +117,7 @@ const PageLoader: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-[#1B3764] font-poppins text-sm md:text-base font-medium tracking-[0.4em] uppercase pl-[0.4em]"
+                className="text-[#1B3764] font-poppins text-xs sm:text-sm md:text-base font-medium tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] uppercase pl-[0.2em] sm:pl-[0.3em] md:pl-[0.4em]"
               >
                 Performance. Elevated.
               </motion.p>

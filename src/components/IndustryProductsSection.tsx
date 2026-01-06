@@ -144,9 +144,9 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
           </h2>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-6 mt-2">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-6 mt-2">
           {/* Filter Sidebar */}
-          <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
+          <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-[120px] xl:top-[160px] lg:z-30" style={{ maxHeight: 'calc(100vh - 180px)', alignSelf: 'flex-start' }}>
             {/* Search Bar */}
             <div className="bg-white/15 backdrop-blur-md rounded-xl shadow-lg border border-white/20 p-3 mb-4">
               <div className="relative">

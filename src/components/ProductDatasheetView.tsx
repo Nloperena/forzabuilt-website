@@ -144,7 +144,7 @@ const ProductDatasheetView: React.FC = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-4">
       {/* Filters */}
-      <section className="bg-white shadow-lg rounded-3xl p-6 mb-10 border border-gray-100">
+      <section className="sticky top-20 xl:top-24 z-30 bg-white shadow-lg rounded-3xl p-6 mb-10 border border-gray-100">
         {/* Search */}
         <div className="mb-6 relative max-w-xl mx-auto">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
