@@ -17,7 +17,7 @@ interface Props {
 const { 
   title, 
   description = "ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications.",
-  ogImage = "/logos/Forza-Eagle-Logo-Blue.svg",
+  ogImage = "/logos/Forza-Corporate-Wordmark-Positive.png",
   ogType = "website",
   canonicalUrl,
   structuredData
@@ -25,6 +25,11 @@ const {
 
 const siteUrl = "https://www.forzabuilt.com";
 const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl + Astro.url.pathname;
+
+// Handle ogImage URL - if it's already a full URL (blob storage), use it as-is, otherwise prepend siteUrl
+const fullOgImageUrl = ogImage?.startsWith('http://') || ogImage?.startsWith('https://') 
+  ? ogImage 
+  : `${siteUrl}${ogImage}`;
 
 // Default organization structured data
 const organizationSchema = {
@@ -79,8 +84,11 @@ const websiteSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/logos/Forza-Eagle-Logo-Blue.svg" />
-    <link rel="apple-touch-icon" href="/logos/Forza-Eagle-Logo-Blue.svg" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logos/Eagle-favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logos/Eagle-favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/Eagle-favicon-32x32.png" />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LT5K6RG34"></script>
@@ -104,7 +112,7 @@ const websiteSchema = {
     <meta property="og:url" content={fullCanonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image" content={fullOgImageUrl} />
     <meta property="og:site_name" content="ForzaBuilt" />
     <meta property="og:locale" content="en_US" />
     
@@ -113,7 +121,7 @@ const websiteSchema = {
     <meta property="twitter:url" content={fullCanonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="twitter:image" content={fullOgImageUrl} />
     
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
