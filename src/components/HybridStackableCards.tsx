@@ -688,10 +688,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         className={`relative w-full ${useOldColorScheme ? '' : 'bg-white'}`}
         style={useOldColorScheme ? {
           background: `linear-gradient(315deg, ${gradientColors})`,
-          paddingTop: '2rem',
           paddingBottom: '2rem'
         } : {
-          paddingTop: '2rem',
           paddingBottom: '2rem'
         }}
       >
