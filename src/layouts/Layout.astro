@@ -148,6 +148,10 @@ const websiteSchema = {
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     
+    <!-- Preload Critical Fonts for LCP -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" as="style" />
+    <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2" as="font" type="font/woff2" crossorigin />
+    
     <!-- Preload Critical Assets -->
     <link rel="preload" href="/logos/Forza-Eagle-Logo-Blue.svg" as="image" type="image/svg+xml" />
     {Astro.url.pathname === '/' && (

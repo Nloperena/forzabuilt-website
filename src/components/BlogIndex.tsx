@@ -148,6 +148,10 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ blogPosts }) => {
             console.error('Failed to load blog header image from:', e.currentTarget.src);
             setHeaderImageLoaded(true); // Hide skeleton even if image fails
           }}
+          loading="eager"
+          // @ts-ignore
+          fetchpriority="high"
+          decoding="async"
           style={{ 
             zIndex: 1,
             objectFit: 'cover',
