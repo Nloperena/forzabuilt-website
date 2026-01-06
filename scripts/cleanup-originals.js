@@ -45,3 +45,4 @@ console.log('🚀 Starting cleanup of original images...');
 moveOriginals(PUBLIC_DIR);
 console.log('✅ Cleanup complete!');
 
+
