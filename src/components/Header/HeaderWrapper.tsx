@@ -192,8 +192,31 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   // Only hide header on scroll for desktop (mobile always shows header)
   const shouldHideOnDesktop = !isMobile && isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
 
+  const [introFinished, setIntroFinished] = useState(false);
+
+  useEffect(() => {
+    // Check if intro has already been seen in this session
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (hasSeenIntro) {
+      setIntroFinished(true);
+    }
+
+    const handleIntroFinished = () => {
+      setIntroFinished(true);
+    };
+
+    window.addEventListener('introFinished', handleIntroFinished);
+    return () => window.removeEventListener('introFinished', handleIntroFinished);
+  }, []);
+
   return (
-    <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}> 
+    <motion.header 
+      data-component="header" 
+      initial={!introFinished ? { y: -100, opacity: 0 } : false}
+      animate={introFinished ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+      transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}
+    > 
       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-3 lg:p-[0.7rem]">
         <div className="h-14 md:h-16 lg:h-14 xl:h-16 2xl:h-20 flex items-center justify-between">
           <div className="flex items-center relative z-30">
@@ -389,7 +412,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 

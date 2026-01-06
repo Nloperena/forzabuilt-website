@@ -1,13 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import VideoSkeleton from './common/VideoSkeleton';
 
 const EagleHeroVideo: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isInView, setIsInView] = useState(true);
+  const [introFinished, setIntroFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
+    // Check if intro has already been seen in this session
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (hasSeenIntro) {
+      setIntroFinished(true);
+    }
+
+    const handleIntroFinished = () => {
+      setIntroFinished(true);
+    };
+
+    window.addEventListener('introFinished', handleIntroFinished);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -19,19 +33,22 @@ const EagleHeroVideo: React.FC = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('introFinished', handleIntroFinished);
+    };
   }, []);
 
   // Control playback based on visibility
   useEffect(() => {
     if (videoRef.current) {
-      if (isInView) {
+      if (isInView && introFinished) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView]);
+  }, [isInView, introFinished]);
 
   useEffect(() => {
     // Start loading video immediately
@@ -65,7 +82,7 @@ const EagleHeroVideo: React.FC = () => {
       )}
       
       {/* Background Video - loads immediately with high priority */}
-      <video
+      <motion.video
         ref={videoRef}
         autoPlay
         loop
@@ -77,9 +94,13 @@ const EagleHeroVideo: React.FC = () => {
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          isVideoLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ 
+          scale: introFinished && isVideoLoaded ? 1 : 1.1,
+          opacity: isVideoLoaded ? 1 : 0,
+          transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] }
+        }}
+        className="absolute inset-0 w-full h-full object-cover"
         style={{ 
           zIndex: 1,
           objectFit: 'cover',
@@ -91,13 +112,19 @@ const EagleHeroVideo: React.FC = () => {
       >
         <source src="/videos/backgrounds/WebOptimized/Eagle Header Video_Optimized.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </motion.video>
 
       {/* Fallback background - always visible */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
 
       {/* Blue overlay on top of video */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: introFinished ? 1 : 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" 
+        style={{ zIndex: 2 }} 
+      />
     </section>
   );
 };

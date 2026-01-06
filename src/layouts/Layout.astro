@@ -1,9 +1,9 @@
 ---
 import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
-import PageLoader from '@/components/common/PageLoader';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import IntroLoader from '@/components/common/IntroLoader';
 
 interface Props {
   title: string;
@@ -160,99 +160,46 @@ const websiteSchema = {
     
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Initial Load Masking -->
+    <script is:inline>
+      (function() {
+        const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+        if (!hasSeenIntro) {
+          document.documentElement.classList.add('intro-loading');
+        }
+      })();
+    </script>
+    <style is:inline>
+      html.intro-loading {
+        overflow: hidden;
+        background-color: #000a12; /* Match the loader background */
+      }
+      html.intro-loading body {
+        visibility: hidden;
+        opacity: 0;
+      }
+      /* Ensure the intro loader itself is always visible */
+      html.intro-loading #intro-loader-root {
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background-color: #000a12;
+      }
+    </style>
+
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     {structuredData && (
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
-    
-    <!-- CRITICAL: Hide content immediately on homepage to prevent flash -->
-    {Astro.url.pathname === '/' && (
-      <style is:inline>
-        /* Hide all body content immediately on homepage */
-        body:not(.page-loader-ready) > *:not(#static-page-loader):not(script):not(style) {
-          opacity: 0 !important;
-          visibility: hidden !important;
-        }
-        body:not(.page-loader-ready) {
-          overflow: hidden !important;
-          background: #fff !important;
-        }
-        /* Static loader styles */
-        #static-page-loader {
-          position: fixed;
-          inset: 0;
-          z-index: 9999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #fff;
-        }
-        #static-page-loader .loader-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 18px;
-        }
-        #static-page-loader .loader-logo {
-          width: 147px;
-          height: 147px;
-        }
-        #static-page-loader .loader-bar {
-          width: 147px;
-          height: 4px;
-          background: #f3f4f6;
-          border-radius: 9999px;
-          overflow: hidden;
-          position: relative;
-        }
-        #static-page-loader .loader-bar-inner {
-          position: absolute;
-          inset: 0;
-          background: #1B3764;
-          animation: loaderSlide 1.2s ease-in-out infinite;
-        }
-        #static-page-loader .loader-text {
-          color: #1B3764;
-          font-family: 'Poppins', sans-serif;
-          font-size: 12.3px;
-          font-weight: 500;
-          letter-spacing: 0.4em;
-          text-transform: uppercase;
-          padding-left: 0.4em;
-        }
-        @keyframes loaderSlide {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        @media (max-width: 640px) {
-          #static-page-loader .loader-logo { width: 98px; height: 98px; }
-          #static-page-loader .loader-bar { width: 98px; }
-          #static-page-loader .loader-text { font-size: 9.2px; letter-spacing: 0.2em; padding-left: 0.2em; }
-        }
-      </style>
-    )}
   </head>
   <body>
-    {/* Static loader that shows instantly on homepage before React hydrates */}
-    {Astro.url.pathname === '/' && (
-      <div id="static-page-loader">
-        <div class="loader-content">
-          <img 
-            src="/logos/Forza-Eagle-Logo-Blue.svg" 
-            alt="Loading..." 
-            class="loader-logo"
-            fetchpriority="high"
-          />
-          <div class="loader-bar">
-            <div class="loader-bar-inner"></div>
-          </div>
-          <p class="loader-text">Performance. Elevated.</p>
-        </div>
-      </div>
-    )}
-    <PageLoader client:load />
+    <div id="intro-loader-root">
+      <IntroLoader client:load />
+    </div>
     <slot />
     <Analytics />
     <SpeedInsights />
