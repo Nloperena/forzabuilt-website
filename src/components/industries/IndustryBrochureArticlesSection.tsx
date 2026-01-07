@@ -77,6 +77,12 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
 
   const handleOpenModal = (e?: React.MouseEvent) => {
     e?.preventDefault();
+    // Open PDF directly for construction brochure
+    if (industry.toLowerCase() === 'construction') {
+      window.open('/documents/Construction Brochure For Website Jan 7 2026 Med Res.pdf', '_blank');
+      return;
+    }
+    // Show coming soon modal for other industries
     setIsModalOpen(true);
   };
 

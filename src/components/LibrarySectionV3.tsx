@@ -46,7 +46,12 @@ const LibrarySectionV3: React.FC = () => {
       window.location.href = brochure.linkUrl;
       return;
     }
-    // Show coming soon modal instead of opening PDF
+    // Open PDF directly for construction brochure, show modal for others
+    if (brochure.id === 'construction') {
+      window.open(brochure.pdfUrl, '_blank');
+      return;
+    }
+    // Show coming soon modal for other brochures
     setSelectedBrochureTitle(brochure.label);
     setIsModalOpen(true);
   };
@@ -92,7 +97,7 @@ const LibrarySectionV3: React.FC = () => {
       title: 'CONSTRUCTION',
       label: 'Construction Brochure',
       coverImage: '/documents/Construction Brochure 1.webp',
-      pdfUrl: '/documents/Construction Brochure V31.2.pdf',
+      pdfUrl: '/documents/Construction Brochure For Website Jan 7 2026 Med Res.pdf',
       shelf: 'bottom'
     },
     {
