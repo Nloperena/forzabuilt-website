@@ -106,6 +106,7 @@ const MadeInAmericaSection: React.FC = () => {
                     className={`absolute inset-0 z-10 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
                     style={{
                       objectPosition: 'center',
+                      transform: 'scale(1.15)',
                     }}
                   >
                     <track kind="captions" src="" label="No captions" default />
