@@ -64,8 +64,21 @@ export default defineConfig({
         },
       },
     },
+    css: {
+      // Inline critical CSS for better performance
+      devSourcemap: true,
+    },
+    build: {
+      cssCodeSplit: true,
+      // Optimize CSS output
+      cssMinify: true,
+    },
   },
   output: 'static',
   // SEO-friendly trailing slash handling
   trailingSlash: 'ignore',
+  // Build optimizations
+  build: {
+    inlineStylesheets: 'auto', // Inline small stylesheets automatically
+  },
 });

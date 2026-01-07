@@ -134,7 +134,7 @@ const ScalableHeroVideoSection: React.FC = () => {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
             poster="/images/homepage-heroes/eagle-hero.webp"
             onLoadedData={handleVideoLoad}
             onCanPlay={handleVideoLoad}

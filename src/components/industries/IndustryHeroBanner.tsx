@@ -111,7 +111,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
@@ -218,7 +218,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         poster={posterUrl}
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}

@@ -72,7 +72,7 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}

@@ -540,7 +540,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                               width={256}
                               height={256}
                               mobileWidth={192}
-                              sizes="(max-width: 640px) 150px, 189px"
+                              sizes="(max-width: 640px) 192px, 256px"
                               className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}

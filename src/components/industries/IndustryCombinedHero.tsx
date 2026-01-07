@@ -73,7 +73,7 @@ const IndustryCombinedHero: React.FC<IndustryCombinedHeroProps> = ({
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}

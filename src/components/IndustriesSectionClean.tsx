@@ -104,7 +104,7 @@ const IndustriesSectionClean = () => {
                           className={`w-full h-full object-cover transition-opacity duration-500 ${
                             videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                           }`}
-                          preload="auto"
+                          preload="none"
                           poster={industry.posterUrl}
                           onLoadedData={() => handleVideoLoad(index)}
                           onError={() => handleVideoLoad(index)}

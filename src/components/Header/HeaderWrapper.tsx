@@ -104,13 +104,15 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   const isCanisterReturns = currentPath === '/canister-returns';
   const isChemistries = currentPath === '/chemistries';
 
-  // Proper mobile detection with resize listener
+  // Proper mobile detection with resize listener - client-side only to avoid hydration mismatch
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
     
-    // Initial check
+    // Initial check (client-side only)
     checkMobile();
     
     // Listen for resize
@@ -119,6 +121,8 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 8);
@@ -140,6 +144,8 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   }, [lastScrollY, isMobile]);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
     if (mobileMenuOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';

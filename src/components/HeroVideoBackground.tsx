@@ -26,7 +26,7 @@ const HeroVideoBackground: React.FC<HeroVideoBackgroundProps> = ({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         onLoadedData={onLoaded}
         onCanPlay={onLoaded}
         onError={onError}

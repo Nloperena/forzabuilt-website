@@ -127,14 +127,31 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
   
   // Generate srcset with multiple sizes for responsive images
   // Include: mobileWidth, mobileWidth*2 (retina), baseWidth, baseWidth*2 (retina)
+  // Also include intermediate sizes for better optimization
   const srcSetWidths = new Set<number>();
   
   if (mobileWidth) {
-    srcSetWidths.add(getNearestSize(mobileWidth));
+    const mobileSize = getNearestSize(mobileWidth);
+    srcSetWidths.add(mobileSize);
     srcSetWidths.add(getNearestSize(mobileWidth * 2)); // 2x for retina mobile
+    
+    // Add intermediate sizes if there's a gap between mobile and base
+    if (baseWidth > mobileWidth * 2) {
+      const midSize = getNearestSize(Math.round((mobileWidth * 2 + baseWidth) / 2));
+      if (midSize !== mobileSize && midSize !== getNearestSize(baseWidth)) {
+        srcSetWidths.add(midSize);
+      }
+    }
   }
-  srcSetWidths.add(getNearestSize(baseWidth));
-  srcSetWidths.add(getNearestSize(Math.min(baseWidth * 2, 3840))); // 2x for retina desktop
+  
+  const baseSize = getNearestSize(baseWidth);
+  srcSetWidths.add(baseSize);
+  
+  // Add retina sizes
+  const retinaSize = getNearestSize(Math.min(baseWidth * 2, 3840));
+  if (retinaSize !== baseSize) {
+    srcSetWidths.add(retinaSize);
+  }
   
   // Sort and create srcset
   const sortedWidths = Array.from(srcSetWidths).sort((a, b) => a - b);

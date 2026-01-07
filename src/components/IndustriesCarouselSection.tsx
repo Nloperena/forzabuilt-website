@@ -93,24 +93,36 @@ export const IndustriesCarouselSection = () => {
   const [startIdx, setStartIdx] = useState(0);
   const [videosLoaded, setVideosLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   
   // Landscape optimization values
   const { isLandscape, cardWidth: landscapeCardWidth, cardGap: landscapeCardGap, visibleCards: landscapeVisibleCards } = useLandscapeValues();
+  
+  // Set window width on client-side only to avoid hydration mismatch
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const updateWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    updateWidth();
+    window.addEventListener('resize', updateWidth, { passive: true });
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
   
   // Only industry cards for mapping
   const allCards: Industry[] = [...industries];
   const total = allCards.length;
   
-  // Responsive number of visible cards with landscape optimization
+  // Responsive number of visible cards with landscape optimization - use state to avoid hydration mismatch
   const getVisibleCards = () => {
-    if (typeof window !== 'undefined') {
-      if (isLandscape) return landscapeVisibleCards; // Landscape: fewer but larger cards
-      if (window.innerWidth < 640) return 1; // Mobile: 1 card for maximum size
-      if (window.innerWidth < 1024) return 2; // Tablet: 2 cards (larger cards)
-      if (window.innerWidth < 1280) return 2; // Small desktop: 2 cards (larger cards)
-      return 3; // Large desktop: 3 cards (larger cards)
-    }
-    return 1; // Default to 1 for mobile
+    if (typeof window === 'undefined' || windowWidth === 0) return 1; // Default to 1 for SSR
+    if (isLandscape) return landscapeVisibleCards; // Landscape: fewer but larger cards
+    if (windowWidth < 640) return 1; // Mobile: 1 card for maximum size
+    if (windowWidth < 1024) return 2; // Tablet: 2 cards (larger cards)
+    if (windowWidth < 1280) return 2; // Small desktop: 2 cards (larger cards)
+    return 3; // Large desktop: 3 cards (larger cards)
   };
   
   const CARDS_VISIBLE = getVisibleCards();
@@ -118,21 +130,19 @@ export const IndustriesCarouselSection = () => {
   const canGoLeft = startIdx > 0;
   const canGoRight = startIdx < maxStart;
 
-  // Responsive card width with landscape optimization
+  // Responsive card width with landscape optimization - use state to avoid hydration mismatch
   const getCardWidth = () => {
-    if (typeof window !== 'undefined') {
-      if (isLandscape) return landscapeCardWidth; // Landscape: larger cards
-      if (window.innerWidth < 640) return CARD_WIDTH_SM;
-      if (window.innerWidth < 768) return CARD_WIDTH_MD;
-      if (window.innerWidth < 1024) return CARD_WIDTH_LG;
-      return CARD_WIDTH_XL;
-    }
-    return CARD_WIDTH_SM;
+    if (typeof window === 'undefined' || windowWidth === 0) return CARD_WIDTH_SM; // Default for SSR
+    if (isLandscape) return landscapeCardWidth; // Landscape: larger cards
+    if (windowWidth < 640) return CARD_WIDTH_SM;
+    if (windowWidth < 768) return CARD_WIDTH_MD;
+    if (windowWidth < 1024) return CARD_WIDTH_LG;
+    return CARD_WIDTH_XL;
   };
   
   const cardWidth = getCardWidth();
   const cardGap = isLandscape ? landscapeCardGap : CARD_GAP;
-  const containerPadding = isLandscape ? 24 : (window.innerWidth < 640 ? 8 : 16); // More padding for landscape
+  const containerPadding = isLandscape ? 24 : (windowWidth === 0 ? 16 : (windowWidth < 640 ? 8 : 16)); // More padding for landscape
   const visibleWidth = CARDS_VISIBLE * cardWidth + (CARDS_VISIBLE - 1) * cardGap;
   // Clamp startIdx so last set is always fully visible
   const clampedStartIdx = Math.min(startIdx, total + 1 - CARDS_VISIBLE);
@@ -148,14 +158,16 @@ export const IndustriesCarouselSection = () => {
   const numPages = total - CARDS_VISIBLE + 1;
   const currentPage = startIdx;
 
-  // Detect mobile and handle video loading
+  // Detect mobile and handle video loading - client-side only
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -262,7 +274,7 @@ export const IndustriesCarouselSection = () => {
                             muted
                             playsInline
                             className="w-full h-full object-cover"
-                            preload="auto"
+                            preload="none"
                             poster={item.posterUrl}
                           >
                             <source src={item.videoUrl} type="video/mp4" />
@@ -273,7 +285,7 @@ export const IndustriesCarouselSection = () => {
                             alt={item.title + ' logo'}
                             className="absolute right-0 z-20 transform transition-all duration-150 pointer-events-none"
                             style={{ 
-                              height: isLandscape ? '280px' : (window.innerWidth < 640 ? '80px' : window.innerWidth < 1024 ? '120px' : window.innerWidth < 1280 ? '240px' : '280px'), 
+                              height: isLandscape ? '280px' : (windowWidth === 0 ? '120px' : (windowWidth < 640 ? '80px' : windowWidth < 1024 ? '120px' : windowWidth < 1280 ? '240px' : '280px')), 
                               width: 'auto', 
                               bottom: '0px', 
                               filter: 'drop-shadow(0px 0px 0px rgba(242, 97, 29, 0))' 
@@ -300,13 +312,13 @@ export const IndustriesCarouselSection = () => {
                                 color: '#ffffff',
                                 fontSize: isLandscape 
                                   ? '3rem' 
-                                  : (window.innerWidth < 640 
+                                  : (windowWidth === 0 ? '1.25rem' : (windowWidth < 640 
                                       ? getTitleFontSize(item.title) 
-                                      : window.innerWidth < 1024 
+                                      : windowWidth < 1024 
                                         ? '1.25rem' 
-                                        : window.innerWidth < 1280 
+                                        : windowWidth < 1280 
                                           ? '2rem' 
-                                          : '3rem'),
+                                          : '3rem')),
                                 lineHeight: 1.1,
                               }}
                               variants={childItemVariants}

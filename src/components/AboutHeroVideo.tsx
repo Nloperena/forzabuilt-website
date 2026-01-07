@@ -34,7 +34,7 @@ const AboutHeroVideo: React.FC = () => {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/images/homepage-heroes/about-hero.webp"
         onLoadedData={() => setVideoLoaded(true)}
         onCanPlay={() => setVideoLoaded(true)}
