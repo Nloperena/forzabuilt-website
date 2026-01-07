@@ -3,7 +3,6 @@ import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import IntroLoader from '@/components/common/IntroLoader';
 
 interface Props {
   title: string;
@@ -155,7 +154,10 @@ const websiteSchema = {
     <!-- Preload Critical Assets -->
     <link rel="preload" href="/logos/Forza-Eagle-Logo-Blue.svg" as="image" type="image/svg+xml" />
     {Astro.url.pathname === '/' && (
-      <link rel="preload" href="/videos/backgrounds/WebOptimized/Eagle Header Video_Optimized.mp4" as="video" type="video/mp4" />
+      <>
+        <link rel="preload" href="/images/homepage-heroes/eagle-hero.webp" as="image" type="image/webp" fetchpriority="high" />
+        <link rel="preload" href="/videos/backgrounds/WebOptimized/Eagle Header Video_Optimized.mp4" as="video" type="video/mp4" />
+      </>
     )}
     
     <meta name="generator" content={Astro.generator} />
@@ -168,7 +170,6 @@ const websiteSchema = {
     )}
   </head>
   <body>
-    <IntroLoader client:load />
     <main id="main-content" role="main">
       <slot />
     </main>
@@ -181,19 +182,6 @@ const websiteSchema = {
   /* Global styles applied to all pages */
   html {
     scroll-behavior: smooth;
-  }
-
-  /* Intro Loader Scroll Lock */
-  .intro-loading {
-    overflow: hidden !important;
-    height: 100vh !important;
-  }
-
-  .intro-loading body {
-    overflow: hidden !important;
-    height: 100vh !important;
-    position: fixed;
-    width: 100%;
   }
 </style>
 

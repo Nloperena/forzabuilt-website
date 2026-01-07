@@ -5,23 +5,10 @@ import VideoSkeleton from './common/VideoSkeleton';
 const EagleHeroVideo: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isInView, setIsInView] = useState(true);
-  const [introFinished, setIntroFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
-    // Check if intro has already been seen in this session
-    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-    if (hasSeenIntro) {
-      setIntroFinished(true);
-    }
-
-    const handleIntroFinished = () => {
-      setIntroFinished(true);
-    };
-
-    window.addEventListener('introFinished', handleIntroFinished);
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -35,20 +22,19 @@ const EagleHeroVideo: React.FC = () => {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('introFinished', handleIntroFinished);
     };
   }, []);
 
   // Control playback based on visibility
   useEffect(() => {
     if (videoRef.current) {
-      if (isInView && introFinished) {
+      if (isInView) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView, introFinished]);
+  }, [isInView]);
 
   useEffect(() => {
     // Start loading video immediately
@@ -84,6 +70,8 @@ const EagleHeroVideo: React.FC = () => {
           className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
           loading="eager"
           decoding="sync"
+          // @ts-ignore
+          fetchpriority="high"
         />
       </div>
       
@@ -103,7 +91,7 @@ const EagleHeroVideo: React.FC = () => {
         onError={handleVideoError}
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ 
-          scale: introFinished && isVideoLoaded ? 1 : 1.1,
+          scale: isVideoLoaded ? 1 : 1.1,
           opacity: isVideoLoaded ? 1 : 0,
           transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] }
         }}
@@ -127,7 +115,7 @@ const EagleHeroVideo: React.FC = () => {
       {/* Blue overlay on top of video */}
       <motion.div 
         initial={{ opacity: 0 }}
-        animate={{ opacity: introFinished ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
         className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" 
         style={{ zIndex: 2 }} 
