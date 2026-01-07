@@ -41,6 +41,7 @@ const TickerItem = ({ item, index, priority }: { item: Item, index: number, prio
           sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 288px"
           className={`w-full h-full object-contain transition-all duration-500 hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           onLoad={() => setIsLoaded(true)}
           onError={() => setIsLoaded(true)} // Still show something if error
           style={{ transform: item.src.includes("/t") ? "translateY(10%)" : "none" }}

@@ -389,11 +389,13 @@ const ApproachSectionUnified = () => {
                       loop
                       playsInline
                       autoPlay
-                      preload="auto"
+                      preload="none"
+                      aria-label="Customer success approach demonstration video"
                       onCanPlay={() => handleVideoLoadedMetadata(selectedItem)}
                       onError={() => handleVideoError(selectedItem)}
                     >
                       <source src={`${approachItems[selectedItem].video}#t=0.001`} type="video/mp4" />
+                      <track kind="captions" src="" label="No captions" default />
                     </motion.video>
                   )}
                   

@@ -79,7 +79,8 @@ const MadeInAmericaSection: React.FC = () => {
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="none"
+                    aria-label="Made in America manufacturing facility video"
                     onCanPlay={() => setIsVideoLoaded(true)}
                     onLoadedData={() => setIsVideoLoaded(true)}
                     className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -87,7 +88,9 @@ const MadeInAmericaSection: React.FC = () => {
                       objectPosition: 'center',
                       transform: 'scale(1.15)',
                     }}
-                  />
+                  >
+                    <track kind="captions" src="" label="No captions" default />
+                  </video>
                 )}
               </div>
             </div>

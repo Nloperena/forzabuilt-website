@@ -64,13 +64,15 @@ const IndustryCard: React.FC<{
             loop 
             muted 
             playsInline 
-            preload="auto"
+            preload="none"
+            aria-label={`${industry.title} industry background video`}
             onLoadedData={handleCanPlay}
             onCanPlay={handleCanPlay}
             onError={handleCanPlay} // Remove skeleton on error to show background color
             className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={`${industry.videoUrl}#t=0.001`} type="video/mp4" />
+            <track kind="captions" src="" label="No captions" default />
           </video>
           
           {/* Gradient overlay - fades on hover */}

@@ -167,7 +167,9 @@ const websiteSchema = {
     )}
   </head>
   <body>
-    <slot />
+    <main id="main-content" role="main">
+      <slot />
+    </main>
     <Analytics />
     <SpeedInsights />
   </body>

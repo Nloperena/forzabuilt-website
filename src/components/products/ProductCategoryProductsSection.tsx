@@ -537,8 +537,10 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                             <OptimizedImage 
                               src={product.imageUrl || ''} 
                               alt={product.name}
-                              width={400}
-                              height={400}
+                              width={256}
+                              height={256}
+                              mobileWidth={192}
+                              sizes="(max-width: 640px) 150px, 189px"
                               className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}

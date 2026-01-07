@@ -15,6 +15,11 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
    * If set, srcset will include this smaller size for mobile devices.
    */
   mobileWidth?: number;
+  /**
+   * For LCP images, set to "high" to prioritize loading.
+   * Use with loading="eager" for above-the-fold images.
+   */
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 // Site origin for making relative URLs absolute
@@ -47,6 +52,7 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
   quality = 75,
   sizes,
   mobileWidth,
+  fetchPriority,
   className = '',
   loading = 'lazy',
   onError,
@@ -82,6 +88,8 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
         className={className}
         loading={loading}
         decoding="async"
+        // @ts-ignore - fetchpriority is valid but not fully typed in React yet
+        fetchpriority={fetchPriority}
         onError={onError}
         {...props}
       />
@@ -135,6 +143,8 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
       className={className}
       loading={loading}
       decoding="async"
+      // @ts-ignore - fetchpriority is valid but not fully typed in React yet
+      fetchpriority={fetchPriority}
       onError={handleError}
       {...props}
     />
