@@ -14,8 +14,6 @@ import { industries } from '@/data/industries';
 import { getImage } from 'astro:assets';
 
 export function getStaticPaths() {
-
-export function getStaticPaths() {
   return industries.map((industry) => ({
     params: { industry: industry.title.toLowerCase().replace(/\s+/g, '-') },
     props: { industryData: industry },
