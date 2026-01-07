@@ -98,6 +98,9 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
         {/* Fallback background - always visible */}
         <div className="absolute inset-0 bg-black/5" style={{ zIndex: 0 }} />
 
+        {/* Blue overlay on top of image for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
+
         {/* Hidden Text Content (for accessibility & animations) */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"

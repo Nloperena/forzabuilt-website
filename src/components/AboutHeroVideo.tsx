@@ -52,6 +52,9 @@ const AboutHeroVideo: React.FC = () => {
         <source src="/videos/backgrounds/WebOptimized/Forza Building Video for Desktop_Optimized.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
+      {/* Blue overlay on top of video for text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
     </div>
   );
 };
