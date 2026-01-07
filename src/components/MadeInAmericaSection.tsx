@@ -77,6 +77,8 @@ const MadeInAmericaSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 items-start">
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
+              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
+                {/* Poster Image Layer */}
                 <div className="absolute inset-0 z-0">
                   <img
                     src="/images/homepage-heroes/madeinaamerica-hero.webp"
@@ -101,16 +103,16 @@ const MadeInAmericaSection: React.FC = () => {
                     aria-label="Made in America manufacturing facility video"
                     onCanPlay={() => setIsVideoLoaded(true)}
                     onLoadedData={() => setIsVideoLoaded(true)}
-                    className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 z-10 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
                     style={{
                       objectPosition: 'center',
-                      transform: 'scale(1.15)',
                     }}
                   >
                     <track kind="captions" src="" label="No captions" default />
                   </video>
                 )}
               </div>
+            </div>
 
             {/* Right side - Text content - Scales down on smaller screens */}
             <div className="p-0 sm:p-1 lg:p-2 xl:p-3 flex flex-col h-full">
