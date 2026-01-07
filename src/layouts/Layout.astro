@@ -3,7 +3,6 @@ import '@/styles/globals.css';
 import '@/styles/globalStyles.css';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import IntroLoader from '@/components/common/IntroLoader';
 
 interface Props {
   title: string;
@@ -159,35 +158,6 @@ const websiteSchema = {
     )}
     
     <meta name="generator" content={Astro.generator} />
-    
-    <!-- Initial Load Masking -->
-    <script is:inline>
-      (function() {
-        const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-        if (!hasSeenIntro) {
-          document.documentElement.classList.add('intro-loading');
-        }
-      })();
-    </script>
-    <style is:inline>
-      html.intro-loading {
-        overflow: hidden;
-        background-color: #000a12; /* Match the loader background */
-      }
-      html.intro-loading body {
-        visibility: hidden;
-        opacity: 0;
-      }
-      /* Ensure the intro loader itself is always visible */
-      html.intro-loading #intro-loader-root {
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: fixed;
-        inset: 0;
-        z-index: 99999;
-        background-color: #000a12;
-      }
-    </style>
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
@@ -197,9 +167,6 @@ const websiteSchema = {
     )}
   </head>
   <body>
-    <div id="intro-loader-root">
-      <IntroLoader client:load />
-    </div>
     <slot />
     <Analytics />
     <SpeedInsights />
