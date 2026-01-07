@@ -95,8 +95,10 @@ const IndustryCard: React.FC<{
                 <OptimizedImage 
                   src={industry.logo} 
                   alt={`${industry.title} logo`} 
-                  width={64}
-                  height={64}
+                  width={128}
+                  height={128}
+                  mobileWidth={64}
+                  sizes="(max-width: 640px) 40px, 56px"
                   className={isMobile 
                     ? "w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150" 
                     : "w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 transition-transform duration-150"

@@ -122,8 +122,9 @@ const MadeInAmericaSection: React.FC = () => {
                   <OptimizedImage 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
                     alt="PROUDLY MADE IN AMERICA" 
-                    width={200}
-                    height={100}
+                    width={256}
+                    height={113}
+                    mobileWidth={256}
                     className="h-16 w-auto object-contain"
                   />
                 </div>

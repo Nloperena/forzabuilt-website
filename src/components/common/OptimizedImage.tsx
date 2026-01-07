@@ -5,15 +5,38 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   width?: number;
   height?: number;
   quality?: number;
+  /** 
+   * Responsive sizes attribute - tells browser which size to pick.
+   * Example: "(max-width: 640px) 224px, 400px" means use 224px on mobile, 400px otherwise
+   */
+  sizes?: string;
+  /**
+   * For mobile-first responsive images, specify the mobile width separately.
+   * If set, srcset will include this smaller size for mobile devices.
+   */
+  mobileWidth?: number;
 }
 
 // Site origin for making relative URLs absolute
 const SITE_ORIGIN = 'https://www.forzabuilt.com';
 
+// Vercel's allowed image sizes (from vercel.json)
+const ALLOWED_SIZES = [64, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840];
+
+// Find the nearest allowed size (rounds up to ensure quality)
+const getNearestSize = (targetWidth: number): number => {
+  for (const size of ALLOWED_SIZES) {
+    if (size >= targetWidth) return size;
+  }
+  return ALLOWED_SIZES[ALLOWED_SIZES.length - 1];
+};
+
 /**
  * A React component that leverages Vercel's Image Optimization API.
  * Uses /_vercel/image endpoint which works on Vercel deployments.
  * Falls back to original image if optimization fails (e.g., in local development).
+ * 
+ * Generates responsive srcset for mobile optimization.
  * 
  * @see https://vercel.com/docs/image-optimization
  */
@@ -22,6 +45,8 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
   width,
   height,
   quality = 75,
+  sizes,
+  mobileWidth,
   className = '',
   loading = 'lazy',
   onError,
@@ -70,25 +95,41 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
     imageUrl = `${SITE_ORIGIN}${srcString}`;
   }
 
-  // Generate Vercel Image Optimization URL
-  // Format: /_vercel/image?url={encodedUrl}&w={width}&q={quality}
-  const baseWidth = width || 400;
   const encodedUrl = encodeURIComponent(imageUrl);
+  const baseWidth = width || 400;
   
-  // Create optimized src at requested width
-  const optimizedSrc = `/_vercel/image?url=${encodedUrl}&w=${baseWidth}&q=${quality}`;
+  // Generate srcset with multiple sizes for responsive images
+  // Include: mobileWidth, mobileWidth*2 (retina), baseWidth, baseWidth*2 (retina)
+  const srcSetWidths = new Set<number>();
   
-  // Create srcset for responsive images (1x and 2x for retina)
-  const srcSet = [
-    `/_vercel/image?url=${encodedUrl}&w=${baseWidth}&q=${quality} 1x`,
-    `/_vercel/image?url=${encodedUrl}&w=${Math.min(baseWidth * 2, 3840)}&q=${quality} 2x`
-  ].join(', ');
+  if (mobileWidth) {
+    srcSetWidths.add(getNearestSize(mobileWidth));
+    srcSetWidths.add(getNearestSize(mobileWidth * 2)); // 2x for retina mobile
+  }
+  srcSetWidths.add(getNearestSize(baseWidth));
+  srcSetWidths.add(getNearestSize(Math.min(baseWidth * 2, 3840))); // 2x for retina desktop
+  
+  // Sort and create srcset
+  const sortedWidths = Array.from(srcSetWidths).sort((a, b) => a - b);
+  const srcSet = sortedWidths
+    .map(w => `/_vercel/image?url=${encodedUrl}&w=${w}&q=${quality} ${w}w`)
+    .join(', ');
+  
+  // Default sizes attribute if not provided
+  // Mobile-first: smallest size for small screens, larger for bigger screens
+  const defaultSizes = mobileWidth 
+    ? `(max-width: 640px) ${mobileWidth}px, ${baseWidth}px`
+    : `${baseWidth}px`;
+  
+  // Create optimized src at base width (fallback for browsers without srcset)
+  const optimizedSrc = `/_vercel/image?url=${encodedUrl}&w=${getNearestSize(baseWidth)}&q=${quality}`;
 
   return (
     <img
       ref={ref}
       src={optimizedSrc}
       srcSet={srcSet}
+      sizes={sizes || defaultSizes}
       width={width}
       height={height}
       className={className}

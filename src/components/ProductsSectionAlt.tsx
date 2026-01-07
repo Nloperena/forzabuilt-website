@@ -47,8 +47,10 @@ const ProductsSectionAlt = ({ categories: categoriesProp }: { categories?: typeo
                     <OptimizedImage 
                       src={category.image} 
                       alt={category.alt} 
-                      width={600}
-                      height={400}
+                      width={640}
+                      height={427}
+                      mobileWidth={384}
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       className="w-full h-full object-cover transition-opacity duration-500 opacity-100" 
                       style={{ objectPosition: 'center center' }} 
                     />
@@ -70,8 +72,10 @@ const ProductsSectionAlt = ({ categories: categoriesProp }: { categories?: typeo
                       <OptimizedImage 
                         src={category.image} 
                         alt={category.alt} 
-                        width={800}
-                        height={533}
+                        width={828}
+                        height={552}
+                        mobileWidth={512}
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="w-full h-full object-cover transition-opacity duration-500 opacity-100" 
                         style={{ objectPosition: 'center center' }} 
                       />

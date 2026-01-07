@@ -35,8 +35,10 @@ const TickerItem = ({ item, index, priority }: { item: Item, index: number, prio
         <OptimizedImage
           src={item.src}
           alt={item.alt}
-          width={400}
-          height={400}
+          width={384}
+          height={384}
+          mobileWidth={256}
+          sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 288px"
           className={`w-full h-full object-contain transition-all duration-500 hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           loading={priority ? "eager" : "lazy"}
           onLoad={() => setIsLoaded(true)}

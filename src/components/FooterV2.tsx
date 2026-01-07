@@ -57,8 +57,9 @@ const FooterV2 = () => {
             <OptimizedImage 
               src="/images/misc/Flag Icon with asterisk 1.png"
               alt="MADE IN THE USA"
-              width={100}
-              height={48}
+              width={128}
+              height={56}
+              mobileWidth={128}
               className="h-10 sm:h-12 w-auto object-contain flex-shrink-0"
             />
             {/* Copyright Text */}
@@ -125,8 +126,9 @@ const FooterV2 = () => {
               <OptimizedImage 
                 src="/images/misc/Flag Icon with asterisk 1.png" 
                 alt="PROUDLY MADE IN AMERICA" 
-                width={100}
-                height={64}
+                width={256}
+                height={113}
+                mobileWidth={128}
                 className="h-16 w-auto object-contain flex-shrink-0" 
               />
               <p className="text-white/70 text-xs font-poppins leading-tight">
