@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import OptimizedImage from './common/OptimizedImage';
+
+const MotionOptimizedImage = motion.create(OptimizedImage);
 
 const categories = [
   {
@@ -36,26 +39,20 @@ const categories = [
   }
 ];
 
-const ProductCategoriesSection = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[1]); // Default to Sealants
+const ProductCategoriesSection = ({ categories: categoriesProp }: { categories?: typeof categories }) => {
+  const displayCategories = categoriesProp || categories;
+  const [activeCategory, setActiveCategory] = useState(displayCategories[1]); // Default to Sealants
   const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
   // Preload all category images
   useEffect(() => {
-    categories.forEach((cat) => {
+    displayCategories.forEach((cat) => {
       const img = new Image();
       img.onload = () => {
-        console.log(`🚀 Preloaded: ${cat.image}`);
         setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
       };
       img.onerror = () => {
-        console.warn(`⚠️ Preload failed for: ${cat.image}`);
-        // Try fallback for preload too
-        const fallbackImg = new Image();
-        fallbackImg.onload = () => {
-          setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
-        };
-        fallbackImg.src = cat.image.replace('.webp', '.jpg');
+        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
       };
       img.src = cat.image;
       
@@ -64,7 +61,7 @@ const ProductCategoriesSection = () => {
         setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
       }
     });
-  }, []);
+  }, [displayCategories]);
 
   return (
     <section className="relative isolate overflow-visible">
@@ -78,7 +75,7 @@ const ProductCategoriesSection = () => {
           {/* Content Side */}
           <div className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] px-3 py-3 md:px-5 md:py-5 flex flex-col justify-between order-1 md:order-2 md:aspect-[5/4]">
             <div className="flex flex-col justify-center flex-1" style={{ gap: 'clamp(10px, 1.8vw, 18px)', paddingTop: 'clamp(12px, 2.5vw, 24px)' }}>
-              {categories.map((cat) => (
+              {displayCategories.map((cat) => (
                 <button 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat)}
@@ -131,10 +128,12 @@ const ProductCategoriesSection = () => {
             )}
             <div className="absolute inset-0 w-full h-full z-10">
               <AnimatePresence mode="wait">
-                <motion.img 
+                <MotionOptimizedImage 
                   key={activeCategory.id}
                   src={activeCategory.image} 
                   alt={activeCategory.title.toUpperCase()} 
+                  width={1000}
+                  height={800}
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={{ opacity: imagesLoaded[activeCategory.id] ? 1 : 0, scale: 1.05 }}
                   exit={{ opacity: 0, scale: 1.1 }}
@@ -147,14 +146,7 @@ const ProductCategoriesSection = () => {
                   }}
                   onError={() => {
                     console.error(`❌ Image failed to load: ${activeCategory.image}`);
-                    // Fallback to original jpg/png if webp fails
-                    const img = new Image();
-                    const fallback = activeCategory.image.replace('.webp', '.jpg');
-                    img.src = fallback;
-                    img.onload = () => {
-                      console.log(`🔄 Using fallback: ${fallback}`);
-                      setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
-                    };
+                    setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
                   }}
                 />
               </AnimatePresence>

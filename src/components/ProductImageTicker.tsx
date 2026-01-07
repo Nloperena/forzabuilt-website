@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import ImageSkeleton from "./common/ImageSkeleton";
+import OptimizedImage from "./common/OptimizedImage";
 
 type Item = { src: string; alt: string; width?: number; height?: number };
 type Props = {
@@ -31,9 +32,11 @@ const TickerItem = ({ item, index, priority }: { item: Item, index: number, prio
             <ImageSkeleton className="w-3/4 h-3/4 opacity-50" />
           </div>
         )}
-        <img
+        <OptimizedImage
           src={item.src}
           alt={item.alt}
+          width={400}
+          height={400}
           className={`w-full h-full object-contain transition-all duration-500 hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           loading={priority ? "eager" : "lazy"}
           onLoad={() => setIsLoaded(true)}

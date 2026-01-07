@@ -4,6 +4,7 @@ import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
 import { industries as industriesData } from '@/data/industries';
 import { ChevronRight, X } from 'lucide-react';
+import OptimizedImage from '../common/OptimizedImage';
 
 const toTitleCase = (text: string) => text
   ? text.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
@@ -45,7 +46,13 @@ const HoverDropdown: React.FC<HoverDropdownProps> = ({ items, variant = 'default
             <div key={it.label} style={{ opacity: 1, transform: 'none' }}>
               <a href={it.href} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer px-2 lg:px-2.5 xl:px-3 2xl:px-3`}>
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain flex-shrink-0" />
+                  <OptimizedImage 
+                    src={it.iconSrc} 
+                    alt="" 
+                    width={48}
+                    height={48}
+                    className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain flex-shrink-0" 
+                  />
                 ) : null}
                 <span className={`font-poppins font-normal group-hover:font-bold text-center leading-tight break-words px-0.5 ${
                   it.label.toLowerCase() === 'transportation' || it.label.toLowerCase() === 'construction' || it.label.toLowerCase() === 'composites'
@@ -369,7 +376,13 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
                         className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
-                          <img src={item.iconSrc} alt="" className="w-6 h-6 object-contain" />
+                          <OptimizedImage 
+                            src={item.iconSrc} 
+                            alt="" 
+                            width={24}
+                            height={24}
+                            className="w-6 h-6 object-contain" 
+                          />
                         )}
                         <span className="font-poppins text-base text-gray-700">{toTitleCase(item.label)}</span>
                       </a>

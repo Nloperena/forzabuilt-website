@@ -4,6 +4,9 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import ChemistryPopupV2 from '@/components/ChemistryPopupV2';
 import { getFontSize } from '@/styles/typography';
+import OptimizedImage from './common/OptimizedImage';
+
+const MotionOptimizedImage = motion.create(OptimizedImage);
 
 interface ChemistryData {
   id: string;
@@ -259,9 +262,11 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               >
                 <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
-                    <motion.img 
+                    <MotionOptimizedImage 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
+                      width={160}
+                      height={160}
                       className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
@@ -296,9 +301,11 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               >
                 <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
-                    <motion.img 
+                    <MotionOptimizedImage 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
+                      width={160}
+                      height={160}
                       className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
@@ -333,9 +340,11 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               >
                 <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
-                    <motion.img 
+                    <MotionOptimizedImage 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
+                      width={160}
+                      height={160}
                       className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
@@ -375,9 +384,11 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 md:p-2
                               gap-0.5 sm:gap-1 md:gap-1.5">
                 <div className="relative flex justify-center">
-                  <motion.img 
+                  <MotionOptimizedImage 
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
+                    width={200}
+                    height={200}
                     className="
                       w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain
@@ -434,9 +445,11 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 md:p-2
                               gap-0.5 sm:gap-1 md:gap-1.5">
                 <div className="relative flex justify-center">
-                  <motion.img 
+                  <MotionOptimizedImage 
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
+                    width={200}
+                    height={200}
                     className="
                       w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain

@@ -7,6 +7,7 @@ import ProductDetail from '@/components/products/ProductDetail';
 import { getProducts, getRelatedProducts } from '@/utils/products';
 import { getBlobImageUrl } from '@/utils/blobStorage';
 import productsData from '@/data/productsSimplified.json';
+import { getImage } from 'astro:assets';
 
 // Generate static paths for all products
 export async function getStaticPaths() {
@@ -123,8 +124,19 @@ if (isRedirect && redirectTo) {
 const productName = product?.name || product?.id || 'Product';
 const productDescription = product?.description || `${productName} - High-performance industrial product from ForzaBuilt.`;
 
+// Pre-optimize product image
+let productOptimized = product;
+if (product?.imageUrl) {
+  try {
+    const optimized = await getImage({ src: product.imageUrl, width: 800, format: 'webp' });
+    productOptimized = { ...product, imageUrl: optimized.src };
+  } catch (e) {
+    console.warn(`Failed to optimize product image for ${product.id}`);
+  }
+}
+
 // Get product image for Open Graph - use product image if available, otherwise fall back to default logo
-const productOgImage = product?.imageUrl || "/logos/Forza-Eagle-Logo-Blue-eMail.png";
+const productOgImage = productOptimized?.imageUrl || "/logos/Forza-Eagle-Logo-Blue-eMail.png";
 
 // Get related products from props
 const relatedProducts = Astro.props.relatedProducts || [];

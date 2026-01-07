@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { typography } from '@/styles/brandStandards';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '@/utils/industryHelpers';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
+import OptimizedImage from '@/components/common/OptimizedImage';
 import type { Product } from '@/types/products';
 import { ImageMappingService } from '@/services/imageMappingService';
 
@@ -236,10 +237,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
               {!mainImageLoaded && (
                 <ImageSkeleton className="w-full h-full rounded-lg" />
               )}
-              <img 
+              <OptimizedImage 
                 ref={mainImageRef}
                 src={productImageUrl}
                 alt={product.name}
+                width={800}
+                height={800}
                 className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
                   mainImageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -390,7 +393,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                                     {!industryLogoLoaded && (
                                       <ImageSkeleton className="w-full h-full rounded-full" />
                                     )}
-                                    <img 
+                                    <OptimizedImage 
                                       ref={(el) => {
                                         industryLogoRef.current = el;
                                         // Check if image is already loaded (cached)
@@ -400,6 +403,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                                       }}
                                       src={getIndustryLogo(product.industry)} 
                                       alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
+                                      width={128}
+                                      height={128}
                                       className={`h-24 w-24 md:h-32 md:w-32 object-contain transition-opacity duration-500 ${
                                         industryLogoLoaded ? 'opacity-100' : 'opacity-0'
                                       }`}
@@ -545,9 +550,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                                         {!chemistryIconLoaded && (
                                           <ImageSkeleton className="w-24 h-24 md:w-28 md:h-28 rounded-full" />
                                         )}
-                                        <img 
+                                        <OptimizedImage 
                                           src={chemIcon} 
                                           alt={`${product.chemistry || ''} Chemistry`} 
+                                          width={112}
+                                          height={112}
                                           className={`w-24 h-24 md:w-28 md:h-28 chemistry-icon transition-opacity duration-500 ${
                                             chemistryIconLoaded ? 'opacity-100' : 'opacity-0'
                                           }`}
@@ -716,9 +723,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                           {!relatedProductImagesLoaded[relatedProduct.id] && (
                             <ImageSkeleton />
                           )}
-                          <img 
+                          <OptimizedImage 
                             src={relatedImageUrl} 
                             alt={relatedProduct.name}
+                            width={400}
+                            height={400}
                             className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                               relatedProductImagesLoaded[relatedProduct.id] ? 'opacity-100' : 'opacity-0'
                             }`}
@@ -752,9 +761,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                             {!relatedProductImagesLoaded[relatedProduct.id] && (
                               <ImageSkeleton className="rounded-xl" />
                             )}
-                            <img 
+                            <OptimizedImage 
                               src={relatedImageUrl} 
                               alt={relatedProduct.name}
+                              width={200}
+                              height={200}
                               className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
                                 relatedProductImagesLoaded[relatedProduct.id] ? 'opacity-100' : 'opacity-0'
                               }`}

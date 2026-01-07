@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { industries } from '../data/industries';
 import VideoSkeleton from './common/VideoSkeleton';
+import OptimizedImage from './common/OptimizedImage';
 
 // Individual industry card with hover-to-play video
 const IndustryCard: React.FC<{
@@ -91,9 +92,11 @@ const IndustryCard: React.FC<{
           >
             <div className={isMobile ? "flex items-center gap-1.5 sm:gap-2" : "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5"}>
               {industry.logo && (
-                <img 
+                <OptimizedImage 
                   src={industry.logo} 
                   alt={`${industry.title} logo`} 
+                  width={64}
+                  height={64}
                   className={isMobile 
                     ? "w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150" 
                     : "w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 transition-transform duration-150"
@@ -118,7 +121,9 @@ const IndustryCard: React.FC<{
   );
 };
 
-const IndustryCardsSection = () => {
+const IndustryCardsSection = ({ industries: industriesProp }: { industries?: typeof industries }) => {
+  const displayIndustries = industriesProp || industries;
+  
   return (
     <section className="pt-2 md:pt-3 lg:pt-4 bg-white w-full relative z-20">
       <div className="w-full bg-white pt-4 md:pt-6 px-4 mx-auto max-w-7xl 2xl:max-w-[1600px] relative z-10">
@@ -133,7 +138,7 @@ const IndustryCardsSection = () => {
         {/* Mobile View */}
         <div className="block md:hidden">
           <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg mx-auto">
-            {industries.map((industry) => (
+            {displayIndustries.map((industry) => (
               <IndustryCard key={`mobile-${industry.title}`} industry={industry} isMobile={true} />
             ))}
           </div>
@@ -147,7 +152,7 @@ const IndustryCardsSection = () => {
         {/* Desktop View */}
         <div className="sr-only md:not-sr-only md:flex w-full flex-col items-center">
           <div className="grid grid-cols-3 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 w-full max-w-[1000px] lg:max-w-[1100px] xl:max-w-[1200px] 2xl:max-w-[1400px] mb-3 md:mb-4 mx-auto py-2 sm:py-3 md:py-3 lg:py-4">
-            {industries.map((industry) => (
+            {displayIndustries.map((industry) => (
               <div key={`desktop-${industry.title}`} className="block">
                 <IndustryCard industry={industry} isMobile={false} />
               </div>

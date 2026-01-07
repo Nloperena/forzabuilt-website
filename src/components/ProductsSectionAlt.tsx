@@ -1,28 +1,31 @@
 import React from 'react';
+import OptimizedImage from './common/OptimizedImage';
 
-const ProductsSectionAlt = () => {
-  const categories = [
-    {
-      slug: 'bond',
-      image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
-      alt: 'Industrial Adhesives'
-    },
-    {
-      slug: 'seal',
-      image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
-      alt: 'Industrial Sealants'
-    },
-    {
-      slug: 'tape',
-      image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
-      alt: 'Industrial Tapes'
-    },
-    {
-      slug: 'ruggedred',
-      image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
-      alt: 'Industrial Cleaners'
-    }
-  ];
+const defaultCategories = [
+  {
+    slug: 'bond',
+    image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
+    alt: 'Industrial Adhesives'
+  },
+  {
+    slug: 'seal',
+    image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
+    alt: 'Industrial Sealants'
+  },
+  {
+    slug: 'tape',
+    image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
+    alt: 'Industrial Tapes'
+  },
+  {
+    slug: 'ruggedred',
+    image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
+    alt: 'Industrial Cleaners'
+  }
+];
+
+const ProductsSectionAlt = ({ categories: categoriesProp }: { categories?: typeof defaultCategories }) => {
+  const categories = categoriesProp || defaultCategories;
 
   return (
     <section className="pt-2 md:pt-3 lg:pt-4 bg-white w-full relative z-20 overflow-x-hidden">
@@ -41,7 +44,14 @@ const ProductsSectionAlt = () => {
               <a key={category.slug} className="block w-full h-full" href={`/products/${category.slug}`}>
                 <div className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white" style={{ backgroundImage: 'none' }}>
                   <div className="relative w-full h-full overflow-hidden">
-                    <img src={category.image} alt={category.alt} className="w-full h-full object-cover transition-opacity duration-500 opacity-100" style={{ objectPosition: 'center center' }} />
+                    <OptimizedImage 
+                      src={category.image} 
+                      alt={category.alt} 
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover transition-opacity duration-500 opacity-100" 
+                      style={{ objectPosition: 'center center' }} 
+                    />
                   </div>
                 </div>
               </a>
@@ -57,7 +67,14 @@ const ProductsSectionAlt = () => {
                 <a className="block w-full h-full" href={`/products/${category.slug}`}>
                   <div className="aspect-[6/4] rounded-xl lg:rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white" style={{ backgroundImage: 'none' }}>
                     <div className="relative w-full h-full overflow-hidden">
-                      <img src={category.image} alt={category.alt} className="w-full h-full object-cover transition-opacity duration-500 opacity-100" style={{ objectPosition: 'center center' }} />
+                      <OptimizedImage 
+                        src={category.image} 
+                        alt={category.alt} 
+                        width={800}
+                        height={533}
+                        className="w-full h-full object-cover transition-opacity duration-500 opacity-100" 
+                        style={{ objectPosition: 'center center' }} 
+                      />
                     </div>
                   </div>
                 </a>

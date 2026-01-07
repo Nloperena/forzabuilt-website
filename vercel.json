@@ -1,4 +1,24 @@
 {
+  "images": {
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "jw4to4yw6mmciodr.public.blob.vercel-storage.com"
+      },
+      {
+        "protocol": "https",
+        "hostname": "www.forzabuilt.com"
+      },
+      {
+        "protocol": "https",
+        "hostname": "forzabuilt.com"
+      }
+    ],
+    "formats": ["image/avif", "image/webp"],
+    "minimumCacheTTL": 31536000,
+    "dangerouslyAllowSVG": true,
+    "contentSecurityPolicy": "default-src 'self'; script-src 'none'; sandbox;"
+  },
   "redirects": [
     {
       "source": "/blog/common-adhesive-terms/",
@@ -100,4 +120,5 @@
     }
   ]
 }
+
 

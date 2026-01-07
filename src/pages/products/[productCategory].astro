@@ -7,6 +7,9 @@ import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import ProductCategoryProductsSection from '@/components/products/ProductCategoryProductsSection';
 import StickyProductHeroImageSection from '@/components/products/StickyProductHeroImageSection';
 import { getProductCategoryImage, getMobileHeroImage, getProductCategoryTitle, getProductCategoryDescription } from '@/utils/productCategoryHelpers';
+import { getImage } from 'astro:assets';
+
+export function getStaticPaths() {
 
 export function getStaticPaths() {
   // Main product categories: bond, seal, tape, ruggedred
@@ -26,6 +29,19 @@ const categoryTitle = getProductCategoryTitle(category || '');
 const categoryDescription = getProductCategoryDescription(category || '');
 const desktopImage = getProductCategoryImage(category || '');
 const mobileImage = getMobileHeroImage(category || '');
+
+// Pre-optimize images
+let optimizedDesktopImage = desktopImage;
+let optimizedMobileImage = mobileImage;
+
+if (desktopImage) {
+  const opt = await getImage({ src: desktopImage, width: 1600, format: 'webp' });
+  optimizedDesktopImage = opt.src;
+}
+if (mobileImage) {
+  const opt = await getImage({ src: mobileImage, width: 800, format: 'webp' });
+  optimizedMobileImage = opt.src;
+}
 ---
 
 <Layout 
@@ -43,8 +59,8 @@ const mobileImage = getMobileHeroImage(category || '');
           <div class="relative">
             <StickyProductHeroImageSection 
               productCategory={productCategory || ''}
-              imageUrl={desktopImage}
-              mobileImageUrl={mobileImage}
+              imageUrl={optimizedDesktopImage || ''}
+              mobileImageUrl={optimizedMobileImage}
               client:load
             >
               <!-- Products Section - Using ProductCategoryProductsSection component or RuggedRed iframe -->

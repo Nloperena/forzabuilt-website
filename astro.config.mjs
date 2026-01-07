@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,6 +18,19 @@ export default defineConfig({
     }),
     sitemap(),
   ],
+  adapter: vercel({
+    imageService: true, // Enable Vercel's native image optimization
+    imagesConfig: {
+      sizes: [64, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048],
+      domains: ['jw4to4yw6mmciodr.public.blob.vercel-storage.com', 'www.forzabuilt.com', 'forzabuilt.com'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'jw4to4yw6mmciodr.public.blob.vercel-storage.com',
+        },
+      ],
+    },
+  }),
   vite: {
     resolve: {
       alias: {
@@ -37,4 +51,15 @@ export default defineConfig({
   output: 'static',
   // SEO-friendly trailing slash handling
   trailingSlash: 'ignore',
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'jw4to4yw6mmciodr.public.blob.vercel-storage.com',
+      },
+    ],
+  },
 });

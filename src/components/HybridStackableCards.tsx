@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
+import OptimizedImage from './common/OptimizedImage';
 
 // Transportation Images
 import TruckStackImage from '@/assets/images/Transportation-stickstackcard-images/Truck Reefer Image.jpg';
@@ -738,9 +739,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
               {industryLogo && (
                 <div className="relative" style={{ width: 'clamp(4rem, 8vw, 10rem)', height: 'clamp(4rem, 8vw, 10rem)' }}>
-                  <img
+                  <OptimizedImage
                     src={industryLogo}
                     alt={`${industryTitle} icon`}
+                    width={160}
+                    height={160}
                     className="w-auto h-full object-contain"
                   />
                 </div>
@@ -823,9 +826,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     <div className="w-full lg:w-1/2 h-[50%] sm:h-[55%] lg:h-full relative p-2 sm:p-3 lg:p-4 flex items-center justify-center">
                       <div className="w-full h-full flex items-center justify-center">
                         {card.image ? (
-                          <img 
+                          <OptimizedImage 
                             src={typeof card.image === 'string' ? card.image : (card.image as any).src} 
                             alt={card.title}
+                            width={800}
+                            height={600}
                             className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl"
                             style={{ width: 'auto', height: 'auto', maxHeight: '100%', maxWidth: '100%' }}
                           />

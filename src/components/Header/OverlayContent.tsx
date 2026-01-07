@@ -6,6 +6,7 @@ import { tools as toolsData } from '@/data/tools';
 import { AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { FileText } from 'lucide-react';
+import OptimizedImage from '../common/OptimizedImage';
 
 interface OverlayContentProps {
   activeContent: string | null;
@@ -35,7 +36,13 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
           style={linkTextStyle}
         >
           <div className="relative w-24 h-24 flex items-center justify-center mb-4 will-change-transform">
-            <img src={industry.logo} alt={`${industry.title} Logo`} className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+            <OptimizedImage 
+              src={industry.logo} 
+              alt={`${industry.title} Logo`} 
+              width={100}
+              height={100}
+              className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
+            />
           </div>
           <h3 className="text-xl font-normal font-poppins transition-all duration-300 group-hover/item:font-bold">{industry.title}</h3>
         </a>
@@ -51,9 +58,11 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         style={linkTextStyle}
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
-          <img 
+          <OptimizedImage 
             src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
             alt="Industrial Adhesives Logo" 
+            width={160}
+            height={96}
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
         </div>
@@ -67,9 +76,11 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         style={linkTextStyle}
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
-          <img 
+          <OptimizedImage 
             src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
             alt="Industrial Sealants Logo" 
+            width={160}
+            height={96}
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
         </div>
@@ -83,9 +94,11 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         style={linkTextStyle}
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
-          <img 
+          <OptimizedImage 
             src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
             alt="Industrial Tapes Logo" 
+            width={160}
+            height={96}
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
         </div>
@@ -99,7 +112,13 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         style={linkTextStyle}
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
-          <img src="/products/brand-logos/product-line-brands-white-ruggedred.svg" alt="Rugged Red Logo" className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+          <OptimizedImage 
+            src="/products/brand-logos/product-line-brands-white-ruggedred.svg" 
+            alt="Rugged Red Logo" 
+            width={160}
+            height={96}
+            className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
+          />
         </div>
         <div className="text-xl text-center font-poppins transition-all duration-300" style={{ fontWeight: 'normal' }}>
           <div className="group-hover/item:font-bold">INDUSTRIAL</div>

@@ -5,6 +5,7 @@ import blogPostsData from '@/data/blogPosts.json';
 import type { BlogPost } from '@/types/Blog';
 import { getFontSize } from '@/styles/typography';
 import { generateSlugFromTitle } from '@/lib/utils';
+import OptimizedImage from './common/OptimizedImage';
 
 // Blue dot skeleton for white card background
 const ArticleImageSkeleton: React.FC = () => (
@@ -42,10 +43,12 @@ const ArticleCard: React.FC<{ article: BlogPost }> = ({ article }) => {
         
         {/* Image - fades in when loaded */}
         {article.image ? (
-          <img
+          <OptimizedImage
             ref={imgRef}
             src={article.image}
             alt={article.title}
+            width={400}
+            height={400}
             className={`absolute inset-0 z-10 w-full h-full object-cover transition-all duration-300 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageLoaded(true)}

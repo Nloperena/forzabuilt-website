@@ -6,8 +6,41 @@ import FooterV2 from '@/components/FooterV2';
 import ProductsSectionAlt from '@/components/ProductsSectionAlt';
 import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import { getImage } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
+
+const categories = [
+  {
+    slug: 'bond',
+    image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
+    alt: 'Industrial Adhesives'
+  },
+  {
+    slug: 'seal',
+    image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
+    alt: 'Industrial Sealants'
+  },
+  {
+    slug: 'tape',
+    image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
+    alt: 'Industrial Tapes'
+  },
+  {
+    slug: 'ruggedred',
+    image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
+    alt: 'Industrial Cleaners'
+  }
+];
+
+const optimizedCategories = await Promise.all(categories.map(async (cat) => {
+  try {
+    const optimized = await getImage({ src: cat.image, width: 800, format: 'webp' });
+    return { ...cat, image: optimized.src };
+  } catch (e) {
+    return cat;
+  }
+}));
 ---
 
 <Layout 
@@ -34,7 +67,7 @@ const currentPath = Astro.url.pathname;
 
         <!-- Products Grid Section -->
         <div class="relative z-[30]">
-          <ProductsSectionAlt client:load />
+          <ProductsSectionAlt client:load categories={optimizedCategories} />
         </div>
       </div>
 

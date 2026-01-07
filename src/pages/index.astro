@@ -12,12 +12,13 @@ import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
 import StickyNewsletterSection from '@/components/StickyNewsletterSection';
 import OptimizedGradient from '@/components/common/OptimizedGradient';
+import { getImage } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 
 // Full set of ticker items with optimized WebP images from Vercel Blob Storage
 // Pattern: BOND, SEAL, BOND, SEAL, TAPE (or SEAL) - alternating cycles
-const tickerItems = [
+const tickerItemsRaw = [
   // Cycle 1
   { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/IC932%20Canister.webp', alt: 'ForzaBOND® IC932' },
   { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Construction/C-OS9%20Sausage.webp', alt: 'ForzaSEAL® C-OS9' },
@@ -79,6 +80,78 @@ const tickerItems = [
   { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OS2%20Cartridge.webp', alt: 'ForzaSEAL® OS2' },
   { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T970%20Foil%20Bonding%20Tape.webp', alt: 'T970 (Foil Bonding Tape)' }
 ];
+
+// Pre-optimize ticker items on the server
+const tickerItems = await Promise.all(tickerItemsRaw.map(async (item) => {
+  try {
+    const optimized = await getImage({ 
+      src: item.src, 
+      width: 400, 
+      height: 400, 
+      format: 'webp',
+      quality: 80
+    });
+    return { ...item, src: optimized.src };
+  } catch (e) {
+    console.error(`Failed to optimize ticker image: ${item.src}`, e);
+    return item;
+  }
+}));
+
+// Pre-optimize product categories
+import { industries as industriesData } from '@/data/industries';
+const optimizedIndustries = await Promise.all(industriesData.map(async (ind) => {
+  try {
+    const optimizedLogo = await getImage({ src: ind.logo, width: 100, height: 100 });
+    return { ...ind, logo: optimizedLogo.src };
+  } catch (e) {
+    return ind;
+  }
+}));
+
+const categories = [
+  {
+    id: 'adhesives',
+    title: 'Adhesives',
+    description: 'High-performance adhesive solutions for structural integrity and long-lasting durability.',
+    link: '/products/bond',
+    image: '/images/homepage-heroes/Forza Bond Hero Shot.webp',
+    buttonText: 'Browse Adhesives'
+  },
+  {
+    id: 'sealants',
+    title: 'Sealants',
+    description: 'Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.',
+    link: '/products/seal',
+    image: '/images/homepage-heroes/Forza Seal Hero Shot.webp',
+    buttonText: 'Browse Sealants'
+  },
+  {
+    id: 'tapes',
+    title: 'Tapes',
+    description: 'Versatile tape solutions for secure bonding and sealing in demanding applications.',
+    link: '/products/tape',
+    image: '/images/homepage-heroes/Forza Tape Hero Shot.webp',
+    buttonText: 'Browse Tapes'
+  },
+  {
+    id: 'cleaners',
+    title: 'Cleaners',
+    description: 'Industrial-grade cleaning solutions for preparing surfaces and maintaining equipment.',
+    link: '/products/ruggedred',
+    image: '/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.webp',
+    buttonText: 'Browse Cleaners'
+  }
+];
+
+const optimizedCategories = await Promise.all(categories.map(async (cat) => {
+  try {
+    const optimized = await getImage({ src: cat.image, width: 1000, format: 'webp' });
+    return { ...cat, image: optimized.src };
+  } catch (e) {
+    return cat;
+  }
+}));
 ---
 
 <Layout 
@@ -105,10 +178,10 @@ const tickerItems = [
         </section>
 
         <!-- Industries Section - loads immediately (load) -->
-        <IndustryCardsSection client:load />
+        <IndustryCardsSection client:load industries={optimizedIndustries} />
 
         <!-- Products Section - loads immediately (load) -->
-        <ProductCategoriesSection client:load />
+        <ProductCategoriesSection client:load categories={optimizedCategories} />
 
         <!-- Product Chemistries Overview - loads immediately (load) -->
         <section class="relative">

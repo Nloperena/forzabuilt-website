@@ -4,6 +4,7 @@ import { Providers } from '@/components/common/Providers';
 import HeaderWrapper from '@/components/Header/HeaderWrapper';
 import FooterV2 from '@/components/FooterV2';
 import NewsletterSection from '@/components/NewsletterSection';
+import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -70,9 +71,11 @@ const currentPath = Astro.url.pathname;
               </a>
 
               <div class="mt-8">
-                <img 
+                <Image 
                   src="/EmptyCanister-ReturnForm-mockupimage.webp" 
                   alt="Canister Return Form Preview"
+                  width={600}
+                  height={400}
                   class="rounded-lg shadow-lg"
                 />
               </div>

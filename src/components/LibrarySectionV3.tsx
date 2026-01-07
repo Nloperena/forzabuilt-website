@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getFontSize } from '@/styles/typography';
 import ComingSoonModal from './common/ComingSoonModal';
+import OptimizedImage from './common/OptimizedImage';
 
 interface Brochure {
   id: string;
@@ -145,9 +146,11 @@ const LibrarySectionV3: React.FC = () => {
             {!loadedImages.has(brochure.id) && <BrochureSkeleton />}
             
             {/* Brochure Cover Image */}
-            <img
+            <OptimizedImage
               src={brochure.coverImage}
               alt={brochure.label}
+              width={300}
+              height={400}
               className={`w-full h-full object-contain block transition-opacity duration-300 ${
                 loadedImages.has(brochure.id) ? 'opacity-100' : 'opacity-0'
               }`}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { getFontSize } from '@/styles/typography';
+import OptimizedImage from './common/OptimizedImage';
 
 interface NewsletterSectionProps {
   showHeading?: boolean;
@@ -63,9 +64,11 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
               <div className="p-2 sm:p-3 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center">
                 {/* Newsletter Icon */}
                 <div className="mb-2 sm:mb-3 flex justify-start">
-                  <img 
+                  <OptimizedImage 
                     src="/images/Newspaper icon.svg" 
                     alt="Newsletter" 
+                    width={48}
+                    height={48}
                     className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white"
                   />
                 </div>
@@ -188,9 +191,11 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
             {/* Header */}
             <div className="relative p-6 md:p-8 border-b border-white/10">
               <div className="flex items-center justify-between mb-6">
-                <img
+                <OptimizedImage
                   src="/logos/Forza-Eagle-Logo-White.svg"
                   alt="Forza Logo"
+                  width={160}
+                  height={80}
                   className="h-16 md:h-20 w-auto"
                 />
                 <button 

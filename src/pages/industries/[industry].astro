@@ -11,6 +11,9 @@ import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
 import IndustryProductsSection from '@/components/industries/IndustryProductsSection';
 import IndustryBrochureArticlesSection from '@/components/industries/IndustryBrochureArticlesSection';
 import { industries } from '@/data/industries';
+import { getImage } from 'astro:assets';
+
+export function getStaticPaths() {
 
 export function getStaticPaths() {
   return industries.map((industry) => ({
@@ -22,6 +25,10 @@ export function getStaticPaths() {
 const { industry } = Astro.params;
 const { industryData } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Pre-optimize logo
+const optimizedLogo = await getImage({ src: industryData.logo, width: 200, height: 200 });
+const industryDataOptimized = { ...industryData, logo: optimizedLogo.src };
 
 // Map industry titles to valid industry keys for HybridStackableCards
 const getIndustryKey = (title: string) => {
@@ -52,11 +59,11 @@ const industryColor = industryData.color || '#1B3764';
         <!-- Hero Video Section -->
         <div class="relative">
           <IndustryHeroBanner 
-            videoUrl={industryData.videoUrl} 
-            industryTitle={industryData.title}
-            logo={industryData.logo}
+            videoUrl={industryDataOptimized.videoUrl} 
+            industryTitle={industryDataOptimized.title}
+            logo={industryDataOptimized.logo}
             variant="simple"
-            subtitle={`Building High-Performing\n${industryData.title} Adhesive, Tape\n& Sealant Solutions`}
+            subtitle={`Building High-Performing\n${industryDataOptimized.title} Adhesive, Tape\n& Sealant Solutions`}
             client:load
           />
         </div>
@@ -66,8 +73,8 @@ const industryColor = industryData.color || '#1B3764';
           <HybridStackableCards 
             industry={validIndustryKey}
             maxCards={3}
-            industryTitle={industryData.title}
-            industryLogo={industryData.logo}
+            industryTitle={industryDataOptimized.title}
+            industryLogo={industryDataOptimized.logo}
             industryColor={industryColor}
             client:load
           />
@@ -79,11 +86,11 @@ const industryColor = industryData.color || '#1B3764';
         </div>
 
         <!-- X-Ray Explorer Sections -->
-        <IndustryXRaySections industry={industryData.title} client:load />
+        <IndustryXRaySections industry={industryDataOptimized.title} client:load />
 
         <!-- Product Cards Section -->
         <IndustryProductsSection 
-          industryData={industryData}
+          industryData={industryDataOptimized}
           onProductSelect={() => {}}
           client:load
         />

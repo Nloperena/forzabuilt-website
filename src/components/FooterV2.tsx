@@ -1,4 +1,5 @@
 import React from 'react';
+import OptimizedImage from './common/OptimizedImage';
 
 
 const FooterV2 = () => {
@@ -11,9 +12,11 @@ const FooterV2 = () => {
         <div className="lg:hidden flex flex-col gap-2">
           {/* Logo and Social Media */}
           <div className="flex items-start justify-between">
-            <img 
+            <OptimizedImage 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
+              width={120}
+              height={48}
               className="h-8 md:h-12 w-auto"
             />
             {/* Social Media Icons */}
@@ -51,9 +54,11 @@ const FooterV2 = () => {
           {/* Bottom Section - Made in USA Badge and Copyright */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Made in USA Badge */}
-            <img 
+            <OptimizedImage 
               src="/images/misc/Flag Icon with asterisk 1.png"
               alt="MADE IN THE USA"
+              width={100}
+              height={48}
               className="h-10 sm:h-12 w-auto object-contain flex-shrink-0"
             />
             {/* Copyright Text */}
@@ -66,7 +71,13 @@ const FooterV2 = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex justify-between items-start gap-12 mb-5 max-w-4xl ml-auto mr-auto">
           <div className="flex-shrink-0">
-            <img src="/logos/Forza-Eagle-Logo-White.svg" alt="Forza Logo" className="h-12 lg:h-12 xl:h-16 2xl:h-24 w-auto" />
+            <OptimizedImage 
+              src="/logos/Forza-Eagle-Logo-White.svg" 
+              alt="Forza Logo" 
+              width={240}
+              height={96}
+              className="h-12 lg:h-12 xl:h-16 2xl:h-24 w-auto" 
+            />
           </div>
           <div className="space-y-1.5 flex-shrink-0">
             <h3 className="text-white font-bold text-base font-poppins">Company</h3>
@@ -111,7 +122,13 @@ const FooterV2 = () => {
         <div className="hidden lg:block max-w-[56rem] mx-auto">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
-              <img src="/images/misc/Flag Icon with asterisk 1.png" alt="PROUDLY MADE IN AMERICA" className="h-16 w-auto object-contain flex-shrink-0" />
+              <OptimizedImage 
+                src="/images/misc/Flag Icon with asterisk 1.png" 
+                alt="PROUDLY MADE IN AMERICA" 
+                width={100}
+                height={64}
+                className="h-16 w-auto object-contain flex-shrink-0" 
+              />
               <p className="text-white/70 text-xs font-poppins leading-tight">
                 *Forza industrial adhesive and industrial sealants are proudly<br />
                 manufactured in the USA from domestic and limited foreign<br />

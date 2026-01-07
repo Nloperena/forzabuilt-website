@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { getFontSize } from '@/styles/typography';
+import OptimizedImage from './common/OptimizedImage';
 
 // Video skeleton with blue dots
 const VideoSkeleton: React.FC = () => (
@@ -118,9 +119,11 @@ const MadeInAmericaSection: React.FC = () => {
                 
                 {/* American Flag Icon with Asterisk - Aligned with bottom of video */}
                 <div className="flex justify-center lg:justify-start mt-2 sm:mt-3 md:mt-4">
-                  <img 
+                  <OptimizedImage 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
                     alt="PROUDLY MADE IN AMERICA" 
+                    width={200}
+                    height={100}
                     className="h-16 w-auto object-contain"
                   />
                 </div>

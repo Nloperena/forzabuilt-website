@@ -1,4 +1,5 @@
 import React from 'react';
+import OptimizedImage from '../common/OptimizedImage';
 
 interface LogoProps {
   className?: string;
@@ -15,10 +16,12 @@ const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = fal
 
   return (
     <a href="/" className="flex items-center">
-      <img 
+      <OptimizedImage 
         key={logoSrc}
         src={logoSrc}
         alt="Forza Logo"
+        width={200}
+        height={80}
         className={className}
       />
     </a>

@@ -5,6 +5,7 @@ import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } 
 import { byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
+import OptimizedImage from '../common/OptimizedImage';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
@@ -361,9 +362,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           >
                             <div className="flex items-center gap-2 min-w-0 flex-1 text-left">
                               <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                <img 
+                                <OptimizedImage 
                                   src={getChemistryIcon(chemistry)} 
                                   alt={chemistry}
+                                  width={48}
+                                  height={48}
                                   className="w-6 h-6 object-contain chemistry-icon"
                                   onError={(e) => {
                                     // Fallback to MS icon if image fails to load
@@ -457,9 +460,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           )}
                           
                           {!imageErrorStates[product.id] && (
-                            <img 
-                              src={product.imageUrl} 
+                            <OptimizedImage 
+                              src={product.imageUrl || ''} 
                               alt={product.name}
+                              width={400}
+                              height={400}
                               className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}
@@ -649,9 +654,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
                           <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                            <img 
+                            <OptimizedImage 
                               src={getChemistryIcon(chemistry)} 
                               alt={chemistry}
+                              width={40}
+                              height={40}
                               className="w-5 h-5 object-contain chemistry-icon"
                               onError={(e) => {
                                 e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';

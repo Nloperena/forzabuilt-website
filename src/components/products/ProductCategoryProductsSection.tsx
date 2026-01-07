@@ -5,6 +5,7 @@ import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } 
 import { byCategory, byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
+import OptimizedImage from '../common/OptimizedImage';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
@@ -436,9 +437,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                           >
                             <div className="flex items-center gap-1.5 min-w-0 flex-1 text-left">
                               <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                <img 
+                                <OptimizedImage 
                                   src={getChemistryIcon(chemistry)} 
                                   alt={chemistry}
+                                  width={48}
+                                  height={48}
                                   className="w-5 h-5 object-contain chemistry-icon"
                                   onError={(e) => {
                                     // Fallback to MS icon if image fails to load
@@ -531,9 +534,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                           )}
                           
                           {!imageErrorStates[product.id] && (
-                            <img 
-                              src={product.imageUrl} 
+                            <OptimizedImage 
+                              src={product.imageUrl || ''} 
                               alt={product.name}
+                              width={400}
+                              height={400}
                               className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}
@@ -725,13 +730,15 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                               } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
-                                <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                  <img 
-                                    src={getChemistryIcon(chemistry)} 
-                                    alt={chemistry}
-                                    className="w-5 h-5 object-contain chemistry-icon"
-                                  />
-                                </div>
+                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                                <OptimizedImage 
+                                  src={getChemistryIcon(chemistry)} 
+                                  alt={chemistry}
+                                  width={40}
+                                  height={40}
+                                  className="w-5 h-5 object-contain chemistry-icon"
+                                />
+                              </div>
                                 <span className="text-xs font-medium truncate">{chemistry}</span>
                               </div>
                               <span className="text-xs opacity-70 flex-shrink-0">({count})</span>

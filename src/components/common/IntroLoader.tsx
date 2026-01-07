@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 
 /**
  * IntroLoader Component
@@ -196,9 +197,11 @@ const IntroLoader: React.FC = () => {
                 className="absolute inset-0 blur-2xl bg-[#F16022]/20 rounded-full scale-150"
               />
               
-              <img 
+              <OptimizedImage 
                 src="/logos/Forza-Eagle-Logo-White.svg" 
                 alt="ForzaBuilt" 
+                width={320}
+                height={128}
                 className="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
               />
             </motion.div>
