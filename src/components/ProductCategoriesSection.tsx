@@ -44,24 +44,8 @@ const ProductCategoriesSection = ({ categories: categoriesProp }: { categories?:
   const [activeCategory, setActiveCategory] = useState(displayCategories[1]); // Default to Sealants
   const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
-  // Preload all category images
-  useEffect(() => {
-    displayCategories.forEach((cat) => {
-      const img = new Image();
-      img.onload = () => {
-        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
-      };
-      img.onerror = () => {
-        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
-      };
-      img.src = cat.image;
-      
-      // If image is already in cache
-      if (img.complete) {
-        setImagesLoaded(prev => ({ ...prev, [cat.id]: true }));
-      }
-    });
-  }, [displayCategories]);
+  // Preload logic removed - OptimizedImage handles its own loading
+  // We'll update the imagesLoaded state via the onLoad prop of OptimizedImage
 
   return (
     <section className="relative isolate overflow-visible">

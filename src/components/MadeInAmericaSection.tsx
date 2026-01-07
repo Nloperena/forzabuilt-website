@@ -67,8 +67,16 @@ const MadeInAmericaSection: React.FC = () => {
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
               <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
-                {/* Skeleton Loading State */}
-                {!isVideoLoaded && <VideoSkeleton />}
+                {/* Poster Image Layer */}
+                <div className="absolute inset-0 z-0">
+                  <img
+                    src="/images/homepage-heroes/madeinaamerica-hero.webp"
+                    alt=""
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                    loading="eager"
+                    decoding="sync"
+                  />
+                </div>
                 
                 {/* Background Video - only load when near viewport */}
                 {shouldLoadVideo && (
@@ -80,6 +88,7 @@ const MadeInAmericaSection: React.FC = () => {
                     muted
                     playsInline
                     preload="none"
+                    poster="/images/homepage-heroes/madeinaamerica-hero.webp"
                     aria-label="Made in America manufacturing facility video"
                     onCanPlay={() => setIsVideoLoaded(true)}
                     onLoadedData={() => setIsVideoLoaded(true)}

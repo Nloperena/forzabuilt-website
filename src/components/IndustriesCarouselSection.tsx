@@ -263,6 +263,7 @@ export const IndustriesCarouselSection = () => {
                             playsInline
                             className="w-full h-full object-cover"
                             preload="auto"
+                            poster={item.posterUrl}
                           >
                             <source src={item.videoUrl} type="video/mp4" />
                           </motion.video>

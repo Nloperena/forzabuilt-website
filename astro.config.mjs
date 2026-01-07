@@ -22,11 +22,28 @@ export default defineConfig({
     imageService: true, // Enable Vercel's native image optimization
     imagesConfig: {
       sizes: [64, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-      domains: ['jw4to4yw6mmciodr.public.blob.vercel-storage.com', 'www.forzabuilt.com', 'forzabuilt.com'],
+      domains: [
+        'jw4to4yw6mmciodr.public.blob.vercel-storage.com', 
+        'www.forzabuilt.com', 
+        'forzabuilt.com',
+        'public.blob.vercel-storage.com'
+      ],
       remotePatterns: [
         {
           protocol: 'https',
           hostname: 'jw4to4yw6mmciodr.public.blob.vercel-storage.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'www.forzabuilt.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'forzabuilt.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'public.blob.vercel-storage.com',
         },
       ],
     },

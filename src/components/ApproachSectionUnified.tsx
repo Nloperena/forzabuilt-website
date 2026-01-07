@@ -10,6 +10,7 @@ interface ApproachItem {
   description: string;
   bulletPoints: string[];
   video?: string;
+  poster?: string;
 }
 
 // Utility function to prevent orphaned words (keeps last 2 words together on mobile)
@@ -67,7 +68,8 @@ const approachItems: ApproachItem[] = [
       "We know a thing or two, because we've seen a thing or two.",
       "If you have a unique situation, we've most likely seen it and have already come up with a specific solution for it."
     ],
-    video: "/videos/backgrounds/WebOptimized/Real Know How_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Real Know How_Optimized.mp4",
+    poster: "/images/homepage-heroes/Real-know-how-hero.webp"
   },
   {
     title: "PURPOSE BUILT PRODUCTS",
@@ -77,7 +79,8 @@ const approachItems: ApproachItem[] = [
       "We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.",
       "Our products deliver guaranteed performance"
     ],
-    video: "/videos/backgrounds/WebOptimized/Purpose Built Products_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Purpose Built Products_Optimized.mp4",
+    poster: "/images/homepage-heroes/purpose-built-products-hero.webp"
   },
   {
     title: "INDUSTRY FOCUSED",
@@ -88,7 +91,8 @@ const approachItems: ApproachItem[] = [
       "That's why our formulas, testing, and compliance know-how are second to none.",
       "If it's important to you, it's important to us."
     ],
-    video: "/videos/backgrounds/WebOptimized/Industry Summary Page Video_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Industry Summary Page Video_Optimized.mp4",
+    poster: "/images/homepage-heroes/industries-summary-hero.webp"
   },
   {
     title: "EXPANSIVE PRODUCT PORTFOLIO",
@@ -99,7 +103,8 @@ const approachItems: ApproachItem[] = [
       "We don't just cover one or two of your needs, we do them all!",
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
-    video: "/videos/backgrounds/WebOptimized/Product Summary Page Video_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Product Summary Page Video_Optimized.mp4",
+    poster: "/images/homepage-heroes/product-summary-hero.webp"
   },
   {
     title: "COMMON SENSE INNOVATION",
@@ -110,7 +115,8 @@ const approachItems: ApproachItem[] = [
       "We blend great science with great practicality. To create products that aren't just great in theory but that are actually great in use.",
       "Less waste, better chemistries, faster applications, and safer ingredients. Always for the customer."
     ],
-    video: "/videos/backgrounds/WebOptimized/Real Innovation_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Real Innovation_Optimized.mp4",
+    poster: "/images/homepage-heroes/Real-innovation-hero.webp"
   },
   {
     title: "MADE IN THE USA",
@@ -121,7 +127,8 @@ const approachItems: ApproachItem[] = [
       "We proudly manufacture our products in the USA, in America's heartland.",
       "From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability."
     ],
-    video: "/videos/backgrounds/WebOptimized/Made in USA_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Made in USA_Optimized.mp4",
+    poster: "/images/homepage-heroes/madeinaamerica-hero.webp"
   },
   {
     title: "CONSULTATIVE R&D",
@@ -131,7 +138,8 @@ const approachItems: ApproachItem[] = [
       "No wasted time. No off-the-shelf guesswork. Just the right product, right away – proven and validated.",
       "When a product doesn't exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast."
     ],
-    video: "/videos/backgrounds/WebOptimized/R&D Leadership_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/R&D Leadership_Optimized.mp4",
+    poster: "/images/homepage-heroes/RD-Leadership-hero.webp"
   },
   {
     title: "SUSTAINABILITY THAT WORKS",
@@ -140,7 +148,8 @@ const approachItems: ApproachItem[] = [
       "We build stronger, safer products without sacrificing performance.",
       "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
-    video: "/videos/backgrounds/WebOptimized/Sustainability That Works_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Sustainability That Works_Optimized.mp4",
+    poster: "/images/homepage-heroes/about-hero.webp"
   },
   {
     title: "CUSTOMER OBSESSED",
@@ -151,7 +160,8 @@ const approachItems: ApproachItem[] = [
       "Real people. Real care. Real expertise.",
       "We provide the quality & performance of a Fortune 500 company with the service, know-how, & personalized care of a family-owned, corner grocery store."
     ],
-    video: "/videos/backgrounds/WebOptimized/Customer Obsessed_Optimized.mp4"
+    video: "/videos/backgrounds/WebOptimized/Customer Obsessed_Optimized.mp4",
+    poster: "/images/homepage-heroes/customer-obsessed-hero.webp"
   }
 ];
 
@@ -369,10 +379,20 @@ const ApproachSectionUnified = () => {
               ">
                 {/* Inline content (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
-                  {/* Video Skeleton Loading State */}
-                  {!videoLoadedMap[selectedItem] && !videoErrorMap[selectedItem] && (
-                    <VideoSkeleton className="absolute inset-0 w-full h-full" />
-                  )}
+                  {/* Poster Image Layer */}
+                  <div className="absolute inset-0 z-0">
+                    {approachItems[selectedItem].poster ? (
+                      <img
+                        src={approachItems[selectedItem].poster}
+                        alt=""
+                        className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoadedMap[selectedItem] ? 'opacity-0' : 'opacity-100'}`}
+                        loading="eager"
+                        decoding="sync"
+                      />
+                    ) : (
+                      !videoErrorMap[selectedItem] && <VideoSkeleton className="absolute inset-0 w-full h-full" />
+                    )}
+                  </div>
                   
                   {/* Current content - video */}
                   {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
@@ -390,6 +410,7 @@ const ApproachSectionUnified = () => {
                       playsInline
                       autoPlay
                       preload="none"
+                      poster={approachItems[selectedItem].poster}
                       aria-label="Customer success approach demonstration video"
                       onCanPlay={() => handleVideoLoadedMetadata(selectedItem)}
                       onError={() => handleVideoError(selectedItem)}

@@ -13,6 +13,7 @@ interface IndustryHeroBannerProps {
   subtitle?: string;
   useTitleCase?: boolean;
   mobileVideoUrl?: string;
+  posterUrl?: string;
 }
 
 const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ 
@@ -23,7 +24,8 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   variant = 'simple',
   subtitle,
   useTitleCase = false,
-  mobileVideoUrl
+  mobileVideoUrl,
+  posterUrl
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [iconLoaded, setIconLoaded] = useState(false);
@@ -73,10 +75,20 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   if (variant === 'simple') {
     return (
       <section className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
-        {/* Video Skeleton Loading State */}
-        {!videoLoaded && (
-          <VideoSkeleton />
-        )}
+        {/* Poster Image Layer */}
+        <div className="absolute inset-0 z-0">
+          {posterUrl ? (
+            <img
+              src={posterUrl}
+              alt=""
+              className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+              loading="eager"
+              decoding="sync"
+            />
+          ) : (
+            <VideoSkeleton />
+          )}
+        </div>
         
         {/* Background Video */}
         <video
@@ -87,14 +99,14 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
           muted
           playsInline
           preload="auto"
+          poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+          className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-500 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ 
-            zIndex: 1,
             objectFit: 'cover',
             width: '100%',
             height: '100%',
@@ -169,10 +181,20 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   // Overlay variant - video with title overlay at bottom
   return (
     <section className="relative w-full h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] z-[5]">
-      {/* Video Skeleton Loading State */}
-      {!videoLoaded && (
-        <VideoSkeleton />
-      )}
+      {/* Poster Image Layer */}
+      <div className="absolute inset-0 z-0">
+        {posterUrl ? (
+          <img
+            src={posterUrl}
+            alt=""
+            className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+            loading="eager"
+            decoding="sync"
+          />
+        ) : (
+          <VideoSkeleton />
+        )}
+      </div>
       
       {/* Background Video */}
       <video
@@ -183,14 +205,14 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         muted
         playsInline
         preload="auto"
+        poster={posterUrl}
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+        className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-500 ${
           videoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ 
-          zIndex: 1,
           objectFit: 'cover',
           width: '100%',
           height: '100%',

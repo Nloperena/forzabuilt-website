@@ -47,17 +47,18 @@ const IndustryCard: React.FC<{
         className={`aspect-[6/4] ${isMobile ? 'rounded-xl' : 'rounded-xl lg:rounded-xl'} overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full border-0 shadow-lg text-white relative`}
         style={{ backgroundColor: industry.color || '#1b3764' }}
       >
-        {/* Loading State / Background Placeholder */}
-        {!videoReady && (
-          <div className="absolute inset-0 z-0">
-            <div 
-              className="w-full h-full animate-pulse opacity-50" 
-              style={{ backgroundColor: industry.color || '#1b3764' }}
-            />
-          </div>
+        {/* Poster Image Layer - Always rendered behind video */}
+        {industry.posterUrl && (
+          <img
+            src={industry.posterUrl}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[1] ${videoReady ? 'opacity-0' : 'opacity-100'}`}
+            loading="eager"
+            decoding="sync"
+          />
         )}
 
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative w-full h-full overflow-hidden z-[2]">
           {/* Video - shows first frame as thumbnail, plays on hover */}
           <video 
             ref={videoRef}
@@ -65,10 +66,11 @@ const IndustryCard: React.FC<{
             muted 
             playsInline 
             preload="none"
+            poster={industry.posterUrl}
             aria-label={`${industry.title} industry background video`}
             onLoadedData={handleCanPlay}
             onCanPlay={handleCanPlay}
-            onError={handleCanPlay} // Remove skeleton on error to show background color
+            onError={handleCanPlay} 
             className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={`${industry.videoUrl}#t=0.001`} type="video/mp4" />

@@ -129,9 +129,15 @@ const IndustriesSectionAlt = () => {
                   }}
                   >
                   <div className="relative w-full h-full overflow-hidden">
-                        {/* Video Skeleton Loading State */}
-                        {!videoLoadedStates[index] && (
-                          <VideoSkeleton />
+                        {/* Poster Image Layer */}
+                        {industry.posterUrl && (
+                          <img
+                            src={industry.posterUrl}
+                            alt=""
+                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[1] ${videoLoadedStates[index] ? 'opacity-0' : 'opacity-100'}`}
+                            loading="eager"
+                            decoding="sync"
+                          />
                         )}
                         
                         <video
@@ -139,10 +145,11 @@ const IndustriesSectionAlt = () => {
                           loop
                           muted
                           playsInline
-                          className={`w-full h-full object-cover transition-opacity duration-500 ${
+                          className={`w-full h-full object-cover relative z-10 transition-opacity duration-500 ${
                             videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                           }`}
                           preload="metadata"
+                          poster={industry.posterUrl}
                           onLoadedData={() => {
                             handleVideoLoad(index);
                             if (videoRefs.current[index]) {
@@ -247,9 +254,15 @@ const IndustriesSectionAlt = () => {
                     }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
-                      {/* Video Skeleton Loading State */}
-                      {!videoLoadedStates[index] && (
-                        <VideoSkeleton />
+                      {/* Poster Image Layer */}
+                      {industry.posterUrl && (
+                        <img
+                          src={industry.posterUrl}
+                          alt=""
+                          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[1] ${videoLoadedStates[index] ? 'opacity-0' : 'opacity-100'}`}
+                          loading="eager"
+                          decoding="sync"
+                        />
                       )}
                       
                       <video
@@ -257,10 +270,11 @@ const IndustriesSectionAlt = () => {
                         loop
                         muted
                         playsInline
-                        className={`w-full h-full object-cover transition-opacity duration-500 ${
+                        className={`w-full h-full object-cover relative z-10 transition-opacity duration-500 ${
                           videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                         }`}
                         preload="auto"
+                        poster={industry.posterUrl}
                         onLoadedData={() => handleVideoLoad(index)}
                         onError={() => handleVideoLoad(index)}
                       >

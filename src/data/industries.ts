@@ -1,6 +1,7 @@
 export interface Industry {
   title: string;
   videoUrl: string;
+  posterUrl?: string;
   description?: string;
   logo?: string;
   pageHeadline?: string;
@@ -21,6 +22,7 @@ export const industries: Industry[] = [
   {
     title: "Industrial",
     videoUrl: "/videos/backgrounds/WebOptimized/Final-Industrial-Page-Banner-Video_Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/industries-summary-hero.webp",
     description: "Industrial-grade adhesive solutions for manufacturing",
     logo: "/logos/Industrial-Icon.webp",
     color: "#f16a26", // Industrial orange color from brand standards
@@ -28,6 +30,7 @@ export const industries: Industry[] = [
   {
     title: "Transportation",
     videoUrl: "/videos/backgrounds/WebOptimized/ForzaTruckLoop-Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/transportation-hero.webp",
     description: "Innovative adhesive solutions for the transportation industry",
     logo: "/logos/Transportation-Icon-2.webp",
     color: "#b83d35", // Transportation red color from brand standards
@@ -35,6 +38,7 @@ export const industries: Industry[] = [
   {
     title: "Marine",
     videoUrl: "/videos/backgrounds/WebOptimized/ForzaBoatLoop-Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/marine-hero.webp",
     description: "Specialized bonding solutions for marine applications",
     logo: "/logos/Marine-Icon.webp",
     color: "#147974", // Marine orange color
@@ -166,6 +170,7 @@ export const industries: Industry[] = [
   {
     title: "Composites",
     videoUrl: "/videos/backgrounds/WebOptimized/ForzaTurbineLoop-Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/composites-hero.webp",
     description: "Specialized adhesives for composite materials",
     logo: "/logos/Composite-Icon.webp",
     color: "#9a9b9c", // Composites grey color from brand standards
@@ -173,6 +178,7 @@ export const industries: Industry[] = [
   {
     title: "Construction", 
     videoUrl: "/videos/backgrounds/WebOptimized/Final-Construction-Page-Banner-Video_Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/construction-hero.webp",
     description: "High-performance adhesives for construction needs",
     logo: "/logos/Construction-Icon.webp",
     color: "#fec770", // Construction yellow color from brand standards
@@ -180,6 +186,7 @@ export const industries: Industry[] = [
   {
     title: "Insulation",
     videoUrl: "/videos/backgrounds/WebOptimized/Final-Forza-Insulation-Header-Video_Optimized.mp4",
+    posterUrl: "/images/homepage-heroes/insulation-hero.webp",
     description: "High-performance bonding solutions for insulation materials",
     logo: "/logos/Insulation-Icon.webp",
     color: "#d0157d", // Insulation pink color from brand standards

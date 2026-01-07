@@ -5,6 +5,7 @@ import ImageSkeleton from '../common/ImageSkeleton';
 
 interface IndustryCombinedHeroProps {
   videoUrl: string;
+  posterUrl?: string;
   title: string;
   logo?: string;
   children: React.ReactNode;
@@ -12,6 +13,7 @@ interface IndustryCombinedHeroProps {
 
 const IndustryCombinedHero: React.FC<IndustryCombinedHeroProps> = ({ 
   videoUrl, 
+  posterUrl,
   title, 
   logo, 
   children 
@@ -37,7 +39,20 @@ const IndustryCombinedHero: React.FC<IndustryCombinedHeroProps> = ({
     <>
       {/* Fixed/Sticky Video Section */}
       <section className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
-        {!videoLoaded && <VideoSkeleton />}
+        {/* Poster Image Layer */}
+        <div className="absolute inset-0 z-0">
+          {posterUrl ? (
+            <img
+              src={posterUrl}
+              alt=""
+              className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+              loading="eager"
+              decoding="sync"
+            />
+          ) : (
+            <VideoSkeleton />
+          )}
+        </div>
         
         {/* Video Background */}
         <video
@@ -47,13 +62,13 @@ const IndustryCombinedHero: React.FC<IndustryCombinedHeroProps> = ({
           muted
           playsInline
           preload="auto"
+          poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-700 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{ zIndex: 1 }}
         >
           <source src={videoUrl} type="video/mp4" />
         </video>

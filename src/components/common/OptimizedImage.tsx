@@ -72,11 +72,30 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
     }
   }, [useFallback, onError]);
 
-  // Skip optimization for SVGs, data URIs, or already-optimized URLs
+  // List of domains allowed for Vercel Image Optimization
+  const ALLOWED_DOMAINS = [
+    'jw4to4yw6mmciodr.public.blob.vercel-storage.com',
+    'www.forzabuilt.com',
+    'forzabuilt.com',
+    'localhost'
+  ];
+
+  const isAllowedDomain = (url: string) => {
+    if (url.startsWith('/')) return true;
+    try {
+      const hostname = new URL(url).hostname;
+      return ALLOWED_DOMAINS.some(domain => hostname === domain || hostname.endsWith('.' + domain));
+    } catch {
+      return false;
+    }
+  };
+
+  // Skip optimization for SVGs, data URIs, or already-optimized URLs, or unknown domains
   const shouldSkipOptimization = !srcString || 
       srcString.endsWith('.svg') || 
       srcString.startsWith('data:') ||
-      srcString.startsWith('/_vercel/image');
+      srcString.startsWith('/_vercel/image') ||
+      !isAllowedDomain(srcString);
   
   if (shouldSkipOptimization || useFallback) {
     return (
@@ -97,12 +116,12 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
   }
 
   // For remote URLs (starting with http), use directly
-  // For local URLs (starting with /), make them absolute using production origin
+  // For local URLs (starting with /), use relative path which Vercel resolves correctly
   let imageUrl = srcString;
-  if (srcString.startsWith('/') && !srcString.startsWith('//')) {
-    imageUrl = `${SITE_ORIGIN}${srcString}`;
-  }
-
+  
+  // No need to prepend SITE_ORIGIN for local images, 
+  // Vercel handles relative paths in /_vercel/image?url=...
+  
   const encodedUrl = encodeURIComponent(imageUrl);
   const baseWidth = width || 400;
   

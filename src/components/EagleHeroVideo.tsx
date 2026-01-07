@@ -76,10 +76,16 @@ const EagleHeroVideo: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
-      {/* Video Skeleton Loading State */}
-      {!isVideoLoaded && (
-        <VideoSkeleton />
-      )}
+      {/* Poster Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/homepage-heroes/eagle-hero.webp"
+          alt=""
+          className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+          loading="eager"
+          decoding="sync"
+        />
+      </div>
       
       {/* Background Video - loads immediately with high priority */}
       <motion.video
@@ -89,6 +95,7 @@ const EagleHeroVideo: React.FC = () => {
         muted
         playsInline
         preload="auto"
+        poster="/images/homepage-heroes/eagle-hero.webp"
         // @ts-ignore - fetchpriority is valid but not in React types yet
         fetchpriority="high"
         onLoadedData={handleVideoLoad}

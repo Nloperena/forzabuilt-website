@@ -105,6 +105,7 @@ const IndustriesSectionClean = () => {
                             videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                           }`}
                           preload="auto"
+                          poster={industry.posterUrl}
                           onLoadedData={() => handleVideoLoad(index)}
                           onError={() => handleVideoLoad(index)}
                         >

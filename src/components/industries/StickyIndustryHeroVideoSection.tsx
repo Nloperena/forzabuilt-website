@@ -3,12 +3,14 @@ import VideoSkeleton from '../common/VideoSkeleton';
 
 interface StickyIndustryHeroVideoSectionProps {
   videoUrl: string;
+  posterUrl?: string;
   industryTitle: string;
   children?: React.ReactNode;
 }
 
 const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionProps> = ({ 
   videoUrl, 
+  posterUrl,
   industryTitle,
   children 
 }) => {
@@ -38,10 +40,20 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
     <>
       {/* Sticky Video Background Section */}
       <section className="sticky top-0 h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
-        {/* Video Skeleton Loading State */}
-        {!videoLoaded && (
-          <VideoSkeleton />
-        )}
+        {/* Poster Image Layer */}
+        <div className="absolute inset-0 z-0">
+          {posterUrl ? (
+            <img
+              src={posterUrl}
+              alt=""
+              className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+              loading="eager"
+              decoding="sync"
+            />
+          ) : (
+            <VideoSkeleton />
+          )}
+        </div>
         
         {/* Background Video */}
         <video
@@ -51,20 +63,13 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
           muted
           playsInline
           preload="auto"
+          poster={posterUrl}
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-700 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{ 
-            zIndex: 1,
-            objectFit: 'cover',
-            width: '100%',
-            height: '100%',
-            minWidth: '100%',
-            minHeight: '100%'
-          }}
         >
           <source src={videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
