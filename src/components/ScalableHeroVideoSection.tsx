@@ -157,6 +157,9 @@ const ScalableHeroVideoSection: React.FC = () => {
           className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" 
           style={{ zIndex: 0 }} 
         />
+
+        {/* Blue overlay on top of video for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
       </div>
     </section>
   );

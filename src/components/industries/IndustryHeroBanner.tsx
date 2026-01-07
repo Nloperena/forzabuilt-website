@@ -241,8 +241,8 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
       {/* Fallback background - always visible */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
 
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" style={{ zIndex: 2 }} />
+      {/* Blue overlay on top of video for text contrast - universal style */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
 
     </section>
   );
