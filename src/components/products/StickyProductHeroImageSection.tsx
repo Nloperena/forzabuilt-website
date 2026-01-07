@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { motion } from 'framer-motion';
+import OptimizedImage from '../common/OptimizedImage';
+
+const MotionOptimizedImage = motion.create(OptimizedImage);
 
 interface StickyProductHeroImageSectionProps {
   imageUrl: string;
@@ -66,7 +69,7 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
           <ImageSkeleton className="w-full h-full" />
         )}
         
-        <motion.img
+        <MotionOptimizedImage
           ref={imgRef}
           key={currentImageUrl}
           src={currentImageUrl}
@@ -78,6 +81,10 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
           onError={handleImageError}
           loading="eager"
           fetchPriority="high"
+          width={1920}
+          height={1080}
+          mobileWidth={768}
+          sizes="100vw"
           style={{ 
             zIndex: 1,
             objectFit: 'cover',

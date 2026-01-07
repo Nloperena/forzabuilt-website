@@ -44,8 +44,17 @@ const ProductCategoriesSection = ({ categories: categoriesProp }: { categories?:
   const [activeCategory, setActiveCategory] = useState(displayCategories[1]); // Default to Sealants
   const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
-  // Preload logic removed - OptimizedImage handles its own loading
-  // We'll update the imagesLoaded state via the onLoad prop of OptimizedImage
+  // Ensure initial active category image is marked as loading
+  useEffect(() => {
+    if (activeCategory && !imagesLoaded[activeCategory.id]) {
+      // Small delay to ensure onLoad has a chance to fire
+      const timer = setTimeout(() => {
+        // Fallback: show image after 2 seconds even if onLoad didn't fire
+        setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeCategory.id]);
 
   return (
     <section className="relative isolate overflow-visible">
@@ -127,11 +136,9 @@ const ProductCategoriesSection = ({ categories: categoriesProp }: { categories?:
                   className="absolute inset-0 w-full h-full object-cover" 
                   style={{ objectPosition: 'center 70%' }}
                   onLoad={() => {
-                    console.log(`✅ Image loaded: ${activeCategory.image}`);
                     setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
                   }}
                   onError={() => {
-                    console.error(`❌ Image failed to load: ${activeCategory.image}`);
                     setImagesLoaded(prev => ({ ...prev, [activeCategory.id]: true }));
                   }}
                 />

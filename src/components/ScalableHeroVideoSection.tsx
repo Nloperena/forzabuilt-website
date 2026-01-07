@@ -3,11 +3,22 @@ import VideoSkeleton from './common/VideoSkeleton';
 
 const ScalableHeroVideoSection: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const [videoAspectRatio, setVideoAspectRatio] = useState<number | null>(null);
   
+  // 0.5s minimum wait for the WebP poster
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  const showVideo = isVideoLoaded && minTimeElapsed;
+
   // Use IntersectionObserver to only load video when visible
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,10 +116,15 @@ const ScalableHeroVideoSection: React.FC = () => {
         className="relative w-full"
         style={aspectRatioStyle}
       >
-        {/* Video Skeleton Loading State */}
-        {!isVideoLoaded && (
-          <VideoSkeleton className="absolute inset-0 w-full h-full" />
-        )}
+        {/* Poster Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/homepage-heroes/eagle-hero.webp"
+            alt=""
+            className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
+            loading="lazy"
+          />
+        </div>
         
         {/* Background Video - only render when visible */}
         {isVisible && (
@@ -119,14 +135,14 @@ const ScalableHeroVideoSection: React.FC = () => {
             muted
             playsInline
             preload="auto"
+            poster="/images/homepage-heroes/eagle-hero.webp"
             onLoadedData={handleVideoLoad}
             onCanPlay={handleVideoLoad}
             onError={handleVideoError}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
-              isVideoLoaded ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 w-full h-full transition-opacity duration-500 relative z-10 ${
+              showVideo ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ 
-              zIndex: 1,
               objectFit: 'contain',
               objectPosition: 'center'
             }}

@@ -3,6 +3,7 @@ import VideoSkeleton from '../common/VideoSkeleton';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { motion } from 'framer-motion';
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '../common/OptimizedImage';
 
 interface IndustryHeroBannerProps {
   videoUrl: string;
@@ -28,6 +29,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   posterUrl
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const [iconLoaded, setIconLoaded] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
@@ -35,14 +37,23 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   // Use mobile video URL if provided and on mobile, otherwise use desktop video URL
   const currentVideoUrl = isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl;
   
+  // 0.5s minimum wait for the WebP poster
+  useEffect(() => {
+    const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+    return () => clearTimeout(timer);
+  }, [currentVideoUrl]);
+
   // Reset video loaded state and force reload when video URL changes
   useEffect(() => {
     setVideoLoaded(false);
+    setMinTimeElapsed(false);
     // Force video to reload by calling load() on the video element
     if (videoRef.current) {
       videoRef.current.load();
     }
   }, [currentVideoUrl]);
+
+  const showVideo = videoLoaded && minTimeElapsed;
 
   useEffect(() => {
     // Short fallback timeout - video should load fast since it's optimized
@@ -78,10 +89,12 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         {/* Poster Image Layer */}
         <div className="absolute inset-0 z-0">
           {posterUrl ? (
-            <img
+            <OptimizedImage
               src={posterUrl}
               alt=""
-              className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+              width={1920}
+              height={1080}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
               loading="eager"
               decoding="sync"
             />
@@ -104,7 +117,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
           className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-500 ${
-            videoLoaded ? 'opacity-100' : 'opacity-0'
+            showVideo ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ 
             objectFit: 'cover',

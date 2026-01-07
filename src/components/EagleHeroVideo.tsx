@@ -4,11 +4,15 @@ import VideoSkeleton from './common/VideoSkeleton';
 
 const EagleHeroVideo: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const [isInView, setIsInView] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
+    // 0.5s minimum wait for the WebP poster
+    const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -22,19 +26,23 @@ const EagleHeroVideo: React.FC = () => {
 
     return () => {
       observer.disconnect();
+      clearTimeout(timer);
     };
   }, []);
+
+  // Show video only after min time AND video is actually ready
+  const showVideo = isVideoLoaded && minTimeElapsed;
 
   // Control playback based on visibility
   useEffect(() => {
     if (videoRef.current) {
-      if (isInView) {
+      if (isInView && showVideo) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView]);
+  }, [isInView, showVideo]);
 
   useEffect(() => {
     // Start loading video immediately
@@ -67,7 +75,7 @@ const EagleHeroVideo: React.FC = () => {
         <img
           src="/images/homepage-heroes/eagle-hero.webp"
           alt=""
-          className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
           loading="eager"
           decoding="sync"
           // @ts-ignore
@@ -91,8 +99,8 @@ const EagleHeroVideo: React.FC = () => {
         onError={handleVideoError}
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ 
-          scale: isVideoLoaded ? 1 : 1.1,
-          opacity: isVideoLoaded ? 1 : 0,
+          scale: showVideo ? 1 : 1.1,
+          opacity: showVideo ? 1 : 0,
           transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] }
         }}
         className="absolute inset-0 w-full h-full object-cover"

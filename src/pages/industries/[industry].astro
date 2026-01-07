@@ -11,7 +11,6 @@ import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
 import IndustryProductsSection from '@/components/industries/IndustryProductsSection';
 import IndustryBrochureArticlesSection from '@/components/industries/IndustryBrochureArticlesSection';
 import { industries } from '@/data/industries';
-import { getImage } from 'astro:assets';
 
 export function getStaticPaths() {
   return industries.map((industry) => ({
@@ -24,9 +23,8 @@ const { industry } = Astro.params;
 const { industryData } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Pre-optimize logo
-const optimizedLogo = await getImage({ src: industryData.logo, width: 200, height: 200 });
-const industryDataOptimized = { ...industryData, logo: optimizedLogo.src };
+// Use original data directly - OptimizedImage component handles optimization on the client
+const industryDataOptimized = industryData;
 
 // Map industry titles to valid industry keys for HybridStackableCards
 const getIndustryKey = (title: string) => {

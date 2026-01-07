@@ -22,7 +22,7 @@ export const industries: Industry[] = [
   {
     title: "Industrial",
     videoUrl: "/videos/backgrounds/WebOptimized/Final-Industrial-Page-Banner-Video_Optimized.mp4",
-    posterUrl: "/images/homepage-heroes/industries-summary-hero.webp",
+    posterUrl: "/images/homepage-heroes/industrial-hero.webp",
     description: "Industrial-grade adhesive solutions for manufacturing",
     logo: "/logos/Industrial-Icon.webp",
     color: "#f16a26", // Industrial orange color from brand standards

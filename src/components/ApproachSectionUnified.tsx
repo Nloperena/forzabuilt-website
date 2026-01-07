@@ -178,8 +178,19 @@ const ApproachSectionUnified = () => {
   const previousVideoRef = useRef<HTMLVideoElement>(null);
   const currentVideoRef = useRef<HTMLVideoElement>(null);
   const [videoLoadedMap, setVideoLoadedMap] = useState<{ [key: number]: boolean }>({});
+  const [minTimeMap, setMinTimeMap] = useState<{ [key: number]: boolean }>({});
   const [videoErrorMap, setVideoErrorMap] = useState<{ [key: number]: boolean }>({});
   const [isInView, setIsInView] = useState(false);
+
+  // 0.5s minimum wait for the WebP poster when item changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinTimeMap(prev => ({ ...prev, [selectedItem]: true }));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [selectedItem]);
+
+  const isShowVideo = (index: number) => videoLoadedMap[index] && minTimeMap[index];
 
   // Intersection Observer to play/pause video when section enters/leaves viewport
   useEffect(() => {
@@ -385,7 +396,7 @@ const ApproachSectionUnified = () => {
                       <img
                         src={approachItems[selectedItem].poster}
                         alt=""
-                        className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoadedMap[selectedItem] ? 'opacity-0' : 'opacity-100'}`}
+                        className={`w-full h-full object-cover transition-opacity duration-500 ${isShowVideo(selectedItem) ? 'opacity-0' : 'opacity-100'}`}
                         loading="eager"
                         decoding="sync"
                       />
@@ -401,7 +412,7 @@ const ApproachSectionUnified = () => {
                       key={`current-video-${selectedItem}`}
                       initial={{ opacity: 0 }}
                       animate={{ 
-                        opacity: videoLoadedMap[selectedItem] ? 1 : 0
+                        opacity: isShowVideo(selectedItem) ? 1 : 0
                       }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
                       className="absolute inset-0 w-full h-full object-cover z-10"

@@ -9,22 +9,39 @@ const IndustryCard: React.FC<{
   isMobile?: boolean;
 }> = ({ industry, isMobile = false }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // 0.5s minimum wait for the WebP poster when hover starts
+  useEffect(() => {
+    if (isHovered) {
+      const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+      return () => {
+        clearTimeout(timer);
+        setMinTimeElapsed(false);
+      };
+    }
+  }, [isHovered]);
+
+  const showVideo = videoLoaded && minTimeElapsed && isHovered;
 
   // Check if video is already ready (cached)
   useEffect(() => {
     if (videoRef.current && videoRef.current.readyState >= 3) {
-      setVideoReady(true);
+      setVideoLoaded(true);
     }
   }, []);
 
   const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
       // Reset to beginning for consistent thumbnail
@@ -33,7 +50,7 @@ const IndustryCard: React.FC<{
   }, []);
 
   const handleCanPlay = () => {
-    setVideoReady(true);
+    setVideoLoaded(true);
   };
 
   return (
@@ -52,14 +69,14 @@ const IndustryCard: React.FC<{
           <img
             src={industry.posterUrl}
             alt=""
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[1] ${videoReady ? 'opacity-0' : 'opacity-100'}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-[1] ${showVideo ? 'opacity-0' : 'opacity-100'}`}
             loading="eager"
             decoding="sync"
           />
         )}
 
         <div className="relative w-full h-full overflow-hidden z-[2]">
-          {/* Video - shows first frame as thumbnail, plays on hover */}
+          {/* Video Layer - Fades in once ready */}
           <video 
             ref={videoRef}
             loop 
@@ -71,7 +88,7 @@ const IndustryCard: React.FC<{
             onLoadedData={handleCanPlay}
             onCanPlay={handleCanPlay}
             onError={handleCanPlay} 
-            className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={`${industry.videoUrl}#t=0.001`} type="video/mp4" />
             <track kind="captions" src="" label="No captions" default />

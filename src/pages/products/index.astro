@@ -6,7 +6,6 @@ import FooterV2 from '@/components/FooterV2';
 import ProductsSectionAlt from '@/components/ProductsSectionAlt';
 import IndustryHeroBanner from '@/components/industries/IndustryHeroBanner';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
-import { getImage } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 
@@ -33,14 +32,7 @@ const categories = [
   }
 ];
 
-const optimizedCategories = await Promise.all(categories.map(async (cat) => {
-  try {
-    const optimized = await getImage({ src: cat.image, width: 800, format: 'webp' });
-    return { ...cat, image: optimized.src };
-  } catch (e) {
-    return cat;
-  }
-}));
+const optimizedCategories = categories;
 ---
 
 <Layout 

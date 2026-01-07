@@ -17,10 +17,21 @@ const VideoSkeleton: React.FC = () => (
 const MadeInAmericaSection: React.FC = () => {
   const { mode } = useGradientMode();
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // 0.5s minimum wait for the WebP poster when section is near viewport
+  useEffect(() => {
+    if (shouldLoadVideo) {
+      const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldLoadVideo]);
+
+  const showVideo = isVideoLoaded && minTimeElapsed;
 
   // Intersection observer for visibility - start loading video when close to viewport
   useEffect(() => {
@@ -66,13 +77,11 @@ const MadeInAmericaSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 items-start">
             {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start h-full">
-              <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-xl lg:rounded-xl shadow-lg relative bg-gray-200">
-                {/* Poster Image Layer */}
                 <div className="absolute inset-0 z-0">
                   <img
                     src="/images/homepage-heroes/madeinaamerica-hero.webp"
                     alt=""
-                    className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
                     loading="eager"
                     decoding="sync"
                   />
@@ -92,7 +101,7 @@ const MadeInAmericaSection: React.FC = () => {
                     aria-label="Made in America manufacturing facility video"
                     onCanPlay={() => setIsVideoLoaded(true)}
                     onLoadedData={() => setIsVideoLoaded(true)}
-                    className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
                     style={{
                       objectPosition: 'center',
                       transform: 'scale(1.15)',
@@ -102,7 +111,6 @@ const MadeInAmericaSection: React.FC = () => {
                   </video>
                 )}
               </div>
-            </div>
 
             {/* Right side - Text content - Scales down on smaller screens */}
             <div className="p-0 sm:p-1 lg:p-2 xl:p-3 flex flex-col h-full">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import VideoSkeleton from '../common/VideoSkeleton';
+import OptimizedImage from '../common/OptimizedImage';
 
 interface StickyIndustryHeroVideoSectionProps {
   videoUrl: string;
@@ -15,8 +16,12 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
   children 
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
   useEffect(() => {
+    // 0.5s minimum wait for the WebP poster
+    const timer = setTimeout(() => setMinTimeElapsed(true), 500);
+
     const timeout = setTimeout(() => {
       if (!videoLoaded) {
         setVideoLoaded(true);
@@ -24,9 +29,12 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
     }, 5000);
 
     return () => {
+      clearTimeout(timer);
       clearTimeout(timeout);
     };
   }, [videoLoaded]);
+
+  const showVideo = videoLoaded && minTimeElapsed;
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
@@ -43,10 +51,12 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
         {/* Poster Image Layer */}
         <div className="absolute inset-0 z-0">
           {posterUrl ? (
-            <img
+            <OptimizedImage
               src={posterUrl}
               alt=""
-              className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+              width={1920}
+              height={1080}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
               loading="eager"
               decoding="sync"
             />
@@ -68,7 +78,7 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
           className={`absolute inset-0 w-full h-full object-cover relative z-10 transition-opacity duration-700 ${
-            videoLoaded ? 'opacity-100' : 'opacity-0'
+            showVideo ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <source src={videoUrl} type="video/mp4" />
