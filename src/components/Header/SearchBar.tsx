@@ -36,6 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [totalProductMatches, setTotalProductMatches] = useState(0);
   const searchRef = useRef<HTMLDivElement>(null);
 
   // Load products from API on component mount
@@ -71,17 +72,45 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   useEffect(() => {
     if (searchTerm.length > 1 && !isLoadingProducts) {
       const blogPosts = blogPostsData as BlogPost[];
+      const searchLower = searchTerm.toLowerCase();
       
-      // Search products
-      const productResults: SearchResult[] = products
-        .filter(p => 
-          p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.industry?.some(ind => ind.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          p.searchKeywords?.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
-        .slice(0, 8) // Limit to 8 products
+      // Search products - comprehensive search across all fields
+      const allProductMatches = products
+        .filter(p => {
+          const nameMatch = p.name?.toLowerCase().includes(searchLower);
+          const shortNameMatch = p.shortName?.toLowerCase().includes(searchLower);
+          const idMatch = p.id?.toLowerCase().includes(searchLower);
+          const descriptionMatch = p.description?.toLowerCase().includes(searchLower);
+          const categoryMatch = p.category?.toLowerCase().includes(searchLower);
+          const industryMatch = p.industry?.some(ind => ind.toLowerCase().includes(searchLower));
+          const keywordMatch = p.searchKeywords?.some(keyword => keyword.toLowerCase().includes(searchLower));
+          const chemistryMatch = p.chemistry?.toLowerCase().includes(searchLower);
+          
+          return nameMatch || shortNameMatch || idMatch || descriptionMatch || categoryMatch || industryMatch || keywordMatch || chemistryMatch;
+        });
+      
+      // Sort by relevance: exact name matches first, then name starts with, then contains
+      const sortedProducts = allProductMatches.sort((a, b) => {
+        const aNameLower = a.name?.toLowerCase() || '';
+        const bNameLower = b.name?.toLowerCase() || '';
+        const aShortLower = a.shortName?.toLowerCase() || '';
+        const bShortLower = b.shortName?.toLowerCase() || '';
+        
+        // Exact match gets highest priority
+        if (aNameLower === searchLower || aShortLower === searchLower) return -1;
+        if (bNameLower === searchLower || bShortLower === searchLower) return 1;
+        
+        // Starts with gets second priority
+        if (aNameLower.startsWith(searchLower) || aShortLower.startsWith(searchLower)) return -1;
+        if (bNameLower.startsWith(searchLower) || bShortLower.startsWith(searchLower)) return 1;
+        
+        // Then by name length (shorter names might be more relevant)
+        return aNameLower.length - bNameLower.length;
+      });
+      
+      // Show up to 15 products (increased from 8)
+      const productResults: SearchResult[] = sortedProducts
+        .slice(0, 15)
         .map(p => ({
           id: p.id,
           name: p.name, 
@@ -109,6 +138,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
           description: b.excerpt,
           category: b.category
         }));
+      
+      const totalMatches = allProductMatches.length;
+      setTotalProductMatches(totalMatches);
       
       setSearchResults([...productResults, ...blogResults]);
       setShowSearchResults(true);
@@ -170,7 +202,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
           {productResults.length > 0 && (
             <div className="border-b border-gray-200">
               <div className="px-4 py-2 bg-gradient-to-r from-[#F2611D] to-orange-500 text-white font-bold text-sm">
-                Products ({productResults.length})
+                Products ({totalProductMatches > productResults.length ? `${productResults.length} of ${totalProductMatches}` : productResults.length})
               </div>
               {productResults.map((result) => (
                 <button
@@ -207,6 +239,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
                   </div>
                 </button>
               ))}
+              {/* View All Results Link */}
+              {totalProductMatches > productResults.length && (
+                <button
+                  className="w-full text-center px-4 py-3 hover:bg-gray-50 transition-colors border-t border-gray-200 text-sm font-semibold text-[#F2611D]"
+                  onClick={() => handleResultClick(`/products?search=${encodeURIComponent(searchTerm)}`)}
+                >
+                  View all {totalProductMatches} product{totalProductMatches !== 1 ? 's' : ''} →
+                </button>
+              )}
             </div>
           )}
 
