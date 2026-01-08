@@ -82,6 +82,12 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
     setIconLoaded(true);
   };
 
+  // Helper to clean text by removing leading asterisks and other common list markers
+  const cleanText = (text: string) => {
+    if (!text) return '';
+    return text.trim().replace(/^[*\-–·\u2022]\s*/, '');
+  };
+
   // Simple variant - full screen video with title and subtitle overlay (like homepage)
   if (variant === 'simple') {
     return (
@@ -151,7 +157,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
-              {subtitle.split('\n').map((line, i) => {
+              {cleanText(subtitle).split('\n').map((line, i) => {
                 // Wrap "Industrial Products" to prevent orphan
                 const parts = [];
                 const regex = /(Industrial Products)/g;

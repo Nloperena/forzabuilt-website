@@ -106,7 +106,7 @@ const Footer = () => {
         {/* Copyright Notice */}
         <div className="text-left">
           <p className="text-white/70 text-xs max-w-[400px]">
-            *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components. © {new Date().getFullYear()} Forza Built. All rights reserved.
+            Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components. © {new Date().getFullYear()} Forza Built. All rights reserved.
           </p>
         </div>
       </div>

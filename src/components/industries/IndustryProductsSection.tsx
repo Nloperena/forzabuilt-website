@@ -200,6 +200,12 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
+  // Helper to clean text by removing leading asterisks and other common list markers
+  const cleanText = (text: string) => {
+    if (!text) return '';
+    return text.trim().replace(/^[*\-–·\u2022]\s*/, '');
+  };
+
   const formattedIndustryTitle = industryData.title || '';
 
   return (
@@ -480,7 +486,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                         <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {formatProductName(product.name || '')}
+                              {formatProductName(cleanText(product.name || ''))}
                             </h3>
                             
                             {/* Button Row */}

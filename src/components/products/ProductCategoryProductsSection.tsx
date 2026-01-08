@@ -262,6 +262,12 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
+  // Helper to clean text by removing leading asterisks and other common list markers
+  const cleanText = (text: string) => {
+    if (!text) return '';
+    return text.trim().replace(/^[*\-–·\u2022]\s*/, '');
+  };
+
   // Map category to display title
   const getCategoryTitle = (category: string): string => {
     const categoryLower = category.toLowerCase();
@@ -554,7 +560,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                         <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {formatProductName(product.name || '')}
+                              {formatProductName(cleanText(product.name || ''))}
                             </h3>
                             
                             {/* Button Row */}
@@ -732,15 +738,15 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                               } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
-                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                                <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                                 <OptimizedImage 
-                                  src={getChemistryIcon(chemistry)} 
-                                  alt={chemistry}
+                                    src={getChemistryIcon(chemistry)} 
+                                    alt={chemistry}
                                   width={40}
                                   height={40}
-                                  className="w-5 h-5 object-contain chemistry-icon"
-                                />
-                              </div>
+                                    className="w-5 h-5 object-contain chemistry-icon"
+                                  />
+                                </div>
                                 <span className="text-xs font-medium truncate">{chemistry}</span>
                               </div>
                               <span className="text-xs opacity-70 flex-shrink-0">({count})</span>

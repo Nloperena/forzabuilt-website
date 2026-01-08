@@ -59,6 +59,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
   const [activeTab, setActiveTab] = useState('applications');
   const tabsListRef = useRef<HTMLDivElement>(null);
   
+  // Helper to clean text by removing leading asterisks and other common list markers
+  const cleanText = useCallback((text: string) => {
+    if (!text) return '';
+    return text.trim().replace(/^[*\-–·\u2022]\s*/, '');
+  }, []);
+
   // Make navbar active immediately on this page
   useEffect(() => {
     // Trigger a scroll event to activate the navbar
@@ -202,7 +208,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
       // Split on bullets or newlines
       return value
         .split(/\n|•/g)
-        .map(v => v.trim().replace(/^[-–·\u2022]\s*/, ''))
+        .map(v => v.trim().replace(/^[*\-–·\u2022]\s*/, ''))
         .filter(v => v.length > 0);
     }
     return [];
@@ -280,10 +286,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
             {/* Product Info */}
             <div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-regular text-white mb-3 md:mb-4 leading-tight font-poppins text-left normal-case">
-                {formatProductName(product.name || '')}
+                {formatProductName(cleanText(product.name || ''))}
               </h1>
               <div className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
-                {product.description}
+                {cleanText(product.description || '')}
               </div>
             </div>
           </div>
@@ -361,7 +367,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                                   {product.applications.map((app, index) => (
                                     <li key={index} className="flex items-start gap-2">
                                       <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                                      <span>{app}</span>
+                                      <span>{cleanText(app)}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -470,7 +476,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                               {product.benefits.map((benefit, index) => (
                                 <li key={index} className="flex items-start gap-2">
                                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                                  <span>{benefit}</span>
+                                  <span>{cleanText(benefit)}</span>
                                 </li>
                               ))}
                             </ul>

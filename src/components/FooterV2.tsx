@@ -132,9 +132,9 @@ const FooterV2 = () => {
                 className="h-16 w-auto object-contain flex-shrink-0" 
               />
               <p className="text-white/70 text-xs font-poppins leading-tight">
-                *Forza industrial adhesive and industrial sealants are proudly<br />
-                manufactured in the USA from domestic and limited foreign<br />
-                components. © {new Date().getFullYear()} Forza Built. All rights reserved.
+              Forza industrial adhesive and industrial sealants are proudly<br />
+              manufactured in the USA from domestic and limited foreign<br />
+              components. © {new Date().getFullYear()} Forza Built. All rights reserved.
               </p>
             </div>
             <div className="flex items-center">
