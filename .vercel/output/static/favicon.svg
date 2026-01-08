@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue background matching ForzaBuilt brand color #1B3764 -->
+  <rect width="32" height="32" rx="6" fill="#1B3764"/>
+  <!-- White "F" for ForzaBuilt -->
+  <path d="M10 8H22C23.1 8 24 8.9 24 10V12C24 13.1 23.1 14 22 14H14V18H20C21.1 18 22 18.9 22 20V22C22 23.1 21.1 24 20 24H10V8Z" fill="white"/>
+</svg>

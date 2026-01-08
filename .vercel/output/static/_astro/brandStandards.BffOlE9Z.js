@@ -1,0 +1,1 @@
+const i={headings:{fontFamily:"Kallisto, sans-serif",fontWeight:"900"},body:{fontFamily:"Poppins, sans-serif",fontWeight:"400"},subheads:{fontFamily:"Poppins, sans-serif",fontWeight:"700"}},r=e=>"#2c476e 0%, #3d4e6f 50%, #477197 100%";export{r as g,i as t};
