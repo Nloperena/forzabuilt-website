@@ -62,9 +62,12 @@ export const toTitleCase = (str: string) => {
 export const formatProductName = (str: string) => {
   if (!str) return '';
   
+  // Clean the string first by removing leading asterisks, dashes, and bullets
+  const cleanStr = str.trim().replace(/^[*\-–·\u2022]\s*/, '');
+  
   // Match product code pattern at the start (e.g., "IC932", "CA1000", "FRP", etc.)
   // Product codes are typically alphanumeric, may include dashes, and are followed by a dash or space
-  const productCodeMatch = str.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s*[-–—]\s*(.+)$/i);
+  const productCodeMatch = cleanStr.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s*[-–—]\s*(.+)$/i);
   
   if (productCodeMatch) {
     // If we have a product code followed by a dash and description
@@ -74,7 +77,7 @@ export const formatProductName = (str: string) => {
   }
   
   // Check if it starts with a product code pattern without a dash (e.g., "IC932 Non Flammable")
-  const codeOnlyMatch = str.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s+(.+)$/i);
+  const codeOnlyMatch = cleanStr.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s+(.+)$/i);
   if (codeOnlyMatch) {
     const productCode = codeOnlyMatch[1].toUpperCase();
     const description = toTitleCase(codeOnlyMatch[2]);
@@ -82,6 +85,6 @@ export const formatProductName = (str: string) => {
   }
   
   // If no product code pattern found, just apply title case to the whole string
-  return toTitleCase(str);
+  return toTitleCase(cleanStr);
 };
 
