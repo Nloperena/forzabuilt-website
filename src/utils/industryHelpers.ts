@@ -16,6 +16,43 @@ export const CHEMISTRY_ICONS = {
   'Rubber Based': '/images/icons/chemistry/rubber based icon.svg'
 };
 
+// Helper to get chemistry icon - maps chemistry names to icon paths, falls back to MS icon
+export const getChemistryIcon = (chemistry: string): string => {
+  if (!chemistry) return CHEMISTRY_ICONS['MS'];
+  
+  const chemistryLower = chemistry.toLowerCase();
+  
+  // Map chemistry names to icon paths
+  if (chemistryLower.includes('acrylic') || chemistryLower.includes('psa')) {
+    return CHEMISTRY_ICONS['Acrylic (incl. PSA)'];
+  } else if (chemistryLower.includes('epoxy') && !chemistryLower.includes('modified')) {
+    return CHEMISTRY_ICONS['Epoxy'];
+  } else if (chemistryLower.includes('modified') && chemistryLower.includes('epoxy')) {
+    return CHEMISTRY_ICONS['Modified Epoxy'];
+  } else if (chemistryLower.includes('silicone')) {
+    return CHEMISTRY_ICONS['Silicone'];
+  } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid') || chemistryLower.includes('polymer') || chemistryLower.includes('silane')) {
+    return CHEMISTRY_ICONS['MS'];
+  } else if (chemistryLower.includes('water') || chemistryLower.includes('waterbase')) {
+    return CHEMISTRY_ICONS['Water Base'];
+  } else if (chemistryLower.includes('hot') && chemistryLower.includes('melt')) {
+    return CHEMISTRY_ICONS['Hotmelt'];
+  } else if (chemistryLower.includes('solvent')) {
+    return CHEMISTRY_ICONS['Solvent Base'];
+  } else if (chemistryLower.includes('polyurethane') || chemistryLower.includes('urethane')) {
+    return CHEMISTRY_ICONS['Polyurethane (PU)'];
+  } else if (chemistryLower.includes('cyanoacrylate') || chemistryLower.includes('cyano')) {
+    return CHEMISTRY_ICONS['Cyanoacrylates'];
+  } else if (chemistryLower.includes('methacrylate')) {
+    return CHEMISTRY_ICONS['Methacrylate/MMA'];
+  } else if (chemistryLower.includes('rubber')) {
+    return CHEMISTRY_ICONS['Rubber Based'];
+  }
+  
+  // Fallback to MS icon if no match found
+  return CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
+};
+
 // Helper to get industry logo from navbar data
 export const getIndustryLogo = (industry: string | string[]) => {
   // Handle both string and array inputs - use first industry if array

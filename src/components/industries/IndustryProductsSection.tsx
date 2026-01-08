@@ -6,7 +6,7 @@ import { byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
 import OptimizedImage from '../common/OptimizedImage';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName, getChemistryIcon } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
@@ -128,23 +128,6 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
     return filtered;
   }, [industryData, allLineProducts, selectedCategories, search, selectedChemistries, nameSort]);
-
-  // Helper to get chemistry icon - maps chemistry names to icon paths, falls back to MS icon
-  const getChemistryIcon = (chemistry: string): string => {
-    // Try exact match first
-    if (CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]) {
-      return CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS];
-    }
-    // Try case-insensitive match
-    const normalized = chemistry.toLowerCase();
-    for (const [key, icon] of Object.entries(CHEMISTRY_ICONS)) {
-      if (key.toLowerCase() === normalized || key.toLowerCase().includes(normalized) || normalized.includes(key.toLowerCase())) {
-        return icon;
-      }
-    }
-    // Fallback to MS icon if no match found
-    return CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
-  };
 
   // Get chemistry types for the current industry
   const chemistryTypes = useMemo(() => {

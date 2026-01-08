@@ -6,7 +6,7 @@ import { byCategory, byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
 import OptimizedImage from '../common/OptimizedImage';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName, getChemistryIcon } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
@@ -157,20 +157,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
     return filtered;
   }, [allProducts, selectedIndustries, search, selectedChemistries, nameSort]);
-
-  // Helper to get chemistry icon
-  const getChemistryIcon = (chemistry: string): string => {
-    if (CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]) {
-      return CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS];
-    }
-    const normalized = chemistry.toLowerCase();
-    for (const [key, icon] of Object.entries(CHEMISTRY_ICONS)) {
-      if (key.toLowerCase() === normalized || key.toLowerCase().includes(normalized) || normalized.includes(key.toLowerCase())) {
-        return icon;
-      }
-    }
-    return CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
-  };
 
   // Get available industries for this category
   const availableIndustries = useMemo(() => {

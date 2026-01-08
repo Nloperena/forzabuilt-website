@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { typography } from '@/styles/brandStandards';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '@/utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName, getChemistryIcon } from '@/utils/industryHelpers';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 import OptimizedImage from '@/components/common/OptimizedImage';
 import type { Product } from '@/types/products';
@@ -18,42 +18,6 @@ interface ProductDetailProps {
   relatedProducts?: Product[];
   productCategory?: string;
 }
-
-// Helper to get chemistry icon
-const getChemistryIcon = (chemistry: string) => {
-  if (!chemistry) return null;
-  
-  const chemistryLower = chemistry.toLowerCase();
-  
-  // Map chemistry names to icon paths
-  if (chemistryLower.includes('acrylic') || chemistryLower.includes('psa')) {
-    return CHEMISTRY_ICONS['Acrylic (incl. PSA)'];
-  } else if (chemistryLower.includes('epoxy') && !chemistryLower.includes('modified')) {
-    return CHEMISTRY_ICONS['Epoxy'];
-  } else if (chemistryLower.includes('modified') && chemistryLower.includes('epoxy')) {
-    return CHEMISTRY_ICONS['Modified Epoxy'];
-  } else if (chemistryLower.includes('silicone')) {
-    return CHEMISTRY_ICONS['Silicone'];
-  } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid') || chemistryLower.includes('polymer')) {
-    return CHEMISTRY_ICONS['MS'];
-  } else if (chemistryLower.includes('water') || chemistryLower.includes('waterbase')) {
-    return CHEMISTRY_ICONS['Water Base'];
-  } else if (chemistryLower.includes('hot') && chemistryLower.includes('melt')) {
-    return CHEMISTRY_ICONS['Hotmelt'];
-  } else if (chemistryLower.includes('solvent')) {
-    return CHEMISTRY_ICONS['Solvent Base'];
-  } else if (chemistryLower.includes('polyurethane') || chemistryLower.includes('urethane')) {
-    return CHEMISTRY_ICONS['Polyurethane (PU)'];
-  } else if (chemistryLower.includes('cyanoacrylate') || chemistryLower.includes('cyano')) {
-    return CHEMISTRY_ICONS['Cyanoacrylates'];
-  } else if (chemistryLower.includes('methacrylate')) {
-    return CHEMISTRY_ICONS['Methacrylate/MMA'];
-  } else if (chemistryLower.includes('rubber')) {
-    return CHEMISTRY_ICONS['Rubber Based'];
-  }
-  
-  return null;
-};
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts = [], productCategory }) => {
   const [activeTab, setActiveTab] = useState('applications');
