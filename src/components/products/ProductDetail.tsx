@@ -252,9 +252,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-regular text-white mb-3 md:mb-4 leading-tight font-poppins text-left normal-case">
                 {formatProductName(cleanText(product.name || ''))}
               </h1>
-              <div className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
-                {cleanText(product.description || '')}
-              </div>
             </div>
           </div>
         </div>

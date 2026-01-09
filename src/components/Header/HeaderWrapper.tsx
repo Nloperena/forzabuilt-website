@@ -98,7 +98,8 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   const isBlog = currentPath.startsWith('/blog');
   const isBlogDetail = currentPath.startsWith('/blog/') && currentPath !== '/blog';
   const isProduct = currentPath.startsWith('/products') || currentPath.startsWith('/product');
-  const isProductDetail = currentPath.match(/^\/products?\/[^/]+\/[^/]+/); // Matches /products/category/id or /product/id
+  const isProductSubPage = !!currentPath.match(/^\/products?\/.+/);
+  const isProductDetail = !!currentPath.match(/^\/products?\/[^/]+\/[^/]+/); // Matches /products/category/id or /product/id
   const isContact = currentPath === '/contact';
   const isTools = currentPath.startsWith('/tools');
   const isCanisterReturns = currentPath === '/canister-returns';
@@ -179,10 +180,10 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
 
   // Pages with video hero backgrounds that support transparent header
   // These pages have dark backgrounds so white text is readable
-  const pagesWithVideoHero = isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || (isProduct && !isProductDetail) || isContact;
+  const pagesWithVideoHero = isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || (isProduct && !isProductSubPage) || isContact;
   
   // Pages that should ALWAYS have white/solid header (no video hero or light background)
-  const pagesWithAlwaysWhiteHeader = isBlogDetail || isProductDetail || isTools || isCanisterReturns || isChemistries;
+  const pagesWithAlwaysWhiteHeader = isBlogDetail || isProductSubPage || isTools || isCanisterReturns || isChemistries;
   
   // Transparent header behavior: same on mobile and desktop for consistency
   // If page has video hero AND not scrolled -> transparent

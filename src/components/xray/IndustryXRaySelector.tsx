@@ -233,9 +233,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                       {displayProduct.sku}
                     </h3>
                   )}
-                  <p className="text-[10px] text-white line-clamp-2">
-                    {displayProduct.description}
-                  </p>
                 </div>
               </div>
 
@@ -247,9 +244,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                       {displayProduct.sku}
                     </h3>
                   )}
-                  <p className="text-xs text-white line-clamp-2">
-                    {displayProduct.description}
-                  </p>
                   
                   {/* Button Row */}
                   <div className="flex gap-1.5 mt-2 pt-2">
@@ -421,11 +415,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                         <h3 className="text-sm font-poppins font-bold mb-2 leading-tight text-white">
                           {selectedProduct.sku}
                         </h3>
-                      )}
-                      {selectedProduct.description && (
-                        <p className="text-xs text-white/90 leading-relaxed mb-4">
-                          {selectedProduct.description}
-                        </p>
                       )}
                       <a
                         href={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
