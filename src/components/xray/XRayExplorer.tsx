@@ -578,13 +578,6 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                       className="w-full h-[300px] md:h-[500px] object-contain rounded-xl md:rounded-2xl shadow-lg"
                     />
                   </div>
-                  
-                  {/* Product Description */}
-                  <div className="flex flex-col justify-start">
-                    <p className="text-white/90 text-sm md:text-base mb-6">
-                      {selectedProduct.blurb || selectedProduct.description}
-                    </p>
-                  </div>
 
                   {/* Product Details */}
                   <div className="space-y-4 md:space-y-6">

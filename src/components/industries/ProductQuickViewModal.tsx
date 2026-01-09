@@ -2,7 +2,7 @@ import React from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink } from 'lucide-react';
-import { getIndustryLogo, toTitleCase } from '../../utils/industryHelpers';
+import { getIndustryLogo } from '../../utils/industryHelpers';
 
 interface Product {
   id: string;
@@ -82,10 +82,6 @@ const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({ isOpen, p
                 <h3 className="text-xl font-poppins font-bold text-white">
                   {product.name}
                 </h3>
-                
-                <p className="text-sm text-white">
-                  {toTitleCase(product.description || '')}
-                </p>
                 
                 {/* Action Buttons */}
                 <div className="flex gap-2 pt-2">
