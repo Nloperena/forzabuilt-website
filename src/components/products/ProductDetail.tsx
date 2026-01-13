@@ -229,7 +229,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
   return (
     <main className="flex-1 pb-10">
       {/* Product Image, Title and Description */}
-      <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] h-[50vh] md:h-[75vh] flex items-center">
+      <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] h-[55vh] md:h-[80vh] flex items-center">
         <div className="max-w-[1200px] mx-auto px-4 w-full">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
             {/* Product Image - Unified responsive display to prevent double loading */}

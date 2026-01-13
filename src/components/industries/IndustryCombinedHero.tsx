@@ -48,7 +48,7 @@ const IndustryCombinedHero: React.FC<IndustryCombinedHeroProps> = ({
   return (
     <>
       {/* Fixed/Sticky Video Section */}
-      <section className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
+      <section className="relative h-[55vh] md:h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
         {/* Poster Image Layer */}
         <div className="absolute inset-0 z-0">
           {posterUrl ? (

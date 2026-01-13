@@ -85,7 +85,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   // Simple variant - full screen video with title and subtitle overlay (like homepage)
   if (variant === 'simple') {
     return (
-      <section className="relative h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+      <section className="relative h-[55vh] md:h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
         {/* Poster Image Layer */}
         <div className="absolute inset-0" style={{ zIndex: 0 }}>
           {posterUrl ? (
@@ -194,7 +194,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
 
   // Overlay variant - video with title overlay at bottom
   return (
-    <section className="relative w-full h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] z-[5]">
+    <section className="relative w-full h-[55vh] md:h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] z-[5]">
       {/* Poster Image Layer */}
       <div className="absolute inset-0 z-0">
         {posterUrl ? (

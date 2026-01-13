@@ -47,7 +47,7 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
   return (
     <>
       {/* Sticky Video Background Section */}
-      <section className="sticky top-0 h-[50vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
+      <section className="sticky top-0 h-[55vh] md:h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
         {/* Poster Image Layer */}
         <div className="absolute inset-0 z-0">
           {posterUrl ? (
