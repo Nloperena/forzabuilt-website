@@ -43,9 +43,10 @@ const staticPages = [
 interface SearchBarProps {
   className?: string;
   mobile?: boolean;
+  isLightBackground?: boolean;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false, isLightBackground = false }) => {
   const navigate = useNavigate();
   const { mode } = useGradientMode();
   const [searchTerm, setSearchTerm] = useState('');
@@ -199,15 +200,30 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
     }, 200);
   };
 
-  // Use blue text for light modes, white text for dark modes
-  const textColor = mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : 'text-white';
-  const placeholderColor = mode === 'light' || mode === 'light2' ? 'placeholder-[#1B3764]/70' : 'placeholder-white/70';
-  const bgColor = mode === 'light' || mode === 'light2' ? 'bg-white/80' : 'bg-white/20';
-  const borderColor = mode === 'light' || mode === 'light2' ? 'border-[#1B3764]/30' : 'border-white/30';
+  // Determine colors based on theme mode OR explicit isLightBackground override
+  const isLight = isLightBackground || mode === 'light' || mode === 'light2';
+  
+  // When nav is white (isLight), we want blue text. 
+  // If it's focused or has text, we ensure it's our brand blue and the background is solid.
+  const textColor = isLight 
+    ? 'text-[#1B3764]' 
+    : (isSearchFocused || searchTerm ? 'text-[#1B3764]' : 'text-white');
+    
+  const placeholderColor = isLight 
+    ? 'placeholder-[#1B3764]/60' 
+    : (isSearchFocused || searchTerm ? 'placeholder-[#1B3764]/60' : 'placeholder-white/70');
+    
+  const bgColor = isLight 
+    ? (isSearchFocused || searchTerm ? 'bg-white' : 'bg-[#1B3764]/5') 
+    : (isSearchFocused || searchTerm ? 'bg-white' : 'bg-white/20');
+    
+  const borderColor = isLight 
+    ? (isSearchFocused || searchTerm ? 'border-[#F2611D]' : 'border-[#1B3764]/20') 
+    : (isSearchFocused || searchTerm ? 'border-[#F2611D]' : 'border-white/30');
 
   const baseClasses = mobile 
-    ? `py-2 px-4 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm transition-all duration-300 border ${borderColor}`
-    : `py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 px-2.5 lg:px-3 xl:px-5 2xl:px-6 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-xs lg:text-xs xl:text-sm 2xl:text-base transition-all duration-300 ease-in-out border ${borderColor}`;
+    ? `py-2 px-4 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:text-[#1B3764] text-sm transition-all duration-300 border ${borderColor}`
+    : `py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 px-2.5 lg:px-3 xl:px-5 2xl:px-6 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:text-[#1B3764] text-xs lg:text-xs xl:text-sm 2xl:text-base transition-all duration-300 ease-in-out border ${borderColor}`;
 
   const widthClasses = mobile
     ? "w-full"

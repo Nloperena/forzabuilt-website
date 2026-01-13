@@ -253,7 +253,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
           </div>
 
           <div className="hidden lg:flex items-center gap-2 lg:gap-3 xl:gap-4 2xl:gap-5 relative z-30">
-            <SearchBar />
+            <SearchBar isLightBackground={!isTransparent} />
             <a 
               href="/contact" 
               className="rounded-full bg-[#F2611D] text-white px-2.5 lg:px-3 xl:px-5 2xl:px-6 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 text-xs lg:text-xs xl:text-sm 2xl:text-base font-medium hover:bg-[#F2611D]/90"
@@ -290,114 +290,114 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed right-0 top-0 bottom-0 z-[101] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto lg:hidden"
+              className="fixed right-0 top-0 bottom-0 z-[101] w-72 sm:w-80 bg-white shadow-2xl overflow-y-auto lg:hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10 flex items-center justify-between">
-                <Logo className="h-12 w-auto" isWhiteBackground={true} />
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10 flex items-center justify-between">
+                <Logo className="h-10 w-auto" isWhiteBackground={true} />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5 text-gray-600" />
                 </button>
               </div>
 
-              <div className="p-5 space-y-2">
+              <div className="p-4 space-y-1.5">
                 {/* Search Bar in Mobile Menu */}
-                <div className="mb-6 px-1">
-                  <SearchBar mobile={true} />
+                <div className="mb-4 px-1">
+                  <SearchBar mobile={true} isLightBackground={true} />
                 </div>
 
                 {/* Products Section */}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <a
                     href="/products"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-semibold text-[#1B3764] text-lg">Products</span>
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-semibold text-[#1B3764] text-base">Products</span>
+                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
-                  <div className="ml-4 border-l-2 border-gray-200 pl-4 space-y-1">
+                  <div className="ml-4 border-l-2 border-gray-200 pl-3 space-y-0.5">
                     {productsItems.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="block py-1.5 px-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-poppins text-base text-gray-700">{item.label}</span>
+                        <span className="font-poppins text-sm text-gray-700">{item.label}</span>
                       </a>
                     ))}
                   </div>
                 </div>
 
                 {/* Divider between Products and Industries */}
-                <div className="py-2">
-                  <div className="border-t border-gray-200"></div>
+                <div className="py-1">
+                  <div className="border-t border-gray-100"></div>
                 </div>
 
                 {/* Industries Section */}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <a
                     href="/industries"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-semibold text-[#1B3764] text-lg">Industries</span>
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-semibold text-[#1B3764] text-base">Industries</span>
+                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
-                  <div className="ml-4 border-l-2 border-gray-200 pl-4 space-y-1">
+                  <div className="ml-4 border-l-2 border-gray-200 pl-3 space-y-0.5">
                     {industriesItems.slice(0, 6).map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
                           <OptimizedImage 
                             src={item.iconSrc} 
                             alt="" 
-                            width={24}
-                            height={24}
-                            className="w-6 h-6 object-contain" 
+                            width={20}
+                            height={20}
+                            className="w-5 h-5 object-contain" 
                           />
                         )}
-                        <span className="font-poppins text-base text-gray-700">{toTitleCase(item.label)}</span>
+                        <span className="font-poppins text-sm text-gray-700">{toTitleCase(item.label)}</span>
                       </a>
                     ))}
                   </div>
                 </div>
 
                 {/* Divider before other links */}
-                <div className="py-2">
-                  <div className="border-t border-gray-200"></div>
+                <div className="py-1">
+                  <div className="border-t border-gray-100"></div>
                 </div>
 
                 <a
                   href="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-semibold text-[#1B3764] text-lg">About</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-base">About</span>
                 </a>
 
                 <a
                   href="/blog"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-semibold text-[#1B3764] text-lg">Blog</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-base">Blog</span>
                 </a>
 
-                <div className="pt-4 border-t border-gray-200">
+                <div className="pt-3 border-t border-gray-100">
                   <a
                     href="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-6 py-3 text-base font-poppins font-semibold hover:bg-[#F2611D]/90 transition-colors"
+                    className="block w-full text-center rounded-xl bg-[#F2611D] text-white px-5 py-2.5 text-sm font-poppins font-semibold hover:bg-[#F2611D]/90 transition-colors"
                   >
                     Contact Us
                   </a>

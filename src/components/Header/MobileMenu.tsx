@@ -131,7 +131,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <>
                     {/* Search */}
                     <div className="mb-8">
-                      <SearchBar mobile={true} />
+                      <SearchBar mobile={true} isLightBackground={false} />
                     </div>
 
                     {/* Main Navigation */}

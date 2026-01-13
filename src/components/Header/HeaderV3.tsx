@@ -207,7 +207,7 @@ const HeaderV3: React.FC = () => {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-2 lg:gap-3 xl:gap-4 2xl:gap-5 relative z-30">
-            <SearchBar />
+            <SearchBar isLightBackground={!isTransparent} />
             <a href="/contact" 
               className="rounded-full bg-[#F2611D] text-white px-2.5 lg:px-3 xl:px-5 2xl:px-6 py-1.5 lg:py-2 xl:py-2.5 2xl:py-3 text-xs lg:text-xs xl:text-sm 2xl:text-base font-medium hover:bg-[#F2611D]/90 transition-colors"
             >

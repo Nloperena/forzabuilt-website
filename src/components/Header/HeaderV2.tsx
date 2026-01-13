@@ -289,15 +289,15 @@ interface HeaderV2Props {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed right-0 top-0 bottom-0 z-[101] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto lg:hidden"
+              className="fixed right-0 top-0 bottom-0 z-[101] w-72 sm:w-80 bg-white shadow-2xl overflow-y-auto lg:hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10 flex items-center justify-between">
-                <Logo className="h-8 w-auto" isWhiteBackground={true} />
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10 flex items-center justify-between">
+                <Logo className="h-10 w-auto" isWhiteBackground={true} />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5 text-gray-600" />
@@ -305,14 +305,19 @@ interface HeaderV2Props {
               </div>
 
               {/* Navigation Items */}
-              <div className="p-4 space-y-1">
+              <div className="p-4 space-y-1.5">
+                {/* Search Bar in Mobile Menu */}
+                <div className="mb-4 px-1">
+                  <SearchBar mobile={true} isLightBackground={true} />
+                </div>
+
                 {/* Products */}
                 <div className="space-y-0.5">
                   <a href="/products"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Products</span>
+                    <span className="font-poppins font-semibold text-[#1B3764] text-base">Products</span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
                   <div className="ml-3 border-l-2 border-gray-100 pl-3">
@@ -320,9 +325,9 @@ interface HeaderV2Props {
                       <a
                         key={item.href} href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="block py-1 px-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{item.label}</span>
+                        <span className="font-poppins text-sm text-gray-700 leading-normal">{item.label}</span>
                       </a>
                     ))}
                   </div>
@@ -332,9 +337,9 @@ interface HeaderV2Props {
                 <div className="space-y-0.5">
                   <a href="/industries"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Industries</span>
+                    <span className="font-poppins font-semibold text-[#1B3764] text-base">Industries</span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </a>
                   <div className="ml-3 border-l-2 border-gray-100 pl-3">
@@ -342,12 +347,12 @@ interface HeaderV2Props {
                       <a
                         key={item.href} href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2.5 py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-2.5 py-1 px-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
                           <img src={item.iconSrc} alt="" className="w-5 h-5 object-contain" />
                         )}
-                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{toTitleCase(item.label)}</span>
+                        <span className="font-poppins text-sm text-gray-700 leading-normal">{toTitleCase(item.label)}</span>
                       </a>
                     ))}
                   </div>
@@ -356,24 +361,24 @@ interface HeaderV2Props {
                 {/* About */}
                 <a href="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764] text-sm">About</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-base">About</span>
                 </a>
 
                 {/* Blog */}
                 <a href="/blog"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764] text-sm">Blog</span>
+                  <span className="font-poppins font-semibold text-[#1B3764] text-base">Blog</span>
                 </a>
 
                 {/* Contact Button */}
                 <div className="pt-3 border-t border-gray-200">
                   <a href="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-5 py-2.5 text-sm font-poppins font-medium hover:bg-[#F2611D]/90 transition-colors"
+                    className="block w-full text-center rounded-xl bg-[#F2611D] text-white px-5 py-2.5 text-sm font-poppins font-semibold hover:bg-[#F2611D]/90 transition-colors"
                   >
                     Contact Us
                   </a>

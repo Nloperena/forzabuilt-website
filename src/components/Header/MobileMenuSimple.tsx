@@ -127,38 +127,36 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 w-96 h-auto z-50 bg-white shadow-2xl rounded-l-3xl border border-[#1B3764]/20"
-            style={{ top: '72px', maxHeight: 'calc(100vh - 72px)' }}
+            className="fixed top-0 right-0 w-72 sm:w-80 h-auto z-50 bg-white shadow-2xl rounded-l-3xl border border-[#1B3764]/20"
+            style={{ top: '64px', maxHeight: 'calc(100vh - 64px)' }}
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-6 border-b border-[#1B3764]/20">
+            <div className="flex justify-between items-center p-4 border-b border-[#1B3764]/20">
               <a href="/" onClick={onClose} className="flex items-center">
                 <img 
                   src={logoSrc} 
                   alt="Forza Built" 
-                  className="h-12 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </a>
               
               <button 
                 onClick={onClose}
-                className="p-2 text-[#1B3764]/80 hover:text-[#1B3764] transition-colors rounded-full hover:bg-[#1B3764]/10"
+                className="p-1.5 text-[#1B3764]/80 hover:text-[#1B3764] transition-colors rounded-full hover:bg-[#1B3764]/10"
                 aria-label="Close menu"
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Search Bar */}
-            <div className="p-6 border-b border-[#1B3764]/20">
-              <SearchBar />
+            <div className="p-4 border-b border-[#1B3764]/20">
+              <SearchBar isLightBackground={true} mobile={true} />
             </div>
 
             {/* Navigation */}
             <div className="flex-1 overflow-y-auto">
-              <nav className="p-6 space-y-1">
+              <nav className="p-4 space-y-0.5">
                 {navigation.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -169,24 +167,19 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
                     {item.hasSubmenu ? (
                       <button
                         onClick={() => setActiveSection(activeSection === item.name.toLowerCase() ? null : item.name.toLowerCase())}
-                        className="w-full flex items-center justify-between py-4 px-4 text-base font-medium text-[#1B3764] hover:bg-[#1B3764]/10 rounded-xl transition-all duration-200"
+                        className="w-full flex items-center justify-between py-2.5 px-3 text-base font-semibold text-[#1B3764] hover:bg-[#1B3764]/5 rounded-xl transition-all duration-200"
                       >
                         <span>{item.name}</span>
-                        <svg 
-                          className={`h-5 w-5 transition-transform duration-200 ${
+                        <ChevronDown 
+                          className={`h-4 w-4 transition-transform duration-200 ${
                             activeSection === item.name.toLowerCase() ? 'rotate-180' : ''
                           }`} 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+                        />
                       </button>
                     ) : (
                       <a href={item.href}
                         onClick={onClose}
-                        className="block py-4 px-4 text-base font-medium text-[#1B3764] hover:bg-[#1B3764]/10 rounded-xl transition-all duration-200"
+                        className="block py-2.5 px-3 text-base font-semibold text-[#1B3764] hover:bg-[#1B3764]/5 rounded-xl transition-all duration-200"
                       >
                         {item.name}
                       </a>
@@ -203,7 +196,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 pb-6"
+                    className="px-4 pb-4"
                   >
                     {activeSection === 'products' && renderProductsContent()}
                     {activeSection === 'industries' && renderIndustriesContent()}
@@ -213,8 +206,8 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
             </div>
 
             {/* Footer */}
-            <div className="p-6 border-t border-[#1B3764]/20">
-              <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-xl py-3 text-base font-medium">
+            <div className="p-4 border-t border-[#1B3764]/20">
+              <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-xl py-2.5 text-sm font-semibold">
                 <a href="/contact" onClick={onClose}>Contact Us</a>
               </Button>
             </div>
