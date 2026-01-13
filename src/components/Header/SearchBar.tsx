@@ -16,11 +16,29 @@ interface SearchResult {
   id: string;
   name: string;
   href: string;
-  type: 'Product' | 'Blog';
+  type: 'Product' | 'Blog' | 'Page';
   image: string;
   description: string;
   category?: string;
 }
+
+const staticPages = [
+  { name: 'Home', href: '/', description: 'ForzaBuilt Home Page' },
+  { name: 'Products', href: '/products', description: 'Explore our industrial adhesives, sealants, and tapes' },
+  { name: 'Industries', href: '/industries', description: 'Solutions tailored for your specific industry' },
+  { name: 'About Us', href: '/about', description: 'Learn about ForzaBuilt and our 30-year commitment' },
+  { name: 'Blog', href: '/blog', description: 'Products, Tips, Tutorials and More' },
+  { name: 'Contact Us', href: '/contact', description: 'Get in touch with our team' },
+  { name: 'Tools', href: '/tools', description: 'Industrial tools and equipment' },
+  { name: 'Canister Returns', href: '/canister-returns', description: 'Return your empty canisters' },
+  { name: 'Chemistries', href: '/chemistries', description: 'Advanced chemistry solutions' },
+  { name: 'Industrial Industry', href: '/industries/industrial', description: 'Adhesives for general industrial manufacturing' },
+  { name: 'Transportation Industry', href: '/industries/transportation', description: 'Bonding solutions for the transportation industry' },
+  { name: 'Marine Industry', href: '/industries/marine', description: 'Marine-grade adhesives and sealants' },
+  { name: 'Composites Industry', href: '/industries/composites', description: 'Solutions for composite materials' },
+  { name: 'Construction Industry', href: '/industries/construction', description: 'Building and construction adhesives' },
+  { name: 'Insulation Industry', href: '/industries/insulation', description: 'Insulation bonding solutions' },
+];
 
 interface SearchBarProps {
   className?: string;
@@ -138,11 +156,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
           description: b.excerpt,
           category: b.category
         }));
+
+      // Search static pages
+      const pageResults: SearchResult[] = staticPages
+        .filter(p => 
+          p.name.toLowerCase().includes(searchLower) ||
+          p.description.toLowerCase().includes(searchLower)
+        )
+        .map(p => ({
+          id: p.href,
+          name: p.name,
+          href: p.href,
+          type: 'Page' as const,
+          image: '/logos/Forza-Logo-Mark.png', // Default icon for pages
+          description: p.description
+        }));
       
       const totalMatches = allProductMatches.length;
       setTotalProductMatches(totalMatches);
       
-      setSearchResults([...productResults, ...blogResults]);
+      setSearchResults([...productResults, ...blogResults, ...pageResults]);
       setShowSearchResults(true);
     } else {
       setSearchResults([]);
@@ -183,12 +216,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   // Group results by type
   const productResults = searchResults.filter(r => r.type === 'Product');
   const blogResults = searchResults.filter(r => r.type === 'Blog');
+  const pageResults = searchResults.filter(r => r.type === 'Page');
 
   return (
     <div ref={searchRef} className={`relative ${className}`}>
       <input
         type="text"
-        placeholder={mobile ? "Search products and blogs..." : (isSearchFocused ? "Search products and blogs..." : "Search...")}
+        placeholder={mobile ? "Search products, blogs, and pages..." : (isSearchFocused ? "Search everything..." : "Search...")}
         className={`${baseClasses} ${widthClasses}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -197,7 +231,40 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
       />
       
       {showSearchResults && searchResults.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl z-50 max-h-[500px] overflow-y-auto border border-gray-200 min-w-[400px]">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl z-50 max-h-[500px] overflow-y-auto custom-scrollbar border border-gray-200 min-w-[400px]">
+          {/* Pages Section */}
+          {pageResults.length > 0 && (
+            <div className="border-b border-gray-200">
+              <div className="px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-white font-bold text-sm">
+                Pages ({pageResults.length})
+              </div>
+              {pageResults.map((result) => (
+                <button
+                  key={`page-${result.id}`}
+                  className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 flex items-center gap-3"
+                  onClick={() => handleResultClick(result.href)}
+                >
+                  <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-2">
+                    <img 
+                      src="/logos/Forza-Eagle-Logo-Blue.svg" 
+                      alt=""
+                      className="w-full h-full object-contain opacity-50"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-gray-900 text-sm line-clamp-1">{result.name}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{result.description}</div>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Products Section */}
           {productResults.length > 0 && (
             <div className="border-b border-gray-200">

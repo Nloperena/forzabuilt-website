@@ -253,13 +253,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
           </div>
 
           <div className="hidden lg:flex items-center gap-2 lg:gap-3 xl:gap-4 2xl:gap-5 relative z-30">
-            <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search..." 
-                className={`py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 px-2.5 lg:px-3 xl:px-5 2xl:px-6 rounded-full ${isTransparent ? 'bg-white/80 text-[#1B3764] placeholder-[#1B3764]/70 border border-[#1B3764]/30' : 'bg-white/80 text-[#1B3764] placeholder-[#1B3764]/70 border border-[#1B3764]/30'} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-xs lg:text-xs xl:text-sm 2xl:text-base transition-all duration-300 ease-in-out w-32 lg:w-36 xl:w-44 2xl:w-48`}
-              />
-            </div>
+            <SearchBar />
             <a 
               href="/contact" 
               className="rounded-full bg-[#F2611D] text-white px-2.5 lg:px-3 xl:px-5 2xl:px-6 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 text-xs lg:text-xs xl:text-sm 2xl:text-base font-medium hover:bg-[#F2611D]/90"
@@ -311,6 +305,11 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
               </div>
 
               <div className="p-5 space-y-2">
+                {/* Search Bar in Mobile Menu */}
+                <div className="mb-6 px-1">
+                  <SearchBar mobile={true} />
+                </div>
+
                 {/* Products Section */}
                 <div className="space-y-1">
                   <a
