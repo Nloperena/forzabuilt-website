@@ -407,9 +407,6 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                         {selectedHotspot.experience?.title}
                       </h3>
                     </div>
-                    <p className="text-[#1B3764]">
-                      {selectedHotspot.experience?.description}
-                    </p>
                   </div>
                 )}
               </motion.div>

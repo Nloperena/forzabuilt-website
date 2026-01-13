@@ -244,7 +244,7 @@ const InteractiveProductsSectionV6 = () => {
                 })}
               </div>
 
-              {/* Description and button */}
+              {/* Button */}
               <div className="mt-auto pb-3 md:pb-0" style={{ gap: 'clamp(8px, 1.2vw, 12px)', display: 'flex', flexDirection: 'column' }}>
                 <AnimatePresence mode='wait'>
                   <motion.div
@@ -254,15 +254,6 @@ const InteractiveProductsSectionV6 = () => {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className={`text-white ${
-                      mode === 'light2' ? 'font-poppins' : ''
-                    }`}
-                    style={{
-                      fontSize: 'clamp(11px, 1.3vw, 15px)',
-                      lineHeight: '1.5'
-                    }}>
-                      {products[activeIndex].description}
-                    </p>
                     <Button
                       asChild
                       className="mt-2 gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex items-center justify-center rounded-full bg-[#F2611D] text-white font-medium hover:bg-[#F2611D]/90 shadow-lg"

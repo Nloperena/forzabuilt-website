@@ -215,10 +215,6 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                 <div className="space-y-3">
                   {isProduct && (
                     <>
-                      <p className="text-sm text-[#1B3764] line-clamp-2 font-medium">
-                        {hotspot.product!.blurb}
-                      </p>
-                      
                       <div className="flex gap-2 pt-2">
                         {onProductClick ? (
                           <Button 
@@ -258,10 +254,6 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                           {hotspot.experience!.title}
                         </h3>
                       </div>
-                      
-                      <p className="text-sm text-[#1B3764] line-clamp-3 font-medium">
-                        {hotspot.experience!.description}
-                      </p>
                     </>
                   )}
                 </div>

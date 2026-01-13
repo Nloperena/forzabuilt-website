@@ -455,13 +455,6 @@ const ProductModalV3: React.FC<ProductModalV3Props> = ({
                   </div>
                 )}
 
-                {/* Description */}
-                {selectedProduct.description && (
-                  <p className={`text-white/90 leading-relaxed text-xs md:text-sm lg:text-[11px] xl:text-sm 2xl:text-base mb-2 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3 ${mode === 'light2' ? 'font-poppins' : ''}`}>
-                    {selectedProduct.description}
-                  </p>
-                )}
-
                 {/* Benefits */}
                 {selectedProduct.benefits && selectedProduct.benefits.length > 0 && (
                   <div className="mb-2 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3">

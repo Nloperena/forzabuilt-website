@@ -588,13 +588,6 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
                     />
                   </div>
                   
-                  {/* Product Description */}
-                  <div className="flex flex-col justify-start">
-                    <p className="text-white/90 text-sm md:text-base mb-6">
-                      {selectedProduct.blurb || selectedProduct.description}
-                    </p>
-                  </div>
-
                   {/* Product Details */}
                   <div className="space-y-4 md:space-y-6">
                     <div>

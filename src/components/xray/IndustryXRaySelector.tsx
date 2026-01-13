@@ -416,11 +416,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                           {selectedProduct.sku}
                         </h3>
                       )}
-                      {selectedProduct.description && (
-                        <p className="text-xs text-white/90 leading-relaxed mb-4">
-                          {selectedProduct.description}
-                        </p>
-                      )}
                       <a
                         href={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
                         onClick={(e) => e.stopPropagation()}

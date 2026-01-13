@@ -97,28 +97,6 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
 
         {/* Fallback background - always visible */}
         <div className="absolute inset-0 bg-black/5" style={{ zIndex: 0 }} />
-
-        {/* Blue overlay on top of image for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
-
-        {/* Hidden Text Content (for accessibility & animations) */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 0, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-          style={{ zIndex: 2 }}
-        >
-          <div className="text-white relative z-20 text-center">
-            <h1 className="sr-only">
-              {productCategory?.charAt(0).toUpperCase() + productCategory?.slice(1).toLowerCase()}
-            </h1>
-            <p className="sr-only">
-              Discover our premium {productCategory?.toLowerCase()} solutions engineered for performance and reliability across all industries.
-            </p>
-          </div>
-        </motion.div>
       </section>
 
       {/* Content that will slide over the sticky hero image background */}

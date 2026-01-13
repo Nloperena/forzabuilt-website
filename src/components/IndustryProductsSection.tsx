@@ -392,9 +392,6 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                         <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                           {product.name}
                         </h3>
-                        <p className="text-xs text-white/90 line-clamp-2">
-                          {product.description}
-                        </p>
                         {/* Mobile: Industry Badge */}
                         <div 
                           className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide mt-2"
@@ -420,11 +417,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 
                     {/* Desktop: Content Section */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                      <div className="space-y-0">
-                        <p className="text-sm text-white/90 line-clamp-2 min-h-[3.75rem]">
-                          {product.description}
-                        </p>
-                        
+                      <div className="space-y-2">
                         {/* Button Row */}
                         <div className="flex gap-2">
                           {/* Quick View Button */}
@@ -651,7 +644,6 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                 <h3 className="font-kallisto font-bold text-2xl text-white mb-4" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   {selectedProduct.name}
                 </h3>
-                <p className="text-base text-white/90 mb-4">{selectedProduct.description}</p>
                 <div className="flex items-center gap-2 text-white/90 text-sm mb-4">
                   <FlaskConical className="h-4 w-4" />
                   <span>{selectedProduct.chemistry}</span>
