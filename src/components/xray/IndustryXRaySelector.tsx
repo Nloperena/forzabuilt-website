@@ -233,13 +233,10 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                       {displayProduct.sku}
                     </h3>
                   )}
-                  <p className="text-[10px] text-white line-clamp-2">
-                    {displayProduct.description}
-                  </p>
                 </div>
               </div>
 
-              {/* Desktop: Content Section with title and description */}
+              {/* Desktop: Content Section with title */}
               <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
                 <div className="space-y-0.5">
                   {displayProduct.sku && (
@@ -247,9 +244,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                       {displayProduct.sku}
                     </h3>
                   )}
-                  <p className="text-xs text-white line-clamp-2">
-                    {displayProduct.description}
-                  </p>
                   
                   {/* Button Row */}
                   <div className="flex gap-1.5 mt-2 pt-2">

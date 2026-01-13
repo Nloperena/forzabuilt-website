@@ -208,17 +208,28 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     });
   }, [allProducts]);
 
-  // Get chemistry types for this category
+  // Get chemistry types for this category (use allProducts so options don't disappear when filtered)
   const chemistryTypes = useMemo(() => {
     const unique = new Set<string>(
-      filteredProducts
+      allProducts
         .filter(p => p.chemistry)
         .map(p => p.chemistry!)
     );
     return Array.from(unique)
       .filter(chem => chem !== 'composite_adhesive')
       .sort();
-  }, [filteredProducts]);
+  }, [allProducts]);
+
+  // Get chemistry counts based on all products (stable counts)
+  const chemistryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    allProducts.forEach(product => {
+      if (product.chemistry) {
+        counts[product.chemistry] = (counts[product.chemistry] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [allProducts]);
 
   // Get industry counts for all products (for filter sidebar counts)
   const industryCounts = useMemo(() => {
@@ -422,7 +433,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                     <div className="flex flex-col gap-1.5">
                       {chemistryTypes.map(chemistry => {
                         const isSelected = selectedChemistries.includes(chemistry);
-                        const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
+                        const count = chemistryCounts[chemistry] || 0;
                         return (
                           <button
                             key={chemistry}
@@ -718,7 +729,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       <div className="space-y-1.5">
                         {chemistryTypes.map(chemistry => {
                           const isSelected = selectedChemistries.includes(chemistry);
-                          const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
+                          const count = chemistryCounts[chemistry] || 0;
                           return (
                             <button
                               key={chemistry}

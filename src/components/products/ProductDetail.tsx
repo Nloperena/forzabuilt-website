@@ -282,9 +282,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-regular text-white mb-3 md:mb-4 leading-tight font-poppins text-left normal-case">
                 {formatProductName(product.name || '')}
               </h1>
-              <div className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
-                {product.description}
-              </div>
             </div>
           </div>
         </div>
@@ -788,21 +785,15 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, relatedProducts 
                             <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
                               {relatedProduct.name}
                             </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {relatedProduct.description || ''}
-                            </p>
                           </div>
                         </div>
 
-                        {/* Desktop: Content Section with title and description */}
+                        {/* Desktop: Content Section with title */}
                         <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
                               {relatedProduct.name}
                             </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {relatedProduct.description || ''}
-                            </p>
                             
                             {/* Button Row */}
                             <div className="flex gap-1.5 mt-2 pt-2">
