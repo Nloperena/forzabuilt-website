@@ -206,12 +206,15 @@ interface HeaderV2Props {
   // Don't hide if mobile menu is open
   const shouldHideForDrawer = isDrawerOpen && !mobileMenuOpen;
 
+  const isCategoryPage = pathname.startsWith('/products/') && !pathname.match(/\/products\/[^/]+\/[^/]+/);
+  const shouldHideNavbarLogo = (isCategoryPage && !isScrolled) || isScrolled;
+
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''} ${shouldHideForDrawer ? '-translate-y-full' : ''}`}> 
       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-4 lg:p-[0.85rem]">
         <div className="h-16 md:h-20 lg:h-16 xl:h-20 2xl:h-24 flex items-center justify-between">
           {/* Left logo */}
-          <div className="flex items-center relative z-30">
+          <div className={`flex items-center relative z-30 transition-opacity duration-300 ${shouldHideNavbarLogo ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             {/* Use white logo on transparent home top; blue when scrolled/white bg */}
             <Logo className="h-12 md:h-14 lg:h-12 xl:h-16 2xl:h-24 w-auto" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
           </div>

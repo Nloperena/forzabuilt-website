@@ -160,11 +160,11 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
 
           <div className="flex flex-col items-center justify-between h-full w-full pt-16 sm:pt-20 pb-4 sm:pb-8 px-4">
             {/* Top Column: Logo and Text */}
-            <div className="flex flex-col items-center w-full max-w-[300px] sm:max-w-[400px] mt-4 sm:mt-6 relative z-10">
+            <div className="flex flex-col items-center w-full max-w-[400px] mt-4 sm:mt-6 relative z-10">
             <img 
               src={data.logo} 
               alt={`${category} logo`} 
-              className={`${category === 'ruggedred' ? 'h-28 sm:h-40 mb-4 sm:mb-6' : 'h-14 sm:h-20 mb-2 sm:mb-4'} w-auto object-contain`}
+              className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
               <h1 className="text-white font-poppins font-normal text-center text-xl sm:text-3xl lg:text-4xl tracking-tight leading-tight">
                 {data.subtext}

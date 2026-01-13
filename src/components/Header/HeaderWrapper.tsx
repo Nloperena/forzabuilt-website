@@ -199,6 +199,9 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   // Only hide header on scroll for desktop (mobile always shows header)
   const shouldHideOnDesktop = !isMobile && isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
 
+  const isCategoryPage = isProduct && !isProductDetail;
+  const shouldHideNavbarLogo = (isCategoryPage && !isScrolled) || isScrolled;
+
   return (
     <motion.header 
       data-component="header" 
@@ -209,7 +212,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
     > 
       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-3 lg:p-[0.7rem]">
         <div className="h-14 md:h-16 lg:h-14 xl:h-16 2xl:h-20 flex items-center justify-between">
-          <div className="flex items-center relative z-30">
+          <div className={`flex items-center relative z-30 transition-opacity duration-300 ${shouldHideNavbarLogo ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <Logo 
               key={`logo-${isTransparent}-${isScrolled}`}
               className="h-8 md:h-10 lg:h-8 xl:h-11 2xl:h-14 w-auto" 
