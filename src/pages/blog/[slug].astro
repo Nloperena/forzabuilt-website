@@ -26,6 +26,7 @@ const currentPath = Astro.url.pathname;
   description={post.excerpt}
   canonicalUrl={`/blog/${slug}`}
   ogType="article"
+  ogImage={post.image}
 >
   <Providers client:load>
     <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">

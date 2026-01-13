@@ -23,21 +23,21 @@ interface SearchResult {
 }
 
 const staticPages = [
-  { name: 'Home', href: '/', description: 'ForzaBuilt Home Page' },
-  { name: 'Products', href: '/products', description: 'Explore our industrial adhesives, sealants, and tapes' },
-  { name: 'Industries', href: '/industries', description: 'Solutions tailored for your specific industry' },
-  { name: 'About Us', href: '/about', description: 'Learn about ForzaBuilt and our 30-year commitment' },
-  { name: 'Blog', href: '/blog', description: 'Products, Tips, Tutorials and More' },
-  { name: 'Contact Us', href: '/contact', description: 'Get in touch with our team' },
-  { name: 'Tools', href: '/tools', description: 'Industrial tools and equipment' },
-  { name: 'Canister Returns', href: '/canister-returns', description: 'Return your empty canisters' },
-  { name: 'Chemistries', href: '/chemistries', description: 'Advanced chemistry solutions' },
-  { name: 'Industrial Industry', href: '/industries/industrial', description: 'Adhesives for general industrial manufacturing' },
-  { name: 'Transportation Industry', href: '/industries/transportation', description: 'Bonding solutions for the transportation industry' },
-  { name: 'Marine Industry', href: '/industries/marine', description: 'Marine-grade adhesives and sealants' },
-  { name: 'Composites Industry', href: '/industries/composites', description: 'Solutions for composite materials' },
-  { name: 'Construction Industry', href: '/industries/construction', description: 'Building and construction adhesives' },
-  { name: 'Insulation Industry', href: '/industries/insulation', description: 'Insulation bonding solutions' },
+  { name: 'Home', href: '/', description: 'ForzaBuilt Home Page', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Products', href: '/products', description: 'Explore our industrial adhesives, sealants, and tapes', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Industries', href: '/industries', description: 'Solutions tailored for your specific industry', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'About Us', href: '/about', description: 'Learn about ForzaBuilt and our 30-year commitment', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Blog', href: '/blog', description: 'Products, Tips, Tutorials and More', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Contact Us', href: '/contact', description: 'Get in touch with our team', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Tools', href: '/tools', description: 'Industrial tools and equipment', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Canister Returns', href: '/canister-returns', description: 'Return your empty canisters', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Chemistries', href: '/chemistries', description: 'Advanced chemistry solutions', icon: '/logos/Forza-Eagle-Logo-Blue.svg' },
+  { name: 'Industrial Industry', href: '/industries/industrial', description: 'Adhesives for general industrial manufacturing', icon: '/logos/Industrial-Icon.webp' },
+  { name: 'Transportation Industry', href: '/industries/transportation', description: 'Bonding solutions for the transportation industry', icon: '/logos/Transportation-Icon-2.webp' },
+  { name: 'Marine Industry', href: '/industries/marine', description: 'Marine-grade adhesives and sealants', icon: '/logos/Marine-Icon.webp' },
+  { name: 'Composites Industry', href: '/industries/composites', description: 'Solutions for composite materials', icon: '/logos/Composite-Icon.webp' },
+  { name: 'Construction Industry', href: '/industries/construction', description: 'Building and construction adhesives', icon: '/logos/Construction-Icon.webp' },
+  { name: 'Insulation Industry', href: '/industries/insulation', description: 'Insulation bonding solutions', icon: '/logos/Insulation-Icon.webp' },
 ];
 
 interface SearchBarProps {
@@ -168,7 +168,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
           name: p.name,
           href: p.href,
           type: 'Page' as const,
-          image: '/logos/Forza-Logo-Mark.png', // Default icon for pages
+          image: p.icon,
           description: p.description
         }));
       
@@ -246,9 +246,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
                 >
                   <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-2">
                     <img 
-                      src="/logos/Forza-Eagle-Logo-Blue.svg" 
+                      src={result.image} 
                       alt=""
-                      className="w-full h-full object-contain opacity-50"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
