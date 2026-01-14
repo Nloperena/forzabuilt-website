@@ -47,7 +47,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       subtext: 'Industrial Sealants',
       mobile: '/images/product-family-shots/SEAL/Mobile Seal Header.webp',
       elements: [
-        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[128%] top-[-25%] left-72 z-0' }
+        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[100%] lg:h-[120%] top-[-5%] lg:top-[-15%] left-[2%] lg:left-[5%] z-0' }
       ]
     },
     tape: {
@@ -120,7 +120,9 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               className={`absolute 
                 ${category === 'ruggedred' 
                   ? 'top-[15vh] left-[55%] xl:left-[50%]' 
-                  : 'top-[20vh] left-[60%] lg:left-[52%] xl:left-[48%]'} 
+                  : category === 'seal'
+                    ? 'top-[20vh] left-[65%] xl:left-[55%]'
+                    : 'top-[20vh] left-[60%] lg:left-[52%] xl:left-[48%]'} 
                 flex flex-col z-30 items-start w-auto mt-2`}
               initial={{ opacity: 0, x: 50 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
@@ -136,7 +138,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                 />
                 <h1 className={`
                   text-white font-poppins font-normal text-left tracking-tight mt-[2vh]
-                  text-[3.5vh] lg:text-[4.5vh] xl:text-[6.5vh]`}>
+                  text-[3.5vh] lg:text-[4.5vh] xl:text-[6.5vh] whitespace-nowrap`}>
                   {data.subtext}
                 </h1>
               </div>
@@ -154,19 +156,19 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               initial={{ opacity: 0, x: -100, y: -100 }}
               animate={isLoaded ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -100, y: -100 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute top-[30%] md:top-[35%] left-[-15%] md:left-[-10%] h-[30vh] md:h-[38vh] translate-x-[-15%] w-auto object-contain z-0 pointer-events-none"
+              className="absolute top-[25%] md:top-[30%] left-[-10%] md:left-[-5%] h-[45vh] md:h-[55vh] translate-x-[-15%] w-auto object-contain z-0 pointer-events-none"
             />
           )}
 
           <div className="flex flex-col items-center justify-between h-full w-full pt-16 sm:pt-20 pb-4 sm:pb-8 px-4">
             {/* Top Column: Logo and Text */}
-            <div className="flex flex-col items-center w-full max-w-[400px] mt-4 sm:mt-6 relative z-10">
+            <div className="flex flex-col items-center w-full max-w-none mt-4 sm:mt-6 relative z-10">
             <img 
               src={data.logo} 
               alt={`${category} logo`} 
               className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
-              <h1 className="text-white font-poppins font-normal text-center text-xl sm:text-3xl lg:text-4xl tracking-tight leading-tight">
+              <h1 className="text-white font-poppins font-normal text-center text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight whitespace-nowrap">
                 {data.subtext}
               </h1>
             </div>
@@ -201,7 +203,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   initial={{ opacity: 0, y: 50 }}
                   animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className={`${category === 'tape' ? 'h-[20vh] sm:h-[25vh] md:h-[30vh]' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
+                  className={`${category === 'tape' ? 'h-[40vh] sm:h-[50vh] md:h-[60vh]' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
                 />
               )}
             </div>
