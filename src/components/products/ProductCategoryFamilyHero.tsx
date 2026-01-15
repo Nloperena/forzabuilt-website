@@ -141,8 +141,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   />
                 </div>
                 <h1 className={`
-                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full
-                  text-[clamp(3vh,4vw,5vh)] md:text-[clamp(3.5vh,4.5vw,5.5vh)] lg:text-[clamp(4vh,5vw,6vh)] xl:text-[clamp(5vh,6vw,7.5vh)] 2xl:text-[clamp(5.5vh,7vw,8vh)]`}>
+                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full whitespace-nowrap
+                  text-[clamp(1.5rem,3vw,2.5rem)] md:text-[clamp(1.75rem,3.5vw,3rem)] lg:text-[clamp(2rem,4vw,3.5rem)] xl:text-[clamp(2.5rem,5vw,4.5rem)] 2xl:text-[clamp(2.75rem,5.5vw,5rem)]`}>
                   {data.subtext}
                 </h1>
               </div>
@@ -172,7 +172,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               alt={`${category} logo`} 
               className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
-              <h1 className="text-white font-poppins font-normal text-center tracking-tight leading-tight w-full text-[clamp(1.25rem,4vw,1.875rem)] sm:text-[clamp(1.5rem,4.5vw,2rem)] md:text-[clamp(1.5rem,5vw,2rem)] lg:text-[clamp(1.75rem,5.5vw,2.25rem)]">
+              <h1 className="text-white font-poppins font-normal text-center tracking-tight leading-tight w-full whitespace-nowrap text-[clamp(1.5rem,3vw,2rem)] sm:text-[clamp(1.5rem,3.5vw,2.25rem)] md:text-[clamp(1.75rem,4vw,2.5rem)] lg:text-[clamp(2rem,4.5vw,2.75rem)]">
                 {data.subtext}
               </h1>
             </div>
