@@ -56,7 +56,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/TAPE/forza-tape-white.svg',
       subtext: 'Industrial Tapes',
       elements: [
-        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-4%] md:bottom-[-4%] lg:bottom-[-4%] xl:bottom-[-4%] 2xl:bottom-[-4%] left-[7%] md:left-[7%] lg:left-[7%] xl:left-[7%] 2xl:left-[7%] z-10' }
+        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-4%] md:bottom-[-4%] lg:bottom-[-4%] xl:bottom-[-4%] 2xl:bottom-[-4%] left-0 md:left-0 lg:left-0 xl:left-0 2xl:left-0 z-10' }
       ]
     },
     ruggedred: {
@@ -207,7 +207,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   initial={{ opacity: 0, y: 50 }}
                   animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className={`${category === 'tape' ? 'h-[48vh] sm:h-[60vh] md:h-[60vh] -mt-8 sm:-mt-10' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
+                  className={`${category === 'tape' ? 'h-[48vh] sm:h-[60vh] md:h-[60vh] -mt-16 sm:-mt-20' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
                 />
               )}
             </div>
