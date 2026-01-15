@@ -37,8 +37,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/BOND/forza-bond-white.svg',
       subtext: 'Industrial Adhesives',
       elements: [
-        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] md:h-[45vh] lg:h-[58vh] xl:h-[75vh] 2xl:h-[75vh] bottom-0 left-[10%] md:left-[9%] lg:left-[8%] xl:left-[8%] 2xl:left-[16%] z-20' },
-        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] md:h-[38vh] lg:h-[48vh] xl:h-[65vh] 2xl:h-[65vh] bottom-0 left-[22%] md:left-[23%] lg:left-[24%] xl:left-[24%] 2xl:left-[26%] z-10' }
+        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] md:h-[45vh] lg:h-[58vh] xl:h-[75vh] 2xl:h-[75vh] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[10%] md:left-[10%] lg:left-[13%] xl:left-[16%] 2xl:left-[16%] z-20 max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' },
+        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] md:h-[38vh] lg:h-[48vh] xl:h-[65vh] 2xl:h-[65vh] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[24%] md:left-[24%] lg:left-[27%] xl:left-[30%] 2xl:left-[30%] z-10 max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' }
       ]
     },
     seal: {
@@ -56,7 +56,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/TAPE/forza-tape-white.svg',
       subtext: 'Industrial Tapes',
       elements: [
-        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-10%] left-0 md:left-[5%] lg:left-[5%] xl:left-[00%] z-10' }
+        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[20%] md:left-[20%] lg:left-[20%] xl:left-[20%] 2xl:left-[20%] z-10' }
       ]
     },
     ruggedred: {
@@ -74,7 +74,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
 
   return (
     <>
-      <section className="sticky top-0 h-[55vh] lg:h-[80vh] overflow-hidden bg-[#1B3764] lg:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
+      <section className="sticky top-0 min-h-[55vh] lg:min-h-[80vh] h-[55vh] lg:h-[80vh] overflow-visible bg-[#1B3764] lg:pt-12 2xl:pt-0 pb-4 md:pb-4 lg:pb-6 xl:pb-8 2xl:pb-8" style={{ zIndex: 1 }}>
         {!isLoaded && <ImageSkeleton className="w-full h-full" />}
         
         {/* Responsive Background Layer */}
@@ -85,7 +85,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               ref={bgRef}
               src={data.desktopBackground}
               alt=""
-              className={`w-full h-full object-cover ${category === 'ruggedred' ? 'object-bottom lg:object-center' : ''}`}
+              className={`w-full h-full object-cover ${category === 'ruggedred' ? 'object-bottom lg:object-center' : category === 'bond' ? 'object-[50%_100%] md:object-[50%_100%] lg:object-[50%_100%] xl:object-[50%_80%] 2xl:object-[50%_35%]' : ''}`}
               onLoad={handleLoad}
               onError={handleLoad}
               loading="eager"
@@ -121,9 +121,11 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                 ${category === 'ruggedred' 
                   ? 'top-[15vh] left-[50%] xl:left-[50%]' 
                   : category === 'seal'
-                    ? 'top-[20vh] left-[55%] xl:left-[55%]'
-                    : 'top-[20vh] left-[50%] lg:left-[48%] xl:left-[45%] 2xl:left-[42%]'} 
-                flex flex-col z-30 items-start w-auto mt-2`}
+                    ? 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
+                    : category === 'tape'
+                      ? 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
+                      : 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'} 
+                flex flex-col z-30 items-start w-auto max-w-[45%] md:max-w-[45%] lg:max-w-[48%] xl:max-w-[50%] 2xl:max-w-[50%] flex-shrink -mt-4 md:-mt-4 lg:-mt-6 xl:-mt-6 2xl:-mt-6`}
               initial={{ opacity: 0, x: 50 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
@@ -134,13 +136,13 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                     src={data.logo}
                     alt={`${category} logo`}
                     className={`
-                      ${category === 'ruggedred' ? 'h-[25vh] lg:h-[35vh] xl:h-[45vh]' : 'h-[10vh] lg:h-[15vh] xl:h-[22vh]'} 
+                      ${category === 'ruggedred' ? 'h-[25vh] lg:h-[35vh] xl:h-[45vh]' : category === 'seal' || category === 'tape' ? 'h-[16vh] md:h-[17vh] lg:h-[22vh] xl:h-[28vh] 2xl:h-[30vh]' : 'h-[16vh] md:h-[17vh] lg:h-[22vh] xl:h-[28vh] 2xl:h-[30vh]'} 
                       w-auto object-contain`}
                   />
                 </div>
                 <h1 className={`
                   text-white font-poppins font-normal text-left tracking-tight mt-[2vh]
-                  text-[3.5vh] lg:text-[4.5vh] xl:text-[6.5vh] whitespace-nowrap`}>
+                  text-[4.5vh] md:text-[5vh] lg:text-[5.5vh] xl:text-[7vh] 2xl:text-[7.5vh] whitespace-normal md:whitespace-normal lg:whitespace-nowrap xl:whitespace-nowrap`}>
                   {data.subtext}
                 </h1>
               </div>
@@ -149,7 +151,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
         </div>
 
         {/* Mobile Layout (< 768px) - Constructed Elements */}
-        <div className={`md:hidden absolute inset-0 flex flex-col items-center justify-between pt-16 sm:pt-20 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
+        <div className={`md:hidden absolute inset-0 flex flex-col items-center justify-between pt-8 sm:pt-10 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
           {/* Seal specific absolute product image for mobile/tablet - Anchored top left */}
           {category === 'seal' && (
             <motion.img
@@ -162,9 +164,9 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
             />
           )}
 
-          <div className="flex flex-col items-center justify-between h-full w-full pt-16 sm:pt-20 pb-4 sm:pb-8 px-4">
+          <div className="flex flex-col items-center justify-between h-full w-full pt-8 sm:pt-10 pb-4 sm:pb-8 px-4">
             {/* Top Column: Logo and Text */}
-            <div className="flex flex-col items-center w-full max-w-none mt-4 sm:mt-6 relative z-10">
+            <div className="flex flex-col items-center w-full max-w-none mt-0 sm:mt-2 relative z-10">
             <img 
               src={data.logo} 
               alt={`${category} logo`} 
@@ -176,7 +178,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
             </div>
 
             {/* Bottom Row: Products (Construction for Bond) */}
-            <div className={`w-full flex items-end justify-center ${category === 'bond' ? '-space-x-6 sm:-space-x-8' : 'gap-4'} px-2 ${category === 'seal' ? 'hidden' : ''}`}>
+            <div className={`w-full flex ${category === 'tape' ? 'items-center' : 'items-end'} justify-center ${category === 'bond' ? 'gap-0.5 sm:gap-0.75' : 'gap-4'} px-2 ${category === 'seal' ? 'hidden' : ''}`}>
               {category === 'bond' ? (
                 // Bond specific: Two products side-by-side at the bottom
                 <>
@@ -186,7 +188,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                     initial={{ opacity: 0, y: 50 }}
                     animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="h-[25vh] sm:h-[30vh] md:h-[35vh] w-auto object-contain z-20 relative"
+                    className="h-[40vh] sm:h-[50vh] w-auto object-contain z-20 relative"
                   />
                   <motion.img
                     src={data.elements[1].src}
@@ -194,7 +196,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                     initial={{ opacity: 0, y: 50 }}
                     animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="h-[26vh] sm:h-[31vh] md:h-[36vh] w-auto object-contain z-10 relative"
+                    className="h-[38vh] sm:h-[48vh] w-auto object-contain z-10 relative"
                   />
                 </>
               ) : (
@@ -205,7 +207,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   initial={{ opacity: 0, y: 50 }}
                   animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className={`${category === 'tape' ? 'h-[40vh] sm:h-[50vh] md:h-[60vh]' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
+                  className={`${category === 'tape' ? 'h-[48vh] sm:h-[60vh] md:h-[60vh] -mt-8 sm:-mt-10' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
                 />
               )}
             </div>
