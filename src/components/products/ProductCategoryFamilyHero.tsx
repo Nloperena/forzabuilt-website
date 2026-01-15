@@ -47,7 +47,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/SEAL/forza-seal-white.svg',
       subtext: 'Industrial Sealants',
       elements: [
-        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[100%] md:h-[90%] lg:h-[120%] top-[-5%] md:top-[-10%] lg:top-[-15%] left-[2%] md:left-[5%] lg:left-[5%] z-0' }
+        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[100%] md:h-[112%] lg:h-[120%] top-[-5%] md:top-[-10%] lg:top-[-15%] left-[2%] md:left-[5%] lg:left-[5%] z-0' }
       ]
     },
     tape: {
