@@ -37,8 +37,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/BOND/forza-bond-white.svg',
       subtext: 'Industrial Adhesives',
       elements: [
-        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] md:h-[45vh] lg:h-[58vh] xl:h-[75vh] 2xl:h-[75vh] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[10%] md:left-[10%] lg:left-[13%] xl:left-[16%] 2xl:left-[16%] z-20 max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' },
-        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] md:h-[38vh] lg:h-[48vh] xl:h-[65vh] 2xl:h-[65vh] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[24%] md:left-[24%] lg:left-[27%] xl:left-[30%] 2xl:left-[30%] z-10 max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' }
+        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] sm:h-[55vh] md:h-[55vh] lg:h-[58vh] xl:h-[75vh] 2xl:h-[75vh] bottom-4 sm:bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[10%] sm:left-[10%] md:left-[10%] lg:left-[13%] xl:left-[16%] 2xl:left-[16%] z-20 max-w-[25%] sm:max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' },
+        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] sm:h-[48vh] md:h-[48vh] lg:h-[48vh] xl:h-[65vh] 2xl:h-[65vh] bottom-4 sm:bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[24%] sm:left-[24%] md:left-[24%] lg:left-[27%] xl:left-[30%] 2xl:left-[30%] z-10 max-w-[25%] sm:max-w-[25%] md:max-w-[25%] lg:max-w-[28%] xl:max-w-[30%]' }
       ]
     },
     seal: {
@@ -130,8 +130,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-start mb-2">
-                <div className="flex items-center gap-6 mb-2">
+              <div className="flex flex-col items-start mb-2 w-full">
+                <div className="flex items-center gap-6 mb-2 w-full">
                   <img
                     src={data.logo}
                     alt={`${category} logo`}
@@ -141,8 +141,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   />
                 </div>
                 <h1 className={`
-                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh]
-                  text-[4.5vh] md:text-[5vh] lg:text-[5.5vh] xl:text-[7vh] 2xl:text-[7.5vh] whitespace-normal md:whitespace-normal lg:whitespace-nowrap xl:whitespace-nowrap`}>
+                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full
+                  text-[5vh] md:text-[5.5vh] lg:text-[6vh] xl:text-[7.5vh] 2xl:text-[8vh]`}>
                   {data.subtext}
                 </h1>
               </div>
@@ -166,13 +166,13 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
 
           <div className="flex flex-col items-center justify-between h-full w-full pt-8 sm:pt-10 pb-4 sm:pb-8 px-4">
             {/* Top Column: Logo and Text */}
-            <div className="flex flex-col items-center w-full max-w-none mt-0 sm:mt-2 relative z-10">
+            <div className="flex flex-col items-center w-auto max-w-none mt-0 sm:mt-2 relative z-10">
             <img 
               src={data.logo} 
               alt={`${category} logo`} 
               className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
-              <h1 className="text-white font-poppins font-normal text-center text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight whitespace-nowrap">
+              <h1 className="text-white font-poppins font-normal text-center text-3xl sm:text-3xl md:text-3xl lg:text-4xl tracking-tight leading-tight w-full">
                 {data.subtext}
               </h1>
             </div>
