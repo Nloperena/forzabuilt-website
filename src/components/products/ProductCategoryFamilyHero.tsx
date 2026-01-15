@@ -130,8 +130,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-start mb-2 w-full">
-                <div className="flex items-center gap-6 mb-2 w-full">
+              <div className="flex flex-col items-start mb-2 w-auto">
+                <div className="flex items-center gap-6 mb-2 w-auto">
                   <img
                     src={data.logo}
                     alt={`${category} logo`}
@@ -141,8 +141,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   />
                 </div>
                 <h1 className={`
-                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full whitespace-nowrap
-                  text-[5vh] md:text-[5.5vh] lg:text-[6vh] xl:text-[7.5vh] 2xl:text-[8vh]`}>
+                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full
+                  text-[clamp(3vh,4vw,5vh)] md:text-[clamp(3.5vh,4.5vw,5.5vh)] lg:text-[clamp(4vh,5vw,6vh)] xl:text-[clamp(5vh,6vw,7.5vh)] 2xl:text-[clamp(5.5vh,7vw,8vh)]`}>
                   {data.subtext}
                 </h1>
               </div>
@@ -172,7 +172,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               alt={`${category} logo`} 
               className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
-              <h1 className="text-white font-poppins font-normal text-center text-3xl sm:text-3xl md:text-3xl lg:text-4xl tracking-tight leading-tight w-full whitespace-nowrap">
+              <h1 className="text-white font-poppins font-normal text-center tracking-tight leading-tight w-full text-[clamp(1.25rem,4vw,1.875rem)] sm:text-[clamp(1.5rem,4.5vw,2rem)] md:text-[clamp(1.5rem,5vw,2rem)] lg:text-[clamp(1.75rem,5.5vw,2.25rem)]">
                 {data.subtext}
               </h1>
             </div>
