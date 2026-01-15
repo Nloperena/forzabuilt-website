@@ -143,7 +143,7 @@ const HeaderV4: React.FC = () => {
   const shouldHideForPDF = isBookOpen;
 
   const isCategoryPage = location.pathname.startsWith('/products/') && !location.pathname.match(/\/products\/[^/]+\/[^/]+/);
-  const shouldHideNavbarLogo = (isCategoryPage && !isScrolled) || isScrolled;
+  const shouldHideNavbarLogo = isCategoryPage && !isScrolled;
 
   return (
     <header 

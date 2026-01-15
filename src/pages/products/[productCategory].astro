@@ -37,46 +37,46 @@ const categoryDescription = getProductCategoryDescription(category || '');
       
       <div class="w-full relative">
         <!-- Hero Section -->
-        <div class="relative">
+          <div class="relative">
           <ProductCategoryFamilyHero 
             category={category}
-            client:load
-          >
-            <!-- Products Section - Using ProductCategoryProductsSection component or RuggedRed iframe -->
+              client:load
+            >
+              <!-- Products Section - Using ProductCategoryProductsSection component or RuggedRed iframe -->
             {category === 'ruggedred' ? (
-              <section class="relative w-full z-20 bg-gray-100 pt-4 md:pt-6">
-                <div class="max-w-[1600px] mx-auto" style="padding-left: clamp(1rem, 2vw, 2rem); padding-right: clamp(1rem, 2vw, 2rem);">
-                  <div class="text-center" style="margin-bottom: clamp(2rem, 4vw, 3rem);">
-                    <h2 class="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" style="font-size: clamp(22px, 2vw + 0.5rem, 44px);">
-                      Cleaning Products
-                    </h2>
+                <section class="relative w-full z-20 bg-gray-100 pt-4 md:pt-6">
+                  <div class="max-w-[1600px] mx-auto" style="padding-left: clamp(1rem, 2vw, 2rem); padding-right: clamp(1rem, 2vw, 2rem);">
+                    <div class="text-center" style="margin-bottom: clamp(2rem, 4vw, 3rem);">
+                      <h2 class="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" style="font-size: clamp(22px, 2vw + 0.5rem, 44px);">
+                        Cleaning Products
+                      </h2>
+                    </div>
                   </div>
-                </div>
-                <div class="relative w-full h-screen flex justify-center">
-                  <div class="w-full max-w-[1600px] h-full bg-white rounded-3xl overflow-hidden shadow-2xl mx-4">
-                    <iframe
-                      src="https://ruggedred.com/industrial/products"
-                      title="Rugged Red - Industrial Cleaning Solutions"
-                      class="w-full h-full border-0 rounded-3xl"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-                      style="scrollbar-width: thin; scrollbar-color: #F2611D #1b3764;"
-                    />
+                  <div class="relative w-full h-screen flex justify-center">
+                    <div class="w-full max-w-[1600px] h-full bg-white rounded-3xl overflow-hidden shadow-2xl mx-4">
+                      <iframe
+                        src="https://ruggedred.com/industrial/products"
+                        title="Rugged Red - Industrial Cleaning Solutions"
+                        class="w-full h-full border-0 rounded-3xl"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        style="scrollbar-width: thin; scrollbar-color: #F2611D #1b3764;"
+                      />
+                    </div>
                   </div>
-                </div>
-              </section>
-            ) : (
-              <div class="relative z-[30]">
-                <ProductCategoryProductsSection 
+                </section>
+              ) : (
+                <div class="relative z-[30]">
+                  <ProductCategoryProductsSection 
                   productCategory={category}
-                  client:load
-                />
-              </div>
-            )}
+                    client:load
+                  />
+                </div>
+              )}
           </ProductCategoryFamilyHero>
-        </div>
+          </div>
       </div>
 
       <!-- Performance Elevated Banner -->

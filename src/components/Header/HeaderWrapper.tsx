@@ -199,8 +199,9 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({ currentPath }) => {
   // Only hide header on scroll for desktop (mobile always shows header)
   const shouldHideOnDesktop = !isMobile && isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
 
-  const isCategoryPage = isProduct && !isProductDetail;
-  const shouldHideNavbarLogo = (isCategoryPage && !isScrolled) || isScrolled;
+  const isProductsMainPage = currentPath === '/products';
+  const isCategoryPage = isProduct && !isProductDetail && !isProductsMainPage;
+  const shouldHideNavbarLogo = isCategoryPage && !isScrolled;
 
   return (
     <motion.header 

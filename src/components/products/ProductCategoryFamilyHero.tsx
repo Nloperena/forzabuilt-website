@@ -32,40 +32,40 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
 
   const familyData = {
     bond: {
-      background: '/images/product-family-shots/BOND/Forza Bond Hero Shot Header-background.webp',
+      desktopBackground: '/images/product-family-shots/BOND/Forza Bond Hero Shot Header-background.webp',
+      mobileBackground: '/images/product-family-shots/BOND/Mobile Bond Header.webp',
       logo: '/images/product-family-shots/BOND/forza-bond-white.svg',
       subtext: 'Industrial Adhesives',
-      mobile: '/images/product-family-shots/BOND/Mobile Bond Header.webp',
       elements: [
-        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] lg:h-[60vh] xl:h-[75vh] bottom-0 left-[10%] lg:left-[12%] xl:left-[15%] z-20' },
-        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] lg:h-[50vh] xl:h-[65vh] bottom-0 left-[22%] lg:left-[26%] xl:left-[30%] z-10' }
+        { src: '/images/product-family-shots/BOND/OA12 Cartridge.webp', alt: 'OA12 Cartridge', className: 'h-[30vh] md:h-[45vh] lg:h-[58vh] xl:h-[75vh] 2xl:h-[75vh] bottom-0 left-[10%] md:left-[9%] lg:left-[8%] xl:left-[8%] 2xl:left-[16%] z-20' },
+        { src: '/images/product-family-shots/BOND/IC933 Aerosol Can.webp', alt: 'IC933 Aerosol Can', className: 'h-[22vh] md:h-[38vh] lg:h-[48vh] xl:h-[65vh] 2xl:h-[65vh] bottom-0 left-[22%] md:left-[23%] lg:left-[24%] xl:left-[24%] 2xl:left-[26%] z-10' }
       ]
     },
     seal: {
-      background: '/images/product-family-shots/SEAL/Seal Header.webp',
+      desktopBackground: '/images/product-family-shots/SEAL/Seal Header.webp',
+      mobileBackground: '/images/product-family-shots/SEAL/Mobile Seal Header.webp',
       logo: '/images/product-family-shots/SEAL/forza-seal-white.svg',
       subtext: 'Industrial Sealants',
-      mobile: '/images/product-family-shots/SEAL/Mobile Seal Header.webp',
       elements: [
-        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[100%] lg:h-[120%] top-[-5%] lg:top-[-15%] left-[2%] lg:left-[5%] z-0' }
+        { src: '/images/product-family-shots/SEAL/OS2 Cartridge.webp', alt: 'OS2 Cartridge', className: 'h-[100%] md:h-[90%] lg:h-[120%] top-[-5%] md:top-[-10%] lg:top-[-15%] left-[2%] md:left-[5%] lg:left-[5%] z-0' }
       ]
     },
     tape: {
-      background: '/images/product-family-shots/TAPE/Tape Header.webp',
+      desktopBackground: '/images/product-family-shots/TAPE/Tape Header.webp',
+      mobileBackground: '/images/product-family-shots/TAPE/Mobile Tape Header.webp',
       logo: '/images/product-family-shots/TAPE/forza-tape-white.svg',
       subtext: 'Industrial Tapes',
-      mobile: '/images/product-family-shots/TAPE/Mobile Tape Header.webp',
       elements: [
-        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] lg:h-[80%] xl:h-[100%] bottom-[-10%] left-0 lg:left-[5%] xl:left-[00%] z-10' }
+        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-10%] left-0 md:left-[5%] lg:left-[5%] xl:left-[00%] z-10' }
       ]
     },
     ruggedred: {
-      background: '/images/product-family-shots/RUGGEDRED/Cleaners Header.webp',
+      desktopBackground: '/images/product-family-shots/RUGGEDRED/Cleaners Header.webp',
+      mobileBackground: '/images/product-family-shots/RUGGEDRED/Mobile RuggedRed Header.webp',
       logo: 'https://ruggedred.com/images/RRMascot+Type-smaller.png',
       subtext: 'Industrial Cleaners',
-      mobile: '/images/product-family-shots/RUGGEDRED/Mobile RuggedRed Header.webp',
       elements: [
-        { src: '/images/product-family-shots/RUGGEDRED/RuggedRed Bottles.webp', alt: 'RuggedRed Bottles', className: 'h-[30vh] lg:h-[45vh] xl:h-[78%] bottom-0 left-[10%] lg:left-[12%] xl:left-[14%] z-10' }
+        { src: '/images/product-family-shots/RUGGEDRED/RuggedRed Bottles.webp', alt: 'RuggedRed Bottles', className: 'h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[78%] bottom-0 left-[10%] md:left-[12%] lg:left-[12%] xl:left-[14%] z-10' }
       ]
     }
   };
@@ -80,10 +80,10 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
         {/* Responsive Background Layer */}
         <div className="absolute inset-0 w-full h-full">
           <picture className="w-full h-full">
-            <source media="(max-width: 1023px)" srcSet={data.mobile} />
+            <source media="(max-width: 1023px)" srcSet={data.mobileBackground} />
             <img
               ref={bgRef}
-              src={data.background}
+              src={data.desktopBackground}
               alt=""
               className={`w-full h-full object-cover ${category === 'ruggedred' ? 'object-bottom lg:object-center' : ''}`}
               onLoad={handleLoad}
@@ -95,8 +95,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </picture>
         </div>
         
-        {/* Constructed Product Elements Layer - Desktop Only */}
-        <div className={`hidden lg:block absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Constructed Product Elements Layer - Desktop & Tablet */}
+        <div className={`hidden md:block absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full h-full">
             {data.elements.map((el, i) => (
               <motion.img
@@ -112,30 +112,32 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </div>
         </div>
 
-        {/* Branding Content Layer - Desktop Only */}
-        <div className={`hidden lg:block absolute inset-0 container mx-auto px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Branding Content Layer - Desktop & Tablet */}
+        <div className={`hidden md:block absolute inset-0 container mx-auto px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full h-full">
-            {/* Logo & Text Container - Desktop positioning */}
+            {/* Logo & Text Container - Responsive positioning */}
             <motion.div 
               className={`absolute 
                 ${category === 'ruggedred' 
-                  ? 'top-[15vh] left-[55%] xl:left-[50%]' 
+                  ? 'top-[15vh] left-[50%] xl:left-[50%]' 
                   : category === 'seal'
-                    ? 'top-[20vh] left-[65%] xl:left-[55%]'
-                    : 'top-[20vh] left-[60%] lg:left-[52%] xl:left-[48%]'} 
+                    ? 'top-[20vh] left-[55%] xl:left-[55%]'
+                    : 'top-[20vh] left-[50%] lg:left-[48%] xl:left-[45%] 2xl:left-[42%]'} 
                 flex flex-col z-30 items-start w-auto mt-2`}
               initial={{ opacity: 0, x: 50 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
               <div className="flex flex-col items-start mb-2">
-                <img
-                  src={data.logo}
-                  alt={`${category} logo`}
-                  className={`
-                    ${category === 'ruggedred' ? 'h-[25vh] lg:h-[35vh] xl:h-[45vh]' : 'h-[10vh] lg:h-[15vh] xl:h-[22vh]'} 
-                    w-auto object-contain`}
-                />
+                <div className="flex items-center gap-6 mb-2">
+                  <img
+                    src={data.logo}
+                    alt={`${category} logo`}
+                    className={`
+                      ${category === 'ruggedred' ? 'h-[25vh] lg:h-[35vh] xl:h-[45vh]' : 'h-[10vh] lg:h-[15vh] xl:h-[22vh]'} 
+                      w-auto object-contain`}
+                  />
+                </div>
                 <h1 className={`
                   text-white font-poppins font-normal text-left tracking-tight mt-[2vh]
                   text-[3.5vh] lg:text-[4.5vh] xl:text-[6.5vh] whitespace-nowrap`}>
@@ -146,8 +148,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </div>
         </div>
 
-        {/* Mobile & Tablet Layout (< 1024px) - Constructed Elements */}
-        <div className={`lg:hidden absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
+        {/* Mobile Layout (< 768px) - Constructed Elements */}
+        <div className={`md:hidden absolute inset-0 flex flex-col items-center justify-between pt-16 sm:pt-20 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
           {/* Seal specific absolute product image for mobile/tablet - Anchored top left */}
           {category === 'seal' && (
             <motion.img

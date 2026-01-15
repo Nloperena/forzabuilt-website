@@ -207,7 +207,7 @@ interface HeaderV2Props {
   const shouldHideForDrawer = isDrawerOpen && !mobileMenuOpen;
 
   const isCategoryPage = pathname.startsWith('/products/') && !pathname.match(/\/products\/[^/]+\/[^/]+/);
-  const shouldHideNavbarLogo = (isCategoryPage && !isScrolled) || isScrolled;
+  const shouldHideNavbarLogo = isCategoryPage && !isScrolled;
 
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''} ${shouldHideForDrawer ? '-translate-y-full' : ''}`}> 
