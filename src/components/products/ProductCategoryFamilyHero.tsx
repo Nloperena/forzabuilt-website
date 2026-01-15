@@ -56,7 +56,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/TAPE/forza-tape-white.svg',
       subtext: 'Industrial Tapes',
       elements: [
-        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-4%] md:bottom-[-4%] lg:bottom-[-4%] xl:bottom-[-4%] 2xl:bottom-[-4%] left-0 md:left-0 lg:left-0 xl:left-0 2xl:left-0 z-10' }
+        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[100%] md:h-[90%] lg:h-[80%] xl:h-[100%] bottom-[-4%] md:bottom-[-4%] lg:bottom-[-4%] xl:bottom-[-4%] 2xl:bottom-[-4%] left-0 md:left-[8%] lg:left-0 xl:left-0 2xl:left-0 z-10' }
       ]
     },
     ruggedred: {
@@ -96,7 +96,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
         </div>
         
         {/* Constructed Product Elements Layer - Desktop & Tablet */}
-        <div className={`hidden md:block absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`hidden sm:block absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full h-full">
             {data.elements.map((el, i) => (
               <motion.img
@@ -113,7 +113,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
         </div>
 
         {/* Branding Content Layer - Desktop & Tablet */}
-        <div className={`hidden md:block absolute inset-0 container mx-auto px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`hidden sm:block absolute inset-0 container mx-auto px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full h-full">
             {/* Logo & Text Container - Responsive positioning */}
             <motion.div 
@@ -121,10 +121,10 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                 ${category === 'ruggedred' 
                   ? 'top-[15vh] left-[50%] xl:left-[50%]' 
                   : category === 'seal'
-                    ? 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
+                    ? 'bottom-[14vh] md:bottom-[10vh] lg:bottom-[14vh] xl:bottom-[20vh] 2xl:bottom-[20vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
                     : category === 'tape'
-                      ? 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
-                      : 'bottom-[14vh] md:bottom-[14vh] lg:bottom-[18vh] xl:bottom-[24vh] 2xl:bottom-[24vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'} 
+                      ? 'bottom-[14vh] md:bottom-[10vh] lg:bottom-[14vh] xl:bottom-[20vh] 2xl:bottom-[20vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
+                      : 'bottom-[14vh] md:bottom-[10vh] lg:bottom-[14vh] xl:bottom-[20vh] 2xl:bottom-[20vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'} 
                 flex flex-col z-30 items-start w-auto max-w-[45%] md:max-w-[45%] lg:max-w-[48%] xl:max-w-[50%] 2xl:max-w-[50%] flex-shrink -mt-4 md:-mt-4 lg:-mt-6 xl:-mt-6 2xl:-mt-6`}
               initial={{ opacity: 0, x: 50 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
@@ -150,8 +150,8 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </div>
         </div>
 
-        {/* Mobile Layout (< 768px) - Constructed Elements */}
-        <div className={`md:hidden absolute inset-0 flex flex-col items-center justify-between pt-8 sm:pt-10 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
+        {/* Mobile Layout (< 640px) - Constructed Elements */}
+        <div className={`sm:hidden absolute inset-0 flex flex-col items-center justify-between pt-8 sm:pt-10 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
           {/* Seal specific absolute product image for mobile/tablet - Anchored top left */}
           {category === 'seal' && (
             <motion.img
@@ -207,7 +207,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   initial={{ opacity: 0, y: 50 }}
                   animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className={`${category === 'tape' ? 'h-[48vh] sm:h-[60vh] md:h-[60vh] -mt-16 sm:-mt-20' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
+                  className={`${category === 'tape' ? 'h-[37vh] sm:h-[60vh] md:h-[60vh] -mt-6 sm:-mt-20' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
                 />
               )}
             </div>
