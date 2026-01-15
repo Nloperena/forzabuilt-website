@@ -141,7 +141,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                   />
                 </div>
                 <h1 className={`
-                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full
+                  text-white font-poppins font-normal text-left tracking-tight mt-[2vh] w-full whitespace-nowrap
                   text-[5vh] md:text-[5.5vh] lg:text-[6vh] xl:text-[7.5vh] 2xl:text-[8vh]`}>
                   {data.subtext}
                 </h1>
@@ -172,7 +172,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
               alt={`${category} logo`} 
               className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
             />
-              <h1 className="text-white font-poppins font-normal text-center text-3xl sm:text-3xl md:text-3xl lg:text-4xl tracking-tight leading-tight w-full">
+              <h1 className="text-white font-poppins font-normal text-center text-3xl sm:text-3xl md:text-3xl lg:text-4xl tracking-tight leading-tight w-full whitespace-nowrap">
                 {data.subtext}
               </h1>
             </div>
