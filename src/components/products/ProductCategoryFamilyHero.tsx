@@ -56,7 +56,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       logo: '/images/product-family-shots/TAPE/forza-tape-white.svg',
       subtext: 'Industrial Tapes',
       elements: [
-        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-4 md:bottom-4 lg:bottom-6 xl:bottom-8 2xl:bottom-8 left-[20%] md:left-[20%] lg:left-[20%] xl:left-[20%] 2xl:left-[20%] z-10' }
+        { src: '/images/product-family-shots/TAPE/Tape.webp', alt: 'Tape Roll', className: 'h-[120%] md:h-[60%] lg:h-[80%] xl:h-[100%] bottom-[-4%] md:bottom-[-4%] lg:bottom-[-4%] xl:bottom-[-4%] 2xl:bottom-[-4%] left-[7%] md:left-[7%] lg:left-[7%] xl:left-[7%] 2xl:left-[7%] z-10' }
       ]
     },
     ruggedred: {
@@ -74,7 +74,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
 
   return (
     <>
-      <section className="sticky top-0 min-h-[55vh] lg:min-h-[80vh] h-[55vh] lg:h-[80vh] overflow-visible bg-[#1B3764] lg:pt-12 2xl:pt-0 pb-4 md:pb-4 lg:pb-6 xl:pb-8 2xl:pb-8" style={{ zIndex: 1 }}>
+      <section className="sticky top-0 min-h-[55vh] lg:min-h-[80vh] h-[55vh] lg:h-[80vh] overflow-visible bg-[#1B3764] pb-4 md:pb-4 lg:pb-6 xl:pb-8 2xl:pb-8" style={{ zIndex: 1 }}>
         {!isLoaded && <ImageSkeleton className="w-full h-full" />}
         
         {/* Responsive Background Layer */}
