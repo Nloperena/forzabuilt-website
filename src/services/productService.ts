@@ -31,7 +31,8 @@ const isSSR = typeof window === 'undefined';
 
 // Use our local API proxy to avoid CORS issues in production (browser only)
 // During SSR (build), we use the direct Heroku URL because relative URLs don't work in Node fetch
-const HEROKU_API_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';
+// Note: Using trailing slash to match the API endpoint format
+const HEROKU_API_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products/';
 const PRODUCTS_DATA_URL = isSSR ? HEROKU_API_URL : '/api/products';
 
 /**
@@ -42,6 +43,13 @@ const PRODUCTS_DATA_URL = isSSR ? HEROKU_API_URL : '/api/products';
 let productsCache: Product[] | null = null;
 let cacheTimestamp: number = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+// Function to clear cache (useful for debugging)
+export function clearProductsCache() {
+  productsCache = null;
+  cacheTimestamp = 0;
+  console.log('🗑️ Products cache cleared');
+}
 
 /**
  * Transforms raw product data from either API or fallback JSON into the Product type
@@ -136,37 +144,61 @@ function transformProductData(apiProduct: any): Product {
 }
 
 // Service functions
-export async function getAllProducts(): Promise<Product[]> {
-  // Return cached data if available and fresh
-  if (productsCache && (Date.now() - cacheTimestamp < CACHE_DURATION)) {
-    console.log('🟢 Returning products from cache');
+export async function getAllProducts(forceRefresh: boolean = false): Promise<Product[]> {
+  // Return cached data if available and fresh (unless force refresh)
+  if (!forceRefresh && productsCache && (Date.now() - cacheTimestamp < CACHE_DURATION)) {
+    console.log(`🟢 Returning ${productsCache.length} products from cache (use getAllProducts(true) to force refresh)`);
     return productsCache;
   }
 
   try {
+    // Add cache-busting query parameter to ensure fresh data
+    const cacheBuster = forceRefresh ? `?t=${Date.now()}` : '';
     console.log('🔵 Fetching products from API proxy...');
-    const response = await fetch(PRODUCTS_DATA_URL, {
+    const response = await fetch(`${PRODUCTS_DATA_URL}${cacheBuster}`, {
       headers: {
         'Accept': 'application/json; charset=utf-8',
-      }
+      },
+      cache: forceRefresh ? 'no-store' : 'default'
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const apiData = await response.json();
     console.log(`✅ Fetched ${apiData.length} products from API`);
+    console.log(`📊 API Response verification: Expected 196, Got ${apiData.length}, Difference: ${196 - apiData.length}`);
     
     // Transform the API data to match your expected format
     const products = apiData.map((apiProduct: any) => transformProductData(apiProduct));
     
-    // Filter to only show published products
-    const publishedProducts = products.filter(product => product.isActive === true);
+    // Debug: Check for specific product codes (including TAC-OS7)
+    const searchCodes = ['TAC-745', 'TAC-OS7', 'TU603', 'TU615', 'TU-OS50', 'TU-OA40', 'TU-OS45', 'TU-800', 'C110', 'IC936', 'IC951', 'IC952', 'IC955NF', 'R190', 'R529', 'OS2 WT', 'OS45', 'OS55', 'T205', 'T226', 'T310', 'T710', 'MC736', 'MC739', 'TC471', 'T-T246', 'TAC-R760', 'TAC-T700', 'C-OA52W', 'A1000', 'A450', 'A465', 'A729', 'C805', 'C830', 'C835', 'H103', 'H117', 'H158', 'H163', 'H164', 'H167', 'H176', 'I1000', 'IC2400', 'OA99', 'W700', 'FC-CAR', 'OA28', 'OA29', 'OA75', 'T103', 'T446', 'T449', 'T454', 'T461', 'T462', 'T465', 'T515', 'T532', 'M-C283', 'M-R478', 'T-R682'];
+    const foundProducts = products.filter(p => {
+      const productId = (p.id || '').toUpperCase();
+      return searchCodes.some(code => productId.includes(code.toUpperCase().replace(/-/g, '')) || productId === code.toUpperCase());
+    });
+    if (foundProducts.length > 0) {
+      console.log(`🔍 Found ${foundProducts.length} matching products:`, foundProducts.map(p => ({ id: p.id, name: p.name, isActive: p.isActive, published: (apiData.find((ap: any) => (ap.product_id || ap.id) === p.id)?.published) })));
+    } else {
+      console.log(`⚠️ None of the searched product codes were found in the API response`);
+    }
+    
+    // Since all products are now published: true in the database, we should show all products
+    // Only filter out products that are explicitly marked as inactive
+    const activeProducts = products.filter(product => product.isActive !== false);
+    const inactiveCount = products.length - activeProducts.length;
+    if (inactiveCount > 0) {
+      console.log(`📊 Filtered out ${inactiveCount} explicitly inactive products (isActive === false)`);
+      console.log(`📊 Active products: ${activeProducts.length} out of ${products.length} total`);
+    } else {
+      console.log(`✅ All ${products.length} products are active`);
+    }
     
     // Update cache
-    productsCache = publishedProducts;
+    productsCache = activeProducts;
     cacheTimestamp = Date.now();
     
-    return publishedProducts;
+    return activeProducts;
   } catch (error) {
     console.error('Failed to fetch products from API proxy:', error);
     
