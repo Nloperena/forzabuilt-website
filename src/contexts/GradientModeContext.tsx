@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
 import type { GradientMode } from '@/components/GradientToggleModal';
 
 interface GradientModeContextType {
@@ -13,7 +12,7 @@ interface GradientModeContextType {
 const GradientModeContext = createContext<GradientModeContextType | undefined>(undefined);
 
 interface GradientModeProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ children }) => {

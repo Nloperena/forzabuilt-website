@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from 'react';
-import type { ReactNode } from 'react';
 
 interface BookViewerContextType {
   isBookOpen: boolean;
@@ -8,7 +7,7 @@ interface BookViewerContextType {
 
 const BookViewerContext = createContext<BookViewerContextType | undefined>(undefined);
 
-export const BookViewerProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const BookViewerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isBookOpen, setIsBookOpen] = useState(false);
 
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import type { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -7,7 +6,7 @@ interface SlideInDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
   side?: 'left' | 'right';
 }
 

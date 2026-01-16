@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useMemo } from "react";
-import type { ReactNode, RefObject } from "react";
+import React, { useEffect, useRef, useMemo, type RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollRevealProps {
-  children: ReactNode;
+  children: React.ReactNode;
   scrollContainerRef?: RefObject<HTMLElement>;
   enableBlur?: boolean;
   baseOpacity?: number;
