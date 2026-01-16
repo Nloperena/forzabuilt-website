@@ -109,10 +109,6 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     // Filter by image status first (unless searching for unfinished)
     if (!isSearchingUnfinished) {
       filtered = filtered.filter(product => {
-        // KEEP EVERYTHING LOCALLY FOR DEBUGGING
-        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-        if (isLocal) return true;
-
         // Exclude products without imageUrl or with empty string
         if (!product.imageUrl || product.imageUrl.trim() === '') {
           return false;
@@ -187,9 +183,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
   // Get chemistry types for the current industry
   const chemistryTypes = useMemo(() => {
+    // Only show DESIGNATED chemistries defined in CHEMISTRY_ICONS
+    const designatedChemistries = Object.keys(CHEMISTRY_ICONS);
     const unique = new Set<string>(
       industryProducts
-        .filter(p => p.chemistry)
+        .filter(p => p.chemistry && designatedChemistries.includes(p.chemistry))
         .map(p => p.chemistry!)
     );
     return Array.from(unique).sort();

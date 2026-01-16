@@ -105,10 +105,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     // Filter by image status first (unless searching for unfinished)
     if (!isSearchingUnfinished) {
       filtered = filtered.filter(product => {
-        // KEEP EVERYTHING LOCALLY FOR DEBUGGING
-        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-        if (isLocal) return true;
-
         if (!product.imageUrl || product.imageUrl.trim() === '') {
           if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': No image URL');
           return false;
@@ -125,7 +121,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': Image error state is true');
           return false;
         }
-        if (product.id.toUpperCase().includes('T600')) console.log('🔍 T600 PASSED FILTER with URL:', product.imageUrl);
         return true;
       });
     } else {
@@ -220,13 +215,24 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   }, [allProducts]);
 
   const chemistryTypes = useMemo(() => {
-    const unique = new Set<string>(allProducts.filter(p => p.chemistry).map(p => p.chemistry!));
-    return Array.from(unique).filter(chem => chem !== 'composite_adhesive').sort();
+    // Only show DESIGNATED chemistries defined in CHEMISTRY_ICONS
+    const designatedChemistries = Object.keys(CHEMISTRY_ICONS);
+    const unique = new Set<string>(
+      allProducts
+        .filter(p => p.chemistry && designatedChemistries.includes(p.chemistry))
+        .map(p => p.chemistry!)
+    );
+    return Array.from(unique).sort();
   }, [allProducts]);
 
   const chemistryCounts = useMemo(() => {
+    const designatedChemistries = Object.keys(CHEMISTRY_ICONS);
     const counts: Record<string, number> = {};
-    allProducts.forEach(product => { if (product.chemistry) counts[product.chemistry] = (counts[product.chemistry] || 0) + 1; });
+    allProducts.forEach(product => { 
+      if (product.chemistry && designatedChemistries.includes(product.chemistry)) {
+        counts[product.chemistry] = (counts[product.chemistry] || 0) + 1; 
+      }
+    });
     return counts;
   }, [allProducts]);
 
