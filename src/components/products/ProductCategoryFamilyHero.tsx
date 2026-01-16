@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ImageSkeleton from '../common/ImageSkeleton';
-import OptimizedImage from '../common/OptimizedImage';
-import { useProductSearch } from '@/contexts/ProductSearchContext';
 
 interface ProductCategoryFamilyHeroProps {
   category: 'bond' | 'seal' | 'tape' | 'ruggedred';
@@ -11,8 +9,27 @@ interface ProductCategoryFamilyHeroProps {
 
 const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ category, children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const bgRef = React.useRef<HTMLImageElement>(null);
-  const { searchTerm } = useProductSearch();
+  
+  // Listen for search updates from other islands via window events
+  useEffect(() => {
+    const handleSearchUpdate = (e: any) => {
+      if (e.detail !== undefined && typeof e.detail === 'string') {
+        setSearchTerm(e.detail);
+      }
+    };
+    window.addEventListener('forza-search-update', handleSearchUpdate);
+    
+    // Also check if there's an initial search in the URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const initialSearch = params.get('search') || '';
+      if (initialSearch) setSearchTerm(initialSearch);
+    }
+
+    return () => window.removeEventListener('forza-search-update', handleSearchUpdate);
+  }, []);
   
   // Check if searching for "unfinished" - if so, use current implementation, otherwise use old solid headers
   const isUnfinishedSearch = searchTerm.toLowerCase() === 'unfinished' || 
@@ -32,7 +49,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
     }
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [category, isUnfinishedSearch]); // Reset loader when category or search state changes
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -45,7 +62,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       mobileBackground: '/images/product-heroes/Forza Bond Mobile Header.webp',
       logo: '/images/product-family-shots/BOND/forza-bond-white.svg',
       subtext: 'Industrial Adhesives',
-      elements: [] // No product elements for solid headers
+      elements: [] 
     },
     seal: {
       desktopBackground: '/images/product-heroes/Forza Seal Hero Shot.webp',
@@ -111,7 +128,6 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
     }
   };
 
-  // Use current headers if searching for "unfinished", otherwise use old solid headers
   const data = isUnfinishedSearch ? currentHeaders[category] : oldSolidHeaders[category];
 
   return (
@@ -119,15 +135,15 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
       <section className="sticky top-0 min-h-[55vh] lg:min-h-[80vh] h-[55vh] lg:h-[80vh] overflow-visible bg-[#1B3764] pb-4 md:pb-4 lg:pb-6 xl:pb-8 2xl:pb-8" style={{ zIndex: 1 }}>
         {!isLoaded && <ImageSkeleton className="w-full h-full" />}
         
-        {/* Responsive Background Layer */}
+        {/* Background Layer */}
         <div className="absolute inset-0 w-full h-full">
           <picture className="w-full h-full">
-            <source media="(max-width: 1023px)" srcSet={data.mobileBackground} />
+            <source media="(max-width: 767px)" srcSet={data.mobileBackground} />
             <img
               ref={bgRef}
               src={data.desktopBackground}
               alt=""
-              className={`w-full h-full object-cover ${category === 'ruggedred' ? 'object-bottom lg:object-center' : category === 'bond' ? 'object-[50%_100%] md:object-[50%_100%] lg:object-[50%_100%] xl:object-[50%_80%] 2xl:object-[50%_35%]' : ''}`}
+              className={`w-full h-full object-cover ${!isUnfinishedSearch ? 'object-center' : (category === 'ruggedred' ? 'object-bottom lg:object-center' : category === 'bond' ? 'object-[50%_100%] md:object-[50%_100%] lg:object-[50%_100%] xl:object-[50%_80%] 2xl:object-[50%_35%]' : 'object-center')}`}
               onLoad={handleLoad}
               onError={handleLoad}
               loading="eager"
@@ -137,7 +153,7 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </picture>
         </div>
         
-        {/* Constructed Product Elements Layer - Desktop & Tablet - Only show if using current headers (unfinished search) */}
+        {/* Constructed Product Elements - Only show for unfinished search */}
         {isUnfinishedSearch && data.elements.length > 0 && (
           <div className={`hidden sm:block absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <div className="relative w-full h-full">
@@ -156,10 +172,9 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </div>
         )}
 
-        {/* Branding Content Layer - Desktop & Tablet - Show for both old and new headers */}
+        {/* Branding Content - Desktop & Tablet - Transparent when not searching unfinished */}
         <div className={`hidden sm:block absolute inset-0 container mx-auto px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full h-full">
-            {/* Logo & Text Container - Responsive positioning */}
             <motion.div 
               className={`absolute 
                 ${category === 'ruggedred' 
@@ -169,9 +184,10 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                     : category === 'tape'
                       ? 'bottom-[14vh] md:bottom-[10vh] lg:bottom-[14vh] xl:bottom-[20vh] 2xl:bottom-[20vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'
                       : 'bottom-[14vh] md:bottom-[10vh] lg:bottom-[14vh] xl:bottom-[20vh] 2xl:bottom-[20vh] left-[52%] md:left-[52%] lg:left-[50%] xl:left-[48%] 2xl:left-[48%]'} 
-                flex flex-col z-30 items-start w-auto max-w-[45%] md:max-w-[45%] lg:max-w-[48%] xl:max-w-[50%] 2xl:max-w-[50%] flex-shrink -mt-4 md:-mt-4 lg:-mt-6 xl:-mt-6 2xl:-mt-6`}
+                flex flex-col z-30 items-start w-auto max-w-[45%] md:max-w-[45%] lg:max-w-[48%] xl:max-w-[50%] 2xl:max-w-[50%] flex-shrink -mt-4 md:-mt-4 lg:-mt-6 xl:-mt-6 2xl:-mt-6
+                ${!isUnfinishedSearch ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
               initial={{ opacity: 0, x: 50 }}
-              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              animate={isLoaded ? { opacity: isUnfinishedSearch ? 1 : 0, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
               <div className="flex flex-col items-start mb-2 w-auto">
@@ -194,76 +210,10 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
           </div>
         </div>
 
-        {/* Mobile Layout (< 640px) - Constructed Elements - Only show if using current headers (unfinished search) */}
-        {isUnfinishedSearch && data.elements.length > 0 && (
-          <div className={`sm:hidden absolute inset-0 flex flex-col items-center justify-between pt-8 sm:pt-10 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
-            {/* Seal specific absolute product image for mobile/tablet - Anchored top left */}
-            {category === 'seal' && data.elements[0] && (
-              <motion.img
-                src={data.elements[0].src}
-                alt={data.elements[0].alt}
-                initial={{ opacity: 0, x: -100, y: -100 }}
-                animate={isLoaded ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -100, y: -100 }}
-                transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute top-[25%] md:top-[30%] left-[-10%] md:left-[-5%] h-[45vh] md:h-[55vh] translate-x-[-15%] w-auto object-contain z-0 pointer-events-none"
-              />
-            )}
-
-            <div className="flex flex-col items-center justify-between h-full w-full pt-8 sm:pt-10 pb-4 sm:pb-8 px-4">
-              {/* Top Column: Logo and Text */}
-              <div className="flex flex-col items-center w-auto max-w-none mt-0 sm:mt-2 relative z-10">
-              <img 
-                src={data.logo} 
-                alt={`${category} logo`} 
-                className={`${category === 'ruggedred' ? 'h-36 sm:h-48 mb-4 sm:mb-6' : 'h-20 sm:h-28 mb-2 sm:mb-4'} w-auto object-contain`}
-              />
-                <h1 className="text-white font-poppins font-normal text-center tracking-tight leading-tight w-full whitespace-nowrap text-[clamp(1.5rem,3vw,2rem)] sm:text-[clamp(1.5rem,3.5vw,2.25rem)] md:text-[clamp(1.75rem,4vw,2.5rem)] lg:text-[clamp(2rem,4.5vw,2.75rem)]">
-                  {data.subtext}
-                </h1>
-              </div>
-
-              {/* Bottom Row: Products (Construction for Bond) */}
-              <div className={`w-full flex ${category === 'tape' ? 'items-center' : 'items-end'} justify-center ${category === 'bond' ? 'gap-0.5 sm:gap-0.75' : 'gap-4'} px-2 ${category === 'seal' ? 'hidden' : ''}`}>
-                {category === 'bond' && data.elements.length >= 2 ? (
-                  // Bond specific: Two products side-by-side at the bottom
-                  <>
-                    <motion.img
-                      src={data.elements[0].src}
-                      alt={data.elements[0].alt}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                      className="h-[40vh] sm:h-[50vh] w-auto object-contain z-20 relative"
-                    />
-                    <motion.img
-                      src={data.elements[1].src}
-                      alt={data.elements[1].alt}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                      className="h-[38vh] sm:h-[48vh] w-auto object-contain z-10 relative"
-                    />
-                  </>
-                ) : data.elements[0] ? (
-                  // Others: Just the primary product element
-                  <motion.img
-                    src={data.elements[0].src}
-                    alt={data.elements[0].alt}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className={`${category === 'tape' ? 'h-[37vh] sm:h-[60vh] md:h-[60vh] -mt-6 sm:-mt-20' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`}
-                  />
-                ) : null}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Mobile Layout for Old Solid Headers - Simple logo and text only */}
-        {!isUnfinishedSearch && (
-          <div className={`sm:hidden absolute inset-0 flex flex-col items-center justify-center pt-8 sm:pt-10 pb-4 sm:pb-8 px-4 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20`}>
-            <div className="flex flex-col items-center w-auto max-w-none relative z-10">
+        {/* Mobile Content Layer - Transparent when not searching unfinished */}
+        <div className={`sm:hidden absolute inset-0 transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} z-20 ${!isUnfinishedSearch ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <div className="flex flex-col items-center justify-between h-full w-full pt-8 sm:pt-10 pb-4 sm:pb-8 px-4">
+            <div className="flex flex-col items-center w-auto max-w-none mt-0 sm:mt-2 relative z-10">
               <img 
                 src={data.logo} 
                 alt={`${category} logo`} 
@@ -273,8 +223,22 @@ const ProductCategoryFamilyHero: React.FC<ProductCategoryFamilyHeroProps> = ({ c
                 {data.subtext}
               </h1>
             </div>
+
+            {/* Bottom Row: Products (Construction for Bond) - Only show for unfinished search */}
+            {isUnfinishedSearch && (
+              <div className={`w-full flex ${category === 'tape' ? 'items-center' : 'items-end'} justify-center ${category === 'bond' ? 'gap-0.5 sm:gap-0.75' : 'gap-4'} px-2 ${category === 'seal' ? 'hidden' : ''}`}>
+                {category === 'bond' && data.elements.length >= 2 ? (
+                  <>
+                    <motion.img src={data.elements[0].src} alt={data.elements[0].alt} initial={{ opacity: 0, y: 50 }} animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} transition={{ duration: 0.8, delay: 0.2 }} className="h-[40vh] sm:h-[50vh] w-auto object-contain z-20 relative" />
+                    <motion.img src={data.elements[1].src} alt={data.elements[1].alt} initial={{ opacity: 0, y: 50 }} animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} transition={{ duration: 0.8, delay: 0.3 }} className="h-[38vh] sm:h-[48vh] w-auto object-contain z-10 relative" />
+                  </>
+                ) : data.elements[0] ? (
+                  <motion.img src={data.elements[0].src} alt={data.elements[0].alt} initial={{ opacity: 0, y: 50 }} animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} transition={{ duration: 0.8, delay: 0.2 }} className={`${category === 'tape' ? 'h-[37vh] sm:h-[60vh] md:h-[60vh] -mt-6 sm:-mt-20' : category === 'ruggedred' ? 'h-[18vh] sm:h-[22vh] md:h-[28vh]' : 'h-[25vh] sm:h-[30vh] md:h-[35vh]'} w-auto object-contain`} />
+                ) : null}
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Fallback background */}
         <div className="absolute inset-0 bg-[#1B3764] -z-10" />

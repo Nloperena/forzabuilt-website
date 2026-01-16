@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
 import { byCategory, byProductLine } from '@/utils/products';
@@ -11,7 +10,6 @@ import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
 import { ImageMappingService } from '@/services/imageMappingService';
-import { useProductSearch } from '@/contexts/ProductSearchContext';
 
 interface Product {
   id: string;
@@ -33,8 +31,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   onProductSelect 
 }) => {
   const navigate = useNavigate();
-  const { searchTerm, setSearchTerm } = useProductSearch();
-  // Filter states - use context search term
+  // Local state for search
   const [search, setSearch] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [nameSort, setNameSort] = useState<'asc' | 'desc'>('asc');
@@ -45,10 +42,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
 
-  // Sync local search state with context
+  // Dispatch search term updates to other islands (like the hero header) via window events
   useEffect(() => {
-    setSearchTerm(search);
-  }, [search, setSearchTerm]);
+    const event = new CustomEvent('forza-search-update', { detail: search });
+    window.dispatchEvent(event);
+  }, [search]);
 
   // Update drawer context when drawers open/close
   useEffect(() => {
@@ -68,13 +66,10 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         
         const categoryLower = productCategory.toLowerCase();
         if (categoryLower === 'ruggedred' || categoryLower === 'cleaners') {
-          // For ruggedred/cleaners, use byCategory to get products with category 'cleaners' or 'ruggedred'
           products = await byCategory(categoryLower);
         } else if (categoryLower === 'bond' || categoryLower === 'seal' || categoryLower === 'tape') {
-          // For bond, seal, tape use byProductLine
           products = await byProductLine(categoryLower as 'bond' | 'seal' | 'tape');
         } else {
-          // Fallback to byCategory
           products = await byCategory(productCategory.toUpperCase());
         }
         
@@ -92,7 +87,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     }
   }, [productCategory]);
 
-    // Filter and sort products
+  // Filter and sort products
   const filteredProducts = useMemo(() => {
     let filtered = [...allProducts];
 
@@ -103,27 +98,13 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     // Filter by image status first (unless searching for unfinished)
     if (!isSearchingUnfinished) {
       filtered = filtered.filter(product => {
-        // Exclude products without imageUrl or with empty string
-        if (!product.imageUrl || product.imageUrl.trim() === '') {
-          return false;
-        }
-        // Exclude products with placeholder images
-        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) {
-          return false;
-        }
-        // Exclude products with invalid blob URLs (empty or just base path)
-        if (product.imageUrl.includes('blob.vercel-storage.com') && 
-            (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) {
-          return false;
-        }
-        // Exclude products that have image errors (images failed to load)
-        if (imageErrorStates[product.id] === true) {
-          return false;
-        }
+        if (!product.imageUrl || product.imageUrl.trim() === '') return false;
+        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) return false;
+        if (product.imageUrl.includes('blob.vercel-storage.com') && (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) return false;
+        if (imageErrorStates[product.id] === true) return false;
         return true;
       });
     } else {
-      // When searching for unfinished, only show products without images
       filtered = filtered.filter(product => 
         !product.imageUrl || 
         imageErrorStates[product.id] === true ||
@@ -163,60 +144,38 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
       );
     }
 
-    // Apply sorting - first by industry order, then by name
+    // Apply sorting
     const industryOrder = ['industrial', 'transportation', 'marine', 'composites', 'construction', 'insulation'];
-    
-    // Helper to get the primary (first/most important) industry for a product
     const getPrimaryIndustryIndex = (product: Product): number => {
-      if (!product.industry) return 999; // Products without industry go last
+      if (!product.industry) return 999;
       const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
-      
-      // Find the first industry that matches our order
       for (const ind of industries) {
         const indLower = ind.toLowerCase();
         const index = industryOrder.indexOf(indLower);
-        if (index !== -1) {
-          return index;
-        }
+        if (index !== -1) return index;
       }
-      
-      // If no industry matches, sort alphabetically after known industries
       return 999;
     };
     
     filtered.sort((a, b) => {
-      // First sort by industry order
       const aIndustryIndex = getPrimaryIndustryIndex(a);
       const bIndustryIndex = getPrimaryIndustryIndex(b);
-      
-      if (aIndustryIndex !== bIndustryIndex) {
-        return aIndustryIndex - bIndustryIndex;
-      }
-      
-      // If same industry (or both unknown), sort by name
-      return nameSort === 'asc' 
-        ? a.name.localeCompare(b.name) 
-        : b.name.localeCompare(a.name);
+      if (aIndustryIndex !== bIndustryIndex) return aIndustryIndex - bIndustryIndex;
+      return nameSort === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
     });
 
     return filtered;
   }, [allProducts, selectedIndustries, search, selectedChemistries, nameSort, imageErrorStates]);
 
-  // Helper to get chemistry icon
   const getChemistryIcon = (chemistry: string): string => {
-    if (CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]) {
-      return CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS];
-    }
+    if (CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]) return CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS];
     const normalized = chemistry.toLowerCase();
     for (const [key, icon] of Object.entries(CHEMISTRY_ICONS)) {
-      if (key.toLowerCase() === normalized || key.toLowerCase().includes(normalized) || normalized.includes(key.toLowerCase())) {
-        return icon;
-      }
+      if (key.toLowerCase() === normalized || key.toLowerCase().includes(normalized) || normalized.includes(key.toLowerCase())) return icon;
     }
     return CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
   };
 
-  // Get available industries for this category
   const availableIndustries = useMemo(() => {
     const unique = new Set<string>();
     allProducts.forEach(product => {
@@ -225,72 +184,39 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         industries.forEach(ind => unique.add(ind));
       }
     });
-    
-    // Custom sort order: Industrial, Transportation, Marine, Composites, Construction, Insulation
     const industryOrder = ['industrial', 'transportation', 'marine', 'composites', 'construction', 'insulation'];
-    
     return Array.from(unique).sort((a, b) => {
-      const aLower = a.toLowerCase();
-      const bLower = b.toLowerCase();
-      const aIndex = industryOrder.indexOf(aLower);
-      const bIndex = industryOrder.indexOf(bLower);
-      
-      // If both are in the order array, sort by their position
-      if (aIndex !== -1 && bIndex !== -1) {
-        return aIndex - bIndex;
-      }
-      // If only a is in the order array, a comes first
-      if (aIndex !== -1) {
-        return -1;
-      }
-      // If only b is in the order array, b comes first
-      if (bIndex !== -1) {
-        return 1;
-      }
-      // If neither is in the order array, sort alphabetically
-      return aLower.localeCompare(bLower);
+      const aIndex = industryOrder.indexOf(a.toLowerCase());
+      const bIndex = industryOrder.indexOf(b.toLowerCase());
+      if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+      return a.toLowerCase().localeCompare(b.toLowerCase());
     });
   }, [allProducts]);
 
-  // Get chemistry types for this category (use allProducts so options don't disappear when filtered)
   const chemistryTypes = useMemo(() => {
-    const unique = new Set<string>(
-      allProducts
-        .filter(p => p.chemistry)
-        .map(p => p.chemistry!)
-    );
-    return Array.from(unique)
-      .filter(chem => chem !== 'composite_adhesive')
-      .sort();
+    const unique = new Set<string>(allProducts.filter(p => p.chemistry).map(p => p.chemistry!));
+    return Array.from(unique).filter(chem => chem !== 'composite_adhesive').sort();
   }, [allProducts]);
 
-  // Get chemistry counts based on all products (stable counts)
   const chemistryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    allProducts.forEach(product => {
-      if (product.chemistry) {
-        counts[product.chemistry] = (counts[product.chemistry] || 0) + 1;
-      }
-    });
+    allProducts.forEach(product => { if (product.chemistry) counts[product.chemistry] = (counts[product.chemistry] || 0) + 1; });
     return counts;
   }, [allProducts]);
 
-  // Get industry counts for all products (for filter sidebar counts)
   const industryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     allProducts.forEach(product => {
       if (product.industry) {
         const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
-        industries.forEach(ind => {
-          const industryLower = ind.toLowerCase();
-          counts[industryLower] = (counts[industryLower] || 0) + 1;
-        });
+        industries.forEach(ind => { counts[ind.toLowerCase()] = (counts[ind.toLowerCase()] || 0) + 1; });
       }
     });
     return counts;
   }, [allProducts]);
 
-  // Image loading handlers
   const handleImageLoad = (productId: string) => {
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
     setImageErrorStates(prev => ({ ...prev, [productId]: false }));
@@ -298,136 +224,68 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
   const handleImageError = (productId: string, e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
-    
-    // Track retry attempts to prevent infinite loops
     const retryKey = `retry_${productId}`;
     const retryCount = parseInt(sessionStorage.getItem(retryKey) || '0');
-    
-    // If blob URL fails, try to use the mapping service to get a better blob URL
     if ((target.src.includes('vercel-storage') || target.src.includes('blob')) && retryCount < 2) {
       const mappedImage = ImageMappingService.getImageForProduct(productId);
       if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
         const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
-        const blobPath = mappedImage.includes('/') 
-          ? `product-images-web-optimized/${mappedImage}`
-          : `product-images-web-optimized/Industrial/${mappedImage}`;
-        
+        const blobPath = mappedImage.includes('/') ? `product-images-web-optimized/${mappedImage}` : `product-images-web-optimized/Industrial/${mappedImage}`;
         sessionStorage.setItem(retryKey, String(retryCount + 1));
         target.src = `${baseUrl}/${blobPath}`;
-        return; // Don't set error state yet, we're trying a fallback
+        return;
       }
     }
-    
-    // All fallbacks failed - mark product as unfinished
     sessionStorage.removeItem(retryKey);
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
-    setImageLoadedStates(prev => ({ ...prev, [productId]: true })); // Set loaded to true to stop skeleton
+    setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
   };
 
-  // Map category to display title
   const getCategoryTitle = (category: string): string => {
     const categoryLower = category.toLowerCase();
     switch (categoryLower) {
-      case 'bond':
-        return 'Adhesive';
-      case 'seal':
-        return 'Sealant';
-      case 'ruggedred':
-        return 'Cleaning';
-      default:
-        return toTitleCase(category);
+      case 'bond': return 'Adhesive';
+      case 'seal': return 'Sealant';
+      case 'ruggedred': return 'Cleaning';
+      default: return toTitleCase(category);
     }
   };
 
   const formattedCategoryTitle = getCategoryTitle(productCategory);
 
   return (
-    <section className="bg-[#1B3764] text-white relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+    <section className="bg-gray-100 text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
-        <motion.div 
-          className="text-center"
-          style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 
-            className="font-normal font-poppins leading-tight text-white break-words normal-case" 
-            style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}
-          >
+        <motion.div className="text-center" style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
+          <h2 className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}>
             {formattedCategoryTitle} Products
           </h2>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row lg:items-start" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
-          {/* Filter Sidebar - Desktop Only */}
           <aside className="flex-shrink-0 lg:sticky lg:top-[80px] xl:top-[100px] lg:z-30" style={{ width: 'clamp(12rem, 15vw, 14rem)', alignSelf: 'flex-start' }}>
-            {/* Search Bar */}
             <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-1.5 mb-2">
               <div className="relative">
                 <div className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 p-0.5 rounded-full">
                   <Search className="text-white h-3 w-3" />
                 </div>
-                <input
-                  placeholder="Search products…"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  className="w-full bg-white/10 text-white placeholder-white/60 pl-7 py-1.5 text-xs border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-lg"
-                />
-                {search && (
-                  <button
-                    onClick={() => setSearch('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1 rounded-full transition-colors"
-                  >
-                    <X className="text-white h-3 w-3" />
-                  </button>
-                )}
+                <input placeholder="Search products…" value={search} onChange={e => setSearch(e.target.value)} className="w-full bg-white/10 text-white placeholder-white/60 pl-7 py-1.5 text-xs border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-lg" />
+                {search && <button onClick={() => setSearch('')} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1 rounded-full transition-colors"><X className="text-white h-3 w-3" /></button>}
               </div>
             </div>
 
-            {/* Filter Panel - Desktop Only */}
             <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 160px)' }}>
-              <div className="p-2 border-b border-white/20">
-                <h3 className="font-poppins font-regular text-xs text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
-                  Filter & Sort
-                </h3>
-              </div>
-
+              <div className="p-2 border-b border-white/20"><h3 className="font-poppins font-regular text-xs text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>Filter & Sort</h3></div>
               <div className="p-2 space-y-2">
-                {/* Industry Filter */}
                 {availableIndustries.length > 0 && (
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-semibold text-white">Industry</h4>
-                      {selectedIndustries.length > 0 && (
-                        <button
-                          onClick={() => setSelectedIndustries([])}
-                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
+                    <div className="flex items-center justify-between"><h4 className="text-xs font-semibold text-white">Industry</h4>{selectedIndustries.length > 0 && <button onClick={() => setSelectedIndustries([])} className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md">Clear</button>}</div>
                     <div className="grid grid-cols-1 gap-1">
                       {availableIndustries.map(industry => {
                         const isSelected = selectedIndustries.includes(industry);
-                        const industryLower = industry.toLowerCase();
-                        const count = industryCounts[industryLower] || 0;
+                        const count = industryCounts[industry.toLowerCase()] || 0;
                         return (
-                          <button
-                            key={industry}
-                            onClick={() => {
-                              if (isSelected) {
-                                setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
-                              } else {
-                                setSelectedIndustries([...selectedIndustries, industry]);
-                              }
-                            }}
-                            className={`w-full flex items-center justify-between p-1 rounded-md transition-all overflow-hidden ${
-                              isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
-                          >
+                          <button key={industry} onClick={() => isSelected ? setSelectedIndustries(selectedIndustries.filter(i => i !== industry)) : setSelectedIndustries([...selectedIndustries, industry])} className={`w-full flex items-center justify-between p-1 rounded-md transition-all overflow-hidden ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>
                             <span className="text-xs font-medium capitalize">{industry.replace(/_/g, ' ')}</span>
                             <span className="text-xs opacity-70">({count})</span>
                           </button>
@@ -436,84 +294,19 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                     </div>
                   </div>
                 )}
-
-                {/* Name Sort */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center">
-                    <ArrowUpDown className="text-white h-3 w-3 mr-1" />
-                    <h4 className="text-xs font-semibold text-white">Sort By Name</h4>
-                  </div>
-
-                  <div className="flex rounded-md overflow-hidden">
-                    <button
-                      onClick={() => setNameSort('asc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                    >
-                      <ChevronUp className="h-3 w-3" />
-                      <span className="text-xs font-medium">A-Z</span>
-                    </button>
-
-                    <button
-                      onClick={() => setNameSort('desc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                    >
-                      <ChevronDown className="h-3 w-3" />
-                      <span className="text-xs font-medium">Z-A</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Chemistry Filter */}
+                <div className="space-y-1.5"><div className="flex items-center"><ArrowUpDown className="text-white h-3 w-3 mr-1" /><h4 className="text-xs font-semibold text-white">Sort By Name</h4></div><div className="flex rounded-md overflow-hidden"><button onClick={() => setNameSort('asc')} className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}><ChevronUp className="h-3 w-3" /><span className="text-xs font-medium">A-Z</span></button><button onClick={() => setNameSort('desc')} className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}><ChevronDown className="h-3 w-3" /><span className="text-xs font-medium">Z-A</span></button></div></div>
                 {chemistryTypes.length > 0 && (
                   <div className="space-y-1.5 border-t border-white/20 pt-2">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <FlaskConical className="text-white h-3 w-3 mr-1" />
-                        <h4 className="text-xs font-semibold text-white">Chemistry</h4>
-                      </div>
-                      {selectedChemistries.length > 0 && (
-                        <button
-                          onClick={() => setSelectedChemistries([])}
-                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
-
+                    <div className="flex justify-between items-center"><div className="flex items-center"><FlaskConical className="text-white h-3 w-3 mr-1" /><h4 className="text-xs font-semibold text-white">Chemistry</h4></div>{selectedChemistries.length > 0 && <button onClick={() => setSelectedChemistries([])} className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md">Clear</button>}</div>
                     <div className="flex flex-col gap-1.5">
                       {chemistryTypes.map(chemistry => {
                         const isSelected = selectedChemistries.includes(chemistry);
                         const count = chemistryCounts[chemistry] || 0;
                         return (
-                          <button
-                            key={chemistry}
-                            onClick={() => {
-                              if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                              else setSelectedChemistries([...selectedChemistries, chemistry]);
-                            }}
-                            disabled={count === 0 && !isSelected}
-                            className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${
-                              isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
-                            } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
-                          >
+                          <button key={chemistry} onClick={() => isSelected ? setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry)) : setSelectedChemistries([...selectedChemistries, chemistry])} disabled={count === 0 && !isSelected} className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'} ${count === 0 && !isSelected ? 'opacity-50' : ''}`}>
                             <div className="flex items-center gap-1.5 min-w-0 flex-1 text-left">
-                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                <OptimizedImage 
-                                  src={getChemistryIcon(chemistry)} 
-                                  alt={chemistry}
-                                  width={48}
-                                  height={48}
-                                  className="w-5 h-5 object-contain chemistry-icon"
-                                  onError={(e) => {
-                                    // Fallback to MS icon if image fails to load
-                                    e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
-                                  }}
-                                />
-                              </div>
-                              <span className="text-xs font-medium break-words whitespace-normal leading-tight">
-                                {chemistry.replace(/_/g, ' ')}
-                              </span>
+                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center"><OptimizedImage src={getChemistryIcon(chemistry)} alt={chemistry} width={48} height={48} className="w-5 h-5 object-contain chemistry-icon" onError={(e) => { e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg'; }} /></div>
+                              <span className="text-xs font-medium break-words whitespace-normal leading-tight">{chemistry.replace(/_/g, ' ')}</span>
                             </div>
                             <span className="text-xs opacity-70">({count})</span>
                           </button>
@@ -526,292 +319,69 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
             </div>
           </aside>
 
-          {/* Main Content Area */}
           <div className="flex-1">
-            {/* Results Info with Icons - Mobile Only */}
             <div className="flex items-center justify-center mb-6 relative lg:hidden">
-              {/* Left: Search and Filter Icons - Paired closer together */}
-              <div className="flex items-center gap-1 absolute left-0 z-10">
-                <button
-                  onClick={() => setIsSearchDrawerOpen(true)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
-                  aria-label="Search"
-                >
-                  <Search className="w-5 h-5 text-white" />
-                </button>
-                <button
-                  onClick={() => setIsFilterDrawerOpen(true)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
-                  aria-label="Filter"
-                >
-                  <Filter className="w-5 h-5 text-white" />
-                </button>
-              </div>
-
-              {/* Center: Products Found Badge - Orange with white text, center-aligned */}
-              <div className="bg-[#F2611D] px-4 py-1.5 rounded-full relative z-20">
-                <p className="text-sm text-white font-poppins font-medium">
-                  <span className="font-semibold">{filteredProducts.length}</span> products found
-                </p>
-              </div>
+              <div className="flex items-center gap-1 absolute left-0 z-10"><button onClick={() => setIsSearchDrawerOpen(true)} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Search"><Search className="w-5 h-5 text-[#1B3764]" /></button><button onClick={() => setIsFilterDrawerOpen(true)} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Filter"><Filter className="w-5 h-5 text-[#1B3764]" /></button></div>
+              <div className="bg-[#F2611D] px-4 py-1.5 rounded-full relative z-20"><p className="text-sm text-white font-poppins font-medium"><span className="font-semibold">{filteredProducts.length}</span> products found</p></div>
             </div>
 
-            {/* Results Info - Desktop Only */}
-            <div className="hidden lg:flex justify-between items-center mb-6">
-              <div className="bg-white/10 px-4 py-2 rounded-full border border-white/20 shadow-sm backdrop-blur-sm">
-                <p className="text-sm text-white/80">
-                  <span className="font-semibold text-white">{filteredProducts.length}</span> products found
-                  {selectedChemistries.length > 0 && (
-                    <span className="hidden sm:inline"> • <span className="font-semibold text-white">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
-                  )}
-                </p>
-              </div>
-            </div>
+            <div className="hidden lg:flex justify-between items-center mb-6"><div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm"><p className="text-sm text-gray-700"><span className="font-semibold text-gray-900">{filteredProducts.length}</span> products found{selectedChemistries.length > 0 && <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>}</p></div></div>
 
-            {/* Product Grid or Empty State */}
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" style={{ gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
                 <AnimatePresence mode="popLayout">
                   {filteredProducts.map((product, idx) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                      transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
-                      layout
-                      className="group"
-                    >
-                      <div 
-                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-white/10 hover:border-white/30 shadow-lg flex flex-col"
-                      >
-                        {/* Product Image - Same layout for mobile and desktop */}
-                        <div 
-                          className="flex-1 relative pb-16 md:pb-24 cursor-pointer" 
-                          style={{ transform: 'translateY(-3%) scale(0.85)' }}
-                          onClick={() => navigate(`/products/${productCategory}/${product.id}`)}
-                        >
-                          {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
-                            <ImageSkeleton />
-                          )}
-                          
-                          {!imageErrorStates[product.id] && (
-                            <OptimizedImage 
-                              src={product.imageUrl || ''} 
-                              alt={product.name}
-                              width={256}
-                              height={256}
-                              mobileWidth={192}
-                              sizes="(max-width: 640px) 150px, 189px"
-                              className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
-                                imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                              }`}
-                              onLoad={() => handleImageLoad(product.id)}
-                              onError={(e) => handleImageError(product.id, e)}
-                            />
-                          )}
+                    <motion.div key={product.id} initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -20, scale: 0.95 }} transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }} layout className="group">
+                      <div className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg flex flex-col">
+                        <div className="flex-1 relative pb-16 md:pb-24 cursor-pointer" style={{ transform: 'translateY(-3%) scale(0.85)' }} onClick={() => navigate(`/products/${productCategory}/${product.id}`)}>
+                          {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && <ImageSkeleton />}
+                          {!imageErrorStates[product.id] && <OptimizedImage src={product.imageUrl || ''} alt={product.name} width={256} height={256} mobileWidth={192} sizes="(max-width: 640px) 150px, 189px" className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'}`} onLoad={() => handleImageLoad(product.id)} onError={(e) => handleImageError(product.id, e)} />}
                         </div>
-
-                        {/* Content Section with title and description - Same for mobile and desktop */}
-                        <div className="p-2.5 absolute bottom-0 left-0 right-0">
-                          <div className="space-y-0.5">
-                            <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {formatProductName(product.name || '')}
-                            </h3>
-                            
-                            {/* Button Row */}
-                            <div className="flex gap-1.5 mt-2 pt-2">
-                              {/* Details Button */}
-                              <a href={`/products/${productCategory}/${product.id}`}
-                                onClick={(e) => e.stopPropagation()}
-                                className="flex-1 inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                              >
-                                Details
-                              </a>
-                            </div>
-                          </div>
-                        </div>
+                        <div className="p-2.5 absolute bottom-0 left-0 right-0"><div className="space-y-0.5"><h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">{formatProductName(product.name || '')}</h3><div className="flex gap-1.5 mt-2 pt-2"><a href={`/products/${productCategory}/${product.id}`} onClick={(e) => e.stopPropagation()} className="flex-1 inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300">Details</a></div></div></div>
                       </div>
                     </motion.div>
                   ))}
                 </AnimatePresence>
               </div>
             ) : (
-              /* Empty State */
-              <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="mb-4">
-                  <Search className="h-16 w-16 text-white/40" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
-                <p className="text-white/60 mb-6">Try adjusting your filters or search terms</p>
-                <button
-                  onClick={() => {
-                    setSearch('');
-                    setSelectedChemistries([]);
-                    setSelectedIndustries([]);
-                  }}
-                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-normal font-poppins transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-                >
-                  Clear All Filters
-                </button>
-              </div>
+              <div className="flex flex-col items-center justify-center py-16 text-center"><div className="mb-4"><Search className="h-16 w-16 text-gray-400" /></div><h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3><p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p><button onClick={() => { setSearch(''); setSelectedChemistries([]); setSelectedIndustries([]); }} className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-normal font-poppins transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">Clear All Filters</button></div>
             )}
           </div>
         </div>
 
-        {/* Search Drawer */}
-        <SlideInDrawer
-          isOpen={isSearchDrawerOpen}
-          onClose={() => setIsSearchDrawerOpen(false)}
-          title="Search"
-          side="right"
-        >
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search products…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
-            />
-            {search && (
-              <button
-                onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"
-              >
-                <X className="w-4 h-4 text-gray-600" />
-              </button>
-            )}
-          </div>
+        <SlideInDrawer isOpen={isSearchDrawerOpen} onClose={() => setIsSearchDrawerOpen(false)} title="Search" side="right">
+          <div className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /><input type="text" placeholder="Search products…" value={search} onChange={(e) => setSearch(e.target.value)} className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent" />{search && <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"><X className="w-4 h-4 text-gray-600" /></button>}</div>
         </SlideInDrawer>
 
-        {/* Filter Drawer */}
-        <SlideInDrawer
-          isOpen={isFilterDrawerOpen}
-          onClose={() => setIsFilterDrawerOpen(false)}
-          title="Filter & Settings"
-          side="right"
-        >
+        <SlideInDrawer isOpen={isFilterDrawerOpen} onClose={() => setIsFilterDrawerOpen(false)} title="Filter & Settings" side="right">
           <div className="space-y-4">
-                  {/* Sort */}
-                  <div>
-                    <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-2">Sort By Name</h4>
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={() => setNameSort('asc')} 
-                        className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
-                          nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        A-Z
-                      </button>
-                      <button 
-                        onClick={() => setNameSort('desc')} 
-                        className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
-                          nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        Z-A
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Industry Filter */}
-                  {availableIndustries.length > 0 && (
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-poppins font-semibold text-gray-700">Industry</h4>
-                        {selectedIndustries.length > 0 && (
-                          <button
-                            onClick={() => setSelectedIndustries([])}
-                            className="text-xs text-gray-600 hover:text-gray-800"
-                          >
-                            Clear
-                          </button>
-                        )}
-                      </div>
-                      <div className="space-y-1.5">
-                        {availableIndustries.map(industry => {
-                          const isSelected = selectedIndustries.includes(industry);
-                          const count = allProducts.filter(p => {
-                            if (!p.industry) return false;
-                            const industries = Array.isArray(p.industry) ? p.industry : [p.industry];
-                            return industries.some(ind => 
-                              ind.toLowerCase() === industry.toLowerCase() ||
-                              ind.toLowerCase().includes(industry.toLowerCase()) ||
-                              industry.toLowerCase().includes(ind.toLowerCase())
-                            );
-                          }).length;
-                          return (
-                            <button
-                              key={industry}
-                              onClick={() => {
-                                if (isSelected) setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
-                                else setSelectedIndustries([...selectedIndustries, industry]);
-                              }}
-                              className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
-                                isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                              }`}
-                            >
-                              <span className="text-xs font-medium capitalize">{industry.replace(/_/g, ' ')}</span>
-                              <span className="text-xs opacity-70">({count})</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Chemistry Filter */}
-                  {chemistryTypes.length > 0 && (
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-poppins font-semibold text-gray-700">Chemistry</h4>
-                        {selectedChemistries.length > 0 && (
-                          <button
-                            onClick={() => setSelectedChemistries([])}
-                            className="text-xs text-gray-600 hover:text-gray-800"
-                          >
-                            Clear
-                          </button>
-                        )}
-                      </div>
-                      <div className="space-y-1.5">
-                        {chemistryTypes.map(chemistry => {
-                          const isSelected = selectedChemistries.includes(chemistry);
-                          const count = chemistryCounts[chemistry] || 0;
-                          return (
-                            <button
-                              key={chemistry}
-                              onClick={() => {
-                                if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                                else setSelectedChemistries([...selectedChemistries, chemistry]);
-                              }}
-                              disabled={count === 0 && !isSelected}
-                              className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
-                                isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                              } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            >
-                              <div className="flex items-center gap-2 min-w-0 flex-1">
-                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                <OptimizedImage 
-                                  src={getChemistryIcon(chemistry)} 
-                                  alt={chemistry}
-                                  width={40}
-                                  height={40}
-                                  className="w-5 h-5 object-contain chemistry-icon"
-                                />
-                              </div>
-                                <span className="text-xs font-medium truncate">{chemistry}</span>
-                              </div>
-                              <span className="text-xs opacity-70 flex-shrink-0">({count})</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
+            <div><h4 className="text-sm font-poppins font-semibold text-gray-700 mb-2">Sort By Name</h4><div className="flex gap-2"><button onClick={() => setNameSort('asc')} className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>A-Z</button><button onClick={() => setNameSort('desc')} className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>Z-A</button></div></div>
+            {availableIndustries.length > 0 && (
+              <div><div className="flex items-center justify-between mb-2"><h4 className="text-sm font-poppins font-semibold text-gray-700">Industry</h4>{selectedIndustries.length > 0 && <button onClick={() => setSelectedIndustries([])} className="text-xs text-gray-600 hover:text-gray-800">Clear</button>}</div><div className="space-y-1.5">
+                {availableIndustries.map(industry => {
+                  const isSelected = selectedIndustries.includes(industry);
+                  const count = allProducts.filter(p => {
+                    if (!p.industry) return false;
+                    const industries = Array.isArray(p.industry) ? p.industry : [p.industry];
+                    return industries.some(ind => ind.toLowerCase() === industry.toLowerCase() || ind.toLowerCase().includes(industry.toLowerCase()) || industry.toLowerCase().includes(ind.toLowerCase()));
+                  }).length;
+                  return (
+                    <button key={industry} onClick={() => isSelected ? setSelectedIndustries(selectedIndustries.filter(i => i !== industry)) : setSelectedIndustries([...selectedIndustries, industry])} className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}><span className="text-xs font-medium capitalize">{industry.replace(/_/g, ' ')}</span><span className="text-xs opacity-70">({count})</span></button>
+                  );
+                })}
+              </div></div>
+            )}
+            {chemistryTypes.length > 0 && (
+              <div><div className="flex items-center justify-between mb-2"><h4 className="text-sm font-poppins font-semibold text-gray-700">Chemistry</h4>{selectedChemistries.length > 0 && <button onClick={() => setSelectedChemistries([])} className="text-xs text-gray-600 hover:text-gray-800">Clear</button>}</div><div className="space-y-1.5">
+                {chemistryTypes.map(chemistry => {
+                  const isSelected = selectedChemistries.includes(chemistry);
+                  const count = allProducts.filter(p => p.chemistry === chemistry).length;
+                  return (
+                    <button key={chemistry} onClick={() => isSelected ? setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry)) : setSelectedChemistries([...selectedChemistries, chemistry])} disabled={count === 0 && !isSelected} className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'} ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}><div className="flex items-center gap-2 min-w-0 flex-1"><div className="w-5 h-5 flex-shrink-0 flex items-center justify-center"><OptimizedImage src={getChemistryIcon(chemistry)} alt={chemistry} width={40} height={40} className="w-5 h-5 object-contain chemistry-icon" onError={(e) => { e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg'; }} /></div><span className="text-xs font-medium truncate">{chemistry.replace(/_/g, ' ')}</span></div><span className="text-xs opacity-70 flex-shrink-0">({count})</span></button>
+                  );
+                })}
+              </div></div>
+            )}
           </div>
         </SlideInDrawer>
       </div>
@@ -820,4 +390,3 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 };
 
 export default ProductCategoryProductsSection;
-
