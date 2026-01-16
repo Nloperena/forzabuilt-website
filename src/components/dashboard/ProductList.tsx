@@ -57,7 +57,8 @@ export default function ProductList({ category, onSelectProduct, searchTerm }: P
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const allProducts = await getAllProducts();
+        // Force refresh from API to ensure dashboard has latest backend data
+        const allProducts = await getAllProducts(true);
         setProducts(allProducts);
 
         const uniqueIndustries = new Set<string>();

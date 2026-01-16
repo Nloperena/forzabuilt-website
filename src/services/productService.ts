@@ -42,7 +42,7 @@ const PRODUCTS_DATA_URL = isSSR ? HEROKU_API_URL : '/api/products';
 // Simple in-memory cache
 let productsCache: Product[] | null = null;
 let cacheTimestamp: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 10 * 1000; // 10 seconds (reduced from 5 minutes for better freshness)
 
 // Function to clear cache (useful for debugging)
 export function clearProductsCache() {
@@ -171,28 +171,14 @@ export async function getAllProducts(forceRefresh: boolean = false): Promise<Pro
     // Transform the API data to match your expected format
     const products = apiData.map((apiProduct: any) => transformProductData(apiProduct));
     
-    // Debug: Check for specific product codes (including TAC-OS7)
-    const searchCodes = ['TAC-745', 'TAC-OS7', 'TU603', 'TU615', 'TU-OS50', 'TU-OA40', 'TU-OS45', 'TU-800', 'C110', 'IC936', 'IC951', 'IC952', 'IC955NF', 'R190', 'R529', 'OS2 WT', 'OS45', 'OS55', 'T205', 'T226', 'T310', 'T710', 'MC736', 'MC739', 'TC471', 'T-T246', 'TAC-R760', 'TAC-T700', 'C-OA52W', 'A1000', 'A450', 'A465', 'A729', 'C805', 'C830', 'C835', 'H103', 'H117', 'H158', 'H163', 'H164', 'H167', 'H176', 'I1000', 'IC2400', 'OA99', 'W700', 'FC-CAR', 'OA28', 'OA29', 'OA75', 'T103', 'T446', 'T449', 'T454', 'T461', 'T462', 'T465', 'T515', 'T532', 'M-C283', 'M-R478', 'T-R682'];
-    const foundProducts = products.filter(p => {
-      const productId = (p.id || '').toUpperCase();
-      return searchCodes.some(code => productId.includes(code.toUpperCase().replace(/-/g, '')) || productId === code.toUpperCase());
-    });
-    if (foundProducts.length > 0) {
-      console.log(`🔍 Found ${foundProducts.length} matching products:`, foundProducts.map(p => ({ id: p.id, name: p.name, isActive: p.isActive, published: (apiData.find((ap: any) => (ap.product_id || ap.id) === p.id)?.published) })));
-    } else {
-      console.log(`⚠️ None of the searched product codes were found in the API response`);
+    // Check if we got data. If not, don't use fallback if we want backend control
+    if (!products || products.length === 0) {
+      throw new Error('No products returned from API');
     }
-    
+
     // Since all products are now published: true in the database, we should show all products
     // Only filter out products that are explicitly marked as inactive
     const activeProducts = products.filter(product => product.isActive !== false);
-    const inactiveCount = products.length - activeProducts.length;
-    if (inactiveCount > 0) {
-      console.log(`📊 Filtered out ${inactiveCount} explicitly inactive products (isActive === false)`);
-      console.log(`📊 Active products: ${activeProducts.length} out of ${products.length} total`);
-    } else {
-      console.log(`✅ All ${products.length} products are active`);
-    }
     
     // Update cache
     productsCache = activeProducts;
@@ -202,12 +188,17 @@ export async function getAllProducts(forceRefresh: boolean = false): Promise<Pro
   } catch (error) {
     console.error('Failed to fetch products from API proxy:', error);
     
-    // Try fallback to local JSON file
-    console.warn('⚠️ API failed, using local fallback data');
-    const rawProducts = (productsDataFallback as any).products || [];
-    const products = rawProducts.map((p: any) => transformProductData(p));
+    // Return empty array instead of stale fallback if requested by user
+    // This forces the UI to show "No products found" if the backend is down,
+    // which is better than showing old data when they expect live control.
+    if (forceRefresh) {
+      return [];
+    }
+
+    // If not a force refresh and we have cache, use it
+    if (productsCache) return productsCache;
     
-    return products.filter((p: Product) => p.isActive !== false);
+    return [];
   }
 
 }

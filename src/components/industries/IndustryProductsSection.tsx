@@ -52,14 +52,9 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     const loadProducts = async () => {
       setProductsLoading(true);
       try {
-        // Load all products from all categories
-        const [bondProducts, sealProducts, tapeProducts] = await Promise.all([
-          byProductLine('bond'),
-          byProductLine('seal'),
-          byProductLine('tape')
-        ]);
-        // Combine all products
-        setAllLineProducts([...bondProducts, ...sealProducts, ...tapeProducts] as any);
+        // Force refresh from API to ensure fresh data from backend portal
+        const fetchedProducts = await getAllProducts(true);
+        setAllLineProducts(fetchedProducts);
       } catch (error) {
         console.error('Failed to load products:', error);
         setAllLineProducts([]);

@@ -63,7 +63,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false, i
     const loadProducts = async () => {
       try {
         setIsLoadingProducts(true);
-        const fetchedProducts = await getAllProducts();
+        // Force refresh from API to ensure fresh data for search
+        const fetchedProducts = await getAllProducts(true);
         setProducts(fetchedProducts);
       } catch (error) {
         console.error('Failed to load products for search:', error);

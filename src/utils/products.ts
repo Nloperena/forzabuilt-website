@@ -2,22 +2,22 @@ import { getAllProducts, getProductById } from '@/services/productService';
 import type { Product } from '@/types/products';
 
 // All products (excluding cleaners)
-export const getProducts = async (): Promise<Product[]> => {
-  const products = await getAllProducts();
+export const getProducts = async (forceRefresh: boolean = false): Promise<Product[]> => {
+  const products = await getAllProducts(forceRefresh);
   return products.filter(p => 
     p.productType?.toLowerCase() !== 'cleaner'
   );
 };
 
 // Filter by product line (Bond/Seal/Tape) - using category field
-export const byProductLine = async (line: 'bond' | 'seal' | 'tape'): Promise<Product[]> => {
-  const products = await getProducts();
+export const byProductLine = async (line: 'bond' | 'seal' | 'tape', forceRefresh: boolean = false): Promise<Product[]> => {
+  const products = await getProducts(forceRefresh);
   return products.filter(p => p.category?.toLowerCase() === line.toLowerCase());
 };
 
 // Filter by industry - now industry is an array, so check if any industry matches
-export const byIndustry = async (industry: string): Promise<Product[]> => {
-  const products = await getProducts();
+export const byIndustry = async (industry: string, forceRefresh: boolean = false): Promise<Product[]> => {
+  const products = await getProducts(forceRefresh);
   return products.filter(p => 
     p.industry && 
     Array.isArray(p.industry) && 
@@ -26,13 +26,13 @@ export const byIndustry = async (industry: string): Promise<Product[]> => {
 };
 
 // Filter by category (for category pages)
-export const byCategory = async (category: string): Promise<Product[]> => {
-  const products = await getProducts();
+export const byCategory = async (category: string, forceRefresh: boolean = false): Promise<Product[]> => {
+  const products = await getProducts(forceRefresh);
   return products.filter(p => p.category?.toLowerCase() === category.toLowerCase());
 };
 
-export const byChemistry = async (chemistry: string): Promise<Product[]> => {
-  const products = await getProducts();
+export const byChemistry = async (chemistry: string, forceRefresh: boolean = false): Promise<Product[]> => {
+  const products = await getProducts(forceRefresh);
   return products.filter(p => p.chemistry?.toLowerCase() === chemistry.toLowerCase());
 };
 
