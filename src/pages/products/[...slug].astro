@@ -4,120 +4,40 @@ import { Providers } from '@/components/common/Providers';
 import HeaderWrapper from '@/components/Header/HeaderWrapper';
 import FooterV2 from '@/components/FooterV2';
 import ProductDetail from '@/components/products/ProductDetail';
-import { getProducts, getRelatedProducts } from '@/utils/products';
-import { getBlobImageUrl } from '@/utils/blobStorage';
-import productsData from '@/data/productsSimplified.json';
+import { getProduct, getRelatedProducts } from '@/utils/products';
 import { getImage } from 'astro:assets';
 
-// Generate static paths for all products
-export async function getStaticPaths() {
-  // Helper to normalize product names for URL matching
-  function normalizeForUrl(str: string): string {
-    return str.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
-
-  const paths: any[] = [];
-  
-  if (!productsData || !productsData.products) {
-    console.error('Products data or products array missing');
-    return [];
-  }
-
-  // Fetch all products once to use as a lookup
-  let allApiProducts: any[] = [];
-  try {
-    allApiProducts = await getProducts();
-    console.log(`📦 getStaticPaths: Fetched ${allApiProducts.length} products from API`);
-  } catch (error) {
-    console.warn('📦 getStaticPaths: Could not fetch products from API, falling back to static data');
-  }
-
-  // Use API products as primary source if available, otherwise fallback to static data
-  const productsToProcess = allApiProducts.length > 0 
-    ? allApiProducts 
-    : (productsData.products || []);
-
-  console.log(`📦 getStaticPaths: Processing ${productsToProcess.length} products`);
-
-  // Handle both /product/:id and /products/:category/:id patterns
-  for (const product of productsToProcess) {
-    const productId = product.id; // This will be uppercase if from API
-    if (!productId) continue;
-
-    const category = product.category || 'BOND';
-    const categorySlug = category.toLowerCase();
-
-    // 1. Product by ID only (e.g., /products/T-R785)
-    paths.push({
-      params: { slug: productId },
-      props: { 
-        product: product,
-        relatedProducts: [] 
-      },
-    });
-    
-    // 2. Product with category/id (e.g., /products/bond/T-R785)
-    paths.push({
-      params: { slug: `${categorySlug}/${productId}` },
-      props: { 
-        product: product, 
-        productCategory: categorySlug,
-        relatedProducts: [] // Will be populated in the component if needed or we can fetch here
-      },
-    });
-
-    // 3. Also generate lowercase versions for robustness
-    if (productId.toLowerCase() !== productId) {
-      // Lowercase category/id
-      paths.push({
-        params: { slug: `${categorySlug}/${productId.toLowerCase()}` },
-        props: { 
-          product: product, 
-          productCategory: categorySlug,
-          relatedProducts: []
-        },
-      });
-      // Lowercase id only
-      paths.push({
-        params: { slug: productId.toLowerCase() },
-        props: { 
-          product: product,
-          relatedProducts: []
-        },
-      });
-    }
-    
-    // 4. Also create redirect paths for product name variations
-    if (product.name) {
-      const normalizedName = normalizeForUrl(product.name);
-      // Only add if different from the ID (in any case)
-      if (normalizedName !== productId.toLowerCase()) {
-        paths.push({
-          params: { slug: normalizedName },
-          props: { 
-            product: product, 
-            redirectTo: `/products/${categorySlug}/${productId}`,
-            isRedirect: true
-          },
-        });
-      }
-    }
-  }
-  
-  console.log(`📦 getStaticPaths: Generated ${paths.length} total paths`);
-  return paths;
-}
-
+export const prerender = false;
 
 const { slug } = Astro.params;
-const { product, productCategory, redirectTo, isRedirect } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Handle redirect case - return early with redirect response
-if (isRedirect && redirectTo) {
-  return Astro.redirect(redirectTo, 301);
+// Parse the slug to handle both /products/:id and /products/:category/:id
+const slugParts = slug?.split('/') || [];
+const productId = slugParts.length > 1 ? slugParts[1] : slugParts[0];
+const productCategory = slugParts.length > 1 ? slugParts[0] : undefined;
+
+// Fetch the product data on-demand from the API (force fresh)
+const product = productId ? await getProduct(productId) : undefined;
+
+// If product not found, return 404
+if (!product) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Product Not Found'
+  });
+}
+
+// Handle redirects if the slug is a normalized name instead of ID
+function normalizeForUrl(str: string): string {
+  return str.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+if (product.name && slug === normalizeForUrl(product.name)) {
+  const correctUrl = `/products/${(product.category || 'BOND').toLowerCase()}/${product.id}`;
+  return Astro.redirect(correctUrl, 301);
 }
 
 // Format the product name for display
@@ -135,14 +55,14 @@ if (product?.imageUrl) {
   }
 }
 
-// Get product image for Open Graph - use product image if available, otherwise fall back to default logo
+// Get product image for Open Graph
 const productOgImage = productOptimized?.imageUrl || "/logos/Forza-Eagle-Logo-Blue-eMail.png";
 
-// Get related products from props
-const relatedProducts = Astro.props.relatedProducts || [];
+// Get related products on-demand
+const relatedProducts = await getRelatedProducts(product.id, 4);
 
 // Build product structured data for SEO
-const productStructuredData = product ? {
+const productStructuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": productName,
@@ -158,7 +78,32 @@ const productStructuredData = product ? {
   "category": product.category || "Industrial Products",
   ...(product.imageUrl && { "image": product.imageUrl }),
   "url": `https://forzabuilt.com${currentPath}`
-} : null;
+};
+---
+
+<Layout 
+  title={`${productName} - ForzaBuilt`}
+  description={productDescription}
+  canonicalUrl={currentPath}
+  ogType="product"
+  ogImage={productOgImage}
+  structuredData={productStructuredData}
+>
+  <Providers client:load>
+    <div class="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
+      <HeaderWrapper currentPath={currentPath} client:load />
+      
+      <ProductDetail 
+        product={product} 
+        relatedProducts={relatedProducts}
+        productCategory={productCategory}
+        client:load 
+      />
+      
+      <FooterV2 client:load />
+    </div>
+  </Providers>
+</Layout>
 ---
 
 <Layout 

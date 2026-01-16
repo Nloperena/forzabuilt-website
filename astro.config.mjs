@@ -65,7 +65,7 @@ export default defineConfig({
       },
     },
   },
-  output: 'static',
+  output: 'hybrid',
   // SEO-friendly trailing slash handling
   trailingSlash: 'ignore',
 });

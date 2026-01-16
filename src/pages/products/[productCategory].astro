@@ -8,18 +8,10 @@ import ProductCategoryProductsSection from '@/components/products/ProductCategor
 import ProductCategoryFamilyHero from '@/components/products/ProductCategoryFamilyHero';
 import { getProductCategoryTitle, getProductCategoryDescription } from '@/utils/productCategoryHelpers';
 
-export function getStaticPaths() {
-  // Main product categories: bond, seal, tape, ruggedred
-  const mainProductCategories = ['bond', 'seal', 'tape', 'ruggedred'];
-  
-  return mainProductCategories.map((category) => ({
-    params: { productCategory: category },
-    props: { category: category as 'bond' | 'seal' | 'tape' | 'ruggedred' },
-  }));
-}
+export const prerender = false;
 
 const { productCategory } = Astro.params;
-const { category } = Astro.props;
+const category = productCategory as 'bond' | 'seal' | 'tape' | 'ruggedred';
 const currentPath = Astro.url.pathname;
 
 const categoryTitle = getProductCategoryTitle(category || '');
