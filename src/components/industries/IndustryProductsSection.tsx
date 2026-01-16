@@ -105,10 +105,47 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     }
 
     // Apply search filter
-    if (search) {
+    const searchLower = search.toLowerCase();
+    const isSearchingUnfinished = searchLower === 'unfinished' || searchLower === 'no image' || searchLower === 'missing image' || searchLower === 'no images';
+    
+    // Filter by image status first (unless searching for unfinished)
+    if (!isSearchingUnfinished) {
+      filtered = filtered.filter(product => {
+        // Exclude products without imageUrl or with empty string
+        if (!product.imageUrl || product.imageUrl.trim() === '') {
+          return false;
+        }
+        // Exclude products with placeholder images
+        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) {
+          return false;
+        }
+        // Exclude products with invalid blob URLs (empty or just base path)
+        if (product.imageUrl.includes('blob.vercel-storage.com') && 
+            (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) {
+          return false;
+        }
+        // Exclude products that have image errors (images failed to load)
+        if (imageErrorStates[product.id] === true) {
+          return false;
+        }
+        return true;
+      });
+    } else {
+      // When searching for unfinished, only show products without images
       filtered = filtered.filter(product => 
-        product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.description?.toLowerCase().includes(search.toLowerCase())
+        !product.imageUrl || 
+        imageErrorStates[product.id] === true ||
+        product.imageUrl.includes('placeholder') ||
+        product.imageUrl.includes('/placeholder')
+      );
+    }
+    
+    // Apply search filter (if not already filtering for unfinished)
+    if (search && !isSearchingUnfinished) {
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(searchLower) ||
+        product.description?.toLowerCase().includes(searchLower) ||
+        product.id.toLowerCase().includes(searchLower)
       );
     }
 
@@ -127,7 +164,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     );
 
     return filtered;
-  }, [industryData, allLineProducts, selectedCategories, search, selectedChemistries, nameSort]);
+  }, [industryData, allLineProducts, selectedCategories, search, selectedChemistries, nameSort, imageErrorStates]);
 
   // Helper to get chemistry icon - maps chemistry names to icon paths, falls back to MS icon
   const getChemistryIcon = (chemistry: string): string => {

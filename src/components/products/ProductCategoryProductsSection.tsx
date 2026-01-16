@@ -85,9 +85,45 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     }
   }, [productCategory]);
 
-  // Filter and sort products
+    // Filter and sort products
   const filteredProducts = useMemo(() => {
     let filtered = [...allProducts];
+
+    // Check if searching for unfinished products
+    const searchLower = search.toLowerCase();
+    const isSearchingUnfinished = searchLower === 'unfinished' || searchLower === 'no image' || searchLower === 'missing image' || searchLower === 'no images';
+
+    // Filter by image status first (unless searching for unfinished)
+    if (!isSearchingUnfinished) {
+      filtered = filtered.filter(product => {
+        // Exclude products without imageUrl or with empty string
+        if (!product.imageUrl || product.imageUrl.trim() === '') {
+          return false;
+        }
+        // Exclude products with placeholder images
+        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) {
+          return false;
+        }
+        // Exclude products with invalid blob URLs (empty or just base path)
+        if (product.imageUrl.includes('blob.vercel-storage.com') && 
+            (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) {
+          return false;
+        }
+        // Exclude products that have image errors (images failed to load)
+        if (imageErrorStates[product.id] === true) {
+          return false;
+        }
+        return true;
+      });
+    } else {
+      // When searching for unfinished, only show products without images
+      filtered = filtered.filter(product => 
+        !product.imageUrl || 
+        imageErrorStates[product.id] === true ||
+        product.imageUrl.includes('placeholder') ||
+        product.imageUrl.includes('/placeholder')
+      );
+    }
 
     // Filter by selected industries
     if (selectedIndustries.length > 0) {
@@ -104,11 +140,12 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
       });
     }
 
-    // Apply search filter
-    if (search) {
+    // Apply search filter (if not already filtering for unfinished)
+    if (search && !isSearchingUnfinished) {
       filtered = filtered.filter(product => 
-        product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.description?.toLowerCase().includes(search.toLowerCase())
+        product.name.toLowerCase().includes(searchLower) ||
+        product.description?.toLowerCase().includes(searchLower) ||
+        product.id.toLowerCase().includes(searchLower)
       );
     }
 
@@ -156,7 +193,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     });
 
     return filtered;
-  }, [allProducts, selectedIndustries, search, selectedChemistries, nameSort]);
+  }, [allProducts, selectedIndustries, search, selectedChemistries, nameSort, imageErrorStates]);
 
   // Helper to get chemistry icon
   const getChemistryIcon = (chemistry: string): string => {
@@ -255,8 +292,12 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const handleImageError = (productId: string, e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
     
+    // Track retry attempts to prevent infinite loops
+    const retryKey = `retry_${productId}`;
+    const retryCount = parseInt(sessionStorage.getItem(retryKey) || '0');
+    
     // If blob URL fails, try to use the mapping service to get a better blob URL
-    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+    if ((target.src.includes('vercel-storage') || target.src.includes('blob')) && retryCount < 2) {
       const mappedImage = ImageMappingService.getImageForProduct(productId);
       if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
         const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
@@ -264,10 +305,16 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           ? `product-images-web-optimized/${mappedImage}`
           : `product-images-web-optimized/Industrial/${mappedImage}`;
         
+        sessionStorage.setItem(retryKey, String(retryCount + 1));
         target.src = `${baseUrl}/${blobPath}`;
         return; // Don't set error state yet, we're trying a fallback
       }
     }
+    
+    // All fallbacks failed - mark product as unfinished
+    sessionStorage.removeItem(retryKey);
+    setImageErrorStates(prev => ({ ...prev, [productId]: true }));
+    setImageLoadedStates(prev => ({ ...prev, [productId]: true })); // Set loaded to true to stop skeleton
 
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
