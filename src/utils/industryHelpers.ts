@@ -52,10 +52,25 @@ export const getIndustryColorHex = (industry: string | string[]) => {
   }
 };
 
-// Helper to convert text to title case
+// Helper to convert text to title case with exceptions for specific abbreviations
 export const toTitleCase = (str: string) => {
   if (!str || typeof str !== 'string') return '';
-  return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  
+  // Basic title case
+  let result = str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  
+  // Fix specific abbreviations that should be all caps
+  const abbreviations = {
+    '\\bCa\\b': 'CA',
+    '\\bVoc\\b': 'VOC',
+    '\\bNf\\b': 'NF' // Adding NF as well as it's common in product codes like IC955NF
+  };
+  
+  Object.entries(abbreviations).forEach(([pattern, replacement]) => {
+    result = result.replace(new RegExp(pattern, 'g'), replacement);
+  });
+  
+  return result;
 };
 
 // Helper to format product names: product code in ALL CAPS, rest in title case

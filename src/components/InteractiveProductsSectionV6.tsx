@@ -125,7 +125,8 @@ const InteractiveProductsSectionV6 = () => {
   const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
     try {
       const categorySlug = category === 'ruggedred' ? 'seal' : category;
-      const productsList = await byProductLine(categorySlug);
+      // Force refresh from API to ensure modal has latest backend data
+      const productsList = await byProductLine(categorySlug as any, true);
       setModalProducts(productsList);
       if (productsList.length > 0) {
         setSelectedModalProduct(productsList[0]);

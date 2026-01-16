@@ -90,8 +90,12 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
     }
   };
 
-  // Skip optimization for SVGs, data URIs, or already-optimized URLs, or unknown domains
-  const shouldSkipOptimization = !srcString || 
+  // Check if we are in development mode (works both on server and client)
+  const isDev = import.meta.env.DEV;
+  const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+  // Skip optimization for SVGs, data URIs, or already-optimized URLs, or unknown domains, or local development/dev mode
+  const shouldSkipOptimization = isDev || isLocal || !srcString || 
       srcString.endsWith('.svg') || 
       srcString.startsWith('data:') ||
       srcString.startsWith('/_vercel/image') ||

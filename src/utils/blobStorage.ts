@@ -67,6 +67,11 @@ export function getBlobImageUrl(imagePath: string, industry?: string | string[])
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
     return imagePath;
   }
+
+  // If the imagePath starts with /images/ or /logos/, it's a local static asset, return as-is
+  if (imagePath.startsWith('/images/') || imagePath.startsWith('/logos/')) {
+    return imagePath;
+  }
   
   const baseUrl = getBlobBaseUrl();
   

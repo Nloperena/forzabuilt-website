@@ -33,6 +33,7 @@ import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 
 import { getAllProducts } from "@/services/productService";
 import { Product } from "@/types/products";
+import { formatProductName } from "@/utils/industryHelpers";
 
 type SortField = "name" | "category" | "industry" | "chemistry";
 type SortDirection = "asc" | "desc";
@@ -397,7 +398,7 @@ export default function ProductList({ category, onSelectProduct, searchTerm }: P
                 </TableCell>
                 <TableCell className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
                   <div>
-                    <div className="font-poppins font-bold text-slate-900">{product.name}</div>
+                    <div className="font-poppins font-bold text-slate-900">{formatProductName(product.name)}</div>
                     <div className="text-sm font-poppins text-slate-500">{product.shortName}</div>
                   </div>
                 </TableCell>

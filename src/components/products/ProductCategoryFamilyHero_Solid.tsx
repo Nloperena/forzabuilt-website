@@ -83,7 +83,7 @@ const ProductCategoryFamilyHero_Solid: React.FC<ProductCategoryFamilyHeroProps> 
             onError={handleLoad}
             loading="eager"
             // @ts-ignore
-            fetchPriority="high"
+            fetchpriority="high"
           />
         </div>
 

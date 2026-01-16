@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
 import { byProductLine } from '@/utils/products';
+import { getAllProducts } from '@/services/productService';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
 import OptimizedImage from '../common/OptimizedImage';
@@ -53,7 +54,9 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
       setProductsLoading(true);
       try {
         // Force refresh from API to ensure fresh data from backend portal
+        console.log('🔵 [IndustryProductsSection] Fetching all products...');
         const fetchedProducts = await getAllProducts(true);
+        console.log('✅ [IndustryProductsSection] Received:', fetchedProducts.length, 'products');
         setAllLineProducts(fetchedProducts);
       } catch (error) {
         console.error('Failed to load products:', error);
@@ -106,6 +109,10 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     // Filter by image status first (unless searching for unfinished)
     if (!isSearchingUnfinished) {
       filtered = filtered.filter(product => {
+        // KEEP EVERYTHING LOCALLY FOR DEBUGGING
+        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        if (isLocal) return true;
+
         // Exclude products without imageUrl or with empty string
         if (!product.imageUrl || product.imageUrl.trim() === '') {
           return false;
@@ -189,37 +196,33 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   }, [industryProducts]);
 
   // Get category counts for all products in this industry
-  const [categoryCounts, setCategoryCounts] = useState({ bond: 0, seal: 0, tape: 0 });
-
-  useEffect(() => {
-    const loadCategoryCounts = async () => {
-      if (!industryData) {
-        setCategoryCounts({ bond: 0, seal: 0, tape: 0 });
-        return;
+  const categoryCounts = useMemo(() => {
+    if (!industryData || !allLineProducts.length) {
+      return { bond: 0, seal: 0, tape: 0 };
+    }
+    
+    const industryKey = industryData.title.toLowerCase();
+    const counts = { bond: 0, seal: 0, tape: 0 };
+    
+    allLineProducts.forEach(product => {
+      if (!product.industry) return;
+      const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
+      const isInIndustry = industries.some(ind => 
+        ind.toLowerCase() === industryKey || 
+        ind.toLowerCase().includes(industryKey) ||
+        industryKey.includes(ind.toLowerCase())
+      );
+      
+      if (isInIndustry) {
+        const category = product.category?.toLowerCase();
+        if (category === 'bond') counts.bond++;
+        else if (category === 'seal') counts.seal++;
+        else if (category === 'tape') counts.tape++;
       }
-      
-      const industryKey = industryData.title.toLowerCase();
-      const counts = { bond: 0, seal: 0, tape: 0 };
-      
-      // Count all products for each category in this industry
-      for (const line of ['bond', 'seal', 'tape'] as const) {
-        const products = await byProductLine(line);
-        counts[line] = products.filter(product => {
-          if (!product.industry) return false;
-          const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
-          return industries.some(ind => 
-            ind.toLowerCase() === industryKey || 
-            ind.toLowerCase().includes(industryKey) ||
-            industryKey.includes(ind.toLowerCase())
-          );
-        }).length;
-      }
-      
-      setCategoryCounts(counts);
-    };
-
-    loadCategoryCounts();
-  }, [industryData]);
+    });
+    
+    return counts;
+  }, [industryData, allLineProducts]);
 
   // Image loading handlers
   const handleImageLoad = (productId: string) => {

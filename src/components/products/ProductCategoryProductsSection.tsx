@@ -10,6 +10,7 @@ import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
 import { ImageMappingService } from '@/services/imageMappingService';
+import { getAllProducts } from '@/services/productService';
 
 interface Product {
   id: string;
@@ -65,17 +66,23 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         let products: Product[] = [];
         
         const categoryLower = productCategory.toLowerCase();
+        // Force refresh from API to see new changes immediately
+        console.log('🔵 [ProductCategoryProductsSection] Fetching products for:', productCategory);
+        const allFetchedProducts = await getAllProducts(true);
+        console.log('✅ [ProductCategoryProductsSection] Received:', allFetchedProducts.length, 'products');
+        
         if (categoryLower === 'ruggedred' || categoryLower === 'cleaners') {
-          products = await byCategory(categoryLower);
+          products = allFetchedProducts.filter(p => p.category?.toLowerCase() === 'cleaners' || p.category?.toLowerCase() === 'ruggedred');
         } else if (categoryLower === 'bond' || categoryLower === 'seal' || categoryLower === 'tape') {
-          products = await byProductLine(categoryLower as 'bond' | 'seal' | 'tape');
+          products = allFetchedProducts.filter(p => p.category?.toLowerCase() === categoryLower);
         } else {
-          products = await byCategory(productCategory.toUpperCase());
+          products = allFetchedProducts.filter(p => p.category?.toUpperCase() === productCategory.toUpperCase());
         }
         
+        console.log('📊 [ProductCategoryProductsSection] Filtered to:', products.length, 'products for category:', productCategory);
         setAllProducts(products);
       } catch (error) {
-        console.error('Failed to load products:', error);
+        console.error('❌ [ProductCategoryProductsSection] Failed to load products:', error);
         setAllProducts([]);
       } finally {
         setProductsLoading(false);
@@ -87,7 +94,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     }
   }, [productCategory]);
 
-  // Filter and sort products
+    // Filter and sort products
   const filteredProducts = useMemo(() => {
     let filtered = [...allProducts];
 
@@ -98,10 +105,27 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     // Filter by image status first (unless searching for unfinished)
     if (!isSearchingUnfinished) {
       filtered = filtered.filter(product => {
-        if (!product.imageUrl || product.imageUrl.trim() === '') return false;
-        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) return false;
-        if (product.imageUrl.includes('blob.vercel-storage.com') && (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) return false;
-        if (imageErrorStates[product.id] === true) return false;
+        // KEEP EVERYTHING LOCALLY FOR DEBUGGING
+        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        if (isLocal) return true;
+
+        if (!product.imageUrl || product.imageUrl.trim() === '') {
+          if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': No image URL');
+          return false;
+        }
+        if (product.imageUrl.includes('placeholder') || product.imageUrl.includes('/placeholder')) {
+          if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': Placeholder image', product.imageUrl);
+          return false;
+        }
+        if (product.imageUrl.includes('blob.vercel-storage.com') && (product.imageUrl.endsWith('.com') || product.imageUrl.endsWith('.com/'))) {
+          if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': Invalid blob URL', product.imageUrl);
+          return false;
+        }
+        if (imageErrorStates[product.id] === true) {
+          if (product.id.toUpperCase().includes('T600')) console.log('🔍 Filtering out', product.id, ': Image error state is true');
+          return false;
+        }
+        if (product.id.toUpperCase().includes('T600')) console.log('🔍 T600 PASSED FILTER with URL:', product.imageUrl);
         return true;
       });
     } else {
@@ -227,6 +251,16 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     const retryKey = `retry_${productId}`;
     const retryCount = parseInt(sessionStorage.getItem(retryKey) || '0');
     if ((target.src.includes('vercel-storage') || target.src.includes('blob')) && retryCount < 2) {
+      // First, try if it's a "missing product mockup" that was just added locally
+      const product = allProducts.find(p => p.id === productId);
+      if (product && retryCount === 0) {
+        // Try the local mockup folder
+        const localPath = `/images/missing product mockups/${productId.toUpperCase()} ${product.name.replace(/ - /g, ' ')}.webp`;
+        sessionStorage.setItem(retryKey, '1');
+        target.src = localPath;
+        return;
+      }
+
       const mappedImage = ImageMappingService.getImageForProduct(productId);
       if (mappedImage && !target.src.includes(encodeURIComponent(mappedImage)) && !target.src.endsWith(mappedImage)) {
         const baseUrl = 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
@@ -254,7 +288,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const formattedCategoryTitle = getCategoryTitle(productCategory);
 
   return (
-    <section className="bg-gray-100 text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+    <section className="bg-white text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
         <motion.div className="text-center" style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }}>
           <h2 className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}>
