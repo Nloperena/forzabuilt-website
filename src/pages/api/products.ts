@@ -13,10 +13,14 @@ export const GET: APIRoute = async ({ request }) => {
     let finalUrl = baseUrl;
     
     // Try the base URL with trailing slash first
-    let response = await fetch(baseUrl, {
+    // Add cache-buster to the Heroku fetch to bypass any intermediate caching
+    const herokuUrl = `${baseUrl}?t=${Date.now()}`;
+    let response = await fetch(herokuUrl, {
       headers: {
         'Accept': 'application/json; charset=utf-8',
-      }
+        'Cache-Control': 'no-cache'
+      },
+      cache: 'no-store'
     });
     
     if (response.ok) {
@@ -41,12 +45,15 @@ export const GET: APIRoute = async ({ request }) => {
           `${baseUrl}?published=all`
         ];
         
-        for (const pagUrl of paginationAttempts) {
+        for (const pagUrlBase of paginationAttempts) {
           try {
+            const pagUrl = `${pagUrlBase}&t=${Date.now()}`;
             const pagResponse = await fetch(pagUrl, {
               headers: {
                 'Accept': 'application/json; charset=utf-8',
-              }
+                'Cache-Control': 'no-cache'
+              },
+              cache: 'no-store'
             });
             if (pagResponse.ok) {
               const pagData = await pagResponse.json();
