@@ -3,6 +3,7 @@ import { GradientModeProvider } from '@/contexts/GradientModeContext';
 import { BookViewerProvider } from '@/contexts/BookViewerContext';
 import { DrawerProvider } from '@/contexts/DrawerContext';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ProductSearchProvider } from '@/contexts/ProductSearchContext';
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -14,7 +15,9 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
       <GradientModeProvider>
         <DrawerProvider>
           <BookViewerProvider>
-            {children}
+            <ProductSearchProvider>
+              {children}
+            </ProductSearchProvider>
           </BookViewerProvider>
         </DrawerProvider>
       </GradientModeProvider>

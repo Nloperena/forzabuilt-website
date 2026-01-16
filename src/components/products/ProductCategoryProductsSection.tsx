@@ -11,6 +11,7 @@ import { useDrawer } from '@/contexts/DrawerContext';
 import { useNavigate } from '@/hooks/use-navigation';
 import SlideInDrawer from '../common/SlideInDrawer';
 import { ImageMappingService } from '@/services/imageMappingService';
+import { useProductSearch } from '@/contexts/ProductSearchContext';
 
 interface Product {
   id: string;
@@ -32,7 +33,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   onProductSelect 
 }) => {
   const navigate = useNavigate();
-  // Filter states
+  const { searchTerm, setSearchTerm } = useProductSearch();
+  // Filter states - use context search term
   const [search, setSearch] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [nameSort, setNameSort] = useState<'asc' | 'desc'>('asc');
@@ -42,6 +44,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const { setIsDrawerOpen } = useDrawer();
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
+
+  // Sync local search state with context
+  useEffect(() => {
+    setSearchTerm(search);
+  }, [search, setSearchTerm]);
 
   // Update drawer context when drawers open/close
   useEffect(() => {
@@ -315,9 +322,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     sessionStorage.removeItem(retryKey);
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
     setImageLoadedStates(prev => ({ ...prev, [productId]: true })); // Set loaded to true to stop skeleton
-
-    setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
-    setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
   // Map category to display title
@@ -338,7 +342,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const formattedCategoryTitle = getCategoryTitle(productCategory);
 
   return (
-    <section className="bg-gray-100 text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+    <section className="bg-[#1B3764] text-white relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
         <motion.div 
           className="text-center"
@@ -349,7 +353,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h2 
-            className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" 
+            className="font-normal font-poppins leading-tight text-white break-words normal-case" 
             style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}
           >
             {formattedCategoryTitle} Products
@@ -530,17 +534,17 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
               <div className="flex items-center gap-1 absolute left-0 z-10">
                 <button
                   onClick={() => setIsSearchDrawerOpen(true)}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
                   aria-label="Search"
                 >
-                  <Search className="w-5 h-5 text-[#1B3764]" />
+                  <Search className="w-5 h-5 text-white" />
                 </button>
                 <button
                   onClick={() => setIsFilterDrawerOpen(true)}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
                   aria-label="Filter"
                 >
-                  <Filter className="w-5 h-5 text-[#1B3764]" />
+                  <Filter className="w-5 h-5 text-white" />
                 </button>
               </div>
 
@@ -554,11 +558,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
             {/* Results Info - Desktop Only */}
             <div className="hidden lg:flex justify-between items-center mb-6">
-              <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
-                <p className="text-sm text-gray-700">
-                  <span className="font-semibold text-gray-900">{filteredProducts.length}</span> products found
+              <div className="bg-white/10 px-4 py-2 rounded-full border border-white/20 shadow-sm backdrop-blur-sm">
+                <p className="text-sm text-white/80">
+                  <span className="font-semibold text-white">{filteredProducts.length}</span> products found
                   {selectedChemistries.length > 0 && (
-                    <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
+                    <span className="hidden sm:inline"> • <span className="font-semibold text-white">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
                   )}
                 </p>
               </div>
@@ -579,7 +583,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       className="group"
                     >
                       <div 
-                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg flex flex-col"
+                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-white/10 hover:border-white/30 shadow-lg flex flex-col"
                       >
                         {/* Product Image - Same layout for mobile and desktop */}
                         <div 
@@ -636,10 +640,10 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
               /* Empty State */
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <div className="mb-4">
-                  <Search className="h-16 w-16 text-gray-400" />
+                  <Search className="h-16 w-16 text-white/40" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+                <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
+                <p className="text-white/60 mb-6">Try adjusting your filters or search terms</p>
                 <button
                   onClick={() => {
                     setSearch('');
